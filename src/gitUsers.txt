@@ -1,2 +1,12 @@
+git add <fileName>
+git commit -m"commit message"
+git commit -a -m"commit message"
+git push 
+git push --set-upstream origin <branchName> -only first time
+git clone <git URL>
+git pull
+git checkout 
+git checkout -b - create new branch
+
+
 1.Levon Aloyan - LevonAloyan
-2.Tatev Aharonyan - tatevaharonyan
