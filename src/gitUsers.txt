@@ -11,3 +11,4 @@ git checkout -b - create new branch
 
 1.Levon Aloyan - LevonAloyan
 2.Mushegh Ghazaryan
+3.Vagharshak Grigoryan - VagharshakGrigoryan
