@@ -12,4 +12,5 @@ git checkout -b - create new branch
 1.Levon Aloyan - LevonAloyan
 2.Mushegh Ghazaryan
 3.Vagharshak Grigoryan - VagharshakGrigoryan
-4.Artash Avetisyan - armweb123
+4. Garik Tepanosyan - gtepanosyan
+5.Artash Avetisyan - armweb123
