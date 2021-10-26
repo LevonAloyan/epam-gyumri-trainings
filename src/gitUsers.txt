@@ -16,4 +16,4 @@ git checkout -b - create new branch
 5. Garik Tepanosyan - gtepanosyan
 6.Artash Avetisyan - armweb123
 7.Hayk Davtyan - Hayk55Dav
-8. Heghine Khachatryan - HeghineKhachatryan
+8. Heghine Khachatryan - HeghineKhachatryan 
