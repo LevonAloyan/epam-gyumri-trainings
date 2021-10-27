@@ -18,4 +18,4 @@ git checkout -b - create new branch
 7.Hayk Davtyan - Hayk55Dav
 8.Heghine Khachatryan - HeghineKhachatryan
 9.Hakob Diloyan - hakob7475
-
+10.Armine Zakaryan - ArmineZak
