@@ -20,3 +20,4 @@ git checkout -b - create new branch
 9.Hakob Diloyan - hakob7475
 10.Armine Zakaryan - ArmineZak
 11.Davit Balabekyan - davbalabekyan
+12.Vahan Harutyunyan - Vahann
