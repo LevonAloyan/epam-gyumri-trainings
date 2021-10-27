@@ -34,4 +34,4 @@ git checkout -b - create new branch
 23.Trdat Shakhbazyan - Tiridat
 24.Lilit Manukyan - lmanukyan888
 25.Yulyana Hovhannisyan- YulyanaArtyomovna
-26.Anjela Vartanova - anj-98
+26.Anjela Vartanova -  anj-98
