@@ -38,3 +38,4 @@ git checkout -b - create new branch
 27.Aram Petrosyan - Aram955
 28.Karen Shahvaladyan - KarenShahvaladyan97
 29.Simon Poghosyan - simmPogh
+30.Tamara Davoyan - tamaradavoyan
