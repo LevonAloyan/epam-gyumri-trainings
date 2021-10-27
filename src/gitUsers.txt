@@ -13,7 +13,12 @@ git checkout -b - create new branch
 2.Mushegh Ghazaryan
 3.Vagharshak Grigoryan - VagharshakGrigoryan
 4.Artash Avetisyan - armweb123
-5. Garik Tepanosyan - gtepanosyan
+5.Garik Tepanosyan - gtepanosyan
 6.Artash Avetisyan - armweb123
 7.Hayk Davtyan - Hayk55Dav
-8.Ani Darbinyan - anidarbinyan
+8.Heghine Khachatryan - HeghineKhachatryan
+9.Hakob Diloyan - hakob7475
+10.Armine Zakaryan - ArmineZak
+11.Davit Balabekyan - davbalabekyan
+12.Vahan Harutyunyan - Vahann
+13.Ani Darbinyan - anidarbinyan
