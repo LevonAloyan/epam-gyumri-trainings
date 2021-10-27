@@ -22,3 +22,4 @@ git checkout -b - create new branch
 11.Davit Balabekyan - davbalabekyan
 12.Vahan Harutyunyan - Vahann
 13.Ani Darbinyan - anidarbinyan
+14.Gohar Zakaryan- GoharZakaryan
