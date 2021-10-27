@@ -24,3 +24,4 @@ git checkout -b - create new branch
 13.Ani Darbinyan - anidarbinyan
 14.Gohar Zakaryan- GoharZakaryan
 15. Samvel Stepanyan - SamvelStepanyan92
+16. Gohar Minasyan - goharminasyan
