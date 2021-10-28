@@ -37,4 +37,9 @@ git checkout -b - create new branch
 26.Anjela Vartanova- anj-98
 27.Aram Petrosyan - Aram955
 28.Karen Shahvaladyan - KarenShahvaladyan97
-29. Narek Muradyan - hsNarek
+29.Simon Poghosyan - simmPogh
+30.Tamara Davoyan - tamaradavoyan
+31.Zhenya Manukyan - ZhenyaManukyan
+32.Hayk Matevosyan - haykmatevosyan
+33.Naira Shukhyan - Naira96
+34. Narek Muradyan - hsNarek
