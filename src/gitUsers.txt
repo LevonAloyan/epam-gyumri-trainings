@@ -42,3 +42,4 @@ git checkout -b - create new branch
 31.Zhenya Manukyan - ZhenyaManukyan
 32.Hayk Matevosyan - haykmatevosyan
 33.Naira Shukhyan - Naira96
+34. Narek Muradyan - hsNarek
