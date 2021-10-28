@@ -46,3 +46,4 @@ git checkout -b - create new branch
 35.Roza Yeghiazaryan - RosaRoing
 36.Arshaluys Purtoyan
 36.Arevik Arakelyan - ArevikArakelyan
+39.Mkrtich Stepanyan - mkrtichstepanyan
