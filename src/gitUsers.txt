@@ -44,3 +44,4 @@ git checkout -b - create new branch
 33.Naira Shukhyan - Naira96
 34. Narek Muradyan - hsNarek
 35.Roza Yeghiazaryan - RosaRoing
+36.Arevik Arakelyan - ArevikArakelyan
