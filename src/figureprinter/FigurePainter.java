@@ -15,7 +15,13 @@ public class FigurePainter {
      */
     public static void drawLeftUpTriangle(int length){
         // TODO : complete the method
-
+        System.out.println("invoked 'drawLeftUpTriangle' method with " + length + " length");
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
     }
 
     /**
@@ -31,7 +37,16 @@ public class FigurePainter {
      */
     public static void drawRightUpTriangle(int length){
         // TODO : complete the method
-
+        System.out.println("invoked 'drawRightUpTriangle' method with " + length + " length");
+        for (int i = 0; i < length; i++) {
+            for (int j = length - 1; j > i; j--) {
+                System.out.print("  ");
+            }
+            for (int j = 0; j < i; j++) {
+                System.out.print(" *");
+            }
+            System.out.println();
+        }
     }
     /**
      * Draws the triangle by specified length number
@@ -47,6 +62,15 @@ public class FigurePainter {
      */
     public static void drawLeftBottomTriangle(int length){
         // TODO : complete the method
+        System.out.println("invoked 'drawLeftBottomTriangle' method with " + length + " length");
+        System.out.println();
+        for (int i = 0; i < length; i++) {
+            for (int j = length - 1; j > i; j--) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 
     /**
@@ -63,6 +87,16 @@ public class FigurePainter {
      */
     public static void drawRightBottomTriangle(int length){
         // TODO : complete the method
+        System.out.println("invoked 'drawRightBottomTriangle' method with " + length + " length");
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < i; j++) {
+                System.out.print("  ");
+            }
+            for (int j = length - 1; j > i; j--) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
     }
     /**
      * Draws the rhombus by specified length number
@@ -80,6 +114,25 @@ public class FigurePainter {
      */
     public static void drawRhombus(int length) {
         // TODO : complete the method
+        System.out.println("invoked 'drawRhombus' method with " + length + " length");
+        for (int i = 0; i < length; i++) {
+            for (int j = length - 1; j > i; j--) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j < i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+        for (int i = 0; i < length - 1; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print(" ");
+            }
+            for (int j = length - 2; j > i; j--) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
     }
     /**
      * lenght = 5
@@ -92,7 +145,16 @@ public class FigurePainter {
      * @param length specified length of triangle will be drawn
      */
     public static void drawIsoscelesTriangle(int length){
-
+        System.out.println("invoked 'drawIsoscelesTriangle' method with " + length + " length");
+        for (int i = 0; i <= length; i++) {
+            for (int j = length; j > i; j--) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j < i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
     }
 
     public static void triangleByInga() {
@@ -109,7 +171,16 @@ public class FigurePainter {
      * @param length specified length of triangle will be drawn
      */
     public static void drawBottomIsoscelesTriangle(int length){
-
+        System.out.println("invoked 'drawBottomIsoscelesTriangle' method with " + length + " length");
+        for (int i = length; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                System.out.print(" *");
+            }
+            System.out.println();
+            for (int j = length; j >= i; j--) {
+                System.out.print(" ");
+            }
+        }
     }
 
 }
