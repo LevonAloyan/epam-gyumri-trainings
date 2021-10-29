@@ -1,6 +1,5 @@
 package figureprinter;
 
-
 public class FigurePainter extends FigurePrinter {
 
     /**
@@ -144,17 +143,17 @@ public class FigurePainter extends FigurePrinter {
      * @param length specified length of triangle will be drawn
      */
     public static void drawIsoscelesTriangle(int length){
-        System.out.println();
-        for (int i = 0; i < 5; i++) {
-            for (int j = 5; j > i; j--) {
-                System.out.print(" ");
+        for ( int i = length; i > 0; i-- ) {
+            StringBuilder text = new StringBuilder();
+            text.append("  ".repeat(i - 1));
+            for (int j = 1; j <= length - i + 1; j++) {
+                text.append("* ");
+                if (j > 1) {
+                    text.append("* ");
+                }
             }
-            for (int k = 0; k <= i; k++) {
-                System.out.print("* ");
-            }
-            System.out.println();
+            System.out.println(text);
         }
-
     }
 
     /**
@@ -169,15 +168,16 @@ public class FigurePainter extends FigurePrinter {
      */
     public static void drawBottomIsoscelesTriangle(int length){
         System.out.println();
-        for (int i = 5; i > 0; i--) {
-            for (int j = 5; j > i; j--) {
-                System.out.print(" ");
+        for ( int i = length; i > 0; i-- ){
+            StringBuilder text = new StringBuilder();
+            text.append("  ".repeat(Math.max(0, length - i)));
+            for (int k = i; k > 0; k-- ){
+                text.append("* ");
+                if(k > 1){
+                    text.append("* ");
+                }
             }
-            for (int k = 0; k < i; k++) {
-                System.out.print("* ");
-            }
-            System.out.println();
+            System.out.println(text);
         }
     }
-
 }
