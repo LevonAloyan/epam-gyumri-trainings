@@ -149,9 +149,6 @@ public class FigurePainter {
 
     }
 
-    public static void triangleByInga() {
-
-    }
     /**
      *
      *   * * * * * * * * *
