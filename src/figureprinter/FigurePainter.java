@@ -15,7 +15,11 @@ public class FigurePainter {
      */
     public static void drawLeftUpTriangle(int length){
         // TODO : complete the method
-
+        for (int i = 0; i <length ; i++) {
+            for (int j = 0; j <i+1; j++)
+                System.out.print("* ");
+            System.out.println();}
+        System.out.println();
     }
 
     /**
@@ -31,7 +35,14 @@ public class FigurePainter {
      */
     public static void drawRightUpTriangle(int length){
         // TODO : complete the method
-
+        for (int i = 0; i <=length-1; i++) {
+            for (int j = 1; j <=length-i; j++) {
+                System.out.print("  ");}
+            for (int k = 0; k <=i; k++) {
+                System.out.print("* ");}
+            System.out.println();
+        }
+        System.out.println();
     }
     /**
      * Draws the triangle by specified length number
@@ -47,6 +58,13 @@ public class FigurePainter {
      */
     public static void drawLeftBottomTriangle(int length){
         // TODO : complete the method
+        for (int i = length-1; i >= 0; i--) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 
     /**
@@ -63,6 +81,14 @@ public class FigurePainter {
      */
     public static void drawRightBottomTriangle(int length){
         // TODO : complete the method
+        for (int i = 1; i <=length; i++) {
+            for (int j = 1; j <=i; j++) {
+                System.out.print("  ");}
+            for (int k = 0; k <=length-i; k++) {
+                System.out.print(" *");}
+            System.out.println();
+        }
+
     }
     /**
      * Draws the rhombus by specified length number
@@ -80,6 +106,21 @@ public class FigurePainter {
      */
     public static void drawRhombus(int length) {
         // TODO : complete the method
+        length = length - 2;
+        for (int i = 0; i <=length; i++) {
+            for (int j = 1; j <=length-i; j++) {
+                System.out.print(" ");}
+            for (int k = 0; k <=i; k++) {
+                System.out.print("* ");}
+            System.out.println();
+        }
+        for (int i = 1; i <=length; i++) {
+            for (int j = 1; j <=i; j++) {
+                System.out.print(" ");}
+            for (int k = 0; k <=length-i; k++) {
+                System.out.print("* ");}
+            System.out.println();
+        }
     }
     /**
      * lenght = 5
@@ -91,22 +132,38 @@ public class FigurePainter {
      *
      * @param length specified length of triangle will be drawn
      */
-    public static void drawIsoscelesTriangle(int length){
+    public static void drawIsoscelesTriangle(int length) {
+        for (int i = 0; i <= length + 4; i += 2) {
+            for (int j = i; j <= length+4; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 0; k <= i; k++) {
+                System.out.print(" *");
+            }
+            System.out.println();
+        }
 
     }
-
-    /**
-     *
-     *   * * * * * * * * *
-     *     * * * * * * *
-     *       * * * * *
-     *         * * *
-     *           *
-     *
-     * @param length specified length of triangle will be drawn
-     */
-    public static void drawBottomIsoscelesTriangle(int length){
-
-    }
-
+        /**
+         *
+         *   * * * * * * * * *
+         *     * * * * * * *
+         *       * * * * *
+         *         * * *
+         *           *
+         *
+         * @param length specified length of triangle will be drawn
+         */
+        public static void drawBottomIsoscelesTriangle( int length){
+           for (int i = 0; i <= length + 4; i += 2) {
+                for (int j = 0; j <= i; j++) {
+                    System.out.print(" ");
+                }
+                for (int k = i; k < length+4; k++) {
+                    System.out.print(" *");
+                }
+                System.out.println();
+            }
+        }
 }
+
