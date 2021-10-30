@@ -8,6 +8,7 @@ public class FigurePrinter {
         FigurePainter.drawLeftBottomTriangle(4);
         FigurePainter.drawRightBottomTriangle(4);
         FigurePainter.drawRhombus(5);
+        System.out.println();
         FigurePainter.drawIsoscelesTriangle(5);
         System.out.println();
         FigurePainter.drawBottomIsoscelesTriangle(5);
