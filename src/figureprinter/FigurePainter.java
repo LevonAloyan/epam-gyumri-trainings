@@ -11,10 +11,17 @@ public class FigurePainter {
      *      * * *
      *      * * * *
      *
-     * @param length  specified length of triangle will be drawn
+     * @param length specified length of triangle will be drawn
      */
-    public static void drawLeftUpTriangle(int length){
+    public static void drawLeftUpTriangle(int length) {
         // TODO : complete the method
+
+        for (int i = 1; i <= length; i++) {
+            for (int j = 0; j < i; j++) {
+                System.out.print("*");
+            }
+            System.out.println("");
+        }
 
     }
 
@@ -29,10 +36,22 @@ public class FigurePainter {
      *     * * * * *
      * @param length  specified length of triangle will be drawn
      */
-    public static void drawRightUpTriangle(int length){
+    public static void drawRightUpTriangle(int length) {
         // TODO : complete the method
 
+        for (int i = 1; i <= length; i++) {
+            for (int j = 0; j < length; j++) {
+                if (j < length - i) {
+                    System.out.print(" ");
+                } else {
+                    System.out.print("*");
+                }
+            }
+            System.out.println();
+        }
+
     }
+
     /**
      * Draws the triangle by specified length number
      * for example when n = 4 , it must be such as
@@ -43,9 +62,16 @@ public class FigurePainter {
      *       * *
      *       *
      *
-     * @param length  specified length of triangle will be drawn
+     * @param length specified length of triangle will be drawn
      */
-    public static void drawLeftBottomTriangle(int length){
+    public static void drawLeftBottomTriangle(int length) {
+        for (int i = length; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                System.out.print("*");
+            }
+
+            System.out.println();
+        }
         // TODO : complete the method
     }
 
@@ -59,10 +85,20 @@ public class FigurePainter {
      *           * *
      *             *
      *
-     * @param length  specified length of triangle will be drawn
+     * @param length specified length of triangle will be drawn
      */
-    public static void drawRightBottomTriangle(int length){
+    public static void drawRightBottomTriangle(int length) {
         // TODO : complete the method
+        for (int i = length; i > 0; i--) {
+            for (int j = 0; j < length; j++) {
+                if (j < length - i) {
+                    System.out.print(" ");
+                } else {
+                    System.out.print("*");
+                }
+            }
+            System.out.println();
+        }
     }
     /**
      * Draws the rhombus by specified length number
