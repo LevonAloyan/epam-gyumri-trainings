@@ -1,8 +1,6 @@
 package figureprinter;
 
 public class FigurePainter {
-    public FigurePainter() {
-    }
 
     public static void drawLeftUpTriangle(int length) {
         for(int i = 0; i < length; ++i) {
