@@ -108,7 +108,15 @@ public class FigurePainter {
      */
     public static void drawRhombus(int length) {
         // TODO : complete the method
-        drawIsoscelesTriangle(length);
+        for (int i = 0; i < length; i++) {
+            for (int k = length; k >= i; k--) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j < i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
         drawBottomIsoscelesTriangle(length);
     }
     /**
