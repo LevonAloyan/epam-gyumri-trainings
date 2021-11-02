@@ -1,0 +1,14 @@
+.DS_Store
+.project
+.classpath
+.externalToolBuilders
+.settings/
+.pmd
+*.swp
+test-output/
+target/
+*.iml
+.idea/
+out
+
+
