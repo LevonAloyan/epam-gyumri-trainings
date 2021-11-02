@@ -46,7 +46,9 @@ public class ArrayUtil {
      */
     public static int[] addFirst(int[] array, int valueToAdd) {
         array[0] = valueToAdd;
-        return array;
+        int[] destArr = new int[array.length];
+        System.arraycopy(array, 0, destArr, 0, array.length);
+        return destArr;
     }
 
     /**
