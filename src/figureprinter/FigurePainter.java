@@ -106,14 +106,26 @@ public class FigurePainter {
      * @param length  specified length of rhombus will be drawn
      */
     public static void drawRhombus(int length) {
-        // TODO : complete the method
-//        int n = length - 1;
-//        for (int i = 0; i < n *2 - 1; i++){
-//            for(int j = 0; j < n; j++){
-//                System.out.print(" *");
-//            }
-//            System.out.println(" ");
-//        }
+        for (int i = 0; i < length -1; i++ ){
+                for(int j = length -2; j > i; j-- ){
+                    System.out.print(" ");
+                }
+                for(int j = 0; j <= i; j++ ){
+                    System.out.print("* ");
+                }
+                System.out.println(" ");
+        }
+        for(int i = 0; i < length - 2; i++ ){
+                for (int j = 0; j < length - 1; j++){
+                    if(i < j){
+                        System.out.print("* ");
+                    }else {
+                        System.out.print(" ");
+                    }
+                }
+                System.out.println(" ");
+        }
+
     }
     /**
      * lenght = 5
@@ -128,7 +140,7 @@ public class FigurePainter {
     public static void drawIsoscelesTriangle(int length){
         for (int i = 0; i < length * 2; i++ ){
             if(i % 2 == 0){
-                for(int j = length * 2; j >= i; j-- ){
+                for(int j = length * 2 -2; j > i; j-- ){
                     System.out.print(" ");
                 }
                 for(int j = 0; j <= i; j++ ){
@@ -137,7 +149,6 @@ public class FigurePainter {
                 System.out.println(" ");
             }
         }
-
     }
 
     /**
@@ -153,9 +164,9 @@ public class FigurePainter {
     public static void drawBottomIsoscelesTriangle(int length){
         for (int i = 0; i < length * 2; i++ ){
             if(i % 2 != 0){
-                for (int j = 0; j < length * 2; j++){
+                for (int j = 1; j < length * 2; j++){
                     if(i <= j){
-                        System.out.print(" *");
+                        System.out.print("* ");
                     }else {
                         System.out.print(" ");
                     }
@@ -163,8 +174,6 @@ public class FigurePainter {
                 System.out.println(" ");
             }
         }
-
-
     }
 
 }
