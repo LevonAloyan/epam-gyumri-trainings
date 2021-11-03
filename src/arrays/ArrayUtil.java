@@ -1,6 +1,8 @@
 package arrays;
 
 
+import java.util.Arrays;
+
 /**
  * An utility class containing methods for convenient work with arrays
  */
@@ -11,6 +13,11 @@ public class ArrayUtil {
      * Create an array with the given size, fill it with the different values and print it.
      */
     public static void createArray(int size) {
+        int[] array = new int[size];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i;
+            System.out.print(array[i] + " ");
+        }
 
     }
 
@@ -18,6 +25,13 @@ public class ArrayUtil {
      * Create two dimensional array with the given sizes, fill it with different values and print it.
      */
     public static void create2dArray(int x, int y) {
+        int[][] twoDArray = new int[x][y];
+        for (int[] ints : twoDArray) {
+            for (int i = 0; i < ints.length; i++) {
+                ints[i] = i;
+            }
+            System.out.println(Arrays.toString(ints));
+        }
     }
 
     /**
@@ -26,8 +40,12 @@ public class ArrayUtil {
      * @return new array.
      */
     public static int[] addFirst(int[] array, int valueToAdd) {
+        int[] newArray = new int[array.length + 1];
+        newArray[0] = valueToAdd;
+        System.arraycopy(array, 0, newArray, 1, newArray.length - 1);
 
-        return null;
+
+        return newArray;
     }
 
     /**
@@ -36,6 +54,12 @@ public class ArrayUtil {
      * @return true if the array contains the given value, otherwise return false.
      */
     public static boolean contains(int[] array, int value) {
+
+        for (int i : array) {
+            if (i == value)
+                return true;
+
+        }
 
         return false;
     }
@@ -47,7 +71,11 @@ public class ArrayUtil {
      */
     public static int indexOf(int[] array, int value) {
 
-        return 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value) return i;
+        }
+
+        return -1;
     }
 
     /**
@@ -55,7 +83,22 @@ public class ArrayUtil {
      * Print new array
      */
     public static void remove(int[] array, int index) {
+        try {
+            int[] newArray = new int[array.length - 1];
+            for (int i = 0, j = 0; i < array.length; i++) {
+                if (i != index)
+                    newArray[j++] = array[i];
+            }
+            for (int i : newArray) {
+                System.out.print(i + " ");
 
+
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.err.print("Index is more than array.length");
+
+
+        }
     }
 
 
@@ -64,7 +107,13 @@ public class ArrayUtil {
      */
     public static long sum(int[] array) {
 
-        return 0;
+        int sum2 = 0;
+
+        for (int ints : array) {
+            sum2 += ints;
+        }
+
+        return sum2;
     }
 
 
@@ -73,14 +122,25 @@ public class ArrayUtil {
      */
     public static int getMax(int[] array) {
 
-        return 0;
+        int max = array[0];
+        for (int j : array) {
+            if (j > max)
+                max = j;
+        }
+
+        return max;
     }
 
     /**
      * Get the minimum value from the array
      */
     public static void getMin(int[] array) {
-
+        int min = array[0];
+        for (int j : array) {
+            if (j < min)
+                min = j;
+        }
+        System.out.print(min);
     }
 
     /**
@@ -88,7 +148,7 @@ public class ArrayUtil {
      */
     public static int getAvg(int[] array) {
 
-        return 0;
+        return (int) sum(array) / array.length;
     }
 
 
