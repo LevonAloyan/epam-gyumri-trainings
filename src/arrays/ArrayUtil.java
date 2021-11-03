@@ -39,8 +39,16 @@ public class ArrayUtil {
      * @return new array.
      */
     public static int[] addFirst(int[] array, int valueToAdd) {
-        array[0] = valueToAdd;
-        return array;
+        int[] newArray = new int[array.length + 1];
+        for(int i = 0; i <= array.length; i++){
+            if(i != 0){
+                newArray[i] = array[i - 1];
+            }else {
+                newArray[i] = valueToAdd;
+            }
+
+        }
+        return newArray;
     }
 
     /**
@@ -49,16 +57,12 @@ public class ArrayUtil {
      * @return true if the array contains the given value, otherwise return false.
      */
     public static boolean contains(int[] array, int value) {
-        boolean bool = true;
         for(int val: array){
             if (val == value){
-                bool = true;
-                break;
-            }else {
-                bool = false;
+                return true;
             }
         }
-        return bool;
+        return false;
     }
 
 
@@ -68,15 +72,13 @@ public class ArrayUtil {
      * @return the first index of value in the array, if array does not contain given element return -1.
      */
     public static int indexOf(int[] array, int value) {
-        int bool = array[0];
-        for(int val: array){
-            if (val == value){
-                break;
-            }else {
-                bool = -1;
+        int index = -1;
+        for(int i = 0;i < array.length; i++ ){
+            if (array[i] == value){
+                return i;
             }
         }
-        return bool;
+        return index;
     }
 
     /**
@@ -145,6 +147,4 @@ public class ArrayUtil {
 
         return average;
     }
-
-
 }

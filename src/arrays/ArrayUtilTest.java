@@ -10,9 +10,9 @@ public class ArrayUtilTest {
         int[] array = new  int[5];
         array = ArrayUtil.addFirst(array,4);
         System.out.println(Arrays.toString(array));
-        System.out.println(ArrayUtil.contains(array,5));
-        System.out.println(ArrayUtil.indexOf(array,4));
-        ArrayUtil.remove(array,0);
+        System.out.println(ArrayUtil.contains(array,4));
+        System.out.println(ArrayUtil.indexOf(array,0));
+        ArrayUtil.remove(array,4);
         System.out.println(ArrayUtil.sum(array));
         System.out.println(ArrayUtil.getMax(array));
         ArrayUtil.getMin(array);
