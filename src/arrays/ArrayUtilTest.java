@@ -8,7 +8,7 @@ public class ArrayUtilTest {
 
     public static void main(String[] args) {
             int[] array = {1,2,78,56,45,42,12};
-        ArrayUtil.createArray(2);
+        ArrayUtil.createArray(7);
         ArrayUtil.create2dArray(2,5);
         System.out.println(Arrays.toString(ArrayUtil.addFirst(array,51)));
         System.out.println(ArrayUtil.contains(array,56));

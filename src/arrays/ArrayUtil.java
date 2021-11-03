@@ -1,7 +1,8 @@
 package arrays;
-import arrays.ArrayUtilTest;
+
 
 import java.util.Arrays;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * An utility class containing methods for convenient work with arrays
@@ -13,32 +14,24 @@ public class ArrayUtil {
      * Create an array with the given size, fill it with the different values and print it.
      */
     public static void createArray(int size) {
-        int [] array = {12,45,78,95,23,14,71,65,74};
-        int [] arrayCopy=new int[size];
-        if (array.length>=arrayCopy.length){
-            System.arraycopy(array,0,arrayCopy,0,size);
-            for (int i=0; i<size;i++){
-                System.out.print(arrayCopy[i]+",");
+        int [] array=new int[size];
+            for (int i = 0; i < size ; i++) {
+                array[i] = ThreadLocalRandom.current().nextInt(-100, 100);
             }
-        }else
-            System.out.println("The size of the array is large");
-
-        System.out.println();
+        System.out.println(Arrays.toString(array));
     }
 
     /**
      * Create two dimensional array with the given sizes, fill it with different values and print it.
      */
     public static void create2dArray(int x, int y) {
-        int[][] array1 = {{4,45,12,35,41,78}, {24,85,42,65,21,71}};
-        int[][] arrayCopy1 = new int[x][y];
-        if(array1.length>=x && array1[0].length>=y){
-            for (int i=0; i<x; i++){
-                System.arraycopy(array1[i], 0, arrayCopy1[i], 0, arrayCopy1[i].length);
-
+        int[][] array = new int[x][y];
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                array[i][j]= ThreadLocalRandom.current().nextInt(-100,100);
             }
-
-        }else System.out.println("The size of the array is large");
+            System.out.print(Arrays.toString(array[i])+",");
+        }
         System.out.println();
     }
 
