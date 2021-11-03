@@ -27,6 +27,9 @@ public class ArrayUtil {
     public static void create2dArray(int x, int y) {
         int[][] dimensionalArray = new int[x][y];
         for (int[] ints : dimensionalArray) {
+            for (int i = 0; i < ints.length; i++) {
+                ints[i] = i;
+            }
             System.out.print("{ ");
             System.out.print(Arrays.toString(ints));
             System.out.println(" }");
@@ -53,7 +56,12 @@ public class ArrayUtil {
      * @return true if the array contains the given value, otherwise return false.
      */
     public static boolean contains(int[] array, int value) {
-        return Arrays.binarySearch(array, value) >= 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -105,8 +113,8 @@ public class ArrayUtil {
     /**
      * Get the minimum value from the array
      */
-    public static void getMin(int[] array) {
-        Arrays.stream(array).min();
+    public static int getMin(int[] array) {
+        return Arrays.stream(array).min().getAsInt();
     }
 
     /**
