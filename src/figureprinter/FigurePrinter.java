@@ -9,5 +9,6 @@ public class FigurePrinter {
         FigurePainter.drawRightBottomTriangle(4);
         FigurePainter.drawRhombus(5);
         FigurePainter.drawIsoscelesTriangle(5);
+        FigurePainter.drawBottomIsoscelesTriangle(5);
     }
 }

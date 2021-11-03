@@ -160,6 +160,15 @@ public class FigurePainter {
      */
     public static void drawBottomIsoscelesTriangle(int length){
         //Sorry, my nervous system died!!!!!!!!
+        for(int i=1; i<=length; i++){
+            for(int j=1; j<i; j++ ){
+                System.out.print("  ");
+            }
+            for(int k=1+(length+length); k>i+i; k--){
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
     }
 
 }
