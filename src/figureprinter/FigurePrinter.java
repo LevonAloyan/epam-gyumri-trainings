@@ -20,7 +20,7 @@ public class FigurePrinter {
 
         FigurePainter.drawBottomIsoscelesTriangle(5);
         System.out.println("----------------------");
-        
+
         FigurePainter.drawRhombus(5);
     }
 }
