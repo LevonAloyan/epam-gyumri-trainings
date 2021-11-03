@@ -6,16 +6,16 @@ package arrays;
  */
 public class ArrayUtil {
 
-
     /**
      * Create an array with the given size, fill it with the different values and print it.
      */
-    public static void createArray(int [] array) {
-        for(int i : array) {
+    public static void createArray(int size) {
+        int[] newArray = new int [size];
+
+        for(int i = 0; i < newArray.length; i++ ) {
             System.out.print(i + ", ");
         }
         System.out.println();
-
     }
 
     /**
@@ -48,7 +48,7 @@ public class ArrayUtil {
         }
         System.out.println();
 
-        return null;
+        return newArray;
     }
 
     /**
@@ -59,10 +59,9 @@ public class ArrayUtil {
     public static boolean contains(int[] array, int value) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] == value) {
-                System.out.println("True.");
+                return true;
             }
         }
-
         return false;
     }
 
@@ -72,12 +71,13 @@ public class ArrayUtil {
      * @return the first index of value in the array, if array does not contain given element return -1.
      */
     public static int indexOf(int[] array, int value) {
+        int index = 0;
         for(int i : array) {
             if (i == value) {
-                return value;
+                return index;
             }
+            index++;
         }
-
         return -1;
     }
 
@@ -87,7 +87,6 @@ public class ArrayUtil {
      */
     public static void remove(int[] array, int index) {
         int[] newArray = new int[array.length - 1];
-
 
         for (int i = 0, j = 0; i <= array.length-1; i++) {
             if (i == index) {
@@ -100,9 +99,7 @@ public class ArrayUtil {
             System.out.print(i + ", ");
         }
         System.out.println();
-
     }
-
 
     /**
      * Calculate and return sum of array's elements.
@@ -111,11 +108,9 @@ public class ArrayUtil {
         long sum = 0;
         for(int i: array)
             sum += i;
-        System.out.println(sum);
 
-        return 0;
+        return sum;
     }
-
 
     /**
      * Get the max value from the array.
@@ -127,10 +122,7 @@ public class ArrayUtil {
                 max = array[i];
             }
         }
-        System.out.println(max);
-
-
-        return 0;
+        return max;
     }
 
     /**
@@ -144,8 +136,6 @@ public class ArrayUtil {
             }
         }
         System.out.println(min);
-
-
     }
 
     /**
@@ -158,8 +148,6 @@ public class ArrayUtil {
             sum += i;
         avg = sum / array.length;
 
-        System.out.println(avg);
-
-        return 0;
+        return avg;
     }
 }
