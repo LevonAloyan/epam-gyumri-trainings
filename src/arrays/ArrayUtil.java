@@ -16,9 +16,9 @@ public class ArrayUtil {
         int[] array=new int[size];
         for (int i = 0; i < array.length; i++) {
             array[i]=i;
-            System.out.println(array[i]);
 
         }
+        System.out.println(Arrays.toString(array));
 
     }
 
@@ -80,6 +80,7 @@ public class ArrayUtil {
         for (int i = 0; i < array.length; i++) {
             if (value==array[i]){
                 result=value;
+                return i;
             }
 
         }
