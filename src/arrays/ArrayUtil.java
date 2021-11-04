@@ -43,10 +43,11 @@ public class ArrayUtil {
      */
     public static int[] addFirst(int[] array, int valueToAdd) {
         int[]result = new int[array.length+1];
-        System.arraycopy(array,0,result,1,array.length);
+        for (int i = 0; i < array.length; i++) {
+           result[i+1]= array[i];
+        }
         result[0] = valueToAdd;
-        array = result;
-        return array;
+        return result;
     }
 
     /**
@@ -58,7 +59,7 @@ public class ArrayUtil {
         boolean contains = false;
         for (int i = 0; i < array.length; i++) {
             if (array[i] == value) {
-                return contains = true;
+                return true;
             }
         }
         return contains;
@@ -90,20 +91,21 @@ public class ArrayUtil {
             array[i - 1] = array[i];
         }
         for (int i = 0; i < array.length - 1; i++) {
-                System.out.print(array[i]);
+                System.out.print(array[i] + " ");
         }
     }
 
 
     /**
      * Calculate and return sum of array's elements.
+     * @return
      */
     public static long sum(int[] array) {
-        int sum = 0;
+        double sum = 0;
         for (int i = 0; i < array.length; i++) {
             sum = sum + array[i];
         }
-        return sum;
+        return (long) sum;
     }
 
 
@@ -135,12 +137,7 @@ public class ArrayUtil {
      * Calculate average of array
      */
     public static int getAvg(int[] array) {
-        int sum = 0;
-        for (int i = 0; i < array.length; i++) {
-            sum = sum + array[i];
-        }
-        return sum / array.length;
+        double avg =(double) sum(array)/ array.length;
+        return  (int)avg;
     }
-
-
 }

@@ -15,16 +15,20 @@ public class ArrayUtilTest {
         System.out.println();
         ArrayUtil.getMin(array);
         System.out.println();
-        int avg = ArrayUtil.getAvg(array);
-        System.out.println(avg);
-        long sum = ArrayUtil.sum(array);
+        double avg = ArrayUtil.getAvg(array);
+        System.out.println("avg:" +avg);
+        double sum = ArrayUtil.sum(array);
         System.out.println(sum);
         int index = ArrayUtil.indexOf(array, 5);
         System.out.println(index);
-        boolean contains = ArrayUtil.contains(array, 1);
-        System.out.println(contains);
+        boolean contains = ArrayUtil.contains(array, 10);
+        System.out.println("contains " + contains);
         int[] newArray = ArrayUtil.addFirst(array, 44);
-        System.out.println(newArray);
+        System.out.println("add first ");
+        for (int i = 0; i < newArray.length; i++) {
+            System.out.print(newArray[i] + " ");
+        }
+        System.out.println();
         ArrayUtil.remove(array,2);
     }
 }
