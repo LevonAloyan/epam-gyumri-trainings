@@ -2,7 +2,6 @@ package arrays;
 
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 /**
  * An utility class containing methods for convenient work with arrays
@@ -47,7 +46,7 @@ public class ArrayUtil {
         int[] arrayWithAddedValue = new int[array.length + 1];
         arrayWithAddedValue[0] = valueToAdd;
         for (int i = 1; i < arrayWithAddedValue.length; i++) {
-            arrayWithAddedValue[i] = array[i-1];
+            arrayWithAddedValue[i] = array[i - 1];
         }
         return arrayWithAddedValue;
     }
@@ -59,7 +58,7 @@ public class ArrayUtil {
      */
     public static boolean contains(int[] array, int value) {
         for (int i = 0; i < array.length; i++) {
-            if (array[i] == value){
+            if (array[i] == value) {
                 return true;
             }
         }
@@ -74,7 +73,7 @@ public class ArrayUtil {
     public static int indexOf(int[] array, int value) {
         int index = -1;
         for (int i = 0; i < array.length; i++) {
-            if (array[i] == value){
+            if (array[i] == value) {
                 index = i;
                 break;
             }
@@ -87,13 +86,13 @@ public class ArrayUtil {
      * Print new array
      */
     public static void remove(int[] array, int index) {
-        if (index < array.length) {
-            int[] ints = IntStream.range(0, array.length)
-                    .filter(i -> i != index)
-                    .map(i -> array[i])
-                    .toArray();
-            System.out.println(Arrays.toString(ints));
+        int[] newArray = new int[array.length - 1];
+        for (int i = 0, j = 0; i < array.length; i++) {
+            if (i != index) {
+                newArray[j++] = array[i];
+            }
         }
+        System.out.println(Arrays.toString(newArray));
     }
 
 
@@ -101,29 +100,46 @@ public class ArrayUtil {
      * Calculate and return sum of array's elements.
      */
     public static long sum(int[] array) {
-        return Arrays.stream(array).sum();
+        int sum = 0;
+        for (int i : array) {
+            sum += i;
+        }
+        return sum;
     }
 
 
     /**
      * Get the max value from the array.
      */
+
     public static int getMax(int[] array) {
-        return Arrays.stream(array).max().orElse(0);
+        int max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+        return max;
     }
 
     /**
      * Get the minimum value from the array
      */
     public static int getMin(int[] array) {
-        return Arrays.stream(array).min().getAsInt();
+        int min = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < min) {
+                min = array[i];
+            }
+        }
+        return min;
     }
 
     /**
      * Calculate average of array
      */
-    public static int getAvg(int[] array) {
-        return (int) Arrays.stream(array).average().getAsDouble();
+    public static long getAvg(int[] array) {
+        return sum(array) / array.length;
     }
 
 

@@ -11,6 +11,7 @@ public class ArrayUtilTest {
         ArrayUtil.remove(array, 2);
         System.out.println(ArrayUtil.sum(array));
         System.out.println(ArrayUtil.getMax(array));
+        System.out.println(ArrayUtil.getMin(array));
         System.out.println(ArrayUtil.getAvg(array));
     }
 }
