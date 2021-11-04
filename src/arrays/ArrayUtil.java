@@ -99,7 +99,11 @@ public class ArrayUtil {
      * Calculate and return sum of array's elements.
      */
     public static long sum(int[] array) {
-        return Arrays.stream(array).sum();
+        int sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        return sum;
     }
 
 
@@ -107,21 +111,33 @@ public class ArrayUtil {
      * Get the max value from the array.
      */
     public static int getMax(int[] array) {
-        return Arrays.stream(array).max().orElse(0);
+        int max = 0;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > array[i-1]){
+                max = array[i];
+            }
+        }
+        return max;
     }
 
     /**
      * Get the minimum value from the array
      */
     public static int getMin(int[] array) {
-        return Arrays.stream(array).min().getAsInt();
+        int min = 0;
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < array[i-1]){
+                min = array[i];
+            }
+        }
+        return min;
     }
 
     /**
      * Calculate average of array
      */
     public static int getAvg(int[] array) {
-        return (int) Arrays.stream(array).average().getAsDouble();
+        return (int) sum(array)/array.length;
     }
 
 
