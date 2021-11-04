@@ -1,5 +1,7 @@
 package arrays;
 
+import array.ArrayUtil;
+
 public class ArrayUtilTest {
 
     public static void main(String[] args) {
@@ -7,7 +9,7 @@ public class ArrayUtilTest {
         int [] array = {5, 9, 15, 27, 8, 19, 35};
         ArrayUtil.createArray(15);
         System.out.println("create2dArray");
-        ArrayUtil.create2dArray(2,3);
+        ArrayUtil.create2dArray(3, 5);
         System.out.println("addFirst");
         ArrayUtil.addFirst(array, 17);
         System.out.println("contains");
@@ -24,6 +26,5 @@ public class ArrayUtilTest {
         ArrayUtil.getMin(array);
         System.out.println("getAvg");
         System.out.println(ArrayUtil.getAvg(array));
-
     }
 }
