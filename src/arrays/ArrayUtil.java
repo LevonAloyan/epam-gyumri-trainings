@@ -106,9 +106,9 @@ public class ArrayUtil {
      */
     public static long sum(int[] array) {
         long sum = 0;
-        for(int i: array)
+        for(int i: array) {
             sum += i;
-
+        }
         return sum;
     }
 
