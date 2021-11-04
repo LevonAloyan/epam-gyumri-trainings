@@ -9,9 +9,7 @@ public class ArrayUtilTest {
         int[] array = new int[]{15, 26, 12, 5, 18, 31};
         ArrayUtil.addFirst(array,11);
         ArrayUtil.contains(array, 15);
-        System.out.println(ArrayUtil.b);
         ArrayUtil.indexOf(array,18);
-        System.out.println(ArrayUtil.a);
         ArrayUtil.remove(array,3);
         ArrayUtil.sum(array);
         ArrayUtil.getMax(array);

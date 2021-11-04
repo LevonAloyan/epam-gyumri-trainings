@@ -6,8 +6,6 @@ import java.util.Arrays;
  * An utility class containing methods for convenient work with arrays
  */
 public class ArrayUtil {
-    static int a;
-    static boolean b;
 
 
     /**
@@ -66,7 +64,7 @@ public class ArrayUtil {
         }
         newArray[index] = valueToAdd;
         System.out.println("Array after adding new first value - " + Arrays.toString(newArray));
-        return null;
+        return newArray;
 
     }
 
@@ -78,10 +76,10 @@ public class ArrayUtil {
     public static boolean contains(int[] array, int value) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] == value) {
-                return b =  true;
+                return true;
             }
         }
-        return b = false;
+        return false;
     }
     /**
      * @param array An array to search in.
@@ -91,7 +89,7 @@ public class ArrayUtil {
     public static int indexOf ( int[] array, int value){
         for (int i = 0; i < array.length; i++) {
             if (array[i] == value) {
-                return  a = (array[0]);
+                return  i;
             }
         }
         return a = -1;
@@ -102,21 +100,20 @@ public class ArrayUtil {
      * Print new array
      */
     public static void remove ( int[] array, int index){
-        for (int i = 0; i < array.length; i++) {
-            if(i == index){
-                continue;
-            }
-
-            System.out.print(array[i] + " ");
+        int[] result = new int[array.length - 1];
+        for (int i = 0; i < index; i++) {
+            result[i]= array[i];
         }
-        System.out.println();
+        for (int i = index; i< array.length-1; i++) {
+            result[i] = array[i + 1];
+        }
+        System.out.print(Arrays.toString (result) +" ");
     }
-
     /**
      * Calculate and return sum of array's elements.
      */
     public static long sum ( int[] array){
-        int sum = 0;
+        int sum;
         for (int i = 0; i < array.length; i++) {
             sum = sum + array[i];
         }
@@ -158,8 +155,8 @@ public class ArrayUtil {
      * Calculate average of array
      */
     public static int getAvg ( int[] array){
-        int sum = 0;
-        int avg =1;
+        int sum;
+        int avg;
         for (int i = 0; i < array.length; i++) {
             sum = sum + array[i];
         }
