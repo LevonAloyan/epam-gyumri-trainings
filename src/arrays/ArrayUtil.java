@@ -25,16 +25,16 @@ public class ArrayUtil {
 
     public static void create2dArray(int x, int y) {
 
-    int arrtwo[][] = new int[x][y];
+    int arrTwo[][] = new int[x][y];
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
                 Scanner in = new Scanner(System.in);
-                arrtwo[i][j] = in.nextInt();
+                arrTwo[i][j] = in.nextInt();
             }
         }
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                System.out.print(arrtwo[i][j] + " ");
+                System.out.print(arrTwo[i][j] + " ");
             }
             System.out.println();
         }
@@ -43,20 +43,19 @@ public class ArrayUtil {
         // or we can do it the following way
 
     int l = 1;
-    int arrtwo1[][] = new int[x][y];
+    int arrTwo1[][] = new int[x][y];
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                arrtwo1[i][j] = l;
+                arrTwo1[i][j] = l;
                 l += 2;
             }
         }
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                System.out.print(arrtwo1[i][j] + " ");
+                System.out.print(arrTwo1[i][j] + " ");
             }
             System.out.println();
         }
-        System.out.println();
     }
 
     /**
@@ -68,7 +67,6 @@ public class ArrayUtil {
     int arr[] = new int[array.length + 1];
     arr[0] = valueToAdd;
         System.arraycopy(array, 0, arr, 1, array.length);
-         System.out.println(Arrays.toString(arr));
           return arr;
     }
 
@@ -85,7 +83,6 @@ public class ArrayUtil {
                 break;
             }
         }
-        System.out.println(found);
         if (found = true) {
             return true;
         } else {
@@ -106,7 +103,6 @@ public class ArrayUtil {
                 break;
             }
         }
-        System.out.println(found);
         if (found == -1) {
             return -1;
         } else {
@@ -119,12 +115,11 @@ public class ArrayUtil {
      * Print new array
      */
     public static void remove(int[] array, int index) {
-     int [] newarr = new int[array.length - 1];
+     int [] newArr = new int[array.length - 1];
      int newarrl = array.length-(index+1);
-        System.arraycopy(array, 0, newarr, 0, index);
-         System.arraycopy(array, index + 1, newarr, index,newarrl);
-        System.out.println(Arrays.toString(array));
-           System.out.println(Arrays.toString(newarr));
+        System.arraycopy(array, 0, newArr, 0, index);
+         System.arraycopy(array, index + 1, newArr, index,newarrl);
+           System.out.println(Arrays.toString(newArr));
     }
 
     /**
@@ -135,29 +130,32 @@ public class ArrayUtil {
         for (int j = 0; j < array.length; j++) {
             sum += array[j];
         }
-        System.out.println(sum);
-        return 0;
+        return sum;
     }
 
     /**
      * Get the max value from the array.
      */
     public static int getMax(int[] array) {
-    int Max = 0;
-        for(int i = 0; i < array.length; i++) {
+        int Max = array[0];
+        for(int i = 1; i < array.length; i++) {
             if (array[i] > Max) {
                 Max = array[i];
             }
         }
-        System.out.println(Max);
-        return 0;
+        return Max;
     }
 
     /**
      * Get the minimum value from the array
      */
     public static void getMin(int[] array) {
-     int Min = Arrays.stream(array).min().getAsInt();
+     int Min = array[0];
+      for(int i=1; i<array.length; i++){
+          if(array[i] < Min){
+              Min = array[i];
+          }
+      }
         System.out.println(Min);
     }
 
@@ -170,7 +168,6 @@ public class ArrayUtil {
             sum += array[j];
         }
      int avg = sum / array.length;
-        System.out.println(avg);
-        return 0;
+        return avg;
     }
 }
