@@ -53,10 +53,8 @@ public class ArrayUtil {
     public static boolean contains(int[] array, int value) {
         for (int j : array) {
             if (j == value)
-                System.out.println("true");
                 return true;
         }
-        System.out.print("false");
         return false;
     }
 
@@ -64,13 +62,13 @@ public class ArrayUtil {
      * @param array An array to search in.
      * @param value The value to search for.
      */
-    public static void indexOf(int[] array, int value) {
+    public static int indexOf(int[] array, int value) {
             for (int i = 0; i < array.length; i++){
-                if ( array[i] == value){
-                    System.out.print(i);
+                if ( array[i] == value) {
                     return i;
                 }
             }
+            return -1;
     }
 
     /**
@@ -79,7 +77,6 @@ public class ArrayUtil {
      */
     public static void remove(int[] array, int index) {
         int[] removeElement = new int[array.length-1];
-        System.out.println("Remove element");
         for (int i = 0; i < array.length-1; i++){
             if (i < index){
                 removeElement[i] = array[i];
@@ -95,12 +92,11 @@ public class ArrayUtil {
     /**
      * Calculate and return sum of array's elements.
      */
-    public static long sum(int[] array) {
+    public static int sum(int[] array) {
         int sum = 0;
         for (int j : array) {
             sum += j;
         }
-        System.out.println("sum " + sum);
         return sum;
     }
 
@@ -115,22 +111,20 @@ public class ArrayUtil {
                 max = maxValue;
             }
         }
-        System.out.println("max " + max);
         return max;
     }
 
     /**
      * Get the minimum value from the array
      */
-   public static void getMin(int[] array) {
+   public static int getMin(int[] array) {
         int min = array[0] ;
         for (int minValue : array){
             if (min > minValue){
                 min = minValue;
             }
         }
-        System.out.println("min " + min);
-        //return min;
+        return min;
     }
 
     /**
@@ -141,7 +135,6 @@ public class ArrayUtil {
         for (int j : array) {
             sum += j;
         }
-        System.out.println("getAvg " + sum / array.length);
         return sum / array.length;
     }
 
