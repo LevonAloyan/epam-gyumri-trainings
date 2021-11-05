@@ -18,6 +18,22 @@ public class SortingAlgorithms {
         }
     }
 
+    public static void sortBySelectionSorting(int[] array){
+
+    }
+
+    public static void sortByInsertionSorting(int[] array){
+
+    }
+
+    public static void sortByMergeSorting(int[] array){
+
+    }
+
+    public static void sortByQuickSorting(int[] array){
+
+    }
+
     private static void swap(int [] array, int firstIndex, int lastIndex) {
         int tempValue = array[firstIndex];
         array[firstIndex] = array[lastIndex];
