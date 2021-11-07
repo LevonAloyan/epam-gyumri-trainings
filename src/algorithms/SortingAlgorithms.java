@@ -53,12 +53,13 @@ public class SortingAlgorithms {
         int middle = array.length / 2;
 
         int[] left = new int[middle];
-        for (int i = 0; i < middle; i++)
+        for (int i = 0; i < middle; i++) {
             left[i] = array[i];
+        }
         int[] right = new int[array.length - middle];
-        for (int i = middle; i < array.length; i++)
+        for (int i = middle; i < array.length; i++) {
             right[i - middle] = array[i];
-
+        }
         sortByMergeSorting(left);
         sortByMergeSorting(right);
         merge(left, right, array);
@@ -68,15 +69,18 @@ public class SortingAlgorithms {
         int i = 0, j = 0, k = 0;
 
         while (i < left.length && j < right.length) {
-            if (left[i] <= right[j])
+            if (left[i] <= right[j]) {
                 result[k++] = left[i++];
-            else
+            } else {
                 result[k++] = right[j++];
+            }
         }
-        while (i < left.length)
+        while (i < left.length) {
             result[k++] = left[i++];
-        while (j < right.length)
+        }
+        while (j < right.length) {
             result[k++] = right[j++];
+        }
     }
 
 
@@ -85,9 +89,9 @@ public class SortingAlgorithms {
     }
 
     private static void sort(int[] array, int start, int end) {
-        if (start >= end)
+        if (start >= end) {
             return;
-
+        }
         int boundary = partition(array, start, end);
 
         sort(array, start, boundary - 1);
@@ -97,10 +101,11 @@ public class SortingAlgorithms {
     private static int partition(int[] array, int start, int end) {
         int pivot = array[end];
         int boundary = start - 1;
-        for (int i = start; i <= end; i++)
-            if (array[i] <= pivot)
+        for (int i = start; i <= end; i++) {
+            if (array[i] <= pivot) {
                 swap(array, i, ++boundary);
-
+            }
+        }
         return boundary;
     }
 
