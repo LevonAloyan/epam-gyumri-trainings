@@ -47,9 +47,9 @@ public class SortingAlgorithms {
     }
 
     public static void sortByMergeSorting(int[] array) {
-        if (array.length < 2)
+        if (array.length < 2) {
             return;
-
+        }
         int middle = array.length / 2;
 
         int[] left = new int[middle];
