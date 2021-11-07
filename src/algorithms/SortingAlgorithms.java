@@ -6,9 +6,9 @@ public class SortingAlgorithms {
         int[] array = new int[]{2, 1, 8, 3, 5, 8, 444, 65, 5, -26};
 //        sortByBubbleSorting(array);
 //        sortByInsertionSorting(array);
-//        sortBySelectionSorting(array);
+        sortBySelectionSorting(array);
 //        sortByMergeSorting(array);
-        sortByQuickSorting(array);
+        //  sortByQuickSorting(array);
         print(array);
     }
 
@@ -28,9 +28,9 @@ public class SortingAlgorithms {
             for (int j = i; j < array.length; j++) {
                 if (array[j] < array[minIndex]) {
                     minIndex = j;
-                    swap(array, minIndex, i);
                 }
             }
+            swap(array, minIndex, i);
         }
     }
 
