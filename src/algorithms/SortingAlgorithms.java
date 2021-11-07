@@ -5,8 +5,8 @@ public class SortingAlgorithms {
     public static void main(String[] args) {
         int[] array = new int[]{2, 1, 8, 3, 5, 8, 444, 65, 5, -26};
 //        sortByBubbleSorting(array);
-//        sortByInsertionSorting(array);
-        sortBySelectionSorting(array);
+        sortByInsertionSorting(array);
+ //       sortBySelectionSorting(array);
 //        sortByMergeSorting(array);
         //  sortByQuickSorting(array);
         print(array);
@@ -38,11 +38,11 @@ public class SortingAlgorithms {
         for (int i = 1; i < array.length; i++) {
             int current = array[i];
             int j = i - 1;
-            while (j > 0 && array[j] > current) {
+            while (j >= 0 && array[j] > current) {
                 array[j + 1] = array[j];
                 j--;
             }
-            array[j] = current;
+            array[j+1] = current;
         }
     }
 
