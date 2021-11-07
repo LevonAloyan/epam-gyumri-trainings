@@ -60,37 +60,37 @@ public class SortingAlgorithms {
            merge(array, arrBegin, m, arrEnd);
         }
     }
-    static void merge(int array[], int begin, int midel, int end){
+   private static void merge(int array[], int begin, int midel, int end){
         int n1 = midel - begin + 1;
         int n2 = end - midel;
-        int L[] = new int[n1];
-        int R[] = new int[n2];
+        int l[] = new int[n1];
+        int r[] = new int[n2];
         for (int i = 0; i < n1; ++i){
-            L[i] = array[begin + i];
+            l[i] = array[begin + i];
         }
         for (int j = 0; j < n2; ++j){
-            R[j] = array[midel + 1 + j];
+            r[j] = array[midel + 1 + j];
         }
         int i = 0, j = 0;
         int k = begin;
         while (i < n1 && j < n2) {
-            if (L[i] <= R[j]) {
-                array[k] = L[i];
+            if (l[i] <= r[j]) {
+                array[k] = l[i];
                 i++;
             }
             else {
-                array[k] = R[j];
+                array[k] = r[j];
                 j++;
             }
             k++;
         }
         while (i < n1) {
-            array[k] = L[i];
+            array[k] = l[i];
             i++;
             k++;
         }
         while (j < n2) {
-            array[k] = R[j];
+            array[k] = r[j];
             j++;
             k++;
         }
