@@ -18,9 +18,9 @@ public class SortingAlgorithms {
 
     public static void sortByBubbleSorting(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length-i-1; j++) {
-                if (array[j] > array[j+1]) {
-                    swap(array, j+1, j);
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    swap(array, j + 1, j);
                 }
             }
         }
