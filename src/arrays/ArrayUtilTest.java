@@ -13,7 +13,8 @@ public class ArrayUtilTest {
      //ArrayUtil.getMin(array);
      //ArrayUtil.getAvg(array);
      //ArrayUtil.indexOf(array, 25);
-     //ArrayUtil.remove(array,2);
+     //ArrayUtil.remove(array,2); not done 
+
       
     }
 }
