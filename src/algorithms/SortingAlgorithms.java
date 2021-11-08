@@ -10,19 +10,36 @@ public class SortingAlgorithms {
 
     public static void sortByBubbleSorting(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length-i-1; j++) {
-                if (array[j] > array[j+1]) {
-                    swap(array, j+1, j);
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    swap(array, j + 1, j);
                 }
             }
         }
     }
 
-    public static void sortBySelectionSorting(int[] array){
+    public static void sortBySelectionSorting(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int min = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[min] > array[j]) {
+                    min = j;
+                }
+            }
+            swap(array, min, i);
+        }
 
     }
 
-    public static void sortByInsertionSorting(int[] array){
+    public static void sortByInsertionSorting(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (array[j] < array[j - 1]) {
+                    swap(array, j - 1, j);
+                }
+            }
+
+        }
 
     }
 
