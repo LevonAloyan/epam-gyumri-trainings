@@ -3,10 +3,10 @@ package algorithms;
 public class MathUtil {
 
     public static void main(String[] args) {
-//        System.out.println(pow(2, 0));
+//        System.out.println(pow(2, 5));
 //        System.out.println(factorialWithRecursion(16));
 //        System.out.println(abs(5));
-        System.out.println(reverse(126));
+        System.out.println(reverse(122));
     }
 
     /**
@@ -81,7 +81,7 @@ public class MathUtil {
             result = result * 10 + digit;
             number = number / 10;
         }
-        return 0;
+        return result;
     }
 
 
