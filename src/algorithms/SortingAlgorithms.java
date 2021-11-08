@@ -49,6 +49,7 @@ public class SortingAlgorithms {
 
     public static void sortByQuickSorting(int[] array){
 
+
     }
 
     private static void swap(int [] array, int firstIndex, int lastIndex) {
