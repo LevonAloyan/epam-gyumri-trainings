@@ -15,8 +15,11 @@ public class ArrayUtil {
     public static void createArray(int size) {
         int[] array = new int[size];
         array[0] = 1;
-        array[1]= 50;
-        array[2] = 9;
+        array[1]= 2;
+        array[2] = 3;
+        array[3] = 4;
+        array[4] = 5;
+        array[5] = 6;
 
         for (int x=0;x<size;x++){
             System.out.print(array[x]+",");
@@ -69,7 +72,7 @@ public class ArrayUtil {
      * @return true if the array contains the given value, otherwise return false.
      */
     public static boolean contains(int[] array, int value) {
-        for(int i=0;i<array.length-1;i++) {
+        for(int i=0;i<=array.length;i++) {
             if (array[i] == value) {
                 return true;
             }
