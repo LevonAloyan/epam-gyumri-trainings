@@ -20,6 +20,7 @@ public class SortingAlgorithms {
 
     public static void sortBySelectionSorting(int[] array){
 
+
     }
 
     public static void sortByInsertionSorting(int[] array){
