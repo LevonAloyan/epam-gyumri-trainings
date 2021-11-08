@@ -16,7 +16,7 @@ public class SortingAlgorithms {
        // array = sortByMergeSorting(array);
        // print(array, "Sort By Merge Sorting");
             System.out.println();
-            sortByQuickSorting(array);
+         array = sortByQuickSorting(array);
         print(array,"Sort By Quick Sorting");
             System.out.println();
     }
@@ -97,7 +97,31 @@ public class SortingAlgorithms {
     }
 
 
-    public static void sortByQuickSorting(int[] array) {
+    public static int[] sortByQuickSorting(int[] array) {
+        quick(array, 0, array.length - 1);
+        return array;
+    }
+    private static  int sortQuick (int array[], int start, int end){
+        int pivot = array[end];
+        int i = (start - 1);
+            for (int j = start; j <= end - 1; j++)
+        {
+            if (array[j] < pivot)
+            {
+                i++;
+                swap(array, i, j);
+            }
+        }
+        swap(array,i+1, end);
+        return (i + 1);
+    }
+    public static void quick(int[] array, int start, int end){
+        if (start < end)
+        {
+            int p = sortQuick(array, start, end);
+            quick(array, start, p - 1);
+            quick(array, p + 1, end);
+        }
     }
 
     private static void swap(int [] array, int firstIndex, int lastIndex) {
