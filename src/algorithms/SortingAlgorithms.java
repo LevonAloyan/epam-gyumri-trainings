@@ -60,5 +60,6 @@ public class SortingAlgorithms {
         for(int element : array){
             System.out.print(element+",");
         }
+
     }
 }
