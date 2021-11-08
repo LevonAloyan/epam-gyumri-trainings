@@ -5,6 +5,9 @@ public class SortingAlgorithms {
     public static void main(String[] args) {
         int [] array = new int[]{2,1,8,3,5,5,-26};
         sortByBubbleSorting(array);
+        sortBySelectionSorting(array);
+        sortByInsertionSorting(array);
+
         print(array);
     }
 
@@ -18,16 +21,35 @@ public class SortingAlgorithms {
         }
     }
 
-    public static void sortBySelectionSorting(int[] array){
+    public static void sortBySelectionSorting(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int min = array[i];
+            for (int j = i + 1; j < array.length; j++) {
 
+                if (min > array[j]) {
+                    min = array[j];
+                    swap(array, j, i);
+                }
+
+            }
+        }
     }
 
-    public static void sortByInsertionSorting(int[] array){
+    public static void sortByInsertionSorting(int[] array) {
+        for(int k=1; k<array.length; k++)   {
+            int temp = array[k];
+            int j= k-1;
+            while(j>=0 && temp <= array[j])   {
+                array[j+1] = array[j];
+                j--;
+            }
+            array[j+1] = temp;
+        }
 
-    }
+}
 
-    public static void sortByMergeSorting(int[] array){
-
+    public static void sortByMergeSorting(int[] array) {
+        
     }
 
     public static void sortByQuickSorting(int[] array){
