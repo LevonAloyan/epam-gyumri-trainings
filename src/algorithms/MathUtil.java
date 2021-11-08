@@ -3,8 +3,10 @@ package algorithms;
 public class MathUtil {
 
     public static void main(String[] args) {
-        System.out.println(pow(2, 0));
-
+//        System.out.println(pow(2, 0));
+//        System.out.println(factorialWithRecursion(16));
+//        System.out.println(abs(5));
+        System.out.println(reverse(126));
     }
 
     /**
@@ -36,20 +38,33 @@ public class MathUtil {
      *
      * @param n the number factorial of which must be calculated
      * @return calculated number
+     * 16! = 16*....5*4*3*2*1 =
      */
-    public static int factorial(int n) {
-       return 0;
+    public static long factorialWithRecursion(int n) {
+        if (n == 0 || n == 1){
+            return 1;
+        }
+        if (n > 1){
+            return  (int)n * factorialWithRecursion(n - 1);
+        } else if (n > 16){
+            return  n * factorialWithRecursion(n - 1);
+        }
+        return 0;
     }
 
     /**
      * Calculates and returns the absolute value
      * of specified n number
      *
+     *
      * @param n specified number to find the absolute number
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+        if (n < 0){
+            return n * (-1);
+        }
+        return n;
     }
 
 
@@ -60,7 +75,12 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
-
+        int result = 0;
+        while (number != 0){
+            int digit = number % 10;
+            result = result * 10 + digit;
+            number = number / 10;
+        }
         return 0;
     }
 
