@@ -4,7 +4,11 @@ public class MathUtil {
 
     public static void main(String[] args) {
         System.out.println(pow(2, 0));
+        int num = 4567;
+        reverse(num);
 
+        System.out.println(abs(5));
+        System.out.println(factorial(6));
     }
 
     /**
@@ -38,8 +42,19 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-       return 0;
+//        int i,fact=1;
+//        int number=5;//It is the number to calculate factorial
+//        for(i=1;i<=number;i++){
+//            fact=fact*i;
+//        }
+//        System.out.println("Factorial of "+number+" is: "+fact);
+        if (n <= 2) {
+            return n;
+        }
+        return n * factorial(n - 1);
     }
+
+
 
     /**
      * Calculates and returns the absolute value
@@ -49,7 +64,10 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+        if (n < 0){
+            return n * (-1);
+        }
+        return n;
     }
 
 
@@ -57,13 +75,18 @@ public class MathUtil {
      * Reverses the specified "number" parameter by digits.
      *
      * @param number the parameter to be revered
-     * @return reversed number
      */
-    public static int reverse(int number) {
-
-        return 0;
+    public static void reverse(int number) {
+        if (number < 10) {
+            System.out.println(number);
+            return;
+        } else {
+            System.out.print(number % 10);
+            reverse(number / 10);
+        }
+    }
     }
 
 
 
-}
+
