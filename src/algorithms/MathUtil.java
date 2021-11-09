@@ -1,12 +1,22 @@
 package algorithms;
 
+import org.w3c.dom.CDATASection;
+import stack.Stack;
+
 public class MathUtil {
 
     public static void main(String[] args) {
 //        System.out.println(pow(2, 5));
 //        System.out.println(factorialWithRecursion(16));
 //        System.out.println(abs(5));
-        System.out.println(reverse(122));
+//        System.out.println(reverse(122));
+        Stack stack = new Stack();
+
+        System.out.println(stack.push(5));
+        System.out.println(stack.push(88));
+        System.out.println(stack.pop(5));
+        stack.clear();
+        System.out.println(stack.isEmpty(stack.data));
     }
 
     /**
