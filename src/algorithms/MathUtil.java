@@ -3,7 +3,10 @@ package algorithms;
 public class MathUtil {
 
     public static void main(String[] args) {
-        System.out.println(pow(2, 0));
+         System.out.println(pow(2, -2));
+        // System.out.println(reverse(19960907));
+       // System.out.println(factorial(6));
+       // System.out.println(abs(-7));
 
     }
 
@@ -12,21 +15,18 @@ public class MathUtil {
      * second argument, such that a > 0 and n > 0.
      *
      * @param number the base
-     * @param pow the exponent
+     * @param pow    the exponent
      * @return the value <code>a<sup>b</sup></code>.
      */
-    public static int pow(int number, int pow){
-        int result = number;
-
-        if (pow == 0){
+    public static double pow(double number, int pow) {
+        double result = number;
+        if (pow == 0) {
             return 1;
         }
-
-        if (pow == 1){
+        if (pow == 1) {
             return number;
         }
-
-        result *= pow(number, pow-1);
+        result *= pow(number, pow - 1);
 
         return result;
     }
@@ -38,7 +38,13 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-       return 0;
+        int fact = n;
+        if (n == 1) {
+            return fact;
+        }
+        fact = fact * factorial(n - 1);
+
+        return fact;
     }
 
     /**
@@ -49,7 +55,7 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+        return (n >= 0) ? n : -n;
     }
 
 
@@ -60,10 +66,16 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
+        int reversedNumber = 0;
+        int reminder = 0;
+        while (number > 0) {
+            reminder = number % 10;
+            number /= 10;
+            reversedNumber = reversedNumber * 10 + reminder;
+        }
 
-        return 0;
+        return reversedNumber;
     }
-
 
 
 }
