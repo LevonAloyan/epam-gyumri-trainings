@@ -3,7 +3,7 @@ package algorithms;
 public class SortingAlgorithms {
 
     public static void main(String[] args) {
-        int [] array = new int[]{2,1,8,3,5,5,-26};
+        int[] array = new int[]{2, 1, 8, 3, 5, 5, -26};
         sortByMergeSorting(array);
         print(array);
     }
