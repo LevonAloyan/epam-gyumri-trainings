@@ -20,10 +20,9 @@ public class SortingAlgorithms {
 
     public static void sortBySelectionSorting(int[] array){
         for (int i = 0; i < array.length; i++) {
-            int min = array[i];
-            for (int j = i; j < array.length; j++) {
-                if (min > array[j]) {
-                    min = array[j];
+
+            for (int j = 1; j < array.length; j++) {
+                if (i < array[j]) {
                     swap(array, i, j);
                 }
             }
@@ -32,14 +31,12 @@ public class SortingAlgorithms {
 
     public static void sortByInsertionSorting(int[] array){
         for (int i = 1; i < array.length; i++) {
-            int value = array[i];
-            int j = i - 1;
+            for (int j = i; j >0 ; j--) {
+                if (array[j-1]>array[j]){
+                    swap(array, j-1,j);
+                }
 
-            while (j >= 0 && array[j] > value) {
-                array[j + 1] = array[j];
-                j = j - 1;
             }
-            array[j + 1] = value;
         }
     }
 

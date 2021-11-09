@@ -2,8 +2,12 @@ package algorithms;
 
 public class MathUtil {
 
+
     public static void main(String[] args) {
         System.out.println(pow(2, 0));
+//        System.out.println(abs(-9));
+//        System.out.println(factorial(3));
+        reverse(523);
 
     }
 
@@ -38,7 +42,10 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-       return 0;
+        if (n == 0) {
+            return 1;
+        }
+        return n * (factorial(n - 1));
     }
 
     /**
@@ -49,7 +56,11 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+        if (n < 0) {
+            n = (-1) * n;
+        }
+        return n;
+
     }
 
 
@@ -59,9 +70,16 @@ public class MathUtil {
      * @param number the parameter to be revered
      * @return reversed number
      */
-    public static int reverse(int number) {
+    public static void reverse(int number) {
 
-        return 0;
+
+        if (number < 10) {
+            System.out.println(number);
+        } else {
+            System.out.print(number % 10);
+
+            reverse(number / 10);
+        }
     }
 
 
