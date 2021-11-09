@@ -3,7 +3,10 @@ package algorithms;
 public class MathUtil {
 
     public static void main(String[] args) {
-        System.out.println(pow(2, 0));
+        System.out.println(pow(2, 3));
+        System.out.println(factorial(4));
+        System.out.println(abs(-7));
+        System.out.println(reverse(1234567));
 
     }
 
@@ -12,23 +15,14 @@ public class MathUtil {
      * second argument, such that a > 0 and n > 0.
      *
      * @param number the base
-     * @param pow the exponent
+     * @param pow    the exponent
      * @return the value <code>a<sup>b</sup></code>.
      */
-    public static int pow(int number, int pow){
-        int result = number;
-
-        if (pow == 0){
-            return 1;
-        }
-
-        if (pow == 1){
+    public static int pow(int number, int pow) {
+        if (pow == 1) {
             return number;
         }
-
-        result *= pow(number, pow-1);
-
-        return result;
+        return number * pow(number, pow - 1);
     }
 
     /**
@@ -38,7 +32,10 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-       return 0;
+        if (n == 1) {
+            return 1;
+        }
+        return n * factorial(n - 1);
     }
 
     /**
@@ -49,7 +46,7 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+        return (n < 0) ? -n : n;
     }
 
 
@@ -60,10 +57,16 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
-
-        return 0;
+        String s = Integer.toString(number);
+        String[] arr = s.split("", s.length());
+        for (int i = 0; i < arr.length / 2; i++) {
+            String k = arr[i];
+            arr[i] = arr[arr.length - 1 - i];
+            arr[arr.length - 1 - i] = k;
+        }
+        String result = String.join("", arr);
+        return Integer.parseInt(result);
     }
-
 
 
 }
