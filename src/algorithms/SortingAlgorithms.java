@@ -27,11 +27,16 @@ public class SortingAlgorithms {
     }
 
     public static void sortBySelectionSorting(int[] array){
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < i; j++) {
-                if (array[j] > array[i]) {
-                    swap(array, j, i);
+        int i, j;
+        for (i = 0; i < array.length-1; i++) {
+            int min = i;
+            for (j = i+1; j < array.length; j++){
+                if (array[j] < array[min]) {
+                    min = j;
                 }
+            }
+            if (min != i){
+                swap(array, i, min);
             }
         }
     }
