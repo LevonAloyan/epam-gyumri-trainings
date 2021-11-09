@@ -1,9 +1,13 @@
 package algorithms;
 
+import java.util.Arrays;
+
 public class MathUtil {
 
     public static void main(String[] args) {
-        System.out.println(pow(2, 0));
+//        System.out.println(pow(2, 0));
+//        System.out.println(factorial(3));
+        System.out.println(reverse(123));
 
     }
 
@@ -12,21 +16,19 @@ public class MathUtil {
      * second argument, such that a > 0 and n > 0.
      *
      * @param number the base
-     * @param pow the exponent
+     * @param pow    the exponent
      * @return the value <code>a<sup>b</sup></code>.
      */
-    public static int pow(int number, int pow){
+    public static int pow(int number, int pow) {
         int result = number;
 
-        if (pow == 0){
+        if (pow == 0) {
             return 1;
         }
-
-        if (pow == 1){
+        if (pow == 1) {
             return number;
         }
-
-        result *= pow(number, pow-1);
+        result *= pow(number, pow - 1);
 
         return result;
     }
@@ -38,7 +40,22 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-       return 0;
+
+        int result = 1;
+/**
+ // without recursive method
+
+ for (int i = 1; i <= n; i++) {
+ result = result * i;
+ }
+ return result;
+
+ */
+        if (n < 1) {
+            return result;
+        } else {
+            return n * factorial(n - 1);
+        }
     }
 
     /**
@@ -60,10 +77,26 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
+        int reverseNumber = 0;
+        /*
+//         another variant,working, but....
 
-        return 0;
+        if (number != 0) {
+            char[] charArray = String.valueOf(number).toCharArray();
+            System.out.println(charArray);
+
+            for (int i = charArray.length - 1; i >= 0; i--) {
+                reverseNumber = reverseNumber * 10 + Character.getNumericValue(charArray[i]);
+            }
+        }
+*/
+        while (number != 0) {
+            int remainderNumber = number % 10;
+//            System.out.println(remainderNumber +"remainderNumber");
+            reverseNumber = reverseNumber * 10 + remainderNumber;
+            number = number / 10;
+        }
+        return reverseNumber;
+
     }
-
-
-
 }
