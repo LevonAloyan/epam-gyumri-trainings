@@ -19,7 +19,11 @@ public class Stack {
 	 * Add element into stack
 	 */
 	public void push(int value) {
-
+		if (this.tos == data.length) {
+			System.out.println("Stack full.");
+		} else {
+			data[++tos] = value;
+		}
 	}
 
 	/**
@@ -28,7 +32,12 @@ public class Stack {
 	 */
 	public int pop() {
 
-		return 0;
+		if (this.tos < 0) {
+			System.out.println("Stack is empty.");
+			return 0;
+		} else {
+			return data[tos--];
+		}
 	}
 
 
@@ -36,7 +45,12 @@ public class Stack {
 	 * Clear stack
 	 */
 	public void clear() {
-
+		if(!isEmpty()){
+			for(int i = 0; i < data.length; i++){
+				pop();
+			}
+			tos = -1;
+		}
 	}
 
 	/**
@@ -44,13 +58,21 @@ public class Stack {
 	 * @return
 	 */
 	public boolean isEmpty() {
-		return false;
+		if (this.tos < 0) {
+			return false;
+		} else {
+			return false;
+		}
 	}
 
 	/**
 	 * Increase the stack capacity if there is not enough space to add additional items
 	 */
-	private void ensureCapacity() {
+	private void ensureCapacity(int size) {
+		if (tos != size){
+		int newSize = size * 3;
+		data[size] = data[newSize];
+	}
 
 	}
 }
