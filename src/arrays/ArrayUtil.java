@@ -63,8 +63,13 @@ public class ArrayUtil {
      * Calculate and return sum of array's elements.
      */
     public static long sum(int[] array) {
+        long total = 0;
+        for (int i = 0; i < array.length; i++) {
+            total = total + array[i];
 
-        return 0;
+        }
+
+        return total;
     }
 
 
@@ -72,23 +77,39 @@ public class ArrayUtil {
      * Get the max value from the array.
      */
     public static int getMax(int[] array) {
-
-        return 0;
+        int maxValue = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > maxValue) {
+                maxValue = array[i];
+            }
+        }
+        return maxValue;
     }
 
     /**
      * Get the minimum value from the array
      */
-    public static void getMin(int[] array) {
-
+    public static int getMin(int[] array) {
+        int minValue = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] < minValue) {
+                minValue = array[i];
+            }
+        }
+        return minValue;
     }
+
 
     /**
      * Calculate average of array
      */
-    public static int getAvg(int[] array) {
-
-        return 0;
+    public static double getAvg(double[] array) {
+        double total = 0;
+        for (int i = 0; i < array.length; i++) {
+            total = total + array[i];
+        }
+        double average = total / array.length;
+        return average;
     }
 
 
