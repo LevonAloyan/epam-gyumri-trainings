@@ -1,93 +1,170 @@
 package algorithms;
 
 public class SortingAlgorithms {
-
-    public static void main(String[] args) {
-        int [] array = new int[]{2,1,8,3,5,5,-26};
+    public static void main(String args[]) {
+        int[] array = new int[]{2, 1, 8, 3, 5, 5, -26};
+        sortByBubbleSorting(array);
+        sortBySelectionSorting(array);
+        sortBySelectionSorting(array);
         sortByMergeSorting(array);
         print(array);
+        sortByQuickSorting(array,array[0],-26);
+        print(array);
+
+
     }
+
+
 
     public static void sortByBubbleSorting(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length-i-1; j++) {
-                if (array[j] > array[j+1]) {
-                    swap(array, j+1, j);
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    swap(array, j + 1, j);
+
                 }
             }
         }
+        for (int j = 0; j < array.length; j++) {
+            System.out.print(array[j] + " ");
+        }
+        System.out.println();
     }
 
-    public static void sortBySelectionSorting(int[] array){
+    public static void swap(int[] array, int index1, int index2) {
+        int temp = 0;
+        temp = array[index1];
+        array[index1] = array[index2];
+        array[index2] = temp;
+    }
+
+    public static void sortBySelectionSorting(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            int min = array[i];
-            for (int j = i; j < array.length; j++) {
-                if (min > array[j]) {
-                    min = array[j];
-                    swap(array, i, j);
+            int minValue = array[i];
+            int minIndex = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[j] < minValue) {
+                    minValue = array[j];
+                    minIndex = i;
                 }
             }
-        }
-    }
-
-    public static void sortByInsertionSorting(int[] array){
-        for (int i = 1; i < array.length; i++) {
-            int value = array[i];
-            int j = i - 1;
-
-            while (j >= 0 && array[j] > value) {
-                array[j + 1] = array[j];
-                j = j - 1;
+            if (i != minIndex) {
+                int temp = array[i];
+                array[i] = array[minIndex];
+                array[minIndex] = temp;
             }
-            array[j + 1] = value;
+
+            System.out.print(array[i] + " ");
+
         }
+        System.out.println();
+
     }
 
-    public static void sortByMergeSorting(int[] array){
-        if (array.length < 2) {
+    public static void sortInsertionSorting(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            int index = i;
+            int temp = array[i];
+            while (index > 0 && array[index - 1] >= temp) {
+                array[index] = array[index - 1];
+                index--;
+            }
+
+            array[index] = temp;
+
+            System.out.println(array[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void sortByMergeSorting(int[] array) {
+        int temp = array.length;
+        if (temp < 2) {
             return;
         }
-
-        int[] leftArray = new int[array.length / 2];
-        System.arraycopy(array, 0, leftArray, 0, array.length / 2);
-
-        int[] rightArray = new int[array.length - leftArray.length];
-        System.arraycopy(array, leftArray.length, rightArray, 0, rightArray.length);
-
-        sortByMergeSorting(leftArray);
-        sortByMergeSorting(rightArray);
-
-        mergeArray(array, leftArray, rightArray);
-    }
-    private static void mergeArray(int[] array, int[] leftArray, int[] rightArray) {
-
-        int leftArrayIndex = 0;
-        int rightArrayIndex = 0;
-
-        for (int i = 0; i < array.length; i++) {
-            if (leftArrayIndex == leftArray.length) {
-                array[i] = rightArray[rightArrayIndex];
-                rightArrayIndex++;
-            } else if (rightArrayIndex == rightArray.length) {
-                array[i] = leftArray[leftArrayIndex];
-                leftArrayIndex++;
-            } else if (leftArray[leftArrayIndex] < rightArray[rightArrayIndex]) {
-                array[i] = leftArray[leftArrayIndex];
-                leftArrayIndex++;
-            } else {
-                array[i] = rightArray[rightArrayIndex];
-                rightArrayIndex++;
-            }
+        int midIndex = temp / 2;
+        int[] leftHalf = new int[midIndex];
+        int[] rigthHalf = new int[temp - midIndex];
+        for (int i = 0; i < midIndex; i++) {
+            leftHalf[i] = array[i];
         }
+        for (int i = midIndex; i < temp; i++) {
+            rigthHalf[i - midIndex] = array[i];
+
+        }
+        sortByMergeSorting(leftHalf);
+        sortByMergeSorting(rigthHalf);
     }
 
-    public static void sortByQuickSorting(int[] array, int startIndex, int endIndex){
+    public static void marge(int[] array, int[] leftHalf, int[] rigthHalf) {
+
+
+        int leftSize = leftHalf.length;
+        int rigthSize = rigthHalf.length;
+        int i = 0, j = 0, k = 0;
+        while (i < leftSize && j < rigthSize) {
+            if (leftHalf[i] <= rigthHalf[j]) {
+                array[k] = leftHalf[i];
+                i++;
+            } else {
+                array[k] = rigthHalf[j];
+                j++;
+            }
+            k++;
+        }
+        while (i < leftSize) {
+            array[k] = leftHalf[i];
+            i++;
+            k++;
+        }
+        while (j < rigthSize) {
+            array[k] = rigthHalf[j];
+            j++;
+            k++;
+        }
+        for (i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+
+    }
+
+    public static void sortByQuickSorting(int [] array, int startIndex, int endIndex){
+          if(array.length==0){
+              return;
+          }
+          if(startIndex>=endIndex){
+              return;
+          }
+          int i= startIndex;
+          int j= endIndex;
+          int midle = array[(i+j/2)];
+          do{
+              while(array[i]>midle){
+                  i++;
+              }
+              while(array[j]>midle){
+                  j++;
+              }
+              if(i<=j){
+                  swap(array, i, j);
+              }
+          }while(i<=j);
+          if(startIndex<j){
+           sortByQuickSorting(array, startIndex, j);
+           if(i<endIndex){
+               sortByQuickSorting(array, i, endIndex);
+           }
+          }
+
+      }
+   /*public static void sortByQuickSorting(int[] array, int startIndex, int endIndex) {
         if (array.length == 0) {
             return;
         }
         if (startIndex >= endIndex) {
             return;
         }
+
         int middle = (startIndex + endIndex) / 2;
         int pivot = array[middle];
         int i = startIndex;
@@ -110,16 +187,19 @@ public class SortingAlgorithms {
 
         if (endIndex > i)
             sortByQuickSorting(array, i, endIndex);
+       System.out.println();
+   }*/
+
+
+
+    private static void print(int[] array) {
+        for (int element : array) {
+            System.out.print(element + ",");
+
+        }System.out.println();
     }
 
-    private static void swap(int [] array, int firstIndex, int lastIndex) {
-        int tempValue = array[firstIndex];
-        array[firstIndex] = array[lastIndex];
-        array[lastIndex] = tempValue;
-    }
-    private static void print (int [] array){
-        for(int element : array){
-            System.out.print(element+",");
-        }
-    }
+
 }
+
+
