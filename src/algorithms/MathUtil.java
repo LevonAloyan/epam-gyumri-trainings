@@ -6,7 +6,7 @@ public class MathUtil {
         System.out.println(pow(2, 0));
         System.out.println(factorial(5));
         System.out.println(abs(-7));
-        reverse(-7953);
+        System.out.println(reverse(-7953));
 
     }
 
@@ -45,8 +45,9 @@ public class MathUtil {
 
         if(n == 1 ) return n;
 
-        result = factorial(n-1) * n;
-
+        if(n < 0) result = factorial(n + 1) * n;
+        if(n > 0) result = factorial(n - 1) * n;
+        
         return result;
     }
 
@@ -69,25 +70,25 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
-        int result = 0;
+        int result;
+        int reverse = 0;
 
         if (number == 0) return 0;
 
         if (number > 0) {
             while (number != 0) {
                 result = number % 10;
+                reverse = reverse * 10 + result;
                 number = number / 10;
-                System.out.print(result);
             }
         } else {
-            System.out.print("-");
             while (number != 0) {
                 result = number % 10;
+                reverse = reverse * 10 + result;
                 number = number / 10;
-                System.out.print(-(result));
             }
         }
-        return 0;
+        return reverse;
     }
 
 }
