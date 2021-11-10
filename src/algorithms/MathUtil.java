@@ -4,7 +4,9 @@ public class MathUtil {
 
     public static void main(String[] args) {
         System.out.println(pow(2, 0));
-
+        System.out.println(factorial(5));
+        System.out.println(Math.abs(-25));
+        System.out.println(reverse(465456));
     }
 
     /**
@@ -12,21 +14,21 @@ public class MathUtil {
      * second argument, such that a > 0 and n > 0.
      *
      * @param number the base
-     * @param pow the exponent
+     * @param pow    the exponent
      * @return the value <code>a<sup>b</sup></code>.
      */
-    public static int pow(int number, int pow){
+    public static int pow(int number, int pow) {
         int result = number;
 
-        if (pow == 0){
+        if (pow == 0) {
             return 1;
         }
 
-        if (pow == 1){
+        if (pow == 1) {
             return number;
         }
 
-        result *= pow(number, pow-1);
+        result *= pow(number, pow - 1);
 
         return result;
     }
@@ -38,7 +40,11 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-       return 0;
+        if (n <= 1) {
+            return 1;
+        } else {
+            return n * factorial(n - 1);
+        }
     }
 
     /**
@@ -49,7 +55,11 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+        if (n == 0) {
+            return 0;
+        } else {
+            return Math.abs(n);
+        }
     }
 
 
@@ -60,10 +70,12 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
-
-        return 0;
+        int rev = 0;
+        while (number != 0) {
+            int divider = number % 10;
+            rev = rev * 10 + divider;
+            number = number / 10;
+        }
+        return rev;
     }
-
-
-
 }
