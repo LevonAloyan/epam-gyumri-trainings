@@ -57,15 +57,13 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
-        String s = Integer.toString(number);
-        String[] arr = s.split("", s.length());
-        for (int i = 0; i < arr.length / 2; i++) {
-            String k = arr[i];
-            arr[i] = arr[arr.length - 1 - i];
-            arr[arr.length - 1 - i] = k;
+        int reversedNum = 0;
+        while (number != 0) {
+            int digit = number % 10;
+            reversedNum = reversedNum * 10 + digit;
+            number /= 10;
         }
-        String result = String.join("", arr);
-        return Integer.parseInt(result);
+        return reversedNum;
     }
 
 
