@@ -68,7 +68,7 @@ public class Stack {
 	 * Increase the stack capacity if there is not enough space to add additional items
 	 */
 	private void ensureCapacity() {
-		int length = (int) ((data.length * 3)/1.5);
+		int length = (data.length + 10);
 		int[] result = new int[length];
 		System.arraycopy(data,0,result,0,data.length);
 		data = result;
