@@ -3,8 +3,10 @@ package algorithms;
 public class MathUtil {
 
     public static void main(String[] args) {
-        System.out.println(pow(2, 0));
-
+        System.out.println(pow(3, 2));
+        System.out.println(factorial(5));
+        System.out.println(Math.abs(-5));
+        System.out.println(reverse(156959));
     }
 
     /**
@@ -25,7 +27,9 @@ public class MathUtil {
         if (pow == 1){
             return number;
         }
-
+        if (pow < 0){
+//            result *= pow(number, pow+1);;
+        }
         result *= pow(number, pow-1);
 
         return result;
@@ -37,9 +41,19 @@ public class MathUtil {
      * @param n the number factorial of which must be calculated
      * @return calculated number
      */
+
     public static int factorial(int n) {
-       return 0;
+        int result = 1;
+
+        for (int i = 2; i <= n; i++) {
+            result *= i;
+        }
+
+        return result;
     }
+
+
+
 
     /**
      * Calculates and returns the absolute value
@@ -60,10 +74,14 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
+        int reversenum =0;
+        while( number != 0 )
+        {
+            reversenum = reversenum * 10;
+            reversenum = reversenum + number%10;
+            number = number/10;
+        }
 
-        return 0;
+        return reversenum;
     }
-
-
-
 }
