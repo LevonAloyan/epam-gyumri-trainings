@@ -1,5 +1,7 @@
 package stack;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
 public class Stack {
 
 	static final int DEFAULT_SIZE = 16;
@@ -19,7 +21,10 @@ public class Stack {
 	 * Add element into stack
 	 */
 	public void push(int value) {
-
+		if (tos == value-1)
+			System.out.println("stack is over");
+		else
+			data[++tos] = value;
 	}
 
 	/**
@@ -27,8 +32,12 @@ public class Stack {
 	 * @return
 	 */
 	public int pop() {
-
-		return 0;
+		if(tos < 0){
+			System.out.println("stack is not over");
+			return 0;
+		}
+		else
+			return data[--tos];
 	}
 
 
@@ -36,6 +45,8 @@ public class Stack {
 	 * Clear stack
 	 */
 	public void clear() {
+		for (int tos = 0; tos < DEFAULT_SIZE; tos++)
+			data[tos] = null;
 
 	}
 
@@ -44,13 +55,21 @@ public class Stack {
 	 * @return
 	 */
 	public boolean isEmpty() {
-		return false;
-	}
 
-	/**
-	 * Increase the stack capacity if there is not enough space to add additional items
-	 */
-	private void ensureCapacity() {
+		if (tos > 0){
+			System.out.println(data[tos]);
+		}
+		else{
+			return true;
+		}
 
+
+
+
+		/**
+		 * Increase the stack capacity if there is not enough space to add additional items
+		 */
+		private void ensureCapacity() {
+
+		}
 	}
-}

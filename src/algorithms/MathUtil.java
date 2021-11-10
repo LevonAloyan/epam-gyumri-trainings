@@ -5,7 +5,7 @@ public class MathUtil {
     public static void main(String[] args) {
         System.out.println(pow(3, 2));
         System.out.println(factorial(5));
-        System.out.println(Math.abs(-5));
+        System.out.println(Math.abs(-1000.5));
         System.out.println(reverse(156959));
     }
 
@@ -53,6 +53,15 @@ public class MathUtil {
     }
 
 
+   /* public static int factorial(int n){
+        int fact;
+        if (n == 0)
+            return 1;
+        else {
+            fact = n * factorial(n-1) ;
+            return fact;
+        }
+    }*/
 
 
     /**
@@ -63,7 +72,12 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+
+            if (n >= 0) {
+                return n;
+            }
+            return -n;
+
     }
 
 
