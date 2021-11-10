@@ -3,10 +3,10 @@ package algorithms;
 public class MathUtil {
 
     public static void main(String[] args) {
-         System.out.println(pow(2, -2));
+       // System.out.println(pow(4, -1));
         // System.out.println(reverse(19960907));
-       // System.out.println(factorial(6));
-       // System.out.println(abs(-7));
+         System.out.println(factorial(-4));
+        // System.out.println(abs(-7));
 
     }
 
@@ -19,16 +19,27 @@ public class MathUtil {
      * @return the value <code>a<sup>b</sup></code>.
      */
     public static double pow(double number, int pow) {
-        double result = number;
-        if (pow == 0) {
-            return 1;
-        }
-        if (pow == 1) {
-            return number;
-        }
-        result *= pow(number, pow - 1);
+        double negativePow = 1 / number;
+        double positivePow = number;
 
-        return result;
+        if (pow < 0) {
+            if (pow == -1) {
+                return negativePow;
+            }
+            negativePow *= pow(number, pow + 1);
+        }
+
+        if (pow >= 0) {
+            if (pow == 0) {
+                return 1;
+            } else if (pow == 1) {
+                return positivePow;
+            }
+
+            positivePow *= pow(number, pow - 1);
+        }
+
+        return (pow < 0) ? negativePow : positivePow;
     }
 
     /**
@@ -38,13 +49,24 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-        int fact = n;
-        if (n == 1) {
-            return fact;
+        int positiveFact = n;
+        int negativeFact = -n;
+        if (n > 0) {
+            if (n == 1) {
+                return positiveFact;
+            }
+            positiveFact = positiveFact * factorial(n - 1);
+        } else if (n < 0){
+            // checking if n is odd or even, because two minus signs give us plus
+            if (n == -1 && (n%2) != 0) {
+                return -negativeFact;
+            } else if (n == -1 && (n%2) == 0) {
+                return negativeFact;
+            }
+            negativeFact *= factorial(n+1);
         }
-        fact = fact * factorial(n - 1);
 
-        return fact;
+        return (n > 0) ? positiveFact : negativeFact;
     }
 
     /**
