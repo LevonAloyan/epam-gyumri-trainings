@@ -23,10 +23,8 @@ public class Stack {
 	public void push(int value) {
 		if (tos == data.length-1) {
 			ensureCapacity();
-			data[++tos] = value;
-		} else {
-			data[++tos] = value;
 		}
+			data[++tos] = value;
 	}
 
 	/**
@@ -36,10 +34,9 @@ public class Stack {
 	public int pop() {
 		if (tos == -1) {
 			System.out.println("Stack is empty");
-			return 0;
-		} else {
-			return data[tos--];
+			return -1;
 		}
+			return data[tos--];
 	}
 
 
@@ -49,11 +46,10 @@ public class Stack {
 	public void clear() {
 		if (data.length < 1000) {
 			Arrays.fill(data, 0);
-			tos = -1;
 		} else {
 			data = new int[DEFAULT_SIZE];
-			tos = -1;
 		}
+			tos = -1;
 	}
 
 	/**

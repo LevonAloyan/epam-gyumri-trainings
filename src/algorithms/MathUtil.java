@@ -27,9 +27,7 @@ public class MathUtil {
                 return negativePow;
             }
             negativePow *= pow(number, pow + 1);
-        }
-
-        if (pow >= 0) {
+        } else {
             if (pow == 0) {
                 return 1;
             } else if (pow == 1) {
@@ -51,17 +49,14 @@ public class MathUtil {
     public static int factorial(int n) {
         int positiveFact = n;
         int negativeFact = -n;
-        if (n > 0) {
-            if (n == 1) {
+        if (n >= 0) {
+            if (n == 1 || n == 0) {
                 return positiveFact;
             }
-            positiveFact = positiveFact * factorial(n - 1);
-        } else if (n < 0){
-            // checking if n is odd or even, because two minus signs give us plus
-            if (n == -1 && (n%2) != 0) {
-                return -negativeFact;
-            } else if (n == -1 && (n%2) == 0) {
-                return negativeFact;
+            positiveFact *= factorial(n - 1);
+        } else {
+            if (n == -1) {
+                return -1;
             }
             negativeFact *= factorial(n+1);
         }
