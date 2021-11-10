@@ -1,16 +1,19 @@
 package stack;
 
 public class Stack {
-//	public static void main(String[] args) {
-//
-//		Stack stack = new Stack(16);
-//		//System.out.println(stack);
-//		stack.push(44);
-//		System.out.println(stack.pop());
-//		System.out.println(stack.isEmpty());
-//		stack.clear();
-//
-//	}
+	public static void main(String[] args) {
+		Stack stack = new Stack();
+		System.out.println(stack.isEmpty());
+		stack.push(22);
+		stack.push(44);
+		stack.push(88);
+		System.out.println(stack.pop());
+		System.out.println(stack.pop());
+		System.out.println(stack.pop());
+
+		stack.clear();
+
+	}
 
 	static final int DEFAULT_SIZE = 16;
 	private int[] data;
@@ -32,6 +35,7 @@ public class Stack {
 		//if (tos == data.length - 1) {
 		if (tos == data.length){
 			ensureCapacity();
+			data[++tos] = value;
 		}else {
 			data[++tos] = value;
 		}
@@ -80,15 +84,16 @@ public class Stack {
 	 * @return
 	 */
 	public boolean isEmpty() {
-		return 0 > tos;
+		//return 0 > tos;
+		return tos == -1;
 	}
 
 	/**
 	 * Increase the stack capacity if there is not enough space to add additional items
 	 */
 	private void ensureCapacity() {
-		int[] dataTemp = new int[data.length + 10];
-		System.arraycopy(data, 0, dataTemp, 0, data.length);
-		data = dataTemp;
+		int[] dataResult = new int[data.length + 10];
+		System.arraycopy(data, 0, dataResult, 0, data.length);
+		data = dataResult;
 	}
 }

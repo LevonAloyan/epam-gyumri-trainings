@@ -67,16 +67,16 @@ public class SortingAlgorithms {
             return;
         int halfLength = array.length / 2;
         int[] lefOfArray = new int[halfLength];
-        int[] rightHalfOfArray = new int[array.length - halfLength];
+        int[] rightOfArray = new int[array.length - halfLength];
         for (int i = 0; i < lefOfArray.length; i++) {
             lefOfArray[i] = array[i];
         }
-        for (int i = 0; i < rightHalfOfArray.length; i++) {
-            rightHalfOfArray[i] = array[lefOfArray.length + i];
+        for (int i = 0; i < rightOfArray.length; i++) {
+            rightOfArray[i] = array[lefOfArray.length + i];
         }
-        sortByMergeSorting(rightHalfOfArray);
+        sortByMergeSorting(rightOfArray);
         sortByMergeSorting(lefOfArray);
-        merge(array, lefOfArray, rightHalfOfArray);
+        merge(array, lefOfArray, rightOfArray);
     }
     private static void merge(int[] destArray, int[] arrayOne, int[] arrayTwo) {
         int i = 0;
@@ -118,7 +118,6 @@ public class SortingAlgorithms {
             firstIndex++;
             lastIndex--;
         }
-
 
         sortByQuickSorting(array, firstIndex, lastIndex);
     }

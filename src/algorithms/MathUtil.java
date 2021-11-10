@@ -6,9 +6,8 @@ public class MathUtil {
         System.out.println(pow(2, 0));
         int num = 4567;
         reverse(num);
-
-        System.out.println(abs(5));
-        System.out.println(factorial(6));
+        System.out.println(abs(-5));
+        System.out.println(factorial(-9));
     }
 
     /**
@@ -39,21 +38,27 @@ public class MathUtil {
      * Calculates and returns the factorial of specified n number
      *
      * @param n the number factorial of which must be calculated
-     * @return calculated number
      */
     public static int factorial(int n) {
-//        int i,fact=1;
-//        int number=5;//It is the number to calculate factorial
-//        for(i=1;i<=number;i++){
-//            fact=fact*i;
-//        }
-//        System.out.println("Factorial of "+number+" is: "+fact);
-        if (n <= 2) {
-            return n;
+        int plus = n;
+        int minus = -n;
+        if (n > 0) {
+            if (n == 1) {
+                return plus;
+            }
+            plus = minus * factorial(n - 1);
+        } else if (n < 0){
+            // checking if n is odd or even, because two minus signs give us plus
+            if (n == -1 && (n%2) != 0) {
+                return -minus;
+            } else if (n == -1 && (n%2) == 0) {
+                return minus;
+            }
+            minus *= factorial(n+1);
         }
-        return n * factorial(n - 1);
-    }
 
+        return (n > 0) ? plus : minus;
+    }
 
 
     /**
