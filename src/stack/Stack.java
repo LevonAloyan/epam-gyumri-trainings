@@ -89,7 +89,7 @@ public class Stack {
      */
     private void ensureCapacity() {
         if (tos == data.length) {
-            int[] newData = new int[2 * data.length/2];
+            int[] newData = new int[3 * data.length/2];
             for (int i = 0; i < data.length; i++) {
                 newData[i] = data[i];
             }
