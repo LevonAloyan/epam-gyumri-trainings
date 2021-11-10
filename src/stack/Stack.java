@@ -1,11 +1,14 @@
 package stack;
 
+import java.util.Arrays;
+
 public class Stack {
     public static void main(String[] args) {
         Stack stack= new Stack();
         for (int i = 0; i < 5; i++) {
-            stack.push(i^2);
+            stack.push(i*2);
         }
+		System.out.println(stack);
         System.out.println(stack.pop());
         stack.push(45);
         stack.push(44);
@@ -17,7 +20,7 @@ public class Stack {
         stack.clear();
         System.out.println("Stack after clear()  " + stack);
         System.out.println("Is the stack empty?  " + stack.isEmpty());
-        //stack.ensureCapacity();
+        stack.ensureCapacity();
     }
     static final int DEFAULT_SIZE = 16;
 	private int[] data;
@@ -83,5 +86,8 @@ public class Stack {
 		int[] dataTemp = new int[data.length + DEFAULT_SIZE];
 		System.arraycopy(data, 0, dataTemp, 0, data.length);
 		data = dataTemp;
+	}
+	public String toString() {
+		return  Arrays.toString(data);
 	}
 }
