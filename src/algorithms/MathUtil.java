@@ -12,9 +12,31 @@ public class MathUtil {
 //        System.out.println(reverse(122));
         Stack stack = new Stack();
 
-        System.out.println(stack.push(5));
+        System.out.println(stack.push(1));
+        System.out.println(stack.push(2));
+        System.out.println(stack.push(38));
+        System.out.println(stack.push(48));
+        System.out.println(stack.push(58));
+        System.out.println(stack.push(68));
+        System.out.println(stack.push(75));
         System.out.println(stack.push(88));
-        System.out.println(stack.pop(5));
+        System.out.println(stack.push(98));
+        System.out.println(stack.push(108));
+        System.out.println(stack.push(11));
+        System.out.println(stack.push(12));
+        System.out.println(stack.push(13));
+        System.out.println(stack.push(14));
+        System.out.println(stack.push(15));
+        System.out.println(stack.push(16));
+//        System.out.println(stack.push(17));
+//        System.out.println(stack.push(18));
+//        System.out.println(stack.push(16));
+//        System.out.println(stack.push(17));
+//        System.out.println(stack.push(18));
+//        System.out.println(stack.push(16));
+//        System.out.println(stack.push(17));
+//        System.out.println(stack.push(18));
+//        System.out.println(stack.pop(5));
         stack.clear();
         System.out.println(stack.isEmpty(stack.data));
     }

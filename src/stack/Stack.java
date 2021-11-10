@@ -1,10 +1,12 @@
 package stack;
 
+
 public class Stack {
 
 	static final int DEFAULT_SIZE = 16;
 	public int[] data;
 	private int tos; //index which determines the top of stack
+	private int size;
 	public Stack() {
 		this(DEFAULT_SIZE);
 	}
@@ -12,15 +14,23 @@ public class Stack {
 	public Stack(int size) {
 		data = new int[size];
 		this.tos = 0;
+		this.size = 0;
 	}
 
 	/**
 	 * Add element into stack
 	 * @return
 	 */
+
 	public int push(int value) {
-		data[tos] = value;
-		tos++;
+		size ++;
+		if (size > data.length ){
+			ensureCapacity(value);
+
+		} else {
+			data[tos] = value;
+			tos++;
+		}
 		return value;
 	}
 
@@ -74,10 +84,16 @@ public class Stack {
 
 	/**
 	 * Increase the stack capacity if there is not enough space to add additional items
+	 * @return
 	 */
-	private void ensureCapacity() {
-		if (data.length > 16 && data.length < 1000){
-			data = new int[data.length * 5];
+	private int[] ensureCapacity(int value) {
+		int [] newArray = new int[data.length * 2];
+		for (int i = 0; i < data.length ; i++) {
+			newArray[i] = data[i];
+
 		}
+		newArray[data.length] = value;
+		return newArray;
 	}
+
 }
