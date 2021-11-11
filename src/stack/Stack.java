@@ -19,16 +19,21 @@ public class Stack {
 	 * Add element into stack
 	 */
 	public void push(int value) {
-
+		tos = tos + 1;
+		if (tos < data.length) {
+		data[tos] = value;
+		}
 	}
 
 	/**
 	 * Get element from the stack
 	 * @return
 	 */
-	public int pop() {
+	public int pop(){
+		int element = data[tos];
+		tos  = tos - 1;
 
-		return 0;
+		return element;
 	}
 
 
@@ -37,6 +42,7 @@ public class Stack {
 	 */
 	public void clear() {
 
+
 	}
 
 	/**
@@ -44,13 +50,22 @@ public class Stack {
 	 * @return
 	 */
 	public boolean isEmpty() {
-		return false;
+		if (tos < 0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	/**
 	 * Increase the stack capacity if there is not enough space to add additional items
 	 */
 	private void ensureCapacity() {
-
+		if (tos >= data.length) {
+			int newData [] = new int[data.length + 16];
+			for (int i = 0; i < data.length; i++) {
+				newData[i] = data[i];
+			}
+		}
 	}
 }
