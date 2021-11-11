@@ -43,7 +43,7 @@ public class Stack {
 	 * Clear stack
 	 */
 	public void clear() {
-		for (int i = 0; i < DEFAULT_SIZE; i++) {
+		for (int i = 0; i < data.length; i++) {
 			data[i] = 0;
 		}
 	}
@@ -60,8 +60,8 @@ public class Stack {
 	 * Increase the stack capacity if there is not enough space to add additional items
 	 */
 	private void ensureCapacity() {
-		int [] newArray = new int[100];
+		int[] newArray = new int[data.length * 2];
 		System.arraycopy(data, 0, newArray, 0, data.length);
-		newArray = data;
+		this.data = newArray;
 	}
 }
