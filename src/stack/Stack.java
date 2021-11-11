@@ -19,7 +19,7 @@ public class Stack {
 	 * Add element into stack
 	 */
 	public void push(int value) {
-
+		data[++tos] == value;
 	}
 
 	/**
