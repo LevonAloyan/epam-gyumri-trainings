@@ -4,7 +4,7 @@ public class MathUtil {
 
     public static void main(String[] args) {
 //        System.out.println(pow(2, 0));
-        System.out.println(factorial(-5));
+        System.out.println(factorial(6));
 //        System.out.println(reverse(623));
 //        System.out.println(abs(210));
 //        System.out.println(abs(-2));
@@ -44,8 +44,6 @@ public class MathUtil {
     public static int factorial(int n) {
         if (n == 0) {
             return 1;
-        } else if (n < 0) {
-            return (n * factorial(n + 1));
         } else {
             return n * factorial(n - 1);
         }
