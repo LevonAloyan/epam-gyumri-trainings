@@ -60,8 +60,8 @@ public class Stack {
 	 * Increase the stack capacity if there is not enough space to add additional items
 	 */
 	private void ensureCapacity() {
-		if (tos == data.length - 1) {
-			System.out.println("Stack is full.");
-		}
+		int [] newArray = new int[100];
+		System.arraycopy(data, 0, newArray, 0, data.length);
+		newArray = data;
 	}
 }
