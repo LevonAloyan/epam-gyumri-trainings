@@ -13,7 +13,7 @@ public class MathUtil {
         System.out.println(factorial(5));
         System.out.println("---absolute---");
         System.out.print("      ");
-        System.out.println(abs(0));
+        System.out.println(abs(-24));
         System.out.println("---reverse---");
         System.out.print("     ");
         System.out.println(reverse(327));
@@ -72,14 +72,7 @@ public class MathUtil {
         if (n > 0){
             return n;
         }
-
-        if (n == 0){
-            return 1;
-        }
-        int abs = n + (-n * 2);
-
-
-        return abs;
+        return -n;
     }
 
 
