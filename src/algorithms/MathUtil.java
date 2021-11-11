@@ -3,8 +3,15 @@ package algorithms;
 public class MathUtil {
 
     public static void main(String[] args) {
-        System.out.println(pow(2, 0));
-
+        System.out.println("--------------------------------------------------------");
+        System.out.println(pow(2, 3));
+        System.out.println("--------------------------------------------------------");
+        System.out.println(factorial(10));
+        System.out.println("--------------------------------------------------------");
+        System.out.println(abs(-17));
+        System.out.println("--------------------------------------------------------");
+        System.out.println(reverse(987654321));
+        System.out.println("--------------------------------------------------------");
     }
 
     /**
@@ -17,17 +24,13 @@ public class MathUtil {
      */
     public static int pow(int number, int pow){
         int result = number;
-
         if (pow == 0){
             return 1;
         }
-
         if (pow == 1){
             return number;
         }
-
         result *= pow(number, pow-1);
-
         return result;
     }
 
@@ -38,7 +41,17 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-       return 0;
+        if ( n == 0 ) {
+            return 1;
+        }
+        if ( n == 1 ) {
+            return 1;
+        }
+        int fact = 1;
+        for (int i = 1; i <= n; i++) {
+            fact = fact * i;
+        }
+        return fact;
     }
 
     /**
@@ -49,7 +62,11 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+        int value = n;
+        if ( value < 0) {
+            value = 0 - value;
+        }
+        return value;
     }
 
 
@@ -60,10 +77,16 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
-
-        return 0;
+        int revers = 0;
+        while (number != 0) {
+            int member = number % 10;
+            revers = revers * 10 + member;
+            number = number/10;
+        }
+        return revers;
     }
 
 
 
 }
+
