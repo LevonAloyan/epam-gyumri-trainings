@@ -3,16 +3,13 @@ package stack;
 public class Stack {
 	public static void main(String[] args) {
 		Stack stack = new Stack();
-		System.out.println(stack.isEmpty());
 		stack.push(22);
 		stack.push(44);
 		stack.push(88);
-		System.out.println(stack.pop());
-		System.out.println(stack.pop());
-		System.out.println(stack.pop());
-
 		stack.clear();
-
+		stack.push(12);
+		System.out.println(stack.pop());
+		System.out.println(stack.isEmpty());
 	}
 
 	static final int DEFAULT_SIZE = 16;
@@ -32,13 +29,10 @@ public class Stack {
 	 * Add element into stack
 	 */
 	public void push(int value) {
-		//if (tos == data.length - 1) {
-		if (tos == data.length){
+		if (tos == data.length) {
 			ensureCapacity();
-			data[++tos] = value;
-		}else {
-			data[++tos] = value;
 		}
+		data[++tos] = value;
 	}
 
 	/**
@@ -46,19 +40,11 @@ public class Stack {
 	 * @return
 	 */
 	public int pop() {
-//		if (isEmpty()) {
-//			System.out.print(" Stack is empty ");
-//			return -1;
-//		} else {
-//			return data[tos--];
-//		}
-		if (tos == -1){
+		if (isEmpty()){
 			System.out.println("empty");
 			return -1;
-		}else{
-			return data[tos--];
-
 		}
+			return data[tos--];
 	}
 
 
@@ -66,16 +52,6 @@ public class Stack {
 	 * Clear stack
 	 */
 	public void clear() {
-//		data = new int[DEFAULT_SIZE];
-//		tos = -1;
-		if (data.length < 1000){
-			for (int i = 0; i < data.length; i++){
-				data[i] = -1;
-			}
-			//tos = -1;
-		}else {
-			data = new int[DEFAULT_SIZE];
-		}
 		tos = -1;
 	}
 
