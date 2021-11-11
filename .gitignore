@@ -10,5 +10,7 @@ target/
 *.iml
 .idea/
 out
-
+figureprinter
+arrays
+gitUsers.txt/
 

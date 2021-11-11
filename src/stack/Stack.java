@@ -1,6 +1,8 @@
 package stack;
 
+
 public class Stack {
+
 
 	static final int DEFAULT_SIZE = 16;
 	private int[] data;
@@ -19,23 +21,31 @@ public class Stack {
 	 * Add element into stack
 	 */
 	public void push(int value) {
-
+	Stack stack = new Stack(value);
+	stack.push(12);
+	stack.push(245);
 	}
 
 	/**
 	 * Get element from the stack
 	 * @return
 	 */
-	public int pop() {
-
-		return 0;
+	public static String pop(String value) {
+	Stack stack = new Stack();
+	stack.pop("Apple");
+	stack.pop("Peach");
+		return stack.pop(value);
 	}
 
 
 	/**
 	 * Clear stack
 	 */
-	public void clear() {
+	public void clear(int value) {
+ Stack stack = new Stack();
+ stack.clear(21);
+ stack.clear(35);
+
 
 	}
 
@@ -51,6 +61,10 @@ public class Stack {
 	 * Increase the stack capacity if there is not enough space to add additional items
 	 */
 	private void ensureCapacity() {
+
+	}
+
+	public static void main(String[] args) {
 
 	}
 }
