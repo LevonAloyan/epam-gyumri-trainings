@@ -3,7 +3,11 @@ package algorithms;
 public class MathUtil {
 
     public static void main(String[] args) {
-        System.out.println(pow(2, 0));
+        System.out.println(pow(3, 5));
+        System.out.println(factorial(7));
+        System.out.println(RecursiveFactorial(8));
+        System.out.println(abs(-68));
+        System.out.println(reverse(68723));
 
     }
 
@@ -38,7 +42,17 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-       return 0;
+        int fact = 1;
+        for (int i = 2; i <= n; i++) {
+            fact *= i;
+        }
+        return fact;
+    }
+    public static int RecursiveFactorial(int n){
+        if (n==0){
+            return 1;
+        }
+        return n*RecursiveFactorial(n-1);
     }
 
     /**
@@ -49,7 +63,10 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+        if (n<0){
+            return -n;
+        }
+        return n;
     }
 
 
@@ -60,10 +77,14 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
-
-        return 0;
+        int  reverse = 0;
+        while(number != 0){
+            reverse = reverse*10+number%10;
+            number = number/10;
+        }
+        return reverse;
     }
-
-
-
 }
+
+
+
