@@ -3,8 +3,9 @@ package algorithms;
 public class MathUtil {
 
     public static void main(String[] args) {
-        System.out.println(pow(2, 0));
-
+       System.out.println(pow(2, 0));
+       System.out.println(factorial(3));
+       System.out.println(abs(-8));
     }
 
     /**
@@ -15,18 +16,18 @@ public class MathUtil {
      * @param pow the exponent
      * @return the value <code>a<sup>b</sup></code>.
      */
-    public static int pow(int number, int pow){
+    public static int pow(int number, int pow) {
         int result = number;
 
-        if (pow == 0){
+        if (pow == 0) {
             return 1;
         }
 
-        if (pow == 1){
+        if (pow == 1) {
             return number;
         }
 
-        result *= pow(number, pow-1);
+        result *= pow(number, pow - 1);
 
         return result;
     }
@@ -38,7 +39,12 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-       return 0;
+        int sum = 1;
+        for(int i=1; i <= n; i++ ) {
+            sum = sum * n;
+            n--;
+        }
+        return sum;
     }
 
     /**
@@ -49,7 +55,12 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+        if (n >= 0) {
+        return n;
+        }
+        else {
+            return n * (-1);
+        }
     }
 
 
@@ -59,11 +70,25 @@ public class MathUtil {
      * @param number the parameter to be revered
      * @return reversed number
      */
-    public static int reverse(int number) {
-
-        return 0;
-    }
-
-
+    //TODO not completed, does not work
+//    public static int reverse(int number) {
+//        int k = 1;
+//        int x = 0;
+//        while(x != number) {
+//            k = k*10;
+//            x = number % k;
+//        }
+//
+//        k = k /10;
+//        int reverse = 0;
+//        int c = 1;
+//        for (int i = k; i >= 1 ; i= i/10) {
+//            int value = number % i;
+//            reverse = reverse + value * c;
+//            c  = c * 10;
+//        }
+//
+//        return reverse;
+//    }
 
 }
