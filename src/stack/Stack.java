@@ -1,5 +1,7 @@
 package stack;
 
+import java.util.Arrays;
+
 public class Stack {
 
 	static final int DEFAULT_SIZE = 16;
@@ -19,6 +21,7 @@ public class Stack {
 	 * Add element into stack
 	 */
 	public void push(int value) {
+		data[++tos]=value;
 
 	}
 
@@ -28,7 +31,7 @@ public class Stack {
 	 */
 	public int pop() {
 
-		return 0;
+		return data[tos--];
 	}
 
 
@@ -36,6 +39,9 @@ public class Stack {
 	 * Clear stack
 	 */
 	public void clear() {
+		int [] arr=new int [data.length];
+		arr=data;
+		System.out.println(Arrays.toString(data));
 
 	}
 
@@ -44,6 +50,9 @@ public class Stack {
 	 * @return
 	 */
 	public boolean isEmpty() {
+		if(tos==-1){
+			return true;
+		}
 		return false;
 	}
 
@@ -51,6 +60,9 @@ public class Stack {
 	 * Increase the stack capacity if there is not enough space to add additional items
 	 */
 	private void ensureCapacity() {
+		int [] arr=new int[data.length+10];
+		System.arraycopy(data,0,arr,0, data.length);
+		arr=data;
 
 	}
 }
