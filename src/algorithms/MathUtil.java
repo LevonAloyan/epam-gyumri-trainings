@@ -41,20 +41,8 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-        /**
-         * calculates factorial by recursion
-         * */
-//        if (n >= 1) {
-//            return  (n * factorial(n-1));
-//        }
-//        return 0;
-
-        if(n > 0){
-            int fact = 1;
-            for(int i = 1; i <= n; i++){
-                fact *= i;
-            }
-            return fact;
+        if (n >= 1) {
+            return  (n * factorial(n-1));
         }
         return 0;
     }
@@ -68,12 +56,6 @@ public class MathUtil {
      */
     public static int abs(int n) {
         return Math.abs(n);
-
-//        solution without Math.abs
-//        if(n < 0){
-//            n *= -1;
-//        }
-//        return n;
     }
 
 
@@ -84,13 +66,12 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
-     int reversed = 0;
-     while (number != 0){
-         int digit = number % 10;
-         reversed = reversed * 10 +digit;
-         number /= 10;
-     }
-     return reversed;
+        String reversed = "";
+        String s = Integer.toString(number);
+        for (int i = s.length() - 1; i >= 0; i--){
+            reversed += s.charAt(i);
+        }
+        return Integer.parseInt(reversed);
     }
 
 
