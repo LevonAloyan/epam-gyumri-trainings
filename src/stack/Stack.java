@@ -19,6 +19,9 @@ public class Stack {
 	 * Add element into stack
 	 */
 	public void push(int value) {
+		if (tos == DEFAULT_SIZE){
+			System.out.print("Stack full");
+		}
 		this.data[++this.tos] = value;
 
 	}
