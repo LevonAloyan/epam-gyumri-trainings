@@ -71,7 +71,6 @@ public class Order {
                 return;
             }
             if (getFillPizza().contains(ingredient.get(i))) {
-                System.err.println("Check order. You've already added that ingredient");
                 break;
             } else if (ingredient.get(i).equals(ingredientsToAdd[j])) {
                 getFilledPizza.add(ingredient.get(i++));

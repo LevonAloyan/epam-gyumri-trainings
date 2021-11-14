@@ -2,15 +2,16 @@ package pizzeriaPalmetto;
 
 
 public enum PizzaIngredients {
-        TOMATO_PASTE(1),
-        CHEESE(1),
-        SALAMI(1.5),
-        BACON(1.2),
-        GARLIC(0.3),
-        CORN(0.7),
-        PEPPERONI(0.6),
-        OLIVES(0.5),
-        CALZONE(1.50),
+        Tomato_Paste(1),
+        Cheese(1),
+        Salami(1.5),
+        Bacon(1.2),
+        Garlic(0.3),
+        Corn(0.7),
+        Pepperoni(0.6),
+        Olives(0.5),
+        Peper(0.4),
+        CALZONE(1.2),
         REGULAR(1);
 
         private final double tomato;
@@ -21,6 +22,7 @@ public enum PizzaIngredients {
         private final double corn;
         private final double pepperoni;
         private final double olives;
+        private final double peper;
         private final double calzone;
         private final double regular;
 
@@ -33,6 +35,7 @@ public enum PizzaIngredients {
             this.corn = price;
             this.pepperoni = price;
             this.olives = price;
+            this.peper = price;
             this.calzone = price;
             this.regular = price;
         }
@@ -68,7 +71,9 @@ public enum PizzaIngredients {
         public double getOlives() {
             return olives;
         }
-
+    public double getPeper() {
+        return peper;
+    }
         public double getCalzone() {
             return calzone;
         }
