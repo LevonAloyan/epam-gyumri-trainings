@@ -43,11 +43,12 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-        int fact = 1;
-        for(int i = 1; i <= n; i++){
-            fact = fact * i;
-        }
-        return fact;
+        int result;
+       if(n==1){
+           return 1;
+       }
+       result = factorial(n-1) * n;
+        return result;
     }
 
     /**
@@ -58,10 +59,7 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        int absValue;
-        absValue = (n < 0) ? -n: n;
-        // absValue = Math.abs(n);
-        return absValue;
+        return  (n < 0) ? -n: n;
     }
 
 

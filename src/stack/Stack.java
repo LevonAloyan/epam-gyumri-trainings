@@ -39,7 +39,7 @@ public class Stack {
 	 * Add element into stack
 	 */
 	public void push(int value) {
-		if(tos == data.length){
+		if(tos == data.length-1){
 			System.out.println("Stack is full");
 		}else {
 			data[++tos] = value;
@@ -52,8 +52,8 @@ public class Stack {
 	 */
 	public int pop() {
 		if(tos < 0){
-			System.out.println("Stack is empty");
-			return 0;
+			isEmpty();
+		return 0;
 		}else {
 			return data[tos--];
 		}
