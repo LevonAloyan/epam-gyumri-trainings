@@ -1,18 +1,17 @@
 package pizzeriaPalmetto;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class PizzaTest {
-    public static void main(String[] args) {
+public class PizzaOrderTest {
+        public static void main(String[] args) {
             ReceiptPrinter receiptPrinter = new ReceiptPrinter();
             List<String> pizzaNameOrder1 = new ArrayList<>();
             pizzaNameOrder1.add("Margarita");
-        //    pizzaNameOrder1.add("PepperoniOro");
-        //    pizzaNameOrder1.add("Cheese");
-        //    pizzaNameOrder1.add("BasePzz");
-        //    pizzaNameOrder1.add("Meat");
-        //    pizzaNameOrder1.add("Mushroom");
+            //    pizzaNameOrder1.add("PepperoniOro");
+            //    pizzaNameOrder1.add("Cheese");
+            //    pizzaNameOrder1.add("BasePzz");
+            //    pizzaNameOrder1.add("Meat");
+            //    pizzaNameOrder1.add("Mushroom");
 
             List<PizzaIngredients> ingredients = new ArrayList<>();
             List<Integer> quantity = new ArrayList<>();
@@ -41,3 +40,4 @@ public class PizzaTest {
             receiptPrinter.printCheck(order2, pizzaNameOrder2, quantityOrder2);
         }
     }
+
