@@ -6,13 +6,13 @@ import java.util.*;
 public class Order {
     private final int orderNumber;
     private final int customerNumber;
-    private String pizzaName;
-    private String ingredients;
+    private final List<String> pizzaName;
     private final String pizzaType;
-    private int quantityOfOrder;
+    private final List<Integer> quantityOfOrder;
     private final LocalTime time = LocalTime.now();
+    private final Set<Ingredients> getFilledPizza = new HashSet<>();
 
-    Order(int customerNumber, String pizzaName, int quantityOfOrder, String pizzaType) {
+    Order(int customerNumber, List<String> pizzaName, List<Integer> quantityOfOrder, String pizzaType) {
         Random order = new Random();
         this.orderNumber = order.nextInt(100000);
         this.customerNumber = customerNumber;
@@ -25,16 +25,20 @@ public class Order {
         return orderNumber;
     }
 
+    public Set<Ingredients> getFillPizza() {
+        return getFilledPizza;
+    }
+
     public int getCustomerNumber() {
         return customerNumber;
     }
 
-    public String getPizzaName() {
+    public List<String> getPizzaName() {
+        int i = 0;
+        if (pizzaName.get(i).length() < 4 || pizzaName.get(i).length() > 20) {
+            pizzaName.set(i, "customer_name_" + getOrderNumber()+ " ");
+        }
         return pizzaName;
-    }
-
-    public String getIngredients() {
-        return ingredients;
     }
 
     public LocalTime getTime() {
@@ -45,54 +49,33 @@ public class Order {
         return pizzaType;
     }
 
-    public String setPizzaName(String pizzaName) {
-        if (pizzaName.length() < 4 || pizzaName.length() > 10) {
-            pizzaName = "customer_name_" + orderNumber;
-            this.pizzaName = pizzaName;
-            return pizzaName;
-        } else {
-            Menu[] menus = Menu.values();
-            for (Menu value : menus) {
-                if (pizzaName.equals(value.name())) {
-                    return this.pizzaName = pizzaName;
-                }
+    public List<Integer> getQuantityOfOrder() {
+        for (int i = 0; i < quantityOfOrder.size(); i++) {
+            if (quantityOfOrder.get(i) > 10) {
+                System.err.println("You can't order more than 10 pizzas at one time. Check your order");
+                quantityOfOrder.set(i,10);
             }
         }
-        return "No such pizza";
-    }
-
-    public int setQuantityOfOrder(int number) {
-        this.quantityOfOrder = number;
-        if (number > 10) {
-            System.err.println("You can't order more than 10 pizzas in one order.");
-            return 10;
-        } else
-            return number;
-    }
-
-    public int getQuantityOfOrder() {
-        return setQuantityOfOrder(quantityOfOrder);
+        return quantityOfOrder;
     }
 
     public String toString() {
-        return "[" + orderNumber + ": " + customerNumber + ": " + setPizzaName(pizzaName) + ": "
-                + getQuantityOfOrder() + "]";
+        return "[" + orderNumber + ": " + customerNumber + ": " + pizzaName + ": "
+                + quantityOfOrder + "]";
     }
 
-    public void addIngredient(List<String> ingredient) {
-
+    public void addIngredient(List<Ingredients> ingredient) {
         Ingredients[] ingredientsToAdd = Ingredients.values();
-        Set<String> fillPizza = new HashSet<>();
-
         int i = 0;
         for (int j = 0; j < ingredientsToAdd.length; j++) {
             if (i == ingredient.size()) {
                 return;
             }
-            if (ingredient.get(i).equals(ingredientsToAdd[j].name())) {
-                fillPizza.add(ingredient.get(i));
-                System.out.println(ingredient.get(i) + " is added");
-                this.ingredients = ingredient.get(i++);
+            if (getFillPizza().contains(ingredient.get(i))) {
+                System.err.println("Check order. You've already added that ingredient");
+                break;
+            } else if (ingredient.get(i).equals(ingredientsToAdd[j])) {
+                getFilledPizza.add(ingredient.get(i++));
                 j = 0;
             }
         }
