@@ -1,9 +1,20 @@
 package algorithms;
 
+import stack.Stack;
+
 public class MathUtil {
 
     public static void main(String[] args) {
-        System.out.println(pow(2, 0));
+        // System.out.println(pow(2, 1));
+        //System.out.println(factorial(-4));
+        // System.out.println(abs(-454));
+        //System.out.println(reverse(1234));
+        Stack stack = new Stack();
+        System.out.println(stack);
+        stack.push(12);
+        stack.pop();
+        stack.clear();
+        stack.isEmpty();
 
     }
 
@@ -12,23 +23,23 @@ public class MathUtil {
      * second argument, such that a > 0 and n > 0.
      *
      * @param number the base
-     * @param pow the exponent
+     * @param pow    the exponent
      * @return the value <code>a<sup>b</sup></code>.
      */
-    public static int pow(int number, int pow){
+    public static int pow(int number, int pow) {
         int result = number;
 
-        if (pow == 0){
+        if (pow == 0) {
             return 1;
         }
 
-        if (pow == 1){
+        if (pow == 1) {
             return number;
         }
-
-        result *= pow(number, pow-1);
+        result *= pow(number, pow - 1);
 
         return result;
+
     }
 
     /**
@@ -38,7 +49,22 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-       return 0;
+        int result = n;
+        if (n < -1) {
+            result *= factorial(n + 1);
+            return result;
+        }
+        if (n == -1) {
+            return -1;
+        }
+        if (n == 0) {
+            return 0;
+        }
+        if (n == 1) {
+            return 1;
+        }
+        result *= factorial(n - 1);
+        return result;
     }
 
     /**
@@ -49,7 +75,19 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+        int result = n;
+        if (n == 0) {
+            return 0;
+        }
+        if (n > 0) {
+            return n;
+        }
+        if (n < 0) {
+            return n * (-1);
+        }
+        //Hovhannes jan, is there a need to use recursion? I think that not necessary, if I am wrong, please tell me.
+        // stex rekursya ogtagorcelu kariq ka? es chtesa kariq@, ete petq e ogtagorcel, sa ha Hovhannes jan?
+        return result;
     }
 
 
@@ -59,11 +97,16 @@ public class MathUtil {
      * @param number the parameter to be revered
      * @return reversed number
      */
-    public static int reverse(int number) {
-
-        return 0;
+    public static int reverse(int number) {//I have not be able to solve this problem using recursion.
+        int reverse = 0;                    //Hovhannes jan, can you help me with this?
+        int remainder;
+        while (number > 0) {
+            remainder = number % 10;
+            reverse = reverse * 10 + remainder;
+            number /= 10;
+        }
+        return reverse;
     }
-
 
 
 }
