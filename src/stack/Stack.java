@@ -58,8 +58,6 @@ public class Stack {
 			return data[tos--];
 		}
 	}
-
-
 	/**
 	 * Clear stack
 	 */
@@ -67,7 +65,6 @@ public class Stack {
 		data = new int[DEFAULT_SIZE];
 		tos = -1;
 	}
-
 	/**
 	 * Check if stack is empty
 	 * @return
@@ -78,7 +75,6 @@ public class Stack {
 		}
 		return false;
 	}
-
 	/**
 	 * Increase the stack capacity if there is not enough space to add additional items
 	 */

@@ -8,7 +8,6 @@ public class MathUtil {
         System.out.println(abs(-256));
         System.out.println(reverse(12345));
     }
-
     /**
      * Returns the value of the first argument raised to the power of the
      * second argument, such that a > 0 and n > 0.
@@ -35,7 +34,6 @@ public class MathUtil {
         }
         return result;*/
     }
-
     /**
      * Calculates and returns the factorial of specified n number
      *
@@ -50,7 +48,6 @@ public class MathUtil {
        result = factorial(n-1) * n;
         return result;
     }
-
     /**
      * Calculates and returns the absolute value
      * of specified n number
@@ -61,8 +58,6 @@ public class MathUtil {
     public static int abs(int n) {
         return  (n < 0) ? -n: n;
     }
-
-
     /**
      * Reverses the specified "number" parameter by digits.
      *
@@ -78,5 +73,4 @@ public class MathUtil {
         }
         return reverseNumber;
     }
-
 }
