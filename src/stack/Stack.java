@@ -1,6 +1,13 @@
 package stack;
 
 public class Stack {
+	public static void main(String[] args) {
+		System.out.println(stack);
+		stack.push(12);
+		stack.pop();
+		stack.clear();
+		stack.isEmpty();
+	}
 
 	static final int DEFAULT_SIZE = 16;
 	private int[] data;
@@ -19,7 +26,12 @@ public class Stack {
 	 * Add element into stack
 	 */
 	public void push(int value) {
-
+		if (tos == data.length-2){
+			ensureCapacity();
+		}
+		tos++;
+		data[tos] = value;
+	}
 	}
 
 	/**
@@ -28,7 +40,7 @@ public class Stack {
 	 */
 	public int pop() {
 
-		return 0;
+		return data[tos];
 	}
 
 
@@ -36,7 +48,9 @@ public class Stack {
 	 * Clear stack
 	 */
 	public void clear() {
-
+		while (tos != -1) {
+			tos--;
+		}
 	}
 
 	/**
@@ -44,6 +58,12 @@ public class Stack {
 	 * @return
 	 */
 	public boolean isEmpty() {
+		if (tos == -1) {
+			System.out.println("stack is empty");
+			return true;
+		}
+		System.out.println("stack is fool");
+
 		return false;
 	}
 
@@ -51,6 +71,12 @@ public class Stack {
 	 * Increase the stack capacity if there is not enough space to add additional items
 	 */
 	private void ensureCapacity() {
-
+		int size = DEFAULT_SIZE*2;
+		int [] newArray = new int[size];
+		for (int i = 0; i < data.length; i++) {
+			newArray[i] = data[i];
+		}
+		data = newArray;
+		newArray = null;
 	}
 }
