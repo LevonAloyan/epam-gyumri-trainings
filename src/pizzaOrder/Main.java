@@ -19,8 +19,8 @@ public class Main {
         pizzas.add(pizza);
         pizzas.add(pizza1);
         Order order = new Order(pizzas);
-        order.displayingPizzaAttributes(pizza);
-        order.displayingPizzaAttributes(pizza1);
+        order.displayPizzaAttributes(pizza);
+        order.displayPizzaAttributes(pizza1);
         System.out.println();
         order.printCheck();
 

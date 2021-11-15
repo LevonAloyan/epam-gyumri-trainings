@@ -16,20 +16,11 @@ public class Order {
     public Order(List<Pizza> items) {
         orderId++;
         customerId++;
-        checkPizzaName(items);
         this.items = items;
-
     }
 
-    private void checkPizzaName(List<Pizza> items) {
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getName().length() < 4 || items.get(i).getName().length() > 20) {
-                items.get(i).setName("customer_" + customerId + "_" + (i + 1));
-            }
-        }
-    }
 
-    public void displayingPizzaAttributes(Pizza pizza) {
+    public void displayPizzaAttributes(Pizza pizza) {
         System.out.println("[" + orderId + ": " + customerId + ": " +
                 pizza.getName() + ": " + pizza.getQuantity() + "]");
     }

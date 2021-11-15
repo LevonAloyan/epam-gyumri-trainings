@@ -11,13 +11,13 @@ public class Pizza {
     private int quantity;
 
     public Pizza(String name, Type type, int quantity) {
-        this.name = name;
+        this.checkPizzaName(name);
         this.type = type;
         this.quantity = quantity;
     }
 
     public Pizza(String name, Type type, List<Ingredient> ingredients, int quantity) {
-        this.name = name;
+        this.checkPizzaName(name);
         this.type = type;
         this.ingredients = ingredients;
         this.quantity = quantity;
@@ -43,6 +43,13 @@ public class Pizza {
         }
     }
 
+    private void checkPizzaName(String name) {
+        if (name.length() < 4 || name.length() > 20) {
+            this.name = "customer_name_n";
+        } else this.name = name;
+
+    }
+
     public String getName() {
         return name;
     }
@@ -60,7 +67,7 @@ public class Pizza {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.checkPizzaName(name);
     }
 
     public enum Type {
