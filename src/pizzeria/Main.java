@@ -1,10 +1,8 @@
-package pizzaOrder;
-
+package pizzeria;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-
     public static void main(String[] args) {
         Pizza pizza = new Pizza("Margarita", Pizza.Type.Regular, 2);
         pizza.addIngredients("Cheese");
@@ -21,10 +19,7 @@ public class Main {
         Order order = new Order(pizzas);
         order.displayPizzaAttributes(pizza);
         order.displayPizzaAttributes(pizza1);
-        System.out.println();
-        order.printCheck();
+        CheckPrinter.printCheck(order);
 
     }
 }
-
-

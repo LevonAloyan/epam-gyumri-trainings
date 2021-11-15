@@ -1,4 +1,4 @@
-package pizzaOrder;
+package pizzeria;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ public class Pizza {
     private Type type;
     private List<Ingredient> ingredients;
     private int quantity;
+    private static final int MAX_ALLOWED_INGREDIENTS_SIZE = 7;
 
     public Pizza(String name, Type type, int quantity) {
         this.checkPizzaName(name);
@@ -16,18 +17,19 @@ public class Pizza {
         this.quantity = quantity;
     }
 
-    public Pizza(String name, Type type, List<Ingredient> ingredients, int quantity) {
-        this.checkPizzaName(name);
-        this.type = type;
-        this.ingredients = ingredients;
-        this.quantity = quantity;
+    public void checkPizzaName(String pizzaName) {
+        if (pizzaName.length() < 4 || pizzaName.length() > 20) {
+            this.name = "customer_" + Order.getCustomerId() + "_" + Order.getOrderId();
+        } else {
+            this.name = pizzaName;
+        }
     }
 
     public void addIngredients(String ingredientName) {
         if (ingredients == null) {
             ingredients = new ArrayList<>();
         }
-        if (ingredients.size() == 7) {
+        if (ingredients.size() == MAX_ALLOWED_INGREDIENTS_SIZE) {
             System.out.println("You can't add any more ingredients");
             return;
         }
@@ -43,12 +45,6 @@ public class Pizza {
         }
     }
 
-    private void checkPizzaName(String name) {
-        if (name.length() < 4 || name.length() > 20) {
-            this.name = "customer_name_n";
-        } else this.name = name;
-
-    }
 
     public String getName() {
         return name;
@@ -70,6 +66,14 @@ public class Pizza {
         this.checkPizzaName(name);
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
     public enum Type {
         Regular("regular", 1.0F),
         Closed("Closed (Calzone)", 1.5F);
@@ -79,8 +83,8 @@ public class Pizza {
             this.price = price;
         }
 
-        private String name;
-        private float price;
+        private final String name;
+        private final float price;
 
         public String getName() {
             return name;
@@ -107,8 +111,8 @@ public class Pizza {
             this.price = price;
         }
 
-        private String name;
-        private float price;
+        private final String name;
+        private final float price;
 
         public String getName() {
             return name;
