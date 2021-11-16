@@ -1,71 +1,75 @@
 package pizzeria;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReceiptPrinter {
 
-    public void printCheck(Order order, List<String> pizza, List<Integer> quantity) {
+    public void printCheck(Order order, Pizza pizza) {
+        System.out.println("Your order is " + order.toString(pizza.getPizzaName(), pizza.getPizzaType()));
         double amount = 0;
         int i = 0;
         double totalAmount;
         System.out.println("****************************");
         System.out.println("Order: " + order.getOrderNumber());
         System.out.println("Client: " + order.getCustomerNumber());
-        System.out.println("Name: " + order.getPizzaName().get(i));
+        System.out.println("Name: " + pizza.getPizzaName().get(i));
         System.out.println("Order time: " + order.getTime());
         System.out.println("----------------------------");
-        System.out.print("Pizza Base (" + order.getPizzaType() + ") ");
-        if (order.getPizzaType().equals("CALZONE")) {
-            System.out.println(Ingredients.CALZONE.getCalzone() + " €");
-            amount += Ingredients.CALZONE.getCalzone();
+        System.out.print("Pizza Base (" + pizza.getPizzaType().get(i) + ") ");
+        if (pizza.getPizzaType().get(i).equals("CALZONE")) {
+            System.out.println(Ingredients.CALZONE.getPrice() + " €");
+            amount += Ingredients.CALZONE.getPrice();
         } else {
-            System.out.println(Ingredients.REGULAR.getRegular() + " €");
-            amount += Ingredients.REGULAR.getRegular();
+            System.out.println(Ingredients.REGULAR.getPrice() + " €");
+            amount += Ingredients.REGULAR.getPrice();
         }
-        if (order.getFillPizza().contains(Ingredients.TOMATO_PASTE)) {
-            System.out.println(Ingredients.TOMATO_PASTE.name() + " " + Ingredients.TOMATO_PASTE.getTomato() + " €");
-            amount += Ingredients.TOMATO_PASTE.getTomato();
+        if (pizza.getFillPizza().contains(Ingredients.TOMATO_PASTE)) {
+            System.out.println(Ingredients.TOMATO_PASTE.getNameAndPrice());
+            amount += Ingredients.TOMATO_PASTE.getPrice();
         }
-        if (order.getFillPizza().contains(Ingredients.CHEESE)) {
-            System.out.println(Ingredients.CHEESE.name() + " " + Ingredients.CHEESE.getCheese() + " €");
-            amount += Ingredients.CHEESE.getCheese();
+        if (pizza.getFillPizza().contains(Ingredients.CHEESE)) {
+            System.out.println(Ingredients.CHEESE.getNameAndPrice());
+            amount += Ingredients.CHEESE.getPrice();
         }
-        if (order.getFillPizza().contains(Ingredients.SALAMI)) {
-            System.out.println(Ingredients.SALAMI.name() + " " + Ingredients.SALAMI.getSalami() + " €");
-            amount += Ingredients.SALAMI.getSalami();
+        if (pizza.getFillPizza().contains(Ingredients.SALAMI)) {
+            System.out.println(Ingredients.SALAMI.getNameAndPrice());
+            amount += Ingredients.SALAMI.getPrice();
         }
-        if (order.getFillPizza().contains(Ingredients.BACON)) {
-            System.out.println(Ingredients.BACON.name() + " " + Ingredients.BACON.getBacon() + " €");
-            amount += Ingredients.BACON.getBacon();
+        if (pizza.getFillPizza().contains(Ingredients.BACON)) {
+            System.out.println(Ingredients.BACON.getNameAndPrice());
+            amount += Ingredients.BACON.getPrice();
         }
-        if (order.getFillPizza().contains(Ingredients.GARLIC)) {
-            System.out.println(Ingredients.GARLIC.name() + " " + Ingredients.GARLIC.getGarlic() + " €");
-            amount += Ingredients.GARLIC.getGarlic();
+        if (pizza.getFillPizza().contains(Ingredients.GARLIC)) {
+            System.out.println(Ingredients.GARLIC.getNameAndPrice());
+            amount += Ingredients.GARLIC.getPrice();
         }
-        if (order.getFillPizza().contains(Ingredients.CORN)) {
-            System.out.println(Ingredients.CORN.name() + " " + Ingredients.CORN.getCorn() + " €");
-            amount += Ingredients.CORN.getCorn();
+        if (pizza.getFillPizza().contains(Ingredients.CORN)) {
+            System.out.println(Ingredients.CORN.getNameAndPrice());
+            amount += Ingredients.CORN.getPrice();
         }
-        if (order.getFillPizza().contains(Ingredients.PEPPERONI)) {
-            System.out.println(Ingredients.PEPPERONI.name() + " " + Ingredients.PEPPERONI.getPepperoni() + " €");
-            amount += Ingredients.PEPPERONI.getPepperoni();
+        if (pizza.getFillPizza().contains(Ingredients.PEPPERONI)) {
+            System.out.println(Ingredients.PEPPERONI.getNameAndPrice());
+            amount += Ingredients.PEPPERONI.getPrice();
         }
-        if (order.getFillPizza().contains(Ingredients.OLIVES)) {
-            System.out.println(Ingredients.OLIVES.name() + " " + Ingredients.OLIVES.getOlives() + " €");
-            amount += Ingredients.OLIVES.getOlives();
+        if (pizza.getFillPizza().contains(Ingredients.OLIVES)) {
+            System.out.println(Ingredients.OLIVES.getNameAndPrice());
+            amount += Ingredients.OLIVES.getPrice();
         }
         System.out.println("----------------------------");
         System.out.println("Amount: " + amount + " €");
         System.out.println("Quantity: " + order.getQuantityOfOrder().get(i));
         System.out.println("----------------------------");
-        totalAmount = amount* quantity.get(i);
-        if (pizza.size() > 1) {
-            quantity.remove(i);
-            pizza.remove(i);
-            printCheck(order, pizza, quantity);
+        totalAmount = amount* order.getQuantityOfOrder().get(i);
+        if (pizza.getPizzaType().size() > 1) {
+            pizza.getPizzaType().remove(i);
+        }
+        if (pizza.getPizzaName().size() > 1) {
+            if (order.getQuantityOfOrder().size() > 1) {
+            order.getQuantityOfOrder().remove(i);
+            }
+            pizza.getPizzaName().remove(i);
+            printCheck(order, pizza);
         }  else {
-            System.out.println("Total Amount: " + (totalAmount + amount* quantity.get(i)) + " €");
+            System.out.println("Total Amount: " + (totalAmount + amount* order.getQuantityOfOrder().get(i)) + " €");
             return;
         }
         System.out.println("****************************");

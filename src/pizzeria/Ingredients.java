@@ -1,78 +1,32 @@
 package pizzeria;
 
 public enum Ingredients {
-    TOMATO_PASTE(1),
-    CHEESE(1),
-    SALAMI(1.5),
-    BACON(1.2),
-    GARLIC(0.3),
-    CORN(0.7),
-    PEPPERONI(0.6),
-    OLIVES(0.5),
-    CALZONE(1.50),
-    REGULAR(1);
+    TOMATO_PASTE("Tomato_paste",1),
+    CHEESE("Cheese",1),
+    SALAMI("Salami",1.5),
+    BACON("Bacon", 1.2),
+    GARLIC("Garlic",0.3),
+    CORN("Corn", 0.7),
+    PEPPERONI("Peperoni",0.6),
+    OLIVES("Olives",0.5),
+    CALZONE("Calzone", 1.50),
+    REGULAR("Regular",1);
 
-    private final double tomato;
-    private final double cheese;
-    private final double salami;
-    private final double bacon;
-    private final double garlic;
-    private final double corn;
-    private final double pepperoni;
-    private final double olives;
-    private final double calzone;
-    private final double regular;
+    private final double price;
+    private final String name;
 
-    Ingredients(double price) {
-        this.tomato = price;
-        this.cheese = price;
-        this.salami = price;
-        this.bacon = price;
-        this.garlic = price;
-        this.corn = price;
-        this.pepperoni = price;
-        this.olives = price;
-        this.calzone = price;
-        this.regular = price;
+    Ingredients(String name, double price) {
+        this.price = price;
+        this.name = name;
     }
 
-    public double getTomato() {
-        return tomato;
+    public double getPrice() {
+        return price;
     }
 
-    public double getCheese() {
-        return cheese;
+    public String getNameAndPrice () {
+        return name + " " + price + " €";
     }
 
-    public double getSalami() {
-        return salami;
-    }
 
-    public double getBacon() {
-        return bacon;
-    }
-
-    public double getGarlic() {
-        return garlic;
-    }
-
-    public double getCorn() {
-        return corn;
-    }
-
-    public double getPepperoni() {
-        return pepperoni;
-    }
-
-    public double getOlives() {
-        return olives;
-    }
-
-    public double getCalzone() {
-        return calzone;
-    }
-
-    public double getRegular() {
-        return regular;
-    }
 }
