@@ -2,7 +2,7 @@ package pizzeria;
 
 public class PizzaType {
 
-    private final String type;
+    final String type;
     private double price = 1;
 
     public PizzaType(String type, double delta) {
@@ -20,5 +20,9 @@ public class PizzaType {
 
     public static PizzaType getCalzoneType() {
         return new PizzaType("Calzone", 0.5);
+    }
+
+    public String toString() {
+        return "Pizza Base: " + " " + type + " " + price + "$";
     }
 }
