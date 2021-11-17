@@ -32,6 +32,10 @@ public class Pizza {
         }
     }
 
+    public static Pizza addPizza(String name,PizzaType pizzaType,Ingredient... ingredients){
+        return new Pizza(name,pizzaType,ingredients);
+    }
+
     public double calculatePrice() {
         double price = 0;
         price = price + pizzaType.getPrice();
@@ -49,5 +53,21 @@ public class Pizza {
             return;
         }
         ingredients[ingredientsCount++] = ingredient;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public PizzaType getPizzaType() {
+        return pizzaType;
+    }
+
+    public Ingredient[] getIngredients() {
+        return ingredients;
+    }
+
+    public int getIngredientsCount() {
+        return ingredientsCount;
     }
 }
