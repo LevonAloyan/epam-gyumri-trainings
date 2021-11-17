@@ -15,10 +15,18 @@ public class PizzaType {
     }
 
     public static PizzaType getRegularType() {
-        return new PizzaType("Regular", 0);
+        return new PizzaType("Margarita", 0);
     }
 
     public static PizzaType getCalzoneType() {
+
         return new PizzaType("Calzone", 0.5);
+
     }
+
+    @Override
+    public String toString() {
+        return "Pizza Base" + "("+ type + ")" + price  +  " €";
+    }
+
 }
