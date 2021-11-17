@@ -53,7 +53,7 @@ public class Stack {
 	 * @return
 	 */
 	public boolean isEmpty() {
-		return return DEFAULT_SIZE == 0;
+		 return DEFAULT_SIZE == 0;
 	}
 
 	/**
