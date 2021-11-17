@@ -1,12 +1,12 @@
 package pizzeria;
 
 public class Pizza {
-
     private static final int MAX_ALLOWED_INGREDIENTS_SIZE = 7;
 
-    private String name;
-    private PizzaType pizzaType;
-    private Ingredient[] ingredients;
+    private final String name;
+    private final PizzaType pizzaType;
+    private final Ingredient[] ingredients;
+    private double price;
     private int ingredientsCount;
 
     public Pizza(String name) {
@@ -22,32 +22,37 @@ public class Pizza {
     }
 
     public Pizza(String name, PizzaType pizzaType, Ingredient[] ingredients) {
+        if (name.length() < 4 || name.length() > 20) {
+            name = "Customer_name_";
+        }
         this.name = name;
         this.pizzaType = pizzaType;
         if (ingredients.length > MAX_ALLOWED_INGREDIENTS_SIZE) {
-            System.out.println("Ingredients more then allowed " + MAX_ALLOWED_INGREDIENTS_SIZE);
+            System.out.println("Ingredient are more than allowed");
             this.ingredients = new Ingredient[MAX_ALLOWED_INGREDIENTS_SIZE];
         } else {
             this.ingredients = ingredients;
         }
     }
 
-    public double calculatePrice() {
+    public double calculatePrice () {
         double price = 0;
         price = price + pizzaType.getPrice();
-
         for (Ingredient ingredient : ingredients) {
             price += ingredient.getPrice();
         }
-
         return price;
     }
 
-    public void addIngredients(Ingredient ingredient) {
+    public void addIngredients (Ingredient ingredients) {
         if (ingredientsCount > MAX_ALLOWED_INGREDIENTS_SIZE) {
-            System.out.println("No more ingredients allowed.");
+            System.out.println("No more ingredients allowed");
             return;
         }
-        ingredients[ingredientsCount++] = ingredient;
+        this.ingredients[ingredientsCount++] = ingredients;
+    }
+
+    public String getName() {
+        return name;
     }
 }
