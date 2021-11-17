@@ -19,8 +19,8 @@ public class Pizza {
     private int price = 1;
     private List<Ingredient> ingredients = new ArrayList<>();
 
-    public Pizza(String margarita, int quantity, PizzaType closed, List<Ingredient> ingredients) {
-        this.name = margarita;
+    public Pizza(String name, int quantity, PizzaType closed, List<Ingredient> ingredients) {
+        this.name = name;
         this.type = closed;
         this.quantity = quantity;
         this.ingredients = ingredients;
