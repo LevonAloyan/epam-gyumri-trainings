@@ -21,4 +21,9 @@ public class PizzaType {
     public static PizzaType getCalzoneType() {
         return new PizzaType("Calzone", 0.5);
     }
+
+    @Override
+    public String toString() {
+        return "Pizza Base "+ "("+type +") " +  price + " $" ;
+    }
 }
