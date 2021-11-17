@@ -8,6 +8,7 @@ public class Pizza {
     private PizzaType pizzaType;
     private Ingredient[] ingredients;
     private int ingredientsCount;
+    private int quantity;
 
     public Pizza(String name) {
         this.name = name;
@@ -25,7 +26,7 @@ public class Pizza {
         this.name = name;
         this.pizzaType = pizzaType;
         if (ingredients.length > MAX_ALLOWED_INGREDIENTS_SIZE) {
-            System.out.println("Ingredients more then allowed " + MAX_ALLOWED_INGREDIENTS_SIZE);
+            System.out.println("Ingredients more than allowed " + MAX_ALLOWED_INGREDIENTS_SIZE);
             this.ingredients = new Ingredient[MAX_ALLOWED_INGREDIENTS_SIZE];
         } else {
             this.ingredients = ingredients;
@@ -37,10 +38,13 @@ public class Pizza {
         price = price + pizzaType.getPrice();
 
         for (Ingredient ingredient : ingredients) {
-            price += ingredient.getPrice();
+            if (ingredient == null) {
+                break;
+            } else {
+                price += ingredient.getPrice();
+            }
         }
-
-        return price;
+        return price * quantity;
     }
 
     public void addIngredients(Ingredient ingredient) {
@@ -49,5 +53,26 @@ public class Pizza {
             return;
         }
         ingredients[ingredientsCount++] = ingredient;
+    }
+
+    public int setQuantity(int quantity) {
+        if (quantity > 10) {
+            System.out.println("Quantity can't be more than 10");
+            return this.quantity = 10;
+        } else {
+            return this.quantity = quantity;
+        }
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Ingredient[] getIngredients() {
+        return ingredients;
     }
 }
