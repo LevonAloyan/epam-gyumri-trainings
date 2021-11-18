@@ -1,14 +1,9 @@
 package algorithms;
 
+@Profiling
 public class SortingAlgorithms {
 
-    public static void main(String[] args) {
-        int [] array = new int[]{2,1,8,3,5,5,-26};
-        sortByMergeSorting(array);
-        print(array);
-    }
-
-    public static void sortByBubbleSorting(int[] array) {
+    public void sortByBubbleSorting(int[] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length-i-1; j++) {
                 if (array[j] > array[j+1]) {
@@ -18,7 +13,7 @@ public class SortingAlgorithms {
         }
     }
 
-    public static void sortBySelectionSorting(int[] array){
+    public void sortBySelectionSorting(int[] array){
         for (int i = 0; i < array.length; i++) {
             int min = array[i];
             for (int j = i; j < array.length; j++) {
@@ -30,7 +25,7 @@ public class SortingAlgorithms {
         }
     }
 
-    public static void sortByInsertionSorting(int[] array){
+    public void sortByInsertionSorting(int[] array){
         for (int i = 1; i < array.length; i++) {
             int value = array[i];
             int j = i - 1;
@@ -43,7 +38,7 @@ public class SortingAlgorithms {
         }
     }
 
-    public static void sortByMergeSorting(int[] array){
+    public void sortByMergeSorting(int[] array){
         if (array.length < 2) {
             return;
         }
@@ -59,7 +54,7 @@ public class SortingAlgorithms {
 
         mergeArray(array, leftArray, rightArray);
     }
-    private static void mergeArray(int[] array, int[] leftArray, int[] rightArray) {
+    private void mergeArray(int[] array, int[] leftArray, int[] rightArray) {
 
         int leftArrayIndex = 0;
         int rightArrayIndex = 0;
@@ -81,7 +76,7 @@ public class SortingAlgorithms {
         }
     }
 
-    public static void sortByQuickSorting(int[] array, int startIndex, int endIndex){
+    public void sortByQuickSorting(int[] array, int startIndex, int endIndex){
         if (array.length == 0) {
             return;
         }
@@ -112,12 +107,12 @@ public class SortingAlgorithms {
             sortByQuickSorting(array, i, endIndex);
     }
 
-    private static void swap(int [] array, int firstIndex, int lastIndex) {
+    private void swap(int [] array, int firstIndex, int lastIndex) {
         int tempValue = array[firstIndex];
         array[firstIndex] = array[lastIndex];
         array[lastIndex] = tempValue;
     }
-    private static void print (int [] array){
+    private void print (int [] array){
         for(int element : array){
             System.out.print(element+",");
         }
