@@ -10,6 +10,10 @@ public class PizzaType {
         this.type = type;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public double getPrice() {
         return price;
     }
