@@ -21,4 +21,8 @@ public class PizzaType {
     public static PizzaType getCalzoneType() {
         return new PizzaType("Calzone", 0.5);
     }
+
+    public String printType() {
+        return (type  + " " + price + " €");
+    }
 }
