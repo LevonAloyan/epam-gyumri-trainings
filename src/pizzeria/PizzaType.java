@@ -14,6 +14,10 @@ public class PizzaType {
         return price;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public static PizzaType getRegularType() {
         return new PizzaType("Regular", 0);
     }
