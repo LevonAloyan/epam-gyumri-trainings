@@ -4,7 +4,9 @@ public class MathUtil {
 
     public static void main(String[] args) {
         System.out.println(pow(2, 0));
-
+        System.out.println(factorial(6));
+        System.out.println(abs(-6));
+        System.out.println(reverse(12345));
     }
 
     /**
@@ -16,19 +18,25 @@ public class MathUtil {
      * @return the value <code>a<sup>b</sup></code>.
      */
     public static int pow(int number, int pow){
-        int result = number;
+        // int result = number;
 
-        if (pow == 0){
-            return 1;
-        }
+        // if (pow == 0){
+        //     return 1;
+        // }
 
-        if (pow == 1){
-            return number;
-        }
+        // if (pow == 1){
+        //     return number;
+        // }
 
-        result *= pow(number, pow-1);
+        // result *= pow(number, pow-1);
 
-        return result;
+        // return result;
+        int result = 1;
+        if (pow > 0) {
+            result *= pow (number, pow -1) ;
+        } 
+        return result;  
+        
     }
 
     /**
@@ -38,7 +46,18 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-       return 0;
+        int result = n;
+        
+        if (n == 0) {
+            return 1;
+        } 
+        else if (n < 0) {
+            System.out.print( "In mathematics, the factorial of a non-negative integer n. "); 
+        }
+        if (n > 1){
+            result *= factorial(n-1);
+        }
+       return result;
     }
 
     /**
@@ -49,7 +68,11 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+        if (n >= 0){
+            return n;
+        } else {
+            return -n;
+        }
     }
 
 
@@ -60,8 +83,15 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
-
-        return 0;
+        int  reverse = 0;
+        int i;
+        
+        while (number > 9) {
+            i = number % 10;
+            reverse =  reverse * 10 + i;
+            number = (number - i) / 10;
+        }
+        return  reverse * 10 + number;
     }
 
 

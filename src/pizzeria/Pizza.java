@@ -50,4 +50,22 @@ public class Pizza {
         }
         ingredients[ingredientsCount++] = ingredient;
     }
+
+    public PizzaType getPizzaType() {
+        return pizzaType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Ingredient[] getIngredients() {
+        return ingredients;
+    }
+
+    
+    public static Pizza addNewPizza(String name, PizzaType pizzaType, Ingredient ...ingredients) {
+        return new Pizza(name,pizzaType,ingredients);
+    }
+
 }
