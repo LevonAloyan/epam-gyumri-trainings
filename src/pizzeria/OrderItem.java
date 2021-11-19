@@ -2,10 +2,12 @@ package pizzeria;
 
 import java.util.Arrays;
 
-public class OrderItem {
+public class  OrderItem   {
     private Pizza pizza;
     private int count;
-    private final String COUNT_IS_MORE = "You can take a maximum of 10 items";
+    private static final String MAX_ORDER_ITEM = "You can take  maximum 10 items";
+
+
 
     public  OrderItem(Pizza pizza,int count){
         this.pizza = pizza;
@@ -19,7 +21,7 @@ public class OrderItem {
     public int countCheck(int count){
         this.count = count;
         if (count > 10 || count < 1){
-            System.out.println(COUNT_IS_MORE);
+            System.out.println(MAX_ORDER_ITEM);
             return 0;
         }
         return count;
