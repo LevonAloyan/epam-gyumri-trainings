@@ -42,9 +42,10 @@ public class OrderItem {
     }
     public String toStringDescription() {
 
-        return String.join("\n", "Pizza name: " + getPizza().getName(),
-                "Quantity: " + getCount(), getPizza().getPizzaType().toString() + "\n",
-                Arrays.toString(getPizza().getIngredients()), "\n" + "Amount: "
-                        + calculateOrderItemPrice() + " $");
+      return String.join("\n", "Pizza name: " + getPizza().getName(),
+            "Quantity: " + getCount(), getPizza().getPizzaType().toString() + "\n",
+             Arrays.toString(getPizza().getIngredients()).replace("[","").replace(",","").replace("]",""),
+             "\n" + "Amount: " + calculateOrderItemPrice() + " $");
+
     }
 }
