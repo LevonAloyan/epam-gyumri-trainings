@@ -35,7 +35,7 @@ public class PizzaStorage {
             System.out.println("Pizza is full");
         } else {
             if (pizza.getIngredients().contains(ingredients)) {
-                System.out.println("Please check oder again ");
+                System.out.println("Please check order again ");
             }
             pizza.getIngredients().add(ingredients);
         }
