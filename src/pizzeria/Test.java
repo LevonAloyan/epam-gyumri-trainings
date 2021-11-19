@@ -2,9 +2,9 @@ package pizzeria;
 
 public class Test {
     public static void main(String[] args) {
-        Pizza peperoni = Pizza.addPizza("peperoni", PizzaType.getCalzoneType(), Ingredient.getBacon(), Ingredient.getCheese(),
-                Ingredient.getOlives(), Ingredient.getPeperoni());
-        Pizza diablo = Pizza.addPizza("diablo", PizzaType.getRegularType(), Ingredient.getBacon(), Ingredient.getCheese(), Ingredient.getGarlic());
+        Pizza peperoni = Pizza.addPizza("peperoni", PizzaType.getCalzoneType(), Ingredients.BACON, Ingredients.CHEESE,
+                Ingredients.OLIVES, Ingredients.PEPPERONI);
+        Pizza diablo = Pizza.addPizza("diablo", PizzaType.getRegularType(), Ingredients.BACON, Ingredients.CHEESE, Ingredients.GARLIC);
 
         Customer customer = Customer.addCustomer("Joe", "747-216-1993");
         OrderItem orderItem = OrderItem.addOrderItem(peperoni, 7);

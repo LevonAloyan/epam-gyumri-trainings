@@ -46,7 +46,6 @@ public class OrderItem {
 
         return String.join("\n", "Pizza name :" + getPizza().getName(),
                 "Quantity :" + getCount(), getPizza().getPizzaType().toString(),
-                Arrays.toString(getPizza().getIngredients()), "Amount :"
-                        + calculateItemPrice() + " €");
+                getPizza().toIngredientString(), "Amount :" + calculateItemPrice() + "€");
     }
 }
