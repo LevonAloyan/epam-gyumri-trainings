@@ -1,49 +1,30 @@
 package pizzeria;
 
-public class Ingredient {
+public enum Ingredient {
 
-    private final String name;
+    TOMATO_PASTE("Tomato_paste",1),
+    CHEESE("Cheese",1),
+    SALAMI("Salami",1.5),
+    BACON("Bacon", 1.2),
+    GARLIC("Garlic",0.3),
+    CORN("Corn", 0.7),
+    PEPPERONI("Peperoni",0.6),
+    OLIVES("Olives",0.5);
+
     private final double price;
+    private final String name;
 
-    public Ingredient(String name, double price) {
-        this.name = name;
+    Ingredient(String name, double price) {
         this.price = price;
-    }
-
-    public String getName() {
-        return name;
+        this.name = name;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public static Ingredient getTomatoPaste() {
-        return new Ingredient("Tomato_paste", 1);
-    }
-
-    public static Ingredient getCheese() {
-        return new Ingredient("Cheese", 1);
-    }
-
-    public static Ingredient getBacon() {
-        return new Ingredient("Bacon", 1.2);
-    }
-
-    public static Ingredient getGarlic() {
-        return new Ingredient("Garlic",0.3);
-    }
-
-    public static Ingredient getCorn() {
-        return new Ingredient("Corn", 0.7);
-    }
-
-    public static Ingredient getPeperoni() {
-        return new Ingredient("Peperoni",0.6);
-    }
-
-    public static Ingredient getOlives() {
-        return new Ingredient("Olives",0.5);
+    public String getName () {
+        return name;
     }
 
 }

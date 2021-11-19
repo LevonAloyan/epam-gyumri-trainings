@@ -1,37 +1,23 @@
 package pizzeria;
 
-public class PizzaType {
+public enum PizzaType {
 
-    private final String type;
+    REGULAR("Regular",1),
+    CLOSED("Calzone",1.5);
+
+    private final String name;
     private final double price;
 
-    public PizzaType(String type, double price) {
+    PizzaType(String name, double price) {
+        this.name = name;
         this.price = price;
-        this.type = type;
     }
 
-    public PizzaType(String type) {
-        this.type = type;
-        if (type.equals("Regular")) {
-            this.price = 1;
-        } else {
-            this.price = 1.5;
-        }
+    public String getName() {
+        return name;
     }
 
     public double getPrice() {
         return price;
-    }
-
-    public static PizzaType getRegularType() {
-        return new PizzaType("Regular", 1);
-    }
-
-    public static PizzaType getCalzone() {
-        return new PizzaType("Calzone", 1.5);
-    }
-
-    public String getType() {
-        return type;
     }
 }

@@ -12,7 +12,7 @@ public class Pizza {
     public Pizza(String name) {
         this.name = name;
         this.ingredients = new Ingredient[MAX_ALLOWED_INGREDIENTS_SIZE];
-        this.pizzaType = PizzaType.getRegularType();
+        this.pizzaType = PizzaType.REGULAR;
     }
 
     public Pizza(String name, PizzaType pizzaType) {
