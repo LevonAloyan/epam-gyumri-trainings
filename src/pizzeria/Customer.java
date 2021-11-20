@@ -10,4 +10,16 @@ public class Customer {
     // todo implement necessary constructors
     // todo implement getters if needed
 
+
+    public int getCustomerNumber() {
+        return customerNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 }
