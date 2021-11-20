@@ -3,10 +3,12 @@ package annotation;
 public class Main {
 
     public static void main(String[] args) throws IllegalAccessException, NoSuchFieldException, ClassNotFoundException {
-        CostumeAnnotation costumeAnnotation=new CostumeAnnotation();
-        CustomerDto customerDto=new CustomerDto("skkkk");
+        LengthAnnotation costumeAnnotation = new LengthAnnotation();
+        CustomerDto customerDto = new CustomerDto("skkk", "amail");
+        EmailAnnotation emailAnnotation = new EmailAnnotation();
+        costumeAnnotation.length(customerDto);
+        emailAnnotation.email(customerDto);
 
-        System.out.println(costumeAnnotation.length(customerDto));
     }
 
 }
