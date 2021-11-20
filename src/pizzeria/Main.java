@@ -9,21 +9,19 @@ public class Main {
         pizza.addIngredients(Ingredient.getGarlic());
         pizza.addIngredients(Ingredient.getBacon());
         pizza.setQuantity(2);
-        Customer customer = new Customer("");
+        Customer customer = new Customer("Aaaaa");
         Order order = new Order();
         CheckPrinter checkPrinter = new CheckPrinter(pizzaType, pizza, order, customer);
-        setName(pizza,customer,order);
+        pizza.name=setName(pizza,customer,order);
         checkPrinter.printReceipt();
     }
 
     public static String setName(Pizza pizza, Customer customer, Order order) {
-        if ((pizza.name.length() < 4 || pizza.name.length() > 20) &&( pizza.name=="")) {
-            return customer.getName() + order.getOrderNumber();
+        if ((pizza.name.length() < 4 || pizza.name.length() > 20) &&( pizza.name.isBlank())) {
+            return customer.getName() +"_"+ order.getOrderNumber();
         } else {
             return pizza.name;
         }
     }
-
-
 
 }
