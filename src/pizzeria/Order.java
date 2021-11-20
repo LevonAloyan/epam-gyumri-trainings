@@ -16,7 +16,7 @@ public class Order {
     }
 
     public int getOrderNumber() {
-        return orderNumber;
+        return this.orderNumber;
     }
 
     public OrderItem[] addOrderItems() {
@@ -27,5 +27,6 @@ public class Order {
     public OrderItem[] getOrderItems() {
         return orderItems;
     }
+
 
 }

@@ -4,17 +4,19 @@ public class Pizza {
 
     private static final int MAX_ALLOWED_INGREDIENTS_SIZE = 7;
 
-    private String name;
+    public String name;
     private PizzaType pizzaType;
     private Ingredient[] ingredients;
     private int ingredientsCount;
     private int quantity;
+
 
     public Pizza(String name) {
         this.name = name;
         this.ingredients = new Ingredient[MAX_ALLOWED_INGREDIENTS_SIZE];
         this.pizzaType = PizzaType.getRegularType();
     }
+
 
     public Pizza(String name, PizzaType pizzaType) {
         this.name = name;
@@ -75,4 +77,10 @@ public class Pizza {
     public Ingredient[] getIngredients() {
         return ingredients;
     }
-}
+
+
+
+
+    }
+
+
