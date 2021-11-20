@@ -12,7 +12,16 @@ public class Main {
         Customer customer = new Customer("");
         Order order = new Order();
         CheckPrinter checkPrinter = new CheckPrinter(pizzaType, pizza, order, customer);
+        setName(pizza,customer,order);
         checkPrinter.printReceipt();
+    }
+
+    public static String setName(Pizza pizza, Customer customer, Order order) {
+        if ((pizza.name.length() < 4 || pizza.name.length() > 20) &&( pizza.name=="")) {
+            return customer.getName() + order.getOrderNumber();
+        } else {
+            return pizza.name;
+        }
     }
 
 

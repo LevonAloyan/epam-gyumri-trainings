@@ -44,13 +44,8 @@ public class CheckPrinter {
         System.out.println("--------------------");
 
     }
-    public void setName(String name) {
-        if (name.length() < 4 || name.length() > 20) {
-            pizza.name = "Customer_name_" + order.getOrderNumber();
-        } else {
-            pizza.name = name;
-        }
-    }
+
+
 
 }
 
