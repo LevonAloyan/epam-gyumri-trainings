@@ -15,6 +15,7 @@ public class LengthAnnotationProcessor {
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Length.class)) {
                 field.setAccessible(true);
+                String name = new String("Dav");
                 if (name.length() < 2 || name.length() > 30 ){
                     System.out.println("Does not match");
                 }
