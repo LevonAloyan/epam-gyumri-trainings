@@ -16,7 +16,7 @@ public class Validator {
 
         Field[] fields = c.getDeclaredFields();
         for (Field field : fields) {
-
+            field.setAccessible(true);
             Object fieldValue = field.get(object);
             if (field.isAnnotationPresent(Length.class)) {
                 String currentValue = (String)fieldValue;
