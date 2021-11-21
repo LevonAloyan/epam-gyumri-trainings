@@ -4,14 +4,14 @@ import java.time.LocalDate;
 
 public class CustomerDTO {
     @Length(min = 5, max = 30)
-    public static String name;
+    private String name;
     @Email
-    public  static String email;
+    private String email;
     @Adulthood
-    public static LocalDate birthday;
+    private LocalDate birthday;
     @Min(minValue = 30)
     @Max(maxValue = 45)
-    public static int discountRate;
+    private int discountRate;
 
     public CustomerDTO(String name, String email, LocalDate birthday, int discountRate) {
         this.name = name;

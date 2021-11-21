@@ -4,6 +4,8 @@ import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Validator {
 
@@ -12,55 +14,44 @@ public class Validator {
         Class<?> objectClass = object.getClass();
         Field[] declaredFields = objectClass.getDeclaredFields();
         for (Field declaredField : declaredFields) {
-            Object fieldValue = declaredField.get(objectClass);
-            if (declaredField.isAnnotationPresent(Length.class)) {
+            declaredField.setAccessible(true);
+            Object fieldValue = declaredField.get(object);
+            if (declaredField.isAnnotationPresent(Length.class) && fieldValue != null) {
                 Length length = declaredField.getAnnotation(Length.class);
-                if (fieldValue.toString() != null) {
-                    if (fieldValue.toString().length() < length.min() || fieldValue.toString().length() > length.max()) {
-                        list.add("\"" + declaredField.getName() + "\" " +
-                                "Field has an error, it doesn't match the required length. It is - " + fieldValue);
-                    }
+                if (fieldValue.toString().length() < length.min() || fieldValue.toString().length() > length.max()) {
+                    list.add("\"" + declaredField.getName() + "\" " +
+                            "Field has an error, it doesn't match the required length. It is - " + fieldValue);
                 }
             }
-            if (declaredField.isAnnotationPresent(Email.class)) {
-                List<Character> regex = new ArrayList<>();
-                for (int i = '!'; i < 127; i++) {
-                    regex.add((char) i);
-                }
-                if (fieldValue != null) {
-                    List<Character> emailValueChars = new ArrayList<>();
-                    for (int i = 0; i < fieldValue.toString().length(); i++) {
-                        emailValueChars.add(fieldValue.toString().charAt(i));
-                    }
-                    for (int j = 0; j < regex.size(); j++) {
-                        if (!emailValueChars.get(j).equals(regex.get(j))) {
-                            list.add("\"" + declaredField.getName() + "\" " + "Field has an error, " +
-                                    "its value contains unacceptable symbol - "
-                                    + emailValueChars.get(j));
-                            break;
-                        }
-                    }
-                }
-            }
-            if (declaredField.isAnnotationPresent(Adulthood.class)) {
-                if (fieldValue != null) {
-                    LocalDate minAge = LocalDate.of(2001, 1, 1);
-                    LocalDate maxAge = LocalDate.of(1960, 1, 1);
-                    LocalDate age = (LocalDate) fieldValue;
-                    if (age.isBefore(minAge) || age.isAfter(maxAge)) {
+            if (declaredField.isAnnotationPresent(Email.class) && fieldValue != null) {
+                Email email = declaredField.getAnnotation(Email.class);
+                Pattern pattern = Pattern.compile(email.emailRegex());
+                Matcher matcher = pattern.matcher(fieldValue.toString());
+                if (!matcher.matches()) {
                         list.add("\"" + declaredField.getName() + "\" " + "Field has an error, " +
-                                "age is - " + age);
-                    }
+                                "its value contains unacceptable symbol");
                 }
             }
-            if (declaredField.isAnnotationPresent(Min.class) && declaredField.isAnnotationPresent(Max.class)) {
+            if (declaredField.isAnnotationPresent(Adulthood.class) && fieldValue != null) {
+                int currentYear = LocalDate.now().getYear();
+                int year = currentYear - ((LocalDate) fieldValue).getYear();
+                if (year < 18) {
+                    list.add("\"" + declaredField.getName() + "\" " + "Field has an error, " +
+                            "age is - " + year);
+                }
+            }
+            if (declaredField.isAnnotationPresent(Min.class) && fieldValue != null) {
                 Min min = declaredField.getAnnotation(Min.class);
-                Max max = declaredField.getAnnotation(Max.class);
-                if (fieldValue != null) {
-                    if ((int) fieldValue < min.minValue() || (int) fieldValue > max.maxValue()) {
+                    if ((int) fieldValue < min.minValue()) {
                         list.add("\"" + declaredField.getName() + "\" " + "Field has an error, " +
-                                "discount can't be - " + fieldValue);
+                                "discount can't be less than " + fieldValue);
                     }
+            }
+            if (declaredField.isAnnotationPresent(Max.class) && fieldValue != null) {
+                Max max = declaredField.getAnnotation(Max.class);
+                if ((int) fieldValue > max.maxValue()) {
+                    list.add("\"" + declaredField.getName() + "\" " + "Field has an error, " +
+                            "discount can't be more than " + fieldValue);
                 }
             }
         }
