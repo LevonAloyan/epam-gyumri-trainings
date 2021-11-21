@@ -36,7 +36,7 @@ public class Pizza {
     }
 
     public double calculatePrice () {
-        double price = 0;
+        this.price = 0;
         price = price + pizzaType.getPrice();
         for (Ingredient ingredient : ingredients) {
             price += ingredient.getPrice();
@@ -44,7 +44,7 @@ public class Pizza {
         return price;
     }
 
-    public void addIngredients (Ingredient ingredients) {
+    public void addIngredient (Ingredient ingredients) {
         if (ingredientsCount > MAX_ALLOWED_INGREDIENTS_SIZE) {
             System.out.println("No more ingredients allowed");
             return;
