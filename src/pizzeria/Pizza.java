@@ -44,11 +44,23 @@ public class Pizza {
         return price;
     }
 
-    public void addIngredients(Ingredient ingredient) {
+    public Ingredient addIngredients(Ingredient ingredient) {
         if (ingredientsCount > MAX_ALLOWED_INGREDIENTS_SIZE) {
             System.out.println("No more ingredients allowed.");
-            return;
         }
         ingredients[ingredientsCount++] = ingredient;
+
+        return ingredients[ingredientsCount];
+    }
+    public PizzaType getPizzaType() {
+        return pizzaType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Ingredient[] getIngredients() {
+        return ingredients;
     }
 }

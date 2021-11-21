@@ -19,4 +19,9 @@ public enum PizzaType {
     public double getPrice() {
         return price;
     }
+
+    public String getType() {
+        return type;
+    }
+
 }
