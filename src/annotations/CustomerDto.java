@@ -14,8 +14,6 @@ public class CustomerDto extends Dto {
     @Max(100)
     private int discountRate;
 
-    public CustomerDto() {
-    }
 
     public CustomerDto(String name, String email, LocalDate birthday, int discountRate) {
         this.name = name;
