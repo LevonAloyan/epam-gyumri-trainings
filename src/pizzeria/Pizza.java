@@ -12,7 +12,7 @@ public class Pizza {
     public Pizza(String name) {
         this.name = name;
         this.ingredients = new Ingredient[MAX_ALLOWED_INGREDIENTS_SIZE];
-        this.pizzaType = PizzaType.REGULAR;
+        this.pizzaType = PizzaType.getRegularType();
     }
 
     public Pizza(String name, PizzaType pizzaType) {
@@ -34,8 +34,7 @@ public class Pizza {
 
     public double calculatePrice() {
         double price = 0;
-        price = price + this.pizzaType.getPrice();
-
+        price = price + pizzaType.getPrice();
 
         for (Ingredient ingredient : ingredients) {
             price += ingredient.getPrice();
@@ -51,4 +50,25 @@ public class Pizza {
         }
         ingredients[ingredientsCount++] = ingredient;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public PizzaType getPizzaType() {
+        return pizzaType;
+    }
+
+    public Ingredient[] getIngredients() {
+        return ingredients;
+    }
+
+    public int getIngredientsCount() {
+        return ingredientsCount;
+    }
+
+    public static Pizza addPizza(String name, PizzaType pizzaType, Ingredient... ingredients) {
+        return new Pizza(name, pizzaType, ingredients);
+    }
+    
 }
