@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class AdulthoodAnnotationProcessor {
+public class AdulthoodProcessor {
 
     public void checkMajority(Object object) throws IllegalAccessException{
 

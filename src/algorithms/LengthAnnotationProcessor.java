@@ -1,7 +1,11 @@
 package algorithms;
 
+import pizzeria.Ingredient;
+
 import javax.xml.namespace.QName;
+import javax.xml.stream.XMLInputFactory;
 import java.lang.reflect.Field;
+import java.util.concurrent.Callable;
 
 public class LengthAnnotationProcessor {
 
@@ -9,14 +13,18 @@ public class LengthAnnotationProcessor {
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
-
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Length.class)) {
                 field.setAccessible(true);
-                String name = new String("Dav");
-                if (name.length() < 2 || name.length() > 30 ){
+
+
+
+                Length annotation = field.getAnnotation(Length.class);
+                CustomerDto customerDto = (CustomerDto) object;
+                String fieldValue = customerDto.getName();
+
+                if (fieldValue.length() < annotation.min() || fieldValue.length() > annotation.max())
                     System.out.println("Does not match");
-                }
             }
         }
     }
