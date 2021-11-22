@@ -14,7 +14,7 @@ public class CheckPrinter {
         for(OrderItem item: order.getOrderItems()){
             System.out.println("Name: " + item.getPizza().getName());
             System.out.println("-------------------");
-            System.out.println("Pizza Base " + item.getPizza().getPizzaType().getType()
+            System.out.println("Pizza Base " + item.getPizza().getPizzaType().getName()
                     + " " + item.getPizza().getPizzaType().getPrice() + " €");
 
             Ingredient[] ingredientsToPrint = item.getPizza().getIngredients();

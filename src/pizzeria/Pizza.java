@@ -13,7 +13,7 @@ public class Pizza {
     public Pizza(String name) {
         this.name = name;
         this.ingredients = new Ingredient[MAX_ALLOWED_INGREDIENTS_SIZE];
-        this.pizzaType = PizzaType.getRegularType();
+        this.pizzaType = PizzaType.REGULAR;
         this.indexNumberPizza++;
     }
 
@@ -54,7 +54,7 @@ public class Pizza {
 
     public double calculatePrice() {
         double price = 0;
-        price = price + pizzaType.getPrice();
+        price = price + this.pizzaType.getPrice();
 
         for (Ingredient ingredient : ingredients) {
             price += ingredient.getPrice();

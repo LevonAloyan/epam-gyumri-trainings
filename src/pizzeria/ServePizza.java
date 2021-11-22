@@ -8,12 +8,11 @@ public class ServePizza {
         Customer customer = Customer.addCustomer("Ani", "55-45-45-45");
 
         Pizza napoli = Pizza.makePizza(getValidPizzaName("napoli", customer),
-                PizzaType.getCalzoneType(), Ingredient.getBacon(),
-                Ingredient.getCheese(), Ingredient.getSalami(), Ingredient.getCorn());
+                PizzaType.CALZONE, Ingredient.BACON,
+                Ingredient.CHEESE, Ingredient.SALAMI, Ingredient.CORN);
 
         Pizza any = Pizza.makePizza(getValidPizzaName(" ", customer),
-                PizzaType.getRegularType(), Ingredient.getPepperoni(),
-                Ingredient.getCheese(), Ingredient.getTomatoPaste());
+                PizzaType.REGULAR, Ingredient.PEPPERONI, Ingredient.CHEESE, Ingredient.TOMATO);
 
         OrderItem order1 = OrderItem.addOrderItem(napoli, 2);
         OrderItem order2 = OrderItem.addOrderItem(any, 1);

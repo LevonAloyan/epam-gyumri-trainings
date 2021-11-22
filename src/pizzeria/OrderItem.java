@@ -36,7 +36,6 @@ public class OrderItem {
     public int getCount(){
         return this.count;
     }
-
     public double calculateOrderItemPrice(){
         return pizza.calculatePrice();
     }
