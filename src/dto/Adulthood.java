@@ -1,4 +1,8 @@
 package dto;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-public @interface Adulthood {
+@Retention(RetentionPolicy.RUNTIME)
+
+    public @interface Adulthood {
 }
