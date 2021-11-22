@@ -5,11 +5,26 @@ public class CustomerDto {
     private String name;
     @Email
     private String email;
+    @Min
+    @Max
+    private int discountRate;
 
-    public CustomerDto(String name, String email) {
+    public int getDiscountRate() {
+        return discountRate;
+    }
+
+    public void setDiscountRate(int discountRate) {
+        this.discountRate = discountRate;
+    }
+
+    public CustomerDto(String name, String email, int discountRate) {
         this.name = name;
         this.email = email;
+        this.discountRate = discountRate;
     }
+
+
+
 
     public String getEmail() {
         return email;

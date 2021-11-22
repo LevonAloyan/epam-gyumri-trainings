@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Min {
+public @interface Adulthood {
     String message() default "your age ";
-    public int min() default 0 ;
+
 }

@@ -11,14 +11,18 @@ public class EmailAnnotation {
     public void email(Object name) throws IllegalAccessException, NoSuchFieldException {
 
         Field[] fields = name.getClass().getDeclaredFields();
-        Pattern pattern= Pattern.compile(regex);
+        Pattern pattern = Pattern.compile(regex);
 
-        for (Field field:fields) {
+        for (Field field : fields) {
             Email myAnn = field.getAnnotation(Email.class);
             field.setAccessible(true);
             String fieldValue = (String) field.get(name);
-            Matcher matcher= pattern.matcher(fieldValue);
-            System.out.println(fieldValue);
+            Matcher matcher = pattern.matcher(fieldValue);
+            if (matcher.find()) {
+                System.out.println(fieldValue);
+            }else {
+                System.out.println(myAnn.message());
+            }
         }
     }
 
