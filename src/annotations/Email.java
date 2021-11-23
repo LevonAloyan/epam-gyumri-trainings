@@ -1,4 +1,4 @@
-package algorithms;
+package annotations;
 
 
 import java.lang.annotation.*;

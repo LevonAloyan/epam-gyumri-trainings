@@ -1,6 +1,5 @@
-package algorithms;
+package annotations;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 
 public class CustomerDto {
@@ -13,9 +12,7 @@ public class CustomerDto {
      @Min(min = 0)
     @Max(max = 100)
     private int discountRate;
-
-
-    public String getName() {
+     public String getName() {
         return name;
     }
     public void setName(String name) {
@@ -42,6 +39,13 @@ public class CustomerDto {
     }
 
     public void setDiscountRate(int discountRate) {
+        this.discountRate = discountRate;
+    }
+
+    public CustomerDto(String name, String email, LocalDate birthday, int discountRate) {
+        this.name = name;
+        this.email = email;
+        this.birthday = birthday;
         this.discountRate = discountRate;
     }
 }

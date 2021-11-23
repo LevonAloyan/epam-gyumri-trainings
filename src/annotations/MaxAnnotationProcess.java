@@ -1,24 +1,25 @@
-package algorithms;
+package annotations;
 
 import java.lang.reflect.Field;
 
-public class MinAnnotationProcess {
-    public void checkMin(Object object) throws IllegalAccessException {
+public class MaxAnnotationProcess implements AnnotationInterface {
+
+    @Override
+    public void process(Object object)  {
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
         for (Field field : declaredFields) {
-            if (field.isAnnotationPresent(Min.class)) {
+            if (field.isAnnotationPresent(Max.class)) {
                 field.setAccessible(true);
                 //todo get Annotation arguments
-                Min annotation = field.getAnnotation(Min.class);
+                Max annotation = field.getAnnotation(Max.class);
                 CustomerDto customerDto = (CustomerDto) object;
                 int fieldValue = customerDto.getDiscountRate();
-                int valuesMin = annotation.min();
-                if(fieldValue < valuesMin){
-                    System.out.println("Point is small");
+                int valuesMax = annotation.max();
+                if(fieldValue > valuesMax){
+                    System.out.println("This discount does not exist is very large");
                 }
             }
         }
     }
 }
-

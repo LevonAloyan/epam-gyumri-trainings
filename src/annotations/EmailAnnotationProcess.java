@@ -1,10 +1,11 @@
-package algorithms;
+package annotations;
 
 import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
-public class EmailAnnotationProcess {
-    public void checkEmail(Object object) throws IllegalAccessException {
+public class EmailAnnotationProcess implements AnnotationInterface {
+    @Override
+    public void process(Object object)  {
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
         for (Field field : declaredFields) {
@@ -13,7 +14,7 @@ public class EmailAnnotationProcess {
                 //todo get Annotation arguments
                 Email annotation = field.getAnnotation(Email.class);
                 CustomerDto customerDto = (CustomerDto) object;
-                Pattern pattern = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])" +
+                final Pattern pattern = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])" +
                         "?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
                 System.out.println(customerDto.getEmail().matches(pattern.pattern()));
             }

@@ -1,12 +1,11 @@
-package algorithms;
+package annotations;
 
 import java.lang.reflect.Field;
-import java.util.regex.Pattern;
 
-public class LengthAnnotationProcess {
+public class LengthAnnotationProcess implements AnnotationInterface {
 
-
-    public void checkName(Object object) throws IllegalAccessException {
+    @Override
+    public void process(Object object)  {
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
         for (Field field : declaredFields) {
@@ -17,12 +16,10 @@ public class LengthAnnotationProcess {
                 CustomerDto customerDto = (CustomerDto) object;
                 String fieldValue = customerDto.getName();
                 if (fieldValue.length() < annotation.min() || fieldValue.length() > annotation.max()) {
-                    System.out.println("Does not match");
+                    System.out.println("Your name is misspelled, please correct it");
                 } else {
                     System.out.println(customerDto.getName());
                 }
-
-
             }
         }
     }
