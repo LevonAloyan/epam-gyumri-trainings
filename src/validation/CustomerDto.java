@@ -1,4 +1,8 @@
-package annotation;
+package validation;
+
+import validation.annotation.*;
+
+import java.time.LocalDate;
 
 public class CustomerDto {
     @Length(min = 3, max = 20)
@@ -9,6 +13,17 @@ public class CustomerDto {
     @Max
     private int discountRate;
 
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    @Adulthood
+    private LocalDate birthday;
+
     public int getDiscountRate() {
         return discountRate;
     }
@@ -17,10 +32,11 @@ public class CustomerDto {
         this.discountRate = discountRate;
     }
 
-    public CustomerDto(String name, String email, int discountRate) {
+    public CustomerDto(String name, String email, int discountRate, LocalDate birthday) {
         this.name = name;
         this.email = email;
         this.discountRate = discountRate;
+        this.birthday=birthday;
     }
 
 

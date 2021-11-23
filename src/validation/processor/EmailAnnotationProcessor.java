@@ -1,15 +1,17 @@
-package annotation;
+package validation.processor;
+
+import validation.annotation.Email;
 
 import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class EmailAnnotation {
+public class EmailAnnotationProcessor {
     private static final String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
-    public void email(Object name) throws IllegalAccessException, NoSuchFieldException {
-
+    public String[] emailProcessor(Object name) throws IllegalAccessException, NoSuchFieldException {
+        String[] errors = null;
         Field[] fields = name.getClass().getDeclaredFields();
         Pattern pattern = Pattern.compile(regex);
 
@@ -19,11 +21,12 @@ public class EmailAnnotation {
             String fieldValue = (String) field.get(name);
             Matcher matcher = pattern.matcher(fieldValue);
             if (matcher.find()) {
-                System.out.println(fieldValue);
-            }else {
-                System.out.println(myAnn.message());
+                errors[0] = fieldValue;
+            } else {
+                errors[0] = myAnn.message();
             }
         }
+        return errors;
     }
 
 }

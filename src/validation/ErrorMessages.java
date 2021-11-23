@@ -1,4 +1,4 @@
-package annotation;
+package validation;
 
 public interface ErrorMessages {
 String errorAdulthood="your age ";
