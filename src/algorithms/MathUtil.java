@@ -4,6 +4,9 @@ public class MathUtil {
 
     public static void main(String[] args) {
         System.out.println(pow(2, 0));
+        System.out.println(factorial(3));
+        System.out.println(abs(5));
+        System.out.println(reverse(5701));
 
     }
 
@@ -38,7 +41,12 @@ public class MathUtil {
      * @return calculated number
      */
     public static int factorial(int n) {
-       return 0;
+        int result = 1;
+        if(n == 0 || n == 1) {
+            return result;
+        }
+        result = n * factorial(n - 1);
+        return result;
     }
 
     /**
@@ -49,7 +57,10 @@ public class MathUtil {
      * @return absolute number of specified n
      */
     public static int abs(int n) {
-        return 0;
+        if(n < 0) {
+            return n * -1;
+        }
+        return n;
     }
 
 
@@ -60,10 +71,11 @@ public class MathUtil {
      * @return reversed number
      */
     public static int reverse(int number) {
-
-        return 0;
+        String stringText = String.valueOf(number);
+        StringBuilder reverseText = new StringBuilder();
+        for (int i = stringText.length()-1; i >= 0; i--){
+            reverseText.append(stringText.charAt(i));
+        }
+        return Integer.parseInt(reverseText.toString());
     }
-
-
-
 }
