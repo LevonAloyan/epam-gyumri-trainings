@@ -1,11 +1,14 @@
-package algorithms;
+package Annotations;
+
+//import annotations.CustomerDto;
+//import algorithms.Min;
 
 import java.lang.reflect.Field;
-import java.util.concurrent.Callable;
 
-public class MinAnnotationProcessor {
+public class MinProcessor implements AnnotationProcessor {
 
-    public void checkMin(Object object) throws IllegalAccessException {
+    @Override
+    public void process(Object object) {
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
@@ -16,12 +19,10 @@ public class MinAnnotationProcessor {
                 CustomerDto customerDto = (CustomerDto) object;
                 int fieldValue = customerDto.getDiscountRate();
                 int valueMin = annotation.value();
-                if ( fieldValue < valueMin ){
+                if (fieldValue < valueMin) {
                     System.out.println("It has to be more 0");
                 }
             }
         }
     }
 }
-
-

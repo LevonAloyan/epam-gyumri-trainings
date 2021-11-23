@@ -1,16 +1,18 @@
-package algorithms;
+package Annotations;
+
+import algorithms.*;
 
 import java.time.LocalDate;
 
 public class CustomerDto {
 
-    @Length(min = 2, max = 30)//+
+    @Length(min = 2, max = 30)
     private String name;
 
-    @Email//+
+    @Email
     private String email;
 
-    @Adulthood//+
+    @Adulthood
     private LocalDate birthdate;
     @Min(0)
     @Max(100)
@@ -21,9 +23,6 @@ public class CustomerDto {
         this.email = email;
         this.birthdate = birthdate;
         this.DiscountRate = discountRate;
-    }
-
-    public CustomerDto() {
     }
 
     public String getName() {

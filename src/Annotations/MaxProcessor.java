@@ -1,10 +1,14 @@
-package algorithms;
+package Annotations;
+
+//import algorithms.CustomerDto;
+//import algorithms.Max;
 
 import java.lang.reflect.Field;
 
-public class MaxAnnotationProcessor {
+public class MaxProcessor implements AnnotationProcessor {
 
-    public void checkMax(Object object) throws IllegalAccessException{
+    @Override
+    public void process(Object object) {
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
         for (Field field : declaredFields) {
@@ -14,10 +18,11 @@ public class MaxAnnotationProcessor {
                 CustomerDto customerDto = (CustomerDto) object;
                 int fieldValue = customerDto.getDiscountRate();
                 int valueMax = annotation.value();
-                if ( fieldValue > valueMax ){
+                if (fieldValue > valueMax) {
                     System.out.println("More than 100");
                 }
             }
         }
     }
+
 }

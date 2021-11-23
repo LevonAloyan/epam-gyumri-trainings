@@ -1,10 +1,9 @@
-package algorithms;
+package Annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Min {
+public @interface Adulthood {
 
-    int value ();
 }
