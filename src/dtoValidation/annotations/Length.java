@@ -1,4 +1,4 @@
-package dto.dtoValidator.annotations;
+package dtoValidation.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,5 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Adulthood {
+public @interface Length {
+    int min() default 2;
+    int max() default 30;
 }
