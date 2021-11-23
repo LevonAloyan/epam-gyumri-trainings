@@ -1,5 +1,7 @@
 package pizzeria;
 
+import java.util.Arrays;
+
 public class Pizza {
 
     private static final int MAX_ALLOWED_INGREDIENTS_SIZE = 7;
@@ -8,11 +10,54 @@ public class Pizza {
     private PizzaType pizzaType;
     private Ingredient[] ingredients;
     private int ingredientsCount;
+    private int quantity;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public PizzaType getPizzaType() {
+        return pizzaType;
+    }
+
+    public void setPizzaType(PizzaType pizzaType) {
+        this.pizzaType = pizzaType;
+    }
+
+    public Ingredient[] getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Ingredient[] ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public int getIngredientsCount() {
+        return ingredientsCount;
+    }
+
+    public void setIngredientsCount(int ingredientsCount) {
+        this.ingredientsCount = ingredientsCount;
+    }
 
     public Pizza(String name) {
         this.name = name;
         this.ingredients = new Ingredient[MAX_ALLOWED_INGREDIENTS_SIZE];
         this.pizzaType = PizzaType.REGULAR;
+    }
+
+    @Override
+    public String toString() {
+        return "Pizza{" +
+                "name='" + name + '\'' +
+                ", pizzaType=" + pizzaType +
+                ", ingredients=" + Arrays.toString(ingredients) +
+                ", ingredientsCount=" + ingredientsCount +
+                '}';
     }
 
     public Pizza(String name, PizzaType pizzaType) {
@@ -21,7 +66,16 @@ public class Pizza {
         this.pizzaType = pizzaType;
     }
 
-    public Pizza(String name, PizzaType pizzaType, Ingredient[] ingredients) {
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Pizza(String name, PizzaType pizzaType, Ingredient[] ingredients, int quantity) {
+        this.quantity = quantity;
         this.name = name;
         this.pizzaType = pizzaType;
         if (ingredients.length > MAX_ALLOWED_INGREDIENTS_SIZE) {
