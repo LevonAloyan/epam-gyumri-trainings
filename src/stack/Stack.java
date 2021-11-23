@@ -1,5 +1,8 @@
 package stack;
 
+import stack.stackExceptions.EmptyStackException;
+import stack.stackExceptions.StackOverFlowException;
+
 public class Stack {
 
     static final int DEFAULT_SIZE = 16;
@@ -20,7 +23,8 @@ public class Stack {
      */
     public void push(int value) {
         if (this.isFully()) {
-            this.ensureCapacity();
+            throw new StackOverFlowException("Stack is fully. You can't add any more element.");
+//            this.ensureCapacity();
         }
         this.data[++this.tos] = value;
     }
@@ -32,7 +36,7 @@ public class Stack {
      */
     public int pop() {
         if (this.isEmpty()) {
-            throw new RuntimeException("Stack is empty");
+            throw new EmptyStackException("Stack is empty. There is no element to get.");
         }
         return this.data[this.tos--];
     }
