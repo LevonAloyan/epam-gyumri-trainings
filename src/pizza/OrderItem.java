@@ -9,7 +9,19 @@ public class OrderItem {
         this.pizza = pizza;
     }
 
+    public int getCount() {
+        return count;
+    }
+
     public Pizza getPizza() {
         return pizza;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "pizza=" + pizza +
+                ", count=" + count +
+                '}';
     }
 }

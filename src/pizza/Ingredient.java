@@ -38,4 +38,12 @@ public enum Ingredient {
     public String toPriceString() {
         return this.name + " " + this.price + " €";
     }
+
+    @Override
+    public String toString() {
+        return "Ingredient{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

@@ -1,8 +1,10 @@
 package pizza;
 
+import java.util.Arrays;
+
 public class Order {
 
-    private static int MAX_ORDER_ITEM_COUNT = 10;
+    private final int MAX_ORDER_ITEM_COUNT = 10;
     private int orderNumber;
     private Customer customer;
     private OrderItem[] orderItems;
@@ -26,13 +28,19 @@ public class Order {
         this.orderItems = orderItems;
     }
 
+    public Order(Customer customer, OrderItem[] orderItems) {
+    }
+
+    public static Order addOrder(int orderNumber, Customer customer, OrderItem ... orderItems){
+        return new Order(orderNumber, customer,orderItems);
+    }
 
     private String checkOfName(String pizzaName) {
         String result;
 
         if(pizzaName.length() > 4 && pizzaName.length() < 20){
             result = pizzaName;
-        } else {result = "customer_name_n";
+        } else {result = "customer_name_10000";
         }
 
         return result;
@@ -50,7 +58,16 @@ public class Order {
         return this.orderNumber;
     }
 
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "MAX_ORDER_ITEM_COUNT=" + MAX_ORDER_ITEM_COUNT +
+                ", orderNumber=" + orderNumber +
+                ", customer=" + customer +
+                ", orderItems=" + Arrays.toString(orderItems) +
+                ", orderItemCount=" + orderItemCount +
+                '}';
+    }
 
     public void addOrderItem(OrderItem orderItem) {
         if (orderItemCount >= MAX_ORDER_ITEM_COUNT) {

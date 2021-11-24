@@ -1,5 +1,7 @@
 package pizza;
 
+import java.util.Arrays;
+
 public class Pizza {
 
     private static final int MAX_ALLOWED_INGREDIENTS_SIZE = 7;
@@ -30,6 +32,7 @@ public class Pizza {
         } else {
             this.ingredients = ingredients;
         }
+        this.ingredientsCount = ingredients.length;
     }
 
     public String getName() {
@@ -57,5 +60,15 @@ public class Pizza {
             return;
         }
         ingredients[ingredientsCount++] = ingredient;
+    }
+
+    @Override
+    public String toString() {
+        return "Pizza{" +
+                "name='" + name + '\'' +
+                ", pizzaType=" + pizzaType +
+                ", ingredients=" + Arrays.toString(ingredients) +
+                ", ingredientsCount=" + ingredientsCount +
+                '}';
     }
 }

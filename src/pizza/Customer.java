@@ -20,9 +20,17 @@ public class Customer {
     public String getName() {
         return name;
     }
-
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerNumber=" + customerNumber +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }
 
