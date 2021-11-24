@@ -1,5 +1,8 @@
 package stack;
 
+import stack.exceptions.EmptyStackException;
+import stack.exceptions.StackOverFlowException;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +25,11 @@ public class Stack {
      * Add element into stack
      */
     public void push(int value) {
+        if (tos<0){
+            throw new StackOverFlowException("Stack is full");
+        }else {
+           value= data[++tos];
+        }
 
     }
 
@@ -31,8 +39,12 @@ public class Stack {
      * @return
      */
     public int pop() {
+if (isEmpty()){
+    throw new EmptyStackException("Stack is empti");
+}else {
+    return data[--tos];
+}
 
-        return 0;
     }
 
 
@@ -40,6 +52,8 @@ public class Stack {
      * Clear stack
      */
     public void clear() {
+        int [] arr=new int[data.length];
+        arr=data;
 
     }
 
@@ -49,7 +63,11 @@ public class Stack {
      * @return
      */
     public boolean isEmpty() {
-        return false;
+        if (tos<0){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     /**
