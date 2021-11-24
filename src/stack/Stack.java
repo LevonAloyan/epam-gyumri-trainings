@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class Stack {
 
-	static final int DEFAULT_SIZE = 2;
+	private static final int DEFAULT_SIZE = 4;
 	private int[] data;
-	private int tos; //index which determines the top of stack
+	private int tos;
 
 	public Stack() {
 		this(DEFAULT_SIZE);
@@ -17,32 +17,27 @@ public class Stack {
 		this.tos = -1;
 	}
 
-	/**
-	 * Add element into stack
-	 */
 	public void push(int value) {
-		if (tos == data.length-1) {
+		if (tos == data.length-1 && data.length <= 10) {
 			ensureCapacity();
+		} else if (data.length > 10) {
+			try {
+				throw new StackOverFlowException();
+			} catch (StackOverFlowException e) {
+				e.printStackTrace();
+				System.exit(1);
+			}
 		}
 			data[++tos] = value;
 	}
 
-	/**
-	 * Get element from the stack
-	 * @return
-	 */
-	public int pop() {
+	public int pop() throws EmptyStackException {
 		if (tos == -1) {
-			System.out.println("Stack is empty");
-			return -1;
+			throw new EmptyStackException();
 		}
 			return data[tos--];
 	}
 
-
-	/**
-	 * Clear stack
-	 */
 	public void clear() {
 		if (data.length < 1000) {
 			Arrays.fill(data, 0);
@@ -52,38 +47,15 @@ public class Stack {
 			tos = -1;
 	}
 
-	/**
-	 * Check if stack is empty
-	 * @return
-	 */
+
 	public boolean isEmpty() {
 		return tos == -1;
 	}
 
-	/**
-	 * Increase the stack capacity if there is not enough space to add additional items
-	 */
 	private void ensureCapacity() {
-		int length = (data.length + 10);
+		int length = (data.length + 5);
 		int[] result = new int[length];
 		System.arraycopy(data,0,result,0,data.length);
 		data = result;
-	}
-
-	public static void main(String[] args) {
-		Stack stack = new Stack();
-		System.out.println(stack.isEmpty());
-		stack.push(7);
-		stack.push(3);
-		stack.push(4);
-		stack.push(5);
-		stack.push(6);
-		stack.push(8);
-		System.out.println(stack.pop());
-		System.out.println(stack.pop());
-		System.out.println(stack.pop());
-		System.out.println(stack.pop());
-		System.out.println(stack.pop());
-		System.out.println(stack.pop());
 	}
 }
