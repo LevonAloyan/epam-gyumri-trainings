@@ -2,7 +2,7 @@ package dtoannotations;
 
 import java.lang.reflect.Field;
 
-public class LengthValidatorProcess {
+public class LengthValidationProcess {
 
     public String ValidateLengthAnnotation (Object object) throws IllegalAccessException {
         Field[] declaredFields = object.getClass().getDeclaredFields();
@@ -15,8 +15,8 @@ public class LengthValidatorProcess {
                     Length length = declaredField.getAnnotation(Length.class);
                     if (fieldValue.toString().length() < length.min() || fieldValue.toString().length() > length.max()) {
                         text = "\"" + declaredField.getName() + "\"" +
-                                "Field has an error, it doesn't match the required length. It is - "
-                                + fieldValue;
+                                " Field has an error, it doesn't match the required length. It is - "
+                                + fieldValue.toString().length();
                     }
                 }
             } else {

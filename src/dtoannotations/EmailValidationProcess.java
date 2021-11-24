@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EmailValidatorProcess {
+public class EmailValidationProcess {
 
     public String ValidateEmailAnnotation (Object object) throws IllegalAccessException {
         String text = "";
