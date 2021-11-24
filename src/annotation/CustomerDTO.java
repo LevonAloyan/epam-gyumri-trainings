@@ -10,14 +10,17 @@ import java.lang.annotation.RetentionPolicy;
     int max();
 }
 @interface Email {
-    String message() default "Please provide a valid email address";
+    String message();
 }
 @interface Adulthood {
-   int age() default 6;
+   int age();
+   String message();
 }
 @interface Min {
     int min();
+    String message();
 }
 @interface Max {
     int max();
+    String message();
 }

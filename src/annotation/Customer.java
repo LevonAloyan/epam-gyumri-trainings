@@ -5,18 +5,18 @@ import java.time.LocalDate;
 public class Customer {
     @Length(min = 2, max = 30, message = "Name must be between 2 and 30 characters.")
     private String name;
-    @Email()
+    @Email(message = "Please provide a valid email address.")
     private String email;
-    @Adulthood()
+    @Adulthood(age = 0, message = "Age can't be less then 18.")
     private LocalDate birthDay;
-    @Min(min = 0)
-    @Max(max = 100)
+    @Min(min = 0, message = " Incorrect argument.")
+    @Max(max = 100, message = " Incorrect argument.")
     private int discountRate;
 
     public Customer(String name, String email, LocalDate birthDay, int discountRate){
         this.name = name;
         this.email = email;
-        this.birthDay = LocalDate.EPOCH;
+        this.birthDay = birthDay;
         this.discountRate = discountRate;
     }
 
