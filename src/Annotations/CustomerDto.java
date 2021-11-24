@@ -14,9 +14,10 @@ public class CustomerDto {
 
     @Adulthood
     private LocalDate birthdate;
+
     @Min(0)
     @Max(100)
-    private int DiscountRate;
+    private Integer DiscountRate;
 
     public CustomerDto(String name, String email, LocalDate birthdate, int discountRate) {
         this.name = name;

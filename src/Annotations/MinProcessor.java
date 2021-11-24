@@ -8,19 +8,24 @@ import java.lang.reflect.Field;
 public class MinProcessor implements AnnotationProcessor {
 
     @Override
-    public void process(Object object) {
+    public void process(Object object) throws IllegalAccessException, ValidatorException {
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Min.class)) {
                 field.setAccessible(true);
-                Min annotation = field.getAnnotation(Min.class);
-                CustomerDto customerDto = (CustomerDto) object;
-                int fieldValue = customerDto.getDiscountRate();
-                int valueMin = annotation.value();
-                if (fieldValue < valueMin) {
-                    System.out.println("It has to be more 0");
+                Object o = field.get(object);
+                if(o instanceof Number){
+                    Number number = (Number) o;
+                    Min annotation = field.getAnnotation(Min.class);
+                    int valueMin = annotation.value();
+                    if (number.intValue() < valueMin) {
+                        System.out.println("It has to be more 0");
+                    }
+                } else {
+                    // todo new custom exception with message
+                    throw new ValidatorException("Type must be Number");
                 }
             }
         }

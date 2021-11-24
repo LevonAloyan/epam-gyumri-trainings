@@ -9,16 +9,19 @@ import java.util.regex.Pattern;
 public class EmailProcessor implements AnnotationProcessor {
 
     @Override
-    public void process(Object object) {
+    public void process(Object object) throws IllegalAccessException, ValidatorException {
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Email.class)) {
                 field.setAccessible(true);
-                CustomerDto customerDto = (CustomerDto) object;
-                Pattern pattern = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-" +
-                        "9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
-                System.out.println(customerDto.getEmail().matches(pattern.pattern()));
+                Object obj = field.get(object);
+                if (obj instanceof String) {
+                    String email = (String) obj;
+                    Pattern pattern = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-" +
+                            "9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
+                    System.out.println(email.matches(pattern.pattern()));
+                }else throw new ValidatorException("Type must be String");
             }
         }
     }

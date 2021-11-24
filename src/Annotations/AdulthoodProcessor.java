@@ -11,7 +11,7 @@ import java.time.Period;
 public class AdulthoodProcessor implements AnnotationProcessor {
 
     @Override
-    public void process(Object object) throws IllegalAccessException {
+    public void process(Object object) throws IllegalAccessException, ValidatorException {
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
@@ -19,11 +19,14 @@ public class AdulthoodProcessor implements AnnotationProcessor {
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Adulthood.class)) {
                 field.setAccessible(true);
-                LocalDate birthDate = (LocalDate) field.get(object);
-                int years = Period.between(birthDate, LocalDate.now()).getYears();
-                if (years < 18) {
-                    System.out.println("Yoa are not allowed to login");
-                }
+                Object obj1 = field.get(object);
+                if (obj1 instanceof LocalDate) {
+                    LocalDate birthDate = (LocalDate) obj1;
+                    int years = Period.between(birthDate, LocalDate.now()).getYears();
+                    if (years > 18) {
+                        System.out.println("Normale");
+                    }
+                }else throw new ValidatorException("Type must be LocalDate");
             }
         }
     }
