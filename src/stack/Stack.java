@@ -1,10 +1,9 @@
 package stack;
 
-import java.util.EmptyStackException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Stack extends RuntimeException {
+public class Stack {
 
     static final int DEFAULT_SIZE = 16;
     private int[] data;
@@ -16,17 +15,14 @@ public class Stack extends RuntimeException {
 
     public Stack(int size) {
         data = new int[size];
-
+        this.tos = -1;
     }
 
     /**
      * Add element into stack
      */
     public void push(int value) {
-        if (tos == data.length - 1) {
-            throw new StackOverflowError();
-        }
-        this.data[this.tos++] = value;
+
     }
 
     /**
@@ -35,11 +31,8 @@ public class Stack extends RuntimeException {
      * @return
      */
     public int pop() {
-        if (this.isEmpty()) {
-            throw new EmptyStackException();
-        }
 
-        return this.data[--this.tos];
+        return 0;
     }
 
 
@@ -47,9 +40,7 @@ public class Stack extends RuntimeException {
      * Clear stack
      */
     public void clear() {
-        for (int i = 0; i < data.length; i++) {
-            data[i] = 0;
-        }
+
     }
 
     /**
@@ -58,15 +49,13 @@ public class Stack extends RuntimeException {
      * @return
      */
     public boolean isEmpty() {
-        return this.tos == 0;
+        return false;
     }
 
     /**
      * Increase the stack capacity if there is not enough space to add additional items
      */
     private void ensureCapacity() {
-        int[] newArray = new int[data.length * 2];
-        System.arraycopy(data, 0, newArray, 0, data.length);
-        this.data = newArray;
-    }
+
+	}
 }
