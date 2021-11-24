@@ -1,7 +1,7 @@
 package StackException;
 
 public class MakeStackPop {
-    /*static final int DEFAULT_SIZE = 16;*/
+    static final int DEFAULT_SIZE = 16;
     private int[] data;
     private int tos; //index which determines the top of stack
 
@@ -14,9 +14,12 @@ public class MakeStackPop {
         this.tos = -1;
     }
     public void pop(int value) {
-        if(tos < 0){
-            System.out.println("stack is not over");
-            return 0;
+
+            try {
+                if(tos < 0)
+            } catch (Exception e) {
+                System.err.println("stack is not over");
+            }
         }
         else
             return data[--tos];

@@ -1,7 +1,7 @@
 package StackException;
 
 public class MakeStackPush {
-        /*static final int DEFAULT_SIZE = 16;*/
+        static final int DEFAULT_SIZE = 16;
         private int[] data;
         private int tos; //index which determines the top of stack
 
@@ -16,8 +16,8 @@ public class MakeStackPush {
     public void push(int value) {
         if (tos == value-1){
             try {
-                push();
-            } catch (Exception e)
+                push(int size);
+            } catch (Exception e){
                 System.err.println("Stack is over");
         }
 
