@@ -1,19 +1,17 @@
-package validation.processors;
+package validation.processor;
+
+import validation.annotation.Length;
 
 import java.lang.reflect.Field;
 
-import validation.annotations.Length;
-
 public class LengthAnnotationProcessor {
-
-
-    public String[] validateLength(Object dto) throws IllegalAccessException {
-        Field[] declaredFields = dto.getClass().getDeclaredFields();
+    public String[] lengthProcessor(Object name) throws IllegalAccessException, NoSuchFieldException {
+        Field[] declaredFields = name.getClass().getDeclaredFields();
         String[] errors = null;
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Length.class)) {
                 field.setAccessible(true);
-                Object o = field.get(dto);
+                Object o = field.get(name);
                 if (o instanceof String) {
                     String fieldValue = (String) o;
                     int length = fieldValue.length();
@@ -33,4 +31,7 @@ public class LengthAnnotationProcessor {
         }
         return errors;
     }
-}
+
+    }
+
+
