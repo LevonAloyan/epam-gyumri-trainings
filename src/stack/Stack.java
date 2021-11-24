@@ -4,8 +4,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Stack {
+    public static void main(String args[]) throws StackOverFlowException {
+        Stack data = new Stack();
+//        data.push(5);
+//        data.push(10);
+//        data.push(15);
+        data.push(20);
+        data.push(25);
+        System.out.println("Pop - " + data.pop());
+        System.out.println("Pop - " + data.pop());
+        System.out.println("Pop - " + data.pop());
+//        System.out.println("Pop - " + data.pop());
+//        System.out.println("Pop - " + data.pop());
+    }
 
-    static final int DEFAULT_SIZE = 16;
+    static final int DEFAULT_SIZE = 4;
     private int[] data;
     private int tos; //index which determines the top of stack
 
@@ -18,44 +31,17 @@ public class Stack {
         this.tos = -1;
     }
 
-    /**
-     * Add element into stack
-     */
-    public void push(int value) {
-
+    public void push(int value) throws StackOverFlowException {
+        if (tos == data.length - 1) {
+            throw new StackOverFlowException("StackOverFlowException");
+        }
+        data[++tos] = value;
     }
 
-    /**
-     * Get element from the stack
-     *
-     * @return
-     */
-    public int pop() {
-
-        return 0;
+    public int pop() throws StackOverFlowException {
+        if (tos < 0) {
+            throw new StackOverFlowException("EmptyStackException");
+        }
+        return data[tos--];
     }
-
-
-    /**
-     * Clear stack
-     */
-    public void clear() {
-
-    }
-
-    /**
-     * Check if stack is empty
-     *
-     * @return
-     */
-    public boolean isEmpty() {
-        return false;
-    }
-
-    /**
-     * Increase the stack capacity if there is not enough space to add additional items
-     */
-    private void ensureCapacity() {
-
-	}
 }
