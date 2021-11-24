@@ -1,5 +1,8 @@
 package stack;
 
+import stack.exceptions.EmptyStackException;
+import stack.exceptions.StackOverFlowException;
+
 public class Stack {
 
     static final int DEFAULT_SIZE = 16;
@@ -20,7 +23,8 @@ public class Stack {
      */
     public void push(int value) {
         if (tos == data.length-1) {
-            ensureCapacity();
+            throw new StackOverFlowException("StackOverFlowException");
+//            ensureCapacity();
         }
         data[++tos] = value;
     }
@@ -32,7 +36,7 @@ public class Stack {
      */
     public int pop() {
         if (tos < 0)
-            System.out.println("Stack is empty");
+            throw new EmptyStackException("EmptyStackException");
         return 0;
     }
 
