@@ -12,7 +12,8 @@ public class CustomerDto {
      @Min(min = 0)
     @Max(max = 100)
     private int discountRate;
-     public String getName() {
+
+    public String getName() {
         return name;
     }
     public void setName(String name) {
