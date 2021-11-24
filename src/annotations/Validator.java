@@ -2,7 +2,6 @@ package annotations;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -12,9 +11,9 @@ public class Validator {
 
     public static List<?> validate(Object object) throws IllegalAccessException {
         List<String> list = new ArrayList();
-        Class c = object.getClass();
+        Class objectClass = object.getClass();
 
-        Field[] fields = c.getDeclaredFields();
+        Field[] fields = objectClass.getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
             Object fieldValue = field.get(object);
@@ -24,11 +23,12 @@ public class Validator {
                     list.add("Name does not require the given length." + "\n");
                 }
             } else if (field.isAnnotationPresent(Adulthood.class)) {
-                LocalDate minAge = LocalDate.of(2003, 01, 01);
-                LocalDate currentAge = (LocalDate) fieldValue;
-                if (currentAge.isAfter(minAge)) {
+                int currentYear = LocalDate.now().getYear();
+                int currentAge = currentYear - ((LocalDate) fieldValue).getYear();
+                if (currentAge < field.getAnnotation(Adulthood.class).age()) {
                     list.add("Age hasn't reached adulthood age yet." + "\n");
                 }
+
             } else if (field.isAnnotationPresent(Min.class) && field.isAnnotationPresent(Max.class)) {
                 Integer currentValue = (Integer) fieldValue;
                 if (currentValue <= field.getAnnotation(Min.class).value() || currentValue >= field.getAnnotation(Max.class).value()) {

@@ -22,4 +22,7 @@ public class CustomerDto extends Dto {
         this.discountRate = discountRate;
     }
 
+    public LocalDate getBirthday() {
+        return birthday;
+    }
 }
