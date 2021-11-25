@@ -21,11 +21,13 @@ public class Stack {
     /**
      * Add element into stack
      */
-    public void push(int value) {
-        if (tos >= data.length-1) {
-            ensureCapacity();
+    public void push(int value) throws StackOverFlowException{
+        if (tos > this.tos-1) {
+            throw new StackOverFlowException();
+        }else {
+
+            data[++tos] = value;
         }
-        data[++tos] = value;
 
 
     }
@@ -35,13 +37,13 @@ public class Stack {
      *
      * @return
      */
-    public int pop() {
-        if (isEmpty()) {
-            System.out.println("stack is empty");
-            return 0;
-        }
-        return data[tos--];
+    public int pop() throws EmptyStackException {
 
+            if (this.tos < 0) {
+                throw new EmptyStackException();
+            } else {
+                return data[tos--];
+            }
     }
 
 
@@ -73,8 +75,8 @@ public class Stack {
      */
     private void ensureCapacity() {
         int newData[] = new int[data.length * 2];
-        System.arraycopy(data,0,newData,0,data.length);
-        data=newData;
+        System.arraycopy(data, 0, newData, 0, data.length);
+        data = newData;
     }
 
     public void print() {
