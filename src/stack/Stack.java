@@ -1,8 +1,5 @@
 package stack;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Stack {
 
     static final int DEFAULT_SIZE = 16;
@@ -15,24 +12,27 @@ public class Stack {
 
     public Stack(int size) {
         data = new int[size];
-        this.tos = -1;
+
     }
 
     /**
      * Add element into stack
      */
-    public void push(int value) {
-
+    public void push(int value) throws StackOverFlowException {
+        if (tos == DEFAULT_SIZE) {
+            throw new StackOverFlowException();
+        }
+        data[tos++] = value;
     }
 
     /**
      * Get element from the stack
-     *
-     * @return
      */
-    public int pop() {
+    public int pop() throws EmptyStackException {
 
-        return 0;
+        if (tos == 0) {
+            throw new EmptyStackException();
+        } else return data[tos--];
     }
 
 
@@ -49,6 +49,7 @@ public class Stack {
      * @return
      */
     public boolean isEmpty() {
+
         return false;
     }
 
@@ -57,5 +58,15 @@ public class Stack {
      */
     private void ensureCapacity() {
 
-	}
+    }
+
+    public static void main(String[] args) throws EmptyStackException, StackOverFlowException {
+        Stack stack = new Stack();
+
+        stack.pop();
+        for (int i = 0; i <= DEFAULT_SIZE; i++) {
+            stack.push(i);
+        }
+    }
 }
+
