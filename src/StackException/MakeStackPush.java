@@ -1,5 +1,7 @@
 package StackException;
 
+import StackException.StackException.OverFlowException;
+
 public class MakeStackPush {
         static final int DEFAULT_SIZE = 16;
         private int[] data;
@@ -14,14 +16,9 @@ public class MakeStackPush {
             this.tos = -1;
         }
     public void push(int value) {
-        if (tos == value-1){
-            try {
-                push(int size);
-            } catch (Exception e){
-                System.err.println("Stack is over");
-        }
-
-        else
+        if (tos == value-1) {
+            throw new OverFlowException("Stack is overflow");
+        }else
             data[++tos] = value;
     }
 }

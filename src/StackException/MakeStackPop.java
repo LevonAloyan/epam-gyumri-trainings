@@ -1,5 +1,8 @@
 package StackException;
 
+import StackException.StackException.IsnotOverException;
+
+
 public class MakeStackPop {
     static final int DEFAULT_SIZE = 16;
     private int[] data;
@@ -15,13 +18,12 @@ public class MakeStackPop {
     }
     public void pop(int value) {
 
-            try {
-                if(tos < 0)
-            } catch (Exception e) {
-                System.err.println("stack is not over");
+
+                if(tos < 0) {
+                    throw new IsnotOverException("stack is not over")
+                }else {
+                    return data[--tos];
             }
-        }
-        else
-            return data[--tos];
+
     }
 }

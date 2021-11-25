@@ -6,6 +6,8 @@ public class Main {
         MakeStackPush makeStackPush = new MakeStackPush();
         makeStackPush.push(int size);
         MakeStackPop makeStackPop = new MakeStackPop();
-        makeStackPop.Pop(int size);
+        makeStackPop.Pop();
+        System.out.println(makeStackPush);
+        System.out.println(makeStackPop);
     }
 }
