@@ -1,12 +1,13 @@
-package algorithms;
+package validation;
+
+import validation.processors.*;
 
 import java.time.LocalDate;
-import java.util.regex.Pattern;
 
 public class Test<customer> {
 
-    public static void main(String[] args) throws IllegalAccessException {
-        Customer customer = new Customer("H","Hovo1104@gmail.com", LocalDate.of(2010, 4,11),51);
+    public static void main(String[] args) throws IllegalAccessException, NewCustomException {
+        Customer customer = new Customer("H","Hovo1104@gmail.com", LocalDate.of(2010, 4,11),18);
 
         AdulthoodValidator adulthoodValidator = new AdulthoodValidator();
         adulthoodValidator.validate(customer);
