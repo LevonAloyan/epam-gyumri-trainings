@@ -1,8 +1,8 @@
 package validation.processors;
 
-import java.lang.reflect.Field;
-
 import validation.annotations.Length;
+
+import java.lang.reflect.Field;
 
 public class LengthAnnotationProcessor {
 

@@ -8,6 +8,6 @@ public @interface Length {
 
     int min();
     int max();
-    String message ();
+    String message();
 
 }
