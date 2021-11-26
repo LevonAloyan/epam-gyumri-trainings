@@ -2,10 +2,10 @@ package stack;
 
 import java.util.Arrays;
 
-public class Stack {
+public class Stack <T> implements StackInterface<T> {
 
 	private static final int DEFAULT_SIZE = 4;
-	private int[] data;
+	private T[] data;
 	private int tos;
 
 	public Stack() {
@@ -13,25 +13,20 @@ public class Stack {
 	}
 
 	public Stack(int size) {
-		data = new int[size];
+		data = (T[]) new Object[size];
 		this.tos = -1;
 	}
 
-	public void push(int value) {
+	public void push(T value) {
 		if (tos == data.length-1 && data.length <= 10) {
 			ensureCapacity();
 		} else if (data.length > 10) {
-			try {
 				throw new StackOverFlowException();
-			} catch (StackOverFlowException e) {
-				e.printStackTrace();
-				System.exit(1);
-			}
 		}
 			data[++tos] = value;
 	}
 
-	public int pop() throws EmptyStackException {
+	public T pop() {
 		if (tos == -1) {
 			throw new EmptyStackException();
 		}
@@ -42,7 +37,7 @@ public class Stack {
 		if (data.length < 1000) {
 			Arrays.fill(data, 0);
 		} else {
-			data = new int[DEFAULT_SIZE];
+			data = (T[]) new Object[DEFAULT_SIZE];
 		}
 			tos = -1;
 	}
@@ -54,7 +49,7 @@ public class Stack {
 
 	private void ensureCapacity() {
 		int length = (data.length + 5);
-		int[] result = new int[length];
+		T[] result = (T[]) new Object[length];
 		System.arraycopy(data,0,result,0,data.length);
 		data = result;
 	}
