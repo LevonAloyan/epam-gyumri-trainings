@@ -2,10 +2,10 @@ package annotations;
 
 import java.lang.reflect.Field;
 
-public class LengthAnnotationProcess implements AnnotationInterface {
+public class LengthAnnotationProcess<T> implements AnnotationInterface<T> {
 
     @Override
-    public void process(Object object) throws IllegalAccessException, ValidatorExceptions {
+    public void process(T object) throws IllegalAccessException {
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
         for (Field field : declaredFields) {
@@ -13,8 +13,7 @@ public class LengthAnnotationProcess implements AnnotationInterface {
                 field.setAccessible(true);
                 //todo get Annotation arguments
                 Length annotation = field.getAnnotation(Length.class);
-                Object obj = field.get(object);
-
+                Object obj =  field.get(object);
                 if (obj instanceof String) {
                     String string = (String) obj;
                     if (string.length() < annotation.min() || string.length() > annotation.max()) {
@@ -23,7 +22,7 @@ public class LengthAnnotationProcess implements AnnotationInterface {
                         System.out.println(string);
                     }
                 }else{
-                        throw new ValidatorExceptions("Type must be Name");
+                        throw new ValidatorExceptions("Type must be String");
                 }
             }
         }

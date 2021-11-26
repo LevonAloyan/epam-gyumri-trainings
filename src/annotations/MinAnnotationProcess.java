@@ -2,18 +2,16 @@ package annotations;
 
 import java.lang.reflect.Field;
 
-public class MinAnnotationProcess implements AnnotationInterface {
+public class MinAnnotationProcess<T> implements AnnotationInterface<T> {
 
     @Override
-    public void process(Object object) throws IllegalAccessException, ValidatorExceptions {
+    public void process(T object) throws IllegalAccessException {
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Min.class)) {
                 field.setAccessible(true);
-                //todo get Annotation arguments
-                Object obj = field.get(object);
-
+                Object obj =  field.get(object);
                 Min annotation = field.getAnnotation(Min.class);
                 if (obj instanceof Number) {
                     Number number = (Number) obj;

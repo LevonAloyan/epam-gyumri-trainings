@@ -2,18 +2,16 @@ package annotations;
 
 import java.lang.reflect.Field;
 
-public class MaxAnnotationProcess implements AnnotationInterface {
+public class MaxAnnotationProcess<T> implements AnnotationInterface<T> {
 
     @Override
-    public void process(Object object) throws IllegalAccessException, ValidatorExceptions {
+    public void process(T object) throws IllegalAccessException{
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Max.class)) {
                 field.setAccessible(true);
-                //todo get Annotation arguments
-                Object obj = field.get(object);
-
+                Object obj =  field.get(object);
                 Max annotation = field.getAnnotation(Max.class);
                 if (obj instanceof Number){
                     Number number1 = (Number) obj;

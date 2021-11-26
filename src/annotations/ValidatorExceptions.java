@@ -1,6 +1,6 @@
 package annotations;
 
-public class ValidatorExceptions extends Throwable {
+public class ValidatorExceptions extends RuntimeException{
     public ValidatorExceptions() {
     }
 
