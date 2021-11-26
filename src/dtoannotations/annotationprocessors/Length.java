@@ -1,4 +1,4 @@
-package dtoannotations;
+package dtoannotations.annotationprocessors;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,8 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Min {
-    int minValue() default 0;
+public @interface Length {
+    int min();
+    int max();
+
 }

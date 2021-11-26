@@ -1,17 +1,18 @@
 package dtoannotations;
 
+import dtoannotations.annotationprocessors.*;
 import java.time.LocalDate;
 
 public class CustomerDTO {
     @Length(min = 5, max = 30)
-    private String name;
+    private final String name;
     @Email
-    private String email;
+    private final String email;
     @Adulthood
-    private LocalDate birthday;
+    private final LocalDate birthday;
     @Min(minValue = 30)
     @Max(maxValue = 45)
-    private int discountRate;
+    private final int discountRate;
 
     public CustomerDTO(String name, String email, LocalDate birthday, int discountRate) {
         this.name = name;

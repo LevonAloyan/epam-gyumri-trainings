@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws IllegalAccessException {
+    public static void main(String[] args)  {
         Validator validator = new Validator();
         LocalDate birthDay = LocalDate.of(2019, 7, 9);
         List<List<String>> list = new ArrayList<>();
