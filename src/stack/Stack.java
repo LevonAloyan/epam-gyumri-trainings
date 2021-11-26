@@ -1,39 +1,30 @@
 package stack;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Stack {
-
+public class Stack<T> {
     static final int DEFAULT_SIZE = 16;
-    private int[] data;
-    private int tos; //index which determines the top of stack
+    private Object[] data;
+    private int tos = -1; //index which determines the top of stack
 
     public Stack() {
         this(DEFAULT_SIZE);
     }
 
     public Stack(int size) {
-        data = new int[size];
-        this.tos = 0;
+        this.data = new Object[size];
     }
 
     /**
      * Add element into stack
      */
-    public int push(int value) throws ExceptionStack  {
-        data[tos] = value;
-        tos++;
-        if (tos >= DEFAULT_SIZE){
-            throw new ExceptionStack("Stack is Full");
+    public T push(T value)  {
+        if (tos >= data.length - 1) {
+            ensureCapacity();
         }
-       // if (tos >= data.length){
-        //    ensureCapacity();
-       // }
-        else {
-            data[tos] = value;
-            tos++;
-        }
+        data[++tos] = value;
         return value;
     }
 
@@ -42,15 +33,13 @@ public class Stack {
      *
      * @return
      */
-    public int pop() throws ExceptionStack {
-
-        if (tos == 0) {
-             throw new ExceptionStack("Stack is Empty");
+    public T pop()  {
+        if (isEmpty()) {
+            throw new ExceptionStack("Stack is Empty");
         } else {
-            return data[tos--];
+            return (T) data[tos--];
         }
     }
-
 
     /**
      * Clear stack
@@ -65,9 +54,9 @@ public class Stack {
      * @return
      */
     public boolean isEmpty() {
-        if(this.tos == -1){
+        if (this.tos == -1) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
@@ -75,21 +64,9 @@ public class Stack {
     /**
      * Increase the stack capacity if there is not enough space to add additional items
      */
-    private void ensureCapacity()  {
-        int[] newData = new int[this.data.length * 2];
+    private void ensureCapacity() {
+        Object[] newData = new Object[this.data.length * 2];
         System.arraycopy(this.data, 0, newData, 0, this.data.length);
         this.data = newData;
-
-	}
-
-    public static void main(String[] args) throws ExceptionStack {
-        Stack stack = new Stack();
-        stack.pop();
-        stack.isEmpty();
-        for (int i = 0; i <= DEFAULT_SIZE; i++) {
-            stack.push(i);
-        }
-
-
     }
 }
