@@ -5,10 +5,10 @@ package Annotations;
 
 import java.lang.reflect.Field;
 
-public class MinProcessor implements AnnotationProcessor {
+public class MinProcessor<T> implements AnnotationProcessor<T> {
 
     @Override
-    public void process(Object object) throws IllegalAccessException, ValidatorException {
+    public void process(T object) throws IllegalAccessException {
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
@@ -16,7 +16,7 @@ public class MinProcessor implements AnnotationProcessor {
             if (field.isAnnotationPresent(Min.class)) {
                 field.setAccessible(true);
                 Object o = field.get(object);
-                if(o instanceof Number){
+                if (o instanceof Number) {
                     Number number = (Number) o;
                     Min annotation = field.getAnnotation(Min.class);
                     int valueMin = annotation.value();

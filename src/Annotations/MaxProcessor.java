@@ -5,10 +5,10 @@ package Annotations;
 
 import java.lang.reflect.Field;
 
-public class MaxProcessor implements AnnotationProcessor {
+public class MaxProcessor<T> implements AnnotationProcessor<T> {
 
     @Override
-    public void process(Object object) throws IllegalAccessException, ValidatorException {
+    public void process(T object) throws IllegalAccessException {
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
         for (Field field : declaredFields) {
@@ -19,10 +19,10 @@ public class MaxProcessor implements AnnotationProcessor {
                     Number number = (Number) o;
                     Max annotation = field.getAnnotation(Max.class);
                     int valueMax = annotation.value();
-                    if (number.intValue() >valueMax){
+                    if (number.intValue() > valueMax) {
                         System.out.println("More than 100");
                     }
-                }else throw new ValidatorException("Type must be Number");
+                } else throw new ValidatorException("Type must be Number");
             }
         }
     }

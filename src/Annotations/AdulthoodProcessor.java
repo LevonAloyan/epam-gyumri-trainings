@@ -8,10 +8,10 @@ import java.time.LocalDate;
 import java.time.Period;
 
 
-public class AdulthoodProcessor implements AnnotationProcessor {
+public class AdulthoodProcessor<T> implements AnnotationProcessor<T> {
 
     @Override
-    public void process(Object object) throws IllegalAccessException, ValidatorException {
+    public void process(T object) throws IllegalAccessException {
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
@@ -23,10 +23,10 @@ public class AdulthoodProcessor implements AnnotationProcessor {
                 if (obj1 instanceof LocalDate) {
                     LocalDate birthDate = (LocalDate) obj1;
                     int years = Period.between(birthDate, LocalDate.now()).getYears();
-                    if (years > 18) {
-                        System.out.println("Normale");
+                    if (years < 18) {
+                        System.out.println("Yor aren't allowed to login");
                     }
-                }else throw new ValidatorException("Type must be LocalDate");
+                } else throw new ValidatorException("Type must be LocalDate");
             }
         }
     }

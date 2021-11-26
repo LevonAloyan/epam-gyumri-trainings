@@ -1,6 +1,6 @@
 package Annotations;
 
-public class ValidatorException extends Exception {
+public class ValidatorException extends RuntimeException {
 
     public ValidatorException(String message) {
         super(message);

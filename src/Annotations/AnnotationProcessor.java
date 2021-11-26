@@ -1,5 +1,5 @@
 package Annotations;
 
-public interface AnnotationProcessor {
-    void process(Object object) throws IllegalAccessException, ValidatorException;
+public interface AnnotationProcessor<T> {
+    void process(T object) throws IllegalAccessException;
 }
