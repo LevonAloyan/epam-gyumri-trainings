@@ -1,29 +1,33 @@
 package validation.processors;
 
 import validation.annotations.Min;
-import validation.dto.CustomerDto;
 
 import java.lang.reflect.Field;
 
 public class MinAnnotationProcessor {
-    public  String [] validateMin(Object object) {
-        String [] errorMessages = new String[10];
+    public  String  validateMin(Object dto) throws IllegalAccessException  {
+        Field[] declaredFields = dto.getClass().getDeclaredFields();
+        String  errors = null;
 
-        Class<?> aClass = object.getClass();
-        Field[] declaredFields = aClass.getDeclaredFields();
-        for(Field field: declaredFields){
+        for(Field field : declaredFields){
             if(field.isAnnotationPresent(Min.class)){
                 field.setAccessible(true);
-                Min annotation = field.getAnnotation(Min.class);
-                CustomerDto customer = (CustomerDto) object;
-                int fieldValue = customer.getDiscountRate();
-                int valueMin = annotation.value();
-                if (fieldValue < valueMin){
-                    System.out.println("Length is min");
+                Object o = field.get(dto);
+                if (o instanceof Integer) {
+                    int fieldValue = (int) o;
+                    Min annotation = field.getAnnotation(Min.class);
+
+                    if (fieldValue < annotation.value()){
+                        errors = "length less than  " +  annotation.value();
+                        System.out.println("min  " + annotation.value());
+                    }
+                } else {
+                    errors = "Min annotation is not applicable on none Integer fields.";
+
                 }
             }
         }
 
-        return errorMessages;
+        return errors;
     }
 }
