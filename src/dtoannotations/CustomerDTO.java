@@ -1,6 +1,6 @@
 package dtoannotations;
 
-import dtoannotations.annotationprocessors.*;
+import dtoannotations.annotations.*;
 import java.time.LocalDate;
 
 public class CustomerDTO {

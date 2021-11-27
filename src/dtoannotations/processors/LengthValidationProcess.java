@@ -1,13 +1,16 @@
-package dtoannotations.annotationprocessors;
+package dtoannotations.processors;
 
+import dtoannotations.DTOInterface;
+import dtoannotations.annotations.Length;
 import dtoannotations.validationexceptions.IncorrectLengthException;
 
 import java.lang.reflect.Field;
 
-public class LengthValidationProcess {
+public class LengthValidationProcess implements DTOInterface {
 
     @SuppressWarnings("unchecked cast")
-    public static <T> String validateLengthAnnotation(T object) {
+    @Override
+    public <T> String processor(T object) {
         String message = "";
         Field[] declaredFields = object.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
@@ -16,24 +19,22 @@ public class LengthValidationProcess {
                 T fieldValue = null;
                 try {
                     fieldValue = (T) declaredField.get(object);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-                if (fieldValue instanceof String) {
-                    String fieldLength = (String) fieldValue;
-                    Length length = declaredField.getAnnotation(Length.class);
-                    if (fieldLength.length() < length.min() || fieldLength.length() > length.max()) {
-                        try {
+                    if (fieldValue instanceof String) {
+                        String fieldLength = (String) fieldValue;
+                        Length length = declaredField.getAnnotation(Length.class);
+                        if (fieldLength.length() < length.min() || fieldLength.length() > length.max()) {
                             throw new IncorrectLengthException("\"" + declaredField.getName() + "\"" +
                                     " Field has an error, it doesn't match the required length. It is - "
                                     + fieldLength.length());
-                        } catch (IncorrectLengthException e) {
-                            e.printStackTrace();
-                            message = e.getMessage();
                         }
+                    } else {
+                        throw new IllegalArgumentException(declaredField.getName() + " wrong field value");
                     }
-                } else {
-                    throw new IllegalArgumentException(declaredField.getName() + " wrong field value");
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (IncorrectLengthException e) {
+                    e.printStackTrace();
+                    message = e.getMessage();
                 }
             }
         }
