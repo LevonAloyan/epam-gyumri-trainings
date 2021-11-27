@@ -1,12 +1,9 @@
 package annotation;
 
-import annotation.myannotation.AdulthoodAnnotationProcessor;
-import annotation.myannotation.EmailAnnotationProcessor;
-import annotation.myannotation.IntervalAnnotationProcessor;
-import annotation.myannotation.LengthAnnotationProcessor;
+import annotation.exception.ExpectedTypeException;
+import annotation.myannotation.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.Arrays;
 
 public class Validator {
     /**
@@ -22,10 +19,12 @@ public class Validator {
      */
 
 
-    public static void validate(Object ob) throws NoSuchFieldException, IllegalAccessException {
+    public static <T> void validate(T ob) throws Throwable {
+
+
         LengthAnnotationProcessor.definitionFieldsForAnnotationLength(ob);
-        EmailAnnotationProcessor.definitionFieldsForAnnotationEmail(ob);
         IntervalAnnotationProcessor.definitionFieldsForAnnotationInterval(ob);
+        EmailAnnotationProcessor.definitionFieldsForAnnotationEmail(ob);
         AdulthoodAnnotationProcessor.definitionFieldsForAnnotationLength(ob);
     }
 }

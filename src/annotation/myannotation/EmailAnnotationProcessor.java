@@ -1,28 +1,41 @@
 package annotation.myannotation;
 
+import annotation.exception.ExpectedTypeException;
+
 import java.lang.reflect.Field;
 
 public class EmailAnnotationProcessor {
 
 
-    public static void definitionFieldsForAnnotationEmail(Object object) throws IllegalAccessException, NoSuchFieldException {
+    public static <T> void definitionFieldsForAnnotationEmail(T object) throws IllegalAccessException {
 
         Class<?> aClass = object.getClass();
         Field[] declaredField = aClass.getDeclaredFields();
-        for (Field fieldName : declaredField) {
-            if (fieldName.isAnnotationPresent(Email.class)) {
+        for (Field field : declaredField) {
+            if (field.isAnnotationPresent(Email.class)) {
 
-//                System.out.println("Field name: " + fieldName.getName());
+//                System.out.println("Field name: " + field.getName());
 
-                Field field = object.getClass().getDeclaredField(fieldName.getName());
                 field.setAccessible(true);
-                String value = (String) field.get(object);
+                // TODO check if value has necessary type, then do the validation, if not throw a custom exception
+                Object temp = field.get(object);
+                if (temp instanceof String) {
+
+                    String value = (String) field.get(object);
 
 //                System.out.println("Field value: " + value);
-                if (!EmailValidator.validate(value)) {
-                    System.err.println("В классе: " + aClass + "\n в поле: "
-                            + fieldName + " значение: " + value + "\n не соответствует требованиям аннотации: "
-                            + Email.class.getName()+"\n");
+                    if (!EmailValidator.validate(value)) {
+                        System.err.println("В классе: " + aClass + "\n в поле: "
+                                + field + " значение: " + value + "\n не соответствует требованиям аннотации: "
+                                + Email.class.getName() + "\n");
+                    }
+                }else {
+                    try {
+                        throw  new ExpectedTypeException();
+                    }catch (ExpectedTypeException e){
+                        e.printStackTrace();
+                    }
+
                 }
             }
         }
