@@ -3,10 +3,10 @@ package stack;
 import stack.stackExceptions.EmptyStackException;
 import stack.stackExceptions.StackOverFlowException;
 
-public class Stack {
+public class Stack<E> {
 
     static final int DEFAULT_SIZE = 16;
-    private int[] data;
+    private Object[] data;
     private int tos; //index which determines the top of stack
 
     public Stack() {
@@ -14,19 +14,19 @@ public class Stack {
     }
 
     public Stack(int size) {
-        data = new int[size];
+        data = new Object[size];
         this.tos = -1;
     }
 
     /**
      * Add element into stack
      */
-    public void push(int value) {
+    public void push(E el) {
         if (this.isFully()) {
             throw new StackOverFlowException("Stack is fully. You can't add any more element.");
 //            this.ensureCapacity();
         }
-        this.data[++this.tos] = value;
+        this.data[++this.tos] = el;
     }
 
     /**
@@ -34,11 +34,12 @@ public class Stack {
      *
      * @return
      */
-    public int pop() {
+    @SuppressWarnings("unchecked")
+    public E pop() {
         if (this.isEmpty()) {
             throw new EmptyStackException("Stack is empty. There is no element to get.");
         }
-        return this.data[this.tos--];
+        return (E)this.data[this.tos--];
     }
 
 
@@ -71,7 +72,7 @@ public class Stack {
      * Increase the stack capacity if there is not enough space to add additional items
      */
     private void ensureCapacity() {
-        int[] newData = new int[data.length * 2];
+        Object [] newData = new Object[data.length * 2];
         System.arraycopy(data, 0, newData, 0, data.length);
         this.data = newData;
     }
