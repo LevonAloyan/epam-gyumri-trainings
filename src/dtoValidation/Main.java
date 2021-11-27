@@ -15,7 +15,7 @@ public class Main {
         customerDto.setEmail("Aaaaaa.com");
         customerDto.setBirthDay(LocalDate.of(2005, 7, 7));
         customerDto.setDiscountRate(103);
-        Validator validator = new Validator();
+        Validator<CustomerDto> validator = new Validator<>();
         List<Error> errors = validator.validate(customerDto);
         System.out.println(errors);
     }

@@ -12,35 +12,35 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validator {
+public class Validator<T> {
 
-    LengthProcessor lengthProcessor;
-    EmailProcessor emailProcessor;
-    AdulthoodProcessor adulthoodProcessor;
-    MinLimitProcessor minLimitProcessor;
-    MaxLimitProcessor maxLimitProcessor;
+    LengthProcessor<T> lengthProcessor;
+    EmailProcessor<T> emailProcessor;
+    AdulthoodProcessor<T> adulthoodProcessor;
+    MinLimitProcessor<T> minLimitProcessor;
+    MaxLimitProcessor<T> maxLimitProcessor;
     List<Error> errors;
 
-    public List<Error> validate(Dto dto) throws IllegalAccessException {
+    public List<Error> validate(T t) throws IllegalAccessException {
         errors = new ArrayList<>();
-        lengthProcessor = new LengthProcessor();
-        emailProcessor = new EmailProcessor();
-        adulthoodProcessor = new AdulthoodProcessor();
-        minLimitProcessor = new MinLimitProcessor();
-        maxLimitProcessor = new MaxLimitProcessor();
-        if (lengthProcessor.validate(dto) != null) {
-            errors.add(lengthProcessor.validate(dto));
+        lengthProcessor = new LengthProcessor<>();
+        emailProcessor = new EmailProcessor<>();
+        adulthoodProcessor = new AdulthoodProcessor<>();
+        minLimitProcessor = new MinLimitProcessor<>();
+        maxLimitProcessor = new MaxLimitProcessor<>();
+        if (lengthProcessor.validate(t) != null) {
+            errors.add(lengthProcessor.validate(t));
         }
-        if (emailProcessor.validate(dto) != null) {
+        if (emailProcessor.validate(t) != null) {
             errors.add(Error.EmailError);
         }
-        if (adulthoodProcessor.validate(dto) != null) {
+        if (adulthoodProcessor.validate(t) != null) {
             errors.add(Error.AdulthoodError);
         }
-        if (minLimitProcessor.validate(dto) != null) {
+        if (minLimitProcessor.validate(t) != null) {
             errors.add(Error.MinLimitError);
         }
-        if (maxLimitProcessor.validate(dto) != null) {
+        if (maxLimitProcessor.validate(t) != null) {
             errors.add(Error.MaxLimitError);
         }
         return errors;

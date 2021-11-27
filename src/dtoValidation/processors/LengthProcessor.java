@@ -6,15 +6,15 @@ import dtoValidation.error.Error;
 
 import java.lang.reflect.Field;
 
-public class LengthProcessor implements AnnotationProcessor{
+public class LengthProcessor<T> implements AnnotationProcessor<T>{
 
     @Override
-    public Error validate(Dto dto) throws IllegalAccessException {
-        Field[] fields = dto.getClass().getDeclaredFields();
+    public Error validate(T t) throws IllegalAccessException {
+        Field[] fields = t.getClass().getDeclaredFields();
         for (Field field : fields) {
             if (field.isAnnotationPresent(Length.class)) {
                 field.setAccessible(true);
-                String fieldName = field.get(dto).toString();
+                String fieldName = field.get(t).toString();
                 if (fieldName.length() < field.getAnnotation(Length.class).min()) {
                     return Error.MinLengthError;
                 } else if (fieldName.length() > field.getAnnotation(Length.class).max()) {
