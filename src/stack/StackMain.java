@@ -1,25 +1,46 @@
 package stack;
 
 
-public class StackMain {
-    public static void main(String[] args) {
+import stack.exception.NoItemsFoundInStackException;
 
-        Stack stack = new Stack(6);
-//        Stack stack=new Stack();
-        System.out.println(stack);
-        for (int i = 0; i < 6; i++) {
-            stack.push(i * 10);
-        }
-        System.out.println(stack);
-        stack.push(44);
-        System.out.println(stack);
-        System.out.println(stack.pop());
-        System.out.println(stack);
-        System.out.println(stack.pop());
-        System.out.println(stack);
-        System.out.println(stack.isEmpty());
-        stack.clear();
-        System.out.println(stack.isEmpty());
+public class StackMain {
+    public static void main(String[] args) throws NoItemsFoundInStackException {
+
+        Stack<Integer> integerStack = new Stack<>(6);
+        Stack<Double> doubleStack=new Stack<>();
+
+        System.out.println(integerStack);
+        System.out.println(doubleStack);
+//        for (int i = 1; i <= 6; i++) {
+//            integerStack.push(i * 10);
+//            doubleStack.push(i * 2.2);
+//        }
+        //integer test
+        System.out.println(integerStack);
+        integerStack.push(44);
+        System.out.println(integerStack);
+        System.out.println(integerStack.pop());
+        System.out.println(integerStack);
+        System.out.println(integerStack.pop());
+        System.out.println(integerStack);
+        System.out.println(integerStack.isEmpty());
+        integerStack.clear();
+        System.out.println(integerStack);
+        System.out.println(integerStack.isEmpty());
+
+        //double test
+
+        System.out.println(doubleStack);
+        doubleStack.push(44.4);
+        System.out.println(doubleStack);
+        System.out.println(doubleStack.pop());
+        System.out.println(doubleStack);
+        System.out.println(doubleStack.pop());
+        System.out.println(doubleStack);
+        System.out.println(doubleStack.isEmpty());
+        doubleStack.clear();
+        System.out.println(doubleStack.isEmpty());
+
 
     }
 }

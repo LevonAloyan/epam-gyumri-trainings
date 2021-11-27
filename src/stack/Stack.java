@@ -1,11 +1,13 @@
 package stack;
 
+import stack.exception.NoItemsFoundInStackException;
+
 import java.util.Arrays;
 
-public class Stack {
+public class Stack<T> {
 
     static final int DEFAULT_SIZE = 16;
-    private int[] data;
+    private T[] data;
     private int tos; //index which determines the top of stack
 
 
@@ -14,14 +16,14 @@ public class Stack {
     }
 
     public Stack(int size) {
-        data = new int[size];
+        data = (T[]) new Object[size];
         this.tos = -1;
     }
 
     /**
      * Add element into stack
      */
-    public void push(int value) {
+    public void push(T value) {
         if (tos == data.length - 1) {
             ensureCapacity();
         }
@@ -33,10 +35,10 @@ public class Stack {
      *
      * @return
      */
-    public int pop() {
+    public T pop() throws NoItemsFoundInStackException {
         if (isEmpty()) {
-            System.out.print(" Stack is empty ");
-            return -1;
+            throw new NoItemsFoundInStackException("Stack is empty, no items found on the Stack");
+
         } else {
             return data[tos--];
         }
@@ -48,7 +50,7 @@ public class Stack {
      */
     public void clear() {
 
-        data = new int[DEFAULT_SIZE];
+        data = (T[]) new Object[DEFAULT_SIZE];
         tos = -1;
 
     }
@@ -67,7 +69,7 @@ public class Stack {
      */
     private void ensureCapacity() {
 
-        int[] dataTemp = new int[data.length + 10];
+        T[] dataTemp = (T[]) new Object[data.length + 10];
         System.arraycopy(data, 0, dataTemp, 0, data.length);
         data = dataTemp;
 
