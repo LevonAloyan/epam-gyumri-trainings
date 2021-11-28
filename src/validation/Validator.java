@@ -5,15 +5,15 @@ import validation.processors.*;
 import java.util.Arrays;
 
 
-public class Validator {
-    LengthAnnotationProcessor lengthAnnotationProcessor = new LengthAnnotationProcessor();
-    EmailAnnotationProcessor emailAnnotationProcessor = new EmailAnnotationProcessor();
-    AdulthoodAnnotationProcessor adulthoodAnnotationProcessor = new AdulthoodAnnotationProcessor();
-    MinAnnotationProcessor minAnnotationProcessor = new MinAnnotationProcessor();
-    MaxAnnotationProcessor maxAnnotationProcessor = new MaxAnnotationProcessor();
+public class Validator <T> {
+    LengthAnnotationProcessor<T> lengthAnnotationProcessor = new LengthAnnotationProcessor<>();
+    EmailAnnotationProcessor<T> emailAnnotationProcessor = new EmailAnnotationProcessor<>();
+    AdulthoodAnnotationProcessor<T> adulthoodAnnotationProcessor = new AdulthoodAnnotationProcessor<>();
+    MinAnnotationProcessor<T> minAnnotationProcessor = new MinAnnotationProcessor<>();
+    MaxAnnotationProcessor<T> maxAnnotationProcessor = new MaxAnnotationProcessor<>();
 
 
-    public String[] validate(Object dto) throws IllegalAccessException {
+    public String[] validate(T dto) throws IllegalAccessException {
         String[] error = new String[5];
 
 

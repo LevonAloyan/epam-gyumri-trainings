@@ -3,9 +3,11 @@ package validation.processors;
 import validation.annotations.Email;
 import java.lang.reflect.Field;
 
-public class EmailAnnotationProcessor {
+import  validation.exception.ValidatorExceptions;
 
-    public String validateEmail(Object dto) throws IllegalAccessException {
+public class EmailAnnotationProcessor<T> {
+
+    public String validateEmail(T dto) throws IllegalAccessException {
 
         Field[] declaredFields = dto.getClass().getDeclaredFields();
         String errors = null;
@@ -25,7 +27,7 @@ public class EmailAnnotationProcessor {
 
                 } else {
 
-                    errors = "Email annotation is not applicable on none String fields.";
+                    throw new  ValidatorExceptions ("Email annotation is not applicable on none String fields.");
                 }
             }
         }

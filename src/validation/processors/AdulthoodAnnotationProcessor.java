@@ -5,10 +5,12 @@ import java.time.LocalDate;
 
 import validation.annotations.Adulthood;
 
+import  validation.exception.ValidatorExceptions;
 
-public class AdulthoodAnnotationProcessor {
 
-    public  String  validateAdulthood(Object dto) throws IllegalAccessException  {
+public class AdulthoodAnnotationProcessor<T> {
+
+    public  String  validateAdulthood(T dto) throws IllegalAccessException  {
 
         Field[] declaredFields = dto.getClass().getDeclaredFields();
         String errors = null;
@@ -27,7 +29,7 @@ public class AdulthoodAnnotationProcessor {
                     }
                 
                 } else {
-                    errors = "Adulthood annotation is not applicable on none LocalDate fields.";
+                    throw new ValidatorExceptions ("Adulthood annotation is not applicable on none LocalDate fields.");
                 }
             }
         }

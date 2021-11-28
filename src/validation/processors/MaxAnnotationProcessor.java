@@ -4,8 +4,10 @@ import validation.annotations.Max;
 
 import java.lang.reflect.Field;
 
-public class MaxAnnotationProcessor {
-    public  String  validateMax (Object dto) throws IllegalAccessException  {
+import  validation.exception.ValidatorExceptions;
+
+public class MaxAnnotationProcessor<T> {
+    public  String  validateMax (T dto) throws IllegalAccessException  {
         Field[] declaredFields = dto.getClass().getDeclaredFields();
         String  errors = null;
 
@@ -21,7 +23,7 @@ public class MaxAnnotationProcessor {
                         errors = "length less than  " +  annotation.value();
                     }
                 } else {
-                    errors = "Max annotation is not applicable on none Integer fields.";
+                    throw new  ValidatorExceptions ( "Max annotation is not applicable on none Integer fields.");
 
                 }
             }
