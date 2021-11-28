@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Validator {
+public class Validator<T> {
 
-    public static List<?> validate(Object object) throws IllegalAccessException {
+    public List<?> validate(T object) throws IllegalAccessException {
         List<String> list = new ArrayList();
         Class objectClass = object.getClass();
 
