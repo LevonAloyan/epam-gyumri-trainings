@@ -7,13 +7,14 @@ import DTO_validation.exceptions.AnnotationIncorrectUsageException;
 import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
-public class EmailAnnotationProcessor {
+public class EmailAnnotationProcessor <T>{
 
     public static final String EMAIL_REGEX = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
 
-    public String[] emailAnnotationMeth(Object dto) throws NoSuchFieldException, IllegalAccessException {
-        Field[] declaredFields = dto.getClass().getDeclaredFields();
+    public String[] emailAnnotationMeth(T dto) throws NoSuchFieldException, IllegalAccessException {
+
         String[] errors = new String[0];
+        Field[] declaredFields = dto.getClass().getDeclaredFields();
         for (Field filed : declaredFields) {
             if (filed.isAnnotationPresent(Email.class)) {
                 Email annotation = filed.getAnnotation(Email.class);

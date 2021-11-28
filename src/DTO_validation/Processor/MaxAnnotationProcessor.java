@@ -6,9 +6,9 @@ import DTO_validation.exceptions.AnnotationIncorrectUsageException;
 
 import java.lang.reflect.Field;
 
-public class MaxAnnotationProcessor {
+public class MaxAnnotationProcessor <T> {
 
-    public String[] maxAnnotationMeth(Object dto) throws NoSuchFieldException, IllegalAccessException {
+    public String[] maxAnnotationMeth(T dto) throws NoSuchFieldException, IllegalAccessException {
         Field[] declaredFields = dto.getClass().getDeclaredFields();
         String[] errors = new String [0];
         for (Field fields : declaredFields) {
@@ -17,7 +17,7 @@ public class MaxAnnotationProcessor {
                 fields.setAccessible(true);
                 if (fields.get(dto) instanceof Number) {
                     int obj = (int) fields.get(dto);
-                    int maxValu = annotationMax.value();
+                    int maxValu = annotationMax.valueMax();
                     if (obj > maxValu) {
                         errors = new String[1];
                         errors[0] = annotationMax.maxErrorMessage();

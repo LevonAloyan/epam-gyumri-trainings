@@ -5,7 +5,7 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Min {
-    int value();
+    int valueMin();
     String minErrorMessage();
 }
 

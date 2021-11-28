@@ -5,9 +5,9 @@ import DTO_validation.exceptions.AnnotationIncorrectUsageException;
 
 import java.lang.reflect.Field;
 
-public class LengthAnnotationProcessor {
+public class LengthAnnotationProcessor <T> {
 
-    public String[] lengthAnnotationMeth(Object dto) throws IllegalAccessException {
+    public String[] lengthAnnotationMeth(T dto) throws IllegalAccessException {
         Field[] fields = dto.getClass().getDeclaredFields();
         String[] errors = new String [0];
         for (Field field : fields) {

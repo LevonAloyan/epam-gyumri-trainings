@@ -4,10 +4,10 @@ import java.util.EmptyStackException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Stack extends RuntimeException {
+public class Stack <T>   {
 
     static final int DEFAULT_SIZE = 16;
-    private int[] data;
+    private T [] data;
     private int tos; //index which determines the top of stack
 
     public Stack() {
@@ -15,16 +15,16 @@ public class Stack extends RuntimeException {
     }
 
     public Stack(int size) {
-        data = new int[size];
+        data = (T[]) new Object[size];
 
     }
 
     /**
      * Add element into stack
      */
-    public void push(int value) {
+    public void push( T value) {
         if (tos == data.length - 1) {
-            throw new StackOverflowError();
+            throw new StackException("Stack is overflow");
         }
         this.data[this.tos++] = value;
     }
@@ -34,9 +34,9 @@ public class Stack extends RuntimeException {
      *
      * @return
      */
-    public int pop() {
+    public T pop() {
         if (this.isEmpty()) {
-            throw new EmptyStackException();
+            throw new StackException("Stack is empty");
         }
 
         return this.data[--this.tos];
@@ -48,7 +48,7 @@ public class Stack extends RuntimeException {
      */
     public void clear() {
         for (int i = 0; i < data.length; i++) {
-            data[i] = 0;
+            data[i] = null;
         }
     }
 
@@ -65,7 +65,7 @@ public class Stack extends RuntimeException {
      * Increase the stack capacity if there is not enough space to add additional items
      */
     private void ensureCapacity() {
-        int[] newArray = new int[data.length * 2];
+        T [] newArray = (T[]) new Object [data.length * 2];
         System.arraycopy(data, 0, newArray, 0, data.length);
         this.data = newArray;
     }

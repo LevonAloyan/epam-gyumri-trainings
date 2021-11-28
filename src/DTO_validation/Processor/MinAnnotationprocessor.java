@@ -6,8 +6,8 @@ import DTO_validation.exceptions.AnnotationIncorrectUsageException;
 
 import java.lang.reflect.Field;
 
-public class MinAnnotationprocessor {
-    public String[] minAnnotationMeth(Object dto) throws NoSuchFieldException, IllegalAccessException {
+public class MinAnnotationprocessor <T> {
+    public String[] minAnnotationMeth(T dto) throws NoSuchFieldException, IllegalAccessException {
         Field[] declaredFields = dto.getClass().getDeclaredFields();
         String[] errors = new String [0];
         for (Field fields : declaredFields) {
@@ -16,14 +16,14 @@ public class MinAnnotationprocessor {
                 fields.setAccessible(true);
                 if (fields.get(dto) instanceof Number) {
                     int obj = (int) fields.get(dto);
-                    int minValue = annotationMin.value();
+                    int minValue = annotationMin.valueMin();
                     if (obj < minValue) {
-                        errors = new String[0];
-                        errors[1] = annotationMin.minErrorMessage();
+                        errors = new String[1];
+                        errors[0] = annotationMin.minErrorMessage();
                     }
                 } else {
                     // todo throw an exception if field type is incorrect - AnnotationIncorrectUsageException
-                    throw new AnnotationIncorrectUsageException("Min annotatin is can not be used"+ fields.getType() +"fields");
+                    throw new AnnotationIncorrectUsageException("Min ann  is can not be used"+ fields.getType() +"fields");
                 }
             }
         }

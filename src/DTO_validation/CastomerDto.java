@@ -19,9 +19,11 @@ public class CastomerDto {
     private LocalDate birthDay;
     private String adulthoodErrorMessage;
 
-    @Min(value = 0, minErrorMessage = "The number is  less than the limit specified in the parameter ")
-    @Max(value = 100, maxErrorMessage = "The number exceed the limit specified in the parameter ")
+    @Min(valueMin = 0, minErrorMessage = "The number is  less than the limit specified in the parameter ")
+    @Max(valueMax = 100, maxErrorMessage = "The number exceed the limit specified in the parameter ")
     private Integer discountRate;
+    private String minErrorMessage;
+    private String maxErrorMessage;
 
 
     public CastomerDto(String name, String email, LocalDate birthDay, int discountRate) {

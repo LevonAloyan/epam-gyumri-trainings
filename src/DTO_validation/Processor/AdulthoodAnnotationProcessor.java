@@ -7,11 +7,12 @@ import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class AdulthoodAnnotationProcessor {
+public class AdulthoodAnnotationProcessor  <T>{
 
-    public String[] adulthoodAnnotationMeth(Object dto) throws NoSuchFieldException, IllegalAccessException {
-        Field[] fields = dto.getClass().getDeclaredFields();
+    public String[] adulthoodAnnotationMeth(T dto) throws NoSuchFieldException, IllegalAccessException {
         String[] errors = new String[0];
+
+        Field[] fields = dto.getClass().getDeclaredFields();
         for (Field field : fields) {
             if (field.isAnnotationPresent(Adulthood.class)) {
                 Adulthood annotation = field.getAnnotation(Adulthood.class);

@@ -5,6 +5,6 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Max {
-    int value();
+    int valueMax();
     String maxErrorMessage();
 }

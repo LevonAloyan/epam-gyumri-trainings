@@ -2,15 +2,15 @@ package DTO_validation;
 
 import DTO_validation.Processor.*;
 
-public class Validator {
+public class Validator <T> {
 
-    private LengthAnnotationProcessor lengthAnnotationProcessor = new LengthAnnotationProcessor();
-    private EmailAnnotationProcessor emailAnnotationProcessor = new EmailAnnotationProcessor();
-    private AdulthoodAnnotationProcessor adulthoodAnnotationProcessor = new AdulthoodAnnotationProcessor();
-    private MaxAnnotationProcessor max_annotationProcessor = new MaxAnnotationProcessor();
-    private MinAnnotationprocessor min_Annotationprocessor = new MinAnnotationprocessor();
+    private LengthAnnotationProcessor<T> lengthAnnotationProcessor = new LengthAnnotationProcessor<>();
+    private EmailAnnotationProcessor<T> emailAnnotationProcessor = new EmailAnnotationProcessor<>();
+    private AdulthoodAnnotationProcessor <T> adulthoodAnnotationProcessor = new AdulthoodAnnotationProcessor<>();
+    private MaxAnnotationProcessor <T> maxAnnotationProcessor = new MaxAnnotationProcessor<>();
+    private MinAnnotationprocessor <T> minAnnotationprocessor = new MinAnnotationprocessor<>();
 
-    public String[] validateMeth(Object dto) throws NoSuchFieldException, IllegalAccessException {
+    public String[] validateMeth(T dto) throws NoSuchFieldException, IllegalAccessException {
         String[] errors = new String[0];
 
         String[] lengthValidationErrors = lengthAnnotationProcessor.lengthAnnotationMeth(dto);
@@ -19,9 +19,10 @@ public class Validator {
         errors = appendErrors(errors, emailValidationErrors);
         String[] adulthoodValidationErrors = adulthoodAnnotationProcessor.adulthoodAnnotationMeth(dto);
         errors = appendErrors(errors, adulthoodValidationErrors);
-        String[] maxValidationErrors = max_annotationProcessor.maxAnnotationMeth(dto);
+        String[] maxValidationErrors = maxAnnotationProcessor.maxAnnotationMeth(dto);
         errors = appendErrors(errors, maxValidationErrors);
-        String [] minValidationErrors = min_Annotationprocessor.minAnnotationMeth(dto);
+        String [] minValidationErrors = minAnnotationprocessor.minAnnotationMeth(dto);
+        errors = appendErrors(errors, minValidationErrors);
 
         return errors;
     }
