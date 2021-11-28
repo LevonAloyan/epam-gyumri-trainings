@@ -1,36 +1,36 @@
 package dtoannotations.processors;
 
-import dtoannotations.DTOInterface;
-import dtoannotations.annotations.Min;
-import dtoannotations.validationexceptions.ValueException;
+import dtoannotations.ValidationProcessor;
+import dtoannotations.annotations.Max;
+import dtoannotations.validationexceptions.IncorrectValueException;
 
 import java.lang.reflect.Field;
 
-public class MinValidationProcess implements DTOInterface {
+public class MaxValidationProcessor implements ValidationProcessor {
     @SuppressWarnings("unchecked cast")
     @Override
-    public <T> String processor(T object) {
+    public <T> String process(T object) {
         String message = "";
         Field[] declaredFields = object.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
             declaredField.setAccessible(true);
-            if (declaredField.isAnnotationPresent(Min.class)) {
+            if (declaredField.isAnnotationPresent(Max.class)) {
                 T fieldValue = null;
                 try {
                     fieldValue = (T) declaredField.get(object);
                     if (fieldValue instanceof Integer) {
-                        Integer fieldMinimumValue = (Integer) fieldValue;
-                        Min min = declaredField.getAnnotation(Min.class);
-                        if (fieldMinimumValue < min.minValue()) {
-                            throw new ValueException("\"" + declaredField.getName() + "\" " + "Field has an error, " +
-                                    "discount can't be less than " + min.minValue());
+                        Integer fieldMaxValue = (Integer) fieldValue;
+                        Max max = declaredField.getAnnotation(Max.class);
+                        if (fieldMaxValue > max.maxValue()) {
+                            throw new IncorrectValueException("\"" + declaredField.getName() + "\" " + "Field has an error, " +
+                                    "discount can't be more than " + max.maxValue());
                         }
                     } else {
                         throw new IllegalArgumentException(declaredField.getName() + " wrong field value.");
                     }
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
-                } catch (ValueException e) {
+                } catch (IncorrectValueException e) {
                     e.printStackTrace();
                     message = e.getMessage();
                 }

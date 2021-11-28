@@ -1,6 +1,6 @@
 package dtoannotations.processors;
 
-import dtoannotations.DTOInterface;
+import dtoannotations.ValidationProcessor;
 import dtoannotations.annotations.Email;
 import dtoannotations.validationexceptions.IncorrectEmailException;
 
@@ -8,10 +8,10 @@ import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EmailValidationProcess implements DTOInterface {
+public class EmailValidationProcessor implements ValidationProcessor {
     @SuppressWarnings("unchecked cast")
     @Override
-    public <T> String processor(T object) {
+    public <T> String process(T object) {
         String message = "";
         Field[] declaredFields = object.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {

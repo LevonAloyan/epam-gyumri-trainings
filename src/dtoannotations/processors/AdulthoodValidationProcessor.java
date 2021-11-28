@@ -1,16 +1,16 @@
 package dtoannotations.processors;
 
-import dtoannotations.DTOInterface;
+import dtoannotations.ValidationProcessor;
 import dtoannotations.annotations.Adulthood;
 import dtoannotations.validationexceptions.IncorrectAgeException;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 
-public class AdulthoodValidationProcess implements DTOInterface {
+public class AdulthoodValidationProcessor implements ValidationProcessor {
     @SuppressWarnings("unchecked cast")
     @Override
-    public <T> String processor(T object) {
+    public <T> String process(T object) {
         String message = "";
         Field[] declaredFields = object.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {

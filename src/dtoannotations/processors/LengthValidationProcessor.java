@@ -1,16 +1,16 @@
 package dtoannotations.processors;
 
-import dtoannotations.DTOInterface;
+import dtoannotations.ValidationProcessor;
 import dtoannotations.annotations.Length;
 import dtoannotations.validationexceptions.IncorrectLengthException;
 
 import java.lang.reflect.Field;
 
-public class LengthValidationProcess implements DTOInterface {
+public class LengthValidationProcessor implements ValidationProcessor {
 
     @SuppressWarnings("unchecked cast")
     @Override
-    public <T> String processor(T object) {
+    public <T> String process(T object) {
         String message = "";
         Field[] declaredFields = object.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
