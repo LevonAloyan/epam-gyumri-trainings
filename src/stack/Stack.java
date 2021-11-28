@@ -5,30 +5,29 @@ import java.util.EmptyStackException;
 
 
 
-public class Stack {
+public class Stack<T> {
 
     static final int DEFAULT_SIZE = 16;
-    private int[] data;
+    private T[] data;
     private int tos; //index which determines the top of stack
 
     public Stack() {
-
         this(DEFAULT_SIZE);
     }
 
     public Stack(int size) {
-        data = new int[size];
+        this.data = (T[])new Stack[size];
         this.tos = -1;
     }
 
     /**
      * Add element into stack
      */
-    public void push(int value) throws StackOverflowError {
+    public void push(T value) throws StackOverflowError {
         if (this.tos == data.length - 1) {
             throw new StackOverflowError();
         } else {
-            data[++tos] = value;
+            this.data[++tos] = value;
         }
     }
 
@@ -37,11 +36,11 @@ public class Stack {
      *
      * @return
      */
-    public int pop() throws EmptyStackException {
+    public T pop() throws EmptyStackException {
         if (this.tos < 0) {
             throw new EmptyStackException();
         } else {
-            return data[tos--];
+            return this.data[tos--];
         }
     }
 
@@ -51,12 +50,12 @@ public class Stack {
      */
     public void clear() {
         if (!isEmpty()) {
-            for (int i = 0; i < data.length; i++) {
+            for (int i = 0; i < this.data.length; i++) {
                 pop();
             }
-            tos = -1;
+            this.tos = -1;
         }
-        System.out.println("tos = " + tos);
+        System.out.println("tos = " + this.tos);
     }
 
     /**
@@ -76,28 +75,29 @@ public class Stack {
      * Increase the stack capacity if there is not enough space to add additional items
      */
     private void ensureCapacity() {
-        int[] newArray = new int[data.length * 2];
-        System.arraycopy(data, 0, newArray, 0, data.length);
+        T[] newArray = (T[])new Object[this.data.length * 2];
+        System.arraycopy(data, 0, newArray, 0, this.data.length);
         this.data = newArray;
         System.out.println(newArray.length);
     }
 
     public static void main(String[] args) {
-        Stack mystack = new Stack();
-        for (int i = 0; i < DEFAULT_SIZE; i++) {
-            mystack.push(i);
-        }
+        Stack<String> mystackString = new Stack<String>(3);
+        mystackString.push("hello");
+        mystackString.push("object");
+        mystackString.push("world");
+        mystackString.ensureCapacity();
 
-        System.out.println(mystack.isEmpty());
+        System.out.println(mystackString.isEmpty());
 
-        for (int i = 0; i < 2; i++) {
-            System.out.println(mystack.pop());
-        }
+        Stack<Integer> mystackInteger = new Stack<Integer>(2);
+        mystackInteger.push(15);
+        mystackInteger.push(25);
 
 
-        mystack.clear();
-        System.out.println(mystack.isEmpty());
-        mystack.ensureCapacity();
+
+
+
     }
 }
 

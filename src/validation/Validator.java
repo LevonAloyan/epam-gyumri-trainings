@@ -12,15 +12,13 @@ import java.time.LocalDate;
 import java.time.Period;
 
 
-public class Validator {
+public class Validator<T> {
 
     private LengthAnnotationProcessor lengthAnnotationProcessor = new LengthAnnotationProcessor();
 
-    public String[] validate(Object dto) throws IllegalAccessException {
+    public Class<?> validateLength(Object dto) throws IllegalAccessException, NoSuchFieldException {
 
-        String[] errors;
-
-        errors = lengthAnnotationProcessor.validateLength(dto);
+        Class<?> errors = LengthAnnotationProcessor.validate(dto);
 
         return errors;
     }
@@ -28,32 +26,26 @@ public class Validator {
     private AdulthoodAnotationProcessor adulthoodAnotationProcessor = new AdulthoodAnotationProcessor();
 
     public Class<?> validateAdult(Object dto) throws IllegalAccessException, NoSuchFieldException {
-        Class<?> errors1 = null;
-        errors1 = adulthoodAnotationProcessor.validate(dto);
+        Class<?> errors1 = AdulthoodAnotationProcessor.validate(dto);
         return errors1;
-
     }
 
     private EmailAnotationProcessor emailAnotationProcessor = new EmailAnotationProcessor();
-    public String[] validateEmail(Object dto) throws IllegalAccessException {
-
-        String[] errors2;
-        errors2 = emailAnotationProcessor.validateEmail(dto);
+    public Class<?> validateEmail(Object dto) throws IllegalAccessException, NoSuchFieldException {
+        Class<?> errors2 = EmailAnotationProcessor.validateEmail(dto);
         return errors2;
     }
 
     private MaxAnotationProcessor maxAnotationProcessor = new MaxAnotationProcessor();
     public Class<?> validateMax(Object dto) throws IllegalAccessException, NoSuchFieldException {
-        Class<?> errors3 = null;
-        errors3 = maxAnotationProcessor.validateMax(dto);
+        Class<?> errors3 = MaxAnotationProcessor.validateMax(dto);
         return errors3;
 
     }
 
     private MinAnnotationProcessor minAnnotationProcessor = new MinAnnotationProcessor();
     public Class<?> validateMin(Object dto) throws IllegalAccessException, NoSuchFieldException {
-        Class<?> errors3 = null;
-        errors3 = maxAnotationProcessor.validateMin(dto);
+        Class<?> errors3 = MinAnnotationProcessor.validateMin(dto);
         return errors3;
 
     }

@@ -7,16 +7,17 @@ import validation.annotations.Length;
 
 public class LengthAnnotationProcessor {
 
-
-    public String[] validateLength(Object dto) throws IllegalAccessException {
-        Field[] declaredFields = dto.getClass().getDeclaredFields();
-        String[] errors = null;
-        for (Field field : declaredFields) {
-            if (field.isAnnotationPresent(Length.class)) {
+    public static Class<?> validate(Object object) throws IllegalAccessException, NoSuchFieldException {
+        Class<?> lClass = object.getClass();
+        Field[] declaredField = lClass.getDeclaredFields();
+        String [] errors = null;
+        for (Field fieldName : declaredField) {
+            if (fieldName.isAnnotationPresent(Length.class)) {
+                Field field = object.getClass().getDeclaredField(fieldName.getName());
                 field.setAccessible(true);
-                Object o = field.get(dto);
-                if (o instanceof String) {
-                    String fieldValue = (String) o;
+                String value = (String) field.get(object).toString();
+                if (object instanceof String) {
+                    String fieldValue = (String) object;
                     int length = fieldValue.length();
                     Length annotation = field.getAnnotation(Length.class);
                     int minLength = annotation.min();
@@ -32,6 +33,7 @@ public class LengthAnnotationProcessor {
                 }
             }
         }
-        return errors;
+
+        return lClass;
     }
 }

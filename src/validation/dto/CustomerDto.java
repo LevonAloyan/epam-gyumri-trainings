@@ -1,6 +1,7 @@
 package validation.dto;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import validation.annotations.Adulthood;
 import validation.annotations.Length;
@@ -13,7 +14,7 @@ public class CustomerDto {
     @Length(min = 2, max = 20, message = "name field length is not valid.")
     private String name;
 
-    @Length(min = 2, max = 30, message = "Email length is not valid.")
+    @Email
     private String email;
 
 
@@ -25,12 +26,10 @@ public class CustomerDto {
     private int discountRate;
 
 
-
-
-    public CustomerDto(String name, String email, LocalDate bd, int discountRate) {
+    public CustomerDto(String name, String email, LocalDate birthday, int discountRate) {
         this.name = name;
         this.email = email;
-        this.birthDay = bd;
+        this.birthDay = birthday;
         this.discountRate = discountRate;
     }
 
@@ -50,6 +49,7 @@ public class CustomerDto {
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 
@@ -66,6 +66,20 @@ public class CustomerDto {
     }
 
     public void setBirthDay(LocalDate birthDay) {
+
         this.birthDay = birthDay;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerDto that = (CustomerDto) o;
+        return discountRate == that.discountRate && Objects.equals(name, that.name) && Objects.equals(email, that.email) && Objects.equals(birthDay, that.birthDay);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, email, birthDay, discountRate);
     }
 }
