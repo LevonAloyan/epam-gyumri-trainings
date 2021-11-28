@@ -8,11 +8,10 @@ import validation.dto.CustomerDto;
 
 public class ValidatorTest {
 
-    public static void main(String[] args) throws IllegalAccessException {
-        Validator validator = new Validator();
+    public static void main(String[] args) throws IllegalAccessException, NoSuchFieldException {
+        Validator<CustomerDto> validator = new Validator();
 
-        CustomerDto customerDto = new CustomerDto("ssnh", "Samvel@gmail.com", LocalDate.of(1992,12,26), 15);
-
+        CustomerDto customerDto = new CustomerDto("aaa", "@jj",LocalDate.of(1993,12,01),9);
         String[] validate = validator.validate(customerDto);
         System.out.println(Arrays.toString(validate));
 

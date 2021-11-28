@@ -5,24 +5,31 @@ import validation.dto.CustomerDto;
 
 import java.lang.reflect.Field;
 
-public class MaxAnnotationProcessor {
-    public String[] validateMax(Object object) throws IllegalAccessException {
-        String[] errorMessages = new String[10];
-
-        Class<?> aClass = object.getClass();
-        Field[] declaredFields = aClass.getDeclaredFields();
+public class MaxAnnotationProcessor<T> {
+    public String[] maxProcessor(T name) throws IllegalAccessException, NoSuchFieldException {
+        Field[] declaredFields = name.getClass().getDeclaredFields();
+        String[] errors = null;
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Max.class)) {
                 field.setAccessible(true);
-                Max annotation = field.getAnnotation(Max.class);
-                CustomerDto customer = (CustomerDto) object;
-                int fieldValue = customer.getDiscountRate();
-                int valueMax = annotation.value();
-                if (fieldValue > valueMax){
-                    System.out.println("Length is max");
+                Object o = field.get(name);
+
+                Max myAnn = field.getAnnotation(Max.class);
+                field.setAccessible(true);
+                int fieldValue = (int) field.get(name);
+
+                if (fieldValue <= myAnn.max()) {
+                    errors = new String[1];
+                    errors[0] = String.valueOf(fieldValue);
+                } else {
+                    errors = new String[1];
+                    errors[0] = myAnn.message();
                 }
+
             }
+
+
         }
-        return errorMessages;
+        return errors;
     }
 }

@@ -15,14 +15,22 @@ public class CustomerDto {
     private String email;
     private LocalDate birthDay;
     private int adulthood;
-    @Max
-    @Min
+    @Max(max = 9)
+    @Min(min = 3)
     private int discountRate;
 
     public CustomerDto(String name, String email, LocalDate bd, int discountRate) {
         this.name = name;
         this.email = email;
         this.birthDay = bd;
+        this.discountRate = discountRate;
+    }
+
+    public CustomerDto(String name, String email, LocalDate birthDay, int adulthood, int discountRate) {
+        this.name = name;
+        this.email = email;
+        this.birthDay = birthDay;
+        this.adulthood = adulthood;
         this.discountRate = discountRate;
     }
 

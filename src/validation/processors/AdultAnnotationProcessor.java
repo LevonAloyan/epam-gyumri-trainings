@@ -6,8 +6,8 @@ import java.lang.reflect.Field;
 import validation.annotations.Adulthood;
 import validation.dto.CustomerDto;
 
-public class AdultAnnotationProcessor {
-    public  String [] validateAdulthood(Object object) {
+public class AdultAnnotationProcessor<T> {
+    public  String [] validateAdulthood(T object) {
         String [] errorMessages = new String[10];
 
         Class<?> aClass = object.getClass();

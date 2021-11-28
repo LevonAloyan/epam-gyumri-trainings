@@ -1,30 +1,27 @@
 package validation;
 
+import validation.dto.CustomerDto;
 import validation.processors.*;
 
 import java.util.Arrays;
 
+public class Validator<T> {
+    LengthAnnotationProcessor<T> processor = new LengthAnnotationProcessor<>();
+    EmailAnnotationProcessor<T> emailProcessor = new EmailAnnotationProcessor<>();
+    AdulthoodAnnotationProcessor <T>adulthoodProcessor = new AdulthoodAnnotationProcessor<>();
+    MaxAnnotationProcessor <T>maxProcessor = new MaxAnnotationProcessor<>();
+    MinAnnotationProcessor<T> minProcessor = new MinAnnotationProcessor<>();
 
-public class Validator {
-    LengthAnnotationProcessor lengthAnnotationProcessor = new LengthAnnotationProcessor();
-    AdultAnnotationProcessor adulthoodValidator = new AdultAnnotationProcessor();
-    EmailAnnotationProcessor emailValidator = new EmailAnnotationProcessor();
-    MinAnnotationProcessor minValidator = new MinAnnotationProcessor();
-    MaxAnnotationProcessor maxValidator = new MaxAnnotationProcessor();
-
-    public String[] validate(Object dto) throws IllegalAccessException {
-        String[] error = new String[5];
-
-
-        error[0] = Arrays.toString(lengthAnnotationProcessor.validateLength(dto));
-        error[1] = Arrays.toString(emailValidator.validateEmail(dto));
-        error[2] = Arrays.toString(minValidator.validateMin(dto));
-        error[3] = Arrays.toString(maxValidator.validateMax(dto));
-        error[4] = Arrays.toString(adulthoodValidator.validateAdulthood(dto));
+    public String[] validate(T o) throws NoSuchFieldException, IllegalAccessException {
+        String[] errors = new String[5];
+        errors[0]= Arrays.toString(processor.lengthProcessor(o));
+        errors[1]= Arrays.toString(emailProcessor.emailProcessor(o));
+        errors[2]= Arrays.toString(adulthoodProcessor.adulthoodProcessor(o));
+        errors[3]= Arrays.toString(maxProcessor.maxProcessor(o));
+        errors[4]= Arrays.toString(minProcessor.minProcessor(o));
+        return errors;
 
 
-        return error;
     }
-
-
 }
+
