@@ -1,54 +1,44 @@
 package algorithms;
 
+@Profiling
 public class SortingAlgorithms {
 
-    public static void main(String[] args) {
-        int[] array = new int[]{2, 1, 8, 3, 5, 5, -26};
-        //sortByBubbleSorting(array);
-        //sortBySelectionSorting(array);
-        //sortByInsertionSorting(array);
-        //sortByMergeSorting(array);
-        sortByQuickSorting(array,0, array.length);
-        print(array);
-    }
-
-    public static void sortByBubbleSorting(int[] array) {
+    public void sortByBubbleSorting(int[] array) {
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length - i - 1; j++) {
-                if (array[j] > array[j + 1]) {
-                    swap(array, j + 1, j);
+            for (int j = 0; j < array.length-i-1; j++) {
+                if (array[j] > array[j+1]) {
+                    swap(array, j+1, j);
                 }
             }
         }
     }
 
-    public static void sortBySelectionSorting(int[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[j] < array[minIndex]) {
-                    minIndex = j;
-                    swap(array, minIndex, i);
+    public void sortBySelectionSorting(int[] array){
+        for (int i = 0; i < array.length; i++) {
+            int min = array[i];
+            for (int j = i; j < array.length; j++) {
+                if (min > array[j]) {
+                    min = array[j];
+                    swap(array, i, j);
                 }
             }
         }
-
     }
 
-    public static void sortByInsertionSorting(int[] array) {
-        for (int i = 1; i < array.length; ++i) {
-            int key = array[i];
+    public void sortByInsertionSorting(int[] array){
+        for (int i = 1; i < array.length; i++) {
+            int value = array[i];
             int j = i - 1;
-            while (j >= 0 && array[j] > key) {
+
+            while (j >= 0 && array[j] > value) {
                 array[j + 1] = array[j];
                 j = j - 1;
             }
-            array[j + 1] = key;
+            array[j + 1] = value;
         }
-
     }
 
-    public static void sortByMergeSorting(int[] array) {
+    public void sortByMergeSorting(int[] array){
         if (array.length < 2) {
             return;
         }
@@ -64,8 +54,7 @@ public class SortingAlgorithms {
 
         mergeArray(array, leftArray, rightArray);
     }
-
-    private static void mergeArray(int[] array, int[] leftArray, int[] rightArray) {
+    private void mergeArray(int[] array, int[] leftArray, int[] rightArray) {
 
         int leftArrayIndex = 0;
         int rightArrayIndex = 0;
@@ -87,7 +76,7 @@ public class SortingAlgorithms {
         }
     }
 
-    public static void sortByQuickSorting(int[] array, int startIndex, int endIndex){
+    public void sortByQuickSorting(int[] array, int startIndex, int endIndex){
         if (array.length == 0) {
             return;
         }
@@ -118,15 +107,14 @@ public class SortingAlgorithms {
             sortByQuickSorting(array, i, endIndex);
     }
 
-    private static void swap(int[] array, int firstIndex, int lastIndex) {
+    private void swap(int [] array, int firstIndex, int lastIndex) {
         int tempValue = array[firstIndex];
         array[firstIndex] = array[lastIndex];
         array[lastIndex] = tempValue;
     }
-
-    private static void print(int[] array) {
-        for (int element : array) {
-            System.out.print(element + ",");
+    private void print (int [] array){
+        for(int element : array){
+            System.out.print(element+",");
         }
     }
 }
