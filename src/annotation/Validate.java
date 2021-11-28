@@ -7,7 +7,7 @@ public class Validate <V> {
     private MaxAnnotationProcessor maxAnnotationProcessor = new MaxAnnotationProcessor();
     private MinAnnotationProcessor minAnnotationProcessor = new MinAnnotationProcessor();
 
-    public String[] validate(Validate dto) throws IllegalArgumentException {
+    public String[] validate(V dto) throws IllegalArgumentException {
         String[] errors;
         try {
             errors = lengthAnnotationProcessor.validate(dto);

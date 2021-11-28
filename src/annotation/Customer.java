@@ -54,7 +54,7 @@ public class Customer extends Validate {
 
     @Override
     public String toString(){
-        return name;
+        return getName() + ", " + getEmail() + ", " + getBirthDay();
     }
 
 }
