@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
 public class Validator<T> {
 
     public List<?> validate(T object) throws IllegalAccessException {
-        List<String> list = new ArrayList();
-        Class objectClass = object.getClass();
+        List<String> list = new ArrayList<>();
+        Class<?> objectClass = object.getClass();
 
         Field[] fields = objectClass.getDeclaredFields();
         for (Field field : fields) {
