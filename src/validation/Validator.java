@@ -5,25 +5,25 @@ import validation.processors.*;
 import java.util.Arrays;
 
 
-public class Validator {
-    LengthAnnotationProcessor lengthAnnotationProcessor = new LengthAnnotationProcessor();
-    AdultAnnotationProcessor adulthoodValidator = new AdultAnnotationProcessor();
-    EmailAnnotationProcessor emailValidator = new EmailAnnotationProcessor();
-    MinAnnotationProcessor minValidator = new MinAnnotationProcessor();
-    MaxAnnotationProcessor maxValidator = new MaxAnnotationProcessor();
+public class Validator <T> {
+    private LengthAnnotationProcessor lengthAnnotationProcessor = new LengthAnnotationProcessor();
+    private MinAnnotationProcessor minAnnotationProcessor =new MinAnnotationProcessor();
+    private MaxAnnotationProcessor maxAnnotationProcessor=new MaxAnnotationProcessor();
+    private EmailAnnotationProcessor emailAnnotationProcessor=new EmailAnnotationProcessor();
 
     public String[] validate(Object dto) throws IllegalAccessException {
-        String[] error = new String[5];
+
+        String [] errors;
+
+        errors = lengthAnnotationProcessor.validateLength(dto);
+        // minProcessor.validateMin()
+        errors= minAnnotationProcessor.validateMin(dto);
+        errors= maxAnnotationProcessor.validateMax(dto);
+        errors= emailAnnotationProcessor.validateEmail(dto);
 
 
-        error[0] = Arrays.toString(lengthAnnotationProcessor.validateLength(dto));
-        error[1] = Arrays.toString(emailValidator.validateEmail(dto));
-        error[2] = Arrays.toString(minValidator.validateMin(dto));
-        error[3] = Arrays.toString(maxValidator.validateMax(dto));
-        error[4] = Arrays.toString(adulthoodValidator.validateAdulthood(dto));
 
-
-        return error;
+        return errors;
     }
 
 

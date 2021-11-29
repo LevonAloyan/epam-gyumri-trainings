@@ -9,25 +9,29 @@ import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
 
-public class EmailAnnotationProcessor  {
-    public String[] validateEmail(Object object) {
-        String[] errorMessages = new String[5];
-
-        Class<?> aClass = object.getClass();
-        Field[] declaredFields = aClass.getDeclaredFields();
+public class EmailAnnotationProcessor <T> {
+    public String[] validateEmail(Object dto) throws IllegalAccessException {
+        Field[] declaredFields = dto.getClass().getDeclaredFields();
+       String[] errors = null;
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Email.class)) {
                 field.setAccessible(true);
-                CustomerDto customer = (CustomerDto) object;
-                Pattern pattern = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-" +
-                        "9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
-                boolean matches = customer.getEmail().matches(pattern.pattern());
-                if (!matches) {
-                    System.out.println("Email is not valid");
-                }
-            }
-        }
+                Object o = field.get(dto);
+                if (o instanceof String) {
+                    String fieldEmail = (String) o;
 
-        return errorMessages;
+                    if (!fieldEmail.matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-\n" +
+                            "9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$ ")) {
+
+                    }
+                    errors = new String[1];
+                    errors[0] = " ";
+
+                }
+
+            }
+
+        }
+        return errors;
     }
 }
