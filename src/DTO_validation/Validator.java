@@ -4,11 +4,11 @@ import DTO_validation.Processor.*;
 
 public class Validator <T> {
 
-    private LengthAnnotationProcessor<T> lengthAnnotationProcessor = new LengthAnnotationProcessor<>();
-    private EmailAnnotationProcessor<T> emailAnnotationProcessor = new EmailAnnotationProcessor<>();
-    private AdulthoodAnnotationProcessor <T> adulthoodAnnotationProcessor = new AdulthoodAnnotationProcessor<>();
-    private MaxAnnotationProcessor <T> maxAnnotationProcessor = new MaxAnnotationProcessor<>();
-    private MinAnnotationprocessor <T> minAnnotationprocessor = new MinAnnotationprocessor<>();
+    private final LengthAnnotationProcessor<T> lengthAnnotationProcessor = new LengthAnnotationProcessor<>();
+    private final EmailAnnotationProcessor<T> emailAnnotationProcessor = new EmailAnnotationProcessor<>();
+    private final AdulthoodAnnotationProcessor <T> adulthoodAnnotationProcessor = new AdulthoodAnnotationProcessor<>();
+    private final MaxAnnotationProcessor <T> maxAnnotationProcessor = new MaxAnnotationProcessor<>();
+    private final MinAnnotationprocessor <T> minAnnotationprocessor = new MinAnnotationprocessor<>();
 
     public String[] validateMeth(T dto) throws NoSuchFieldException, IllegalAccessException {
         String[] errors = new String[0];

@@ -12,7 +12,7 @@ public class Main {
 
 
         WorkerDTO workerDTO = new WorkerDTO("M", "Mmm.com", 252);
-        String[] errorsPersonDTO = validator.validateMeth(workerDTO);
-        System.out.println("WorkerDTO errors - " + Arrays.toString(errorsPersonDTO));
+        String[] errorsWorkerDTO = validator.validateMeth(workerDTO);
+        System.out.println("WorkerDTO errors - " + Arrays.toString(errorsWorkerDTO));
     }
 }

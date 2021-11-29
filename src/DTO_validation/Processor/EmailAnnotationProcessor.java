@@ -22,12 +22,10 @@ public class EmailAnnotationProcessor <T>{
                 if (filed.get(dto) instanceof String) {
                     String fieldValue = (String) filed.get(dto);
                     int length = fieldValue.length();
-                    if (length != 0) {
-                        if (!fieldValue.matches(EMAIL_REGEX)) {
+                        if (length != 0 && !fieldValue.matches(EMAIL_REGEX)) {
                             errors = new String[1];
                             errors[0] = annotation.emailErrorMassage();
                         }
-                    }
                 } else {
                     throw new AnnotationIncorrectUsageException("Email annotation is can not  be usd" + filed.getType() + "field");
                 }
