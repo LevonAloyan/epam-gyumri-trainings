@@ -13,21 +13,21 @@ public class AnnotationValidator {
 
 
 
-        AdulthoodAnnotationProcessor processor = new AdulthoodAnnotationProcessor();
-        processor.checkMajority(customer);
+        AnnotationInterface processor = new AdulthoodAnnotationProcessor();
+        processor.process(customer);
 
-        LengthAnnotationProcessor processor1 = new LengthAnnotationProcessor();
-        processor1.checkLength(customer);
+        processor = new LengthAnnotationProcessor();
+        processor.process(customer);
 
 
-        MinAnnotation processor2 = new MinAnnotation();
-        processor2.checkMin(customer);
+        processor = new MinAnnotation();
+        processor.process(customer);
 
-        MaxAnnotation processor3 = new MaxAnnotation();
-        processor3.checkMax(customer);
+        processor  = new MaxAnnotation();
+        processor.process(customer);
 
-        EmailAnnotationProcessor processor4 = new EmailAnnotationProcessor();
-        processor4.checkEmail(customer);
+        processor  = new EmailAnnotationProcessor();
+        processor.process(customer);
 
     }
 }

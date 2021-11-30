@@ -4,9 +4,10 @@ import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class AdulthoodAnnotationProcessor {
+public class AdulthoodAnnotationProcessor implements AnnotationInterface{
 
-    public void checkMajority(Object object) throws IllegalAccessException {
+    @Override
+    public void process(Object object) throws IllegalAccessException{
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
 
