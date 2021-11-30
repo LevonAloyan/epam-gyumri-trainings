@@ -1,17 +1,23 @@
 package dtoValidation.processors;
 
 import dtoValidation.annotations.Email;
-import dtoValidation.dto.Dto;
-import dtoValidation.error.Error;
-
 import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EmailProcessor<T> implements AnnotationProcessor<T>{
+public class EmailProcessor<T> implements AnnotationProcessor<T> {
+
+    AnnotationProcessor<T> nextProcessor;
+
+    public EmailProcessor() {
+    }
+
+    public EmailProcessor(AnnotationProcessor<T> nextProcessor) {
+        this.nextProcessor = nextProcessor;
+    }
 
     @Override
-    public Error validate(T t) throws IllegalAccessException {
+    public String validate(T t) throws IllegalAccessException {
         Field[] fields = t.getClass().getDeclaredFields();
         for (Field field : fields) {
             if (field.isAnnotationPresent(Email.class)) {
@@ -21,11 +27,11 @@ public class EmailProcessor<T> implements AnnotationProcessor<T>{
                 Pattern pattern = Pattern.compile(EMAIL_PATTERN);
                 Matcher matcher = pattern.matcher(email);
                 if (matcher.matches()) {
-                    return null;
+                    return nextProcessor == null ? null : nextProcessor.validate(t);
                 }
             }
         }
-        return Error.EmailError;
+        return "Wrong email format";
     }
 
 }

@@ -1,25 +1,32 @@
 package dtoValidation.processors;
 
 import dtoValidation.annotations.Min;
-import dtoValidation.dto.Dto;
-import dtoValidation.error.Error;
-
 import java.lang.reflect.Field;
 
-public class MinLimitProcessor<T> implements AnnotationProcessor<T>{
+public class MinLimitProcessor<T> implements AnnotationProcessor<T> {
+
+    AnnotationProcessor<T> nextProcessor;
+
+    public MinLimitProcessor() {
+    }
+
+    public MinLimitProcessor(AnnotationProcessor<T> nextProcessor) {
+        this.nextProcessor = nextProcessor;
+    }
 
     @Override
-    public Error validate(T t) throws IllegalAccessException {
+    public String validate(T t) throws IllegalAccessException {
         Field[] fields = t.getClass().getDeclaredFields();
         for (Field field : fields) {
             if (field.isAnnotationPresent(Min.class)) {
                 field.setAccessible(true);
                 if ((Integer) field.get(t) < field.getAnnotation(Min.class).value()) {
-                    return Error.MinLimitError;
+                    return "Value can't be less then " + field.getAnnotation(Min.class).value();
                 }
             }
         }
-        return null;
+        return nextProcessor == null ? null : nextProcessor.validate(t);
     }
 
 }
+

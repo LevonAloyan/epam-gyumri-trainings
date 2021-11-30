@@ -1,11 +1,10 @@
 package dtoValidation.dto;
 
 import dtoValidation.annotations.*;
-import dtoValidation.dto.Dto;
 
 import java.time.LocalDate;
 
-public class CustomerDto implements Dto {
+public class CustomerDto {
 
     @Length(min = 2, max = 30)
     private String name;

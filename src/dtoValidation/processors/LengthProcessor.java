@@ -1,28 +1,35 @@
 package dtoValidation.processors;
 
 import dtoValidation.annotations.Length;
-import dtoValidation.dto.Dto;
-import dtoValidation.error.Error;
 
 import java.lang.reflect.Field;
 
-public class LengthProcessor<T> implements AnnotationProcessor<T>{
+public class LengthProcessor<T> implements AnnotationProcessor<T> {
+
+    AnnotationProcessor<T> nextProcessor;
+
+    public LengthProcessor() {
+    }
+
+    public LengthProcessor(AnnotationProcessor<T> nextProcessor) {
+        this.nextProcessor = nextProcessor;
+    }
 
     @Override
-    public Error validate(T t) throws IllegalAccessException {
+    public String validate(T t) throws IllegalAccessException {
         Field[] fields = t.getClass().getDeclaredFields();
         for (Field field : fields) {
             if (field.isAnnotationPresent(Length.class)) {
                 field.setAccessible(true);
                 String fieldName = field.get(t).toString();
                 if (fieldName.length() < field.getAnnotation(Length.class).min()) {
-                    return Error.MinLengthError;
+                    return "Name must contain at least " + field.getAnnotation(Length.class).min() + " characters";
                 } else if (fieldName.length() > field.getAnnotation(Length.class).max()) {
-                    return Error.MaxLengthError;
+                    return "Name can't contain more then " + field.getAnnotation(Length.class).max() + " characters";
                 }
             }
         }
-        return null;
+        return nextProcessor == null ? null : nextProcessor.validate(t);
     }
 
 }
