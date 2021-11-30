@@ -1,12 +1,33 @@
 package pizzeria;
 
 public class Order {
-
-    private int orderNumber;
+    private int orderNumber = 10000;
     private Customer customer;
     private OrderItem[] orderItems;
 
-    // todo implement constructors
-    // implement method to add new order item
+    public Order(){
+        this.orderNumber = getOrderNumber();
+        this.customer = getCustomer();
+        this.orderItems = getOrderItems();
+    }
+
+    public Order (int orderNumber, Customer customer, OrderItem[] orderItems){
+        this.orderNumber = ++orderNumber;
+        this.customer = customer;
+        this.orderItems = orderItems;
+    }
+
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+    public OrderItem[] getOrderItems() {
+        return orderItems;
+    }
+    public Customer getCustomer () {
+        return customer;
+    }
 
 }

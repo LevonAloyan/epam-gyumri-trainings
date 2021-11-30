@@ -1,13 +1,23 @@
 package pizzeria;
 
 public class Customer {
-
-    private int customerNumber;
+    private static int customerNumber = 1000;
     private String name;
-    private String phoneNumber;
 
+    public Customer(int customerNumber, String name) {
+        this.customerNumber = ++customerNumber;
+        this.name = name;
+    }
 
-    // todo implement necessary constructors
-    // todo implement getters if needed
+    public static int getCustomerNumber() {
+        return customerNumber;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
+    }
 }
