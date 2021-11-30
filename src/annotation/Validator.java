@@ -3,28 +3,31 @@ package annotation;
 import annotation.exception.ExpectedTypeException;
 import annotation.myannotation.*;
 
-import java.util.Arrays;
-
 public class Validator {
-    /**
-     * Создайте класс Validator с одним методом проверки,
-     * который принимает в качестве входных данных dto
-     * и возвращает список ошибок, обнаруженных в процессе проверки.
-     * Класс должен работать с любым типом DTO
-     */
-    /**
-     * При чтении аннотаций из полей dto необходимо проверять каждое
-     * поле в зависимости от размещенной над ним аннотации.
-     * В случае ошибки добавьте его в итоговый список
-     */
+
+    public <T> void validate(T ob) throws IllegalAccessException {
+
+        AnnotationProcessor<T> processor;
+
+        try {
+            processor = new LengthAnnotationProcessor<>();
+            processor.fieldValidation(ob);
+
+            processor = new IntervalAnnotationProcessor<>();
+            processor.fieldValidation(ob);
+
+            processor = new EmailAnnotationProcessor<>();
+            processor.fieldValidation(ob);
+
+            processor = new AdulthoodAnnotationProcessor<>();
+            processor.fieldValidation(ob);
+        } catch (ExpectedTypeException e) {
+            e.printStackTrace();
+        }
 
 
-    public static <T> void validate(T ob) throws Throwable {
+        // new IntervalAnnotationProcessor<>().definitionFieldsForAnnotation(ob);
 
 
-        LengthAnnotationProcessor.definitionFieldsForAnnotationLength(ob);
-        IntervalAnnotationProcessor.definitionFieldsForAnnotationInterval(ob);
-        EmailAnnotationProcessor.definitionFieldsForAnnotationEmail(ob);
-        AdulthoodAnnotationProcessor.definitionFieldsForAnnotationLength(ob);
     }
 }

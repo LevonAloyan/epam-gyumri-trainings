@@ -6,9 +6,10 @@ import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class AdulthoodAnnotationProcessor {
+public class AdulthoodAnnotationProcessor<T> implements AnnotationProcessor<T>{
 
-    public static <T> void definitionFieldsForAnnotationLength(T object) throws IllegalAccessException{
+    @Override
+    public void fieldValidation(T object) throws IllegalAccessException {
 
         Class<?> aClass = object.getClass();
         Field[] declaredField = aClass.getDeclaredFields();
@@ -18,8 +19,8 @@ public class AdulthoodAnnotationProcessor {
 
                 fieldName.setAccessible(true);
 
-                Object temp= fieldName.get(object);
-                if (temp instanceof LocalDate){
+                Object temp = fieldName.get(object);
+                if (temp instanceof LocalDate) {
                     String value = (String) fieldName.get(object).toString();
 
 //                System.out.println("Field value: " + value);
@@ -30,22 +31,14 @@ public class AdulthoodAnnotationProcessor {
                     if (period.getYears() < 18) {
                         System.err.println("В классе: " + aClass + "\n в поле: "
                                 + fieldName + " значение: " + value + "\n не соответствует требованиям аннотации: "
-                                + Adulthood.class.getName()+"\n");
+                                + Adulthood.class.getName() + "\n");
                     }
-                }else {
-                    try {
-                        throw new ExpectedTypeException();
-                    } catch (ExpectedTypeException e) {
-                        e.printStackTrace();
-                    }
+//                } else {
+//                    throw new ExpectedTypeException();
                 }
-
-
-
             }
         }
     }
-
 }
 
 

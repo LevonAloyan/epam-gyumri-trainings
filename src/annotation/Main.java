@@ -8,7 +8,11 @@ public class Main {
 
         CustomerDto customerDto = new CustomerDto("a", "mail@.ru", "2020-07-29", 1);
 
-        Validator.validate(customerDto);
+        Validator validator = new Validator();
+
+        validator.validate(customerDto);
+
+
         System.out.println("end");
 
 

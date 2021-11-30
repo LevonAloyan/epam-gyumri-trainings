@@ -1,6 +1,6 @@
 package annotation.exception;
 
-public class ExpectedTypeException extends Exception{
+public class ExpectedTypeException extends RuntimeException{
 
     public ExpectedTypeException() {
         super();
