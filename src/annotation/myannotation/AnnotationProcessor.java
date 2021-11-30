@@ -1,8 +1,10 @@
 package annotation.myannotation;
 
+import annotation.InvalidData;
 import annotation.exception.ExpectedTypeException;
 
 public interface AnnotationProcessor<T> {
 
-    void fieldValidation(T obj) throws IllegalAccessException, ExpectedTypeException;
+
+    InvalidData fieldValidation(T obj) throws IllegalAccessException, ExpectedTypeException;
 }

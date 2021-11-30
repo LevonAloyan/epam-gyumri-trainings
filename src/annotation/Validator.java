@@ -3,31 +3,48 @@ package annotation;
 import annotation.exception.ExpectedTypeException;
 import annotation.myannotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class Validator {
 
-    public <T> void validate(T ob) throws IllegalAccessException {
+    public <T> List<InvalidData> validate(T ob) throws IllegalAccessException {
+
+        List<InvalidData> dataArrayList = new ArrayList<>();
 
         AnnotationProcessor<T> processor;
 
         try {
             processor = new LengthAnnotationProcessor<>();
-            processor.fieldValidation(ob);
+            dataArrayList.add(processor.fieldValidation(ob));
+        } catch (ExpectedTypeException e) {
+            e.printStackTrace();
+        }
+        try {
+            processor = new AdulthoodAnnotationProcessor<>();
+            dataArrayList.add(processor.fieldValidation(ob));
+        } catch (ExpectedTypeException e) {
+            e.printStackTrace();
+        }
+        try {
+            processor = new EmailAnnotationProcessor<>();
+            dataArrayList.add(processor.fieldValidation(ob));
+        } catch (ExpectedTypeException e) {
+            e.printStackTrace();
+        }
+        try {
 
             processor = new IntervalAnnotationProcessor<>();
-            processor.fieldValidation(ob);
-
-            processor = new EmailAnnotationProcessor<>();
-            processor.fieldValidation(ob);
-
-            processor = new AdulthoodAnnotationProcessor<>();
-            processor.fieldValidation(ob);
+            dataArrayList.add(processor.fieldValidation(ob));
         } catch (ExpectedTypeException e) {
             e.printStackTrace();
         }
 
 
         // new IntervalAnnotationProcessor<>().definitionFieldsForAnnotation(ob);
+        dataArrayList.removeIf(Objects::isNull);
 
-
+        return dataArrayList;
     }
 }

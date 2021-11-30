@@ -9,18 +9,17 @@ import java.time.LocalDate;
 
 public class CustomerDto {
 
-    @Length(min = 3, max = 8)
-    @Interval(min = 5) //Ok
+    @Length(min = 5, max = 8)
     private String name;
 //    @Length(min = 16) //Ok
+//    @Interval(min = 5) //Ok
     @Email
     private String email;
     @Adulthood
     private LocalDate birthDay;
 
     //@Min and @Max combined into one with the ability to specify both MIN and MAX or only MIN
-
-    @Interval(min = 2)
+    @Interval(min = 5)
     private int discountRate;
 
 
@@ -31,8 +30,6 @@ public class CustomerDto {
         this.discountRate = discountRate;
     }
 
-    public CustomerDto() {
-    }
 
     public String getName() {
         return name;
