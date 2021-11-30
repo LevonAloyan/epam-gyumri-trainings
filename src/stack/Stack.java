@@ -19,7 +19,7 @@ public class Stack <T> implements StackInterface<T> {
     }
 
     public void push(T value) {
-        if (tos == data.length-1 && data.length > 10) {
+        if (tos == data.length-1 && data.length <= 10) {
             ensureCapacity();
         } else if (data.length > 10) {
             try {
