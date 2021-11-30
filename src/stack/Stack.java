@@ -3,7 +3,7 @@ package stack;
 
 import java.util.Arrays;
 
-public class Stack <T> implements Interface<T> {
+public class Stack <T> implements StackInterface<T> {
 
     private static final int DEFAULT_SIZE = 4;
     private T[] data;
@@ -19,7 +19,7 @@ public class Stack <T> implements Interface<T> {
     }
 
     public void push(T value) {
-        if (tos == data.length-1 && data.length <= 10) {
+        if (tos == data.length-1 && data.length > 10) {
             ensureCapacity();
         } else if (data.length > 10) {
             try {
@@ -28,7 +28,7 @@ public class Stack <T> implements Interface<T> {
                 e.printStackTrace();
             }
         }
-        data[++tos] = value;
+        data[tos++] = value;
     }
 
     public T pop() {

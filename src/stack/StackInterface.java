@@ -1,6 +1,6 @@
 package stack;
 
-public interface Interface<T> {
+public interface StackInterface<T> {
 
     void push (T value);
 
