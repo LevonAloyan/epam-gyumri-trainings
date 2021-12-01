@@ -15,12 +15,15 @@ public class Customer {
     @Min(0)
     @Max(100)
     private int discountRate;
+//    @Max(1000)
+//    private int price;
 
-    public Customer(String name,String email,LocalDate birthDay,int discountRate){
+    public Customer(String name,String email,LocalDate birthDay,int discountRate,int price){
         this.name = name;
         this.email = email;
         this.birthDay = birthDay;
         this.discountRate = discountRate;
+//        this.price = price;
     }
 
     public Customer(String  name) {

@@ -5,13 +5,14 @@ import validation.annotation.Email;
 import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
-public class EmailValidator implements AnnotationValidator {
+public class EmailValidator <T> implements AnnotationValidator <T> {
 
-    public String[] validate(Object object) throws IllegalAccessException, NewCustomException {
-        String[] errorMessages = new String[5];
+    public String[] validate(T object) throws IllegalAccessException, NewCustomException {
+        String[] errorMessages = new String[1];
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
+        int i = 0;
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Email.class)) {
                 field.setAccessible(true);
@@ -21,7 +22,6 @@ public class EmailValidator implements AnnotationValidator {
                     String email = (String) ob;
                     Pattern pattern = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-" +
                             "9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
-                    System.out.println(email.matches(pattern.pattern()));
 
                 } else throw new NewCustomException("Is not valid to work");
             }

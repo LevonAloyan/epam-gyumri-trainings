@@ -5,13 +5,14 @@ import validation.annotation.Length;
 
 import java.lang.reflect.Field;
 
-public class LengthValidator implements AnnotationValidator {
+public class LengthValidator <T> implements AnnotationValidator <T> {
 
-    public String[] validate(Object object) throws IllegalAccessException, NewCustomException {
-        String[] errorMessages = new String[5];
+    public String[] validate(T object) throws IllegalAccessException, NewCustomException {
+        String[] errorMessages = new String[2];
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
+        int i = 0;
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Length.class)) {
                 field.setAccessible(true);
@@ -22,7 +23,7 @@ public class LengthValidator implements AnnotationValidator {
                     Customer customer = (Customer) object;
                     String fieldValue = customer.getName();
                     if (fieldValue.length() < annotation.min() || fieldValue.length() > annotation.max()) {
-                        System.out.println("do not use");
+                        errorMessages[i++] = field.getName() + " do not use";
                     }
                 }else throw new NewCustomException("Is not valid to work");
 

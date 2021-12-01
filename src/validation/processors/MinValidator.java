@@ -5,12 +5,13 @@ import validation.annotation.Min;
 
 import java.lang.reflect.Field;
 
-public class MinValidator implements AnnotationValidator {
-    public String[] validate(Object object) throws IllegalAccessException, NewCustomException {
+public class MinValidator <T> implements AnnotationValidator <T>{
+    public String[] validate(T object) throws IllegalAccessException, NewCustomException {
         String[] errorMessages = new String[5];
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
+        int i = 0;
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Min.class)) {
                 field.setAccessible(true);
@@ -22,7 +23,7 @@ public class MinValidator implements AnnotationValidator {
                     int fieldValue = customer.getDiscountRate();
                     int valueMin = annotation.value();
                     if (fieldValue < valueMin) {
-                        System.out.println("less than needed");
+                        errorMessages[i++] = field.getName() + " less than needed";
                     }
 
 

@@ -6,10 +6,10 @@ import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class AdulthoodValidator implements AnnotationValidator {
+public class AdulthoodValidator <T> implements AnnotationValidator <T>{
 
-    public String[] validate(Object object) throws IllegalAccessException, NewCustomException {
-        String[] errorMessages = new String[5];
+    public String[] validate(T object) throws IllegalAccessException, NewCustomException {
+        String[] errorMessages = new String[1];
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
@@ -21,7 +21,7 @@ public class AdulthoodValidator implements AnnotationValidator {
                     LocalDate birthDay = (LocalDate) fieldValue;
                     int years = Period.between(birthDay, LocalDate.now()).getYears();
                     if (years < 18) {
-                        System.out.println("You are not allowed to sing in");
+                        errorMessages[0] = "You are not allowed to sing in";
                     }
                 } else throw new NewCustomException("Is not valid to work");
 

@@ -5,25 +5,25 @@ import validation.annotation.Max;
 
 import java.lang.reflect.Field;
 
-public class MaxValidator implements AnnotationValidator {
+public class MaxValidator <T> implements AnnotationValidator <T> {
 
-    public String[] validate(Object object) throws IllegalAccessException, NewCustomException {
+    public String[] validate(T object) throws IllegalAccessException, NewCustomException {
         String[] errorMessages = new String[5];
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
+        int i = 0;
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Max.class)) {
                 field.setAccessible(true);
                 Object ob = field.get(object);
                 if (ob instanceof Integer) {
-                    Integer email = (Integer) ob;
+                    Integer fieldValue = (Integer) ob;
                     Max annotation = field.getAnnotation(Max.class);
-                    Customer customer = (Customer) object;
-                    int fieldValue = customer.getDiscountRate();
                     int valueMin = annotation.value();
+
                     if (fieldValue > valueMin) {
-                        System.out.println("more than needed");
+                        errorMessages[i++] = field.getName() + " more than needed";
                     }
 
                 } else throw new NewCustomException("Is not valid to work");

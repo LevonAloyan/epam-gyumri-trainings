@@ -1,6 +1,6 @@
 package validation.processors;
 
-public interface AnnotationValidator {
+public interface AnnotationValidator <T> {
 
-    String[] validate(Object dto) throws IllegalAccessException, NewCustomException;
+    String[] validate(T dto) throws IllegalAccessException, NewCustomException;
 }
