@@ -1,8 +1,7 @@
 package stack;
 
-public class EmptyStackException extends Exception{
-       public EmptyStackException() {
-           System.out.println("Stack is empty");
-
+public class EmptyStackException extends RuntimeException{
+    public EmptyStackException(String message) {
+        super(message);
     }
 }

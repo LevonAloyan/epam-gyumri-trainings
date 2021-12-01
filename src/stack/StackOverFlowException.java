@@ -1,7 +1,7 @@
 package stack;
 
-public class StackOverFlowException extends Exception {
-    public void StackOverFlowException(){
-        System.out.println("Stack is Overflow");
+public class StackOverFlowException extends RuntimeException {
+    public StackOverFlowException(String message) {
+        super(message);
     }
 }

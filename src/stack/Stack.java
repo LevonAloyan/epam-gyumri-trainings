@@ -21,9 +21,9 @@ public class Stack {
     /**
      * Add element into stack
      */
-    public void push(int value) throws StackOverFlowException{
+    public void push(int value) {
         if (tos > this.tos-1) {
-            throw new StackOverFlowException();
+            throw new StackOverFlowException("Stack is Overflow");
         }else {
 
             data[++tos] = value;
@@ -37,10 +37,10 @@ public class Stack {
      *
      * @return
      */
-    public int pop() throws EmptyStackException {
+    public int pop()  {
 
             if (this.tos < 0) {
-                throw new EmptyStackException();
+                throw new EmptyStackException("Stack is empty");
             } else {
                 return data[tos--];
             }
