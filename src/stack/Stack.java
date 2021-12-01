@@ -7,8 +7,7 @@ public class Stack {
     private int tos; //index which determines the top of stack
 
     public Stack() {
-        this(DEFAULT_SIZE);
-    }
+        data = new int[DEFAULT_SIZE];    }
 
     public Stack(int size) {
         data = new int[size];
@@ -21,22 +20,23 @@ public class Stack {
     public void push(int value) {
 
         if (tos >= data.length-1) {
-            ensureCapacity();
-
+            throw new StackOverFlowException("Stack is fully");
         }
-        tos++;
-        data[tos] = value;
+
+        data[++tos] = value;
     }
 
     /**
      * Get element from the stack
      */
     public int pop() {
-        if (isEmpty()) {
-            System.out.println("stack is empty");
-            return 0;
-        }
-        return (data[tos--]);
+
+           if (isEmpty()){
+               throw new EmptyStackException("Stack is empty");
+           }
+
+
+        return data[tos--];
     }
 
 
