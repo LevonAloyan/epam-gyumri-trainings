@@ -1,8 +1,7 @@
-package DTO_validation.Annotation;
+package DTO_validation.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.lang.reflect.Method;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Email {

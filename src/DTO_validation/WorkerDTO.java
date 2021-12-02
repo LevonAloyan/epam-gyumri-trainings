@@ -1,45 +1,43 @@
 package DTO_validation;
 
-import DTO_validation.Annotation.*;
-
-import java.time.LocalDate;
+import DTO_validation.annotation.*;
 
 public class WorkerDTO {
 
-    @Length(minvalue = 5, maxvalue = 15, nameErrorMessage = "Name field length is not valid " )
-    private String namePerson;
+    @Length(minValue = 5, maxValue = 15, nameErrorMessage = "Name field length is not valid ")
+    private String nameWorker;
     private String nameErrorMessage;
 
     @Email(emailErrorMassage = "This fields does not contain an email address ")
-    private String emailPerson;
+    private String emailWorker;
     private String emailErrorMessage;
 
-    @Min(valueMin = 0, minErrorMessage = "The number is  less than the limit specified in the parameter ")
-    @Max(valueMax = 100, maxErrorMessage = "The number exceed the limit specified in the parameter ")
+    @Min(minValue = 0, minErrorMessage = "The number is  less than the limit specified in the parameter ")
+    @Max(maxValue = 100, maxErrorMessage = "The number exceed the limit specified in the parameter ")
     private Integer discountRatePerson;
     private String minErrorMessage;
     private String maxErrorMessage;
 
     public WorkerDTO(String name, String email, int discountRate) {
-        this.namePerson = name;
-        this.emailPerson = email;
+        this.nameWorker = name;
+        this.emailWorker = email;
         this.discountRatePerson = discountRate;
     }
 
     public String getName() {
-        return namePerson;
+        return nameWorker;
     }
 
     public void setName(String name) {
-        this.namePerson = name;
+        this.nameWorker = name;
     }
 
     public String getEmail() {
-        return emailPerson;
+        return emailWorker;
     }
 
     public void setEmail(String email) {
-        this.emailPerson = email;
+        this.emailWorker = email;
     }
 
     public int getDiscountRate() {

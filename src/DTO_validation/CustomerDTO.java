@@ -1,60 +1,60 @@
 package DTO_validation;
 
-import DTO_validation.Annotation.*;
+import DTO_validation.annotation.*;
 
 import java.time.LocalDate;
 
-public class CastomerDto {
+public class CustomerDTO {
 
 
-    @Length(minvalue = 2, maxvalue = 30, nameErrorMessage = "Name field length is not valid " )
-    private String name;
+    @Length(minValue = 2, maxValue = 30, nameErrorMessage = "Name field length is not valid ")
+    private String nameCustomer;
     private String nameErrorMessage;
 
     @Email(emailErrorMassage = "This fields does not contain an email address ")
-    private String email;
+    private String emailCustomer;
     private String emailErrorMessage;
 
     @Adulthood(adulthoodErrorMessage = "The client has not reached the age of majority ")
-    private LocalDate birthDay;
+    private LocalDate birthDayCustomer;
     private String adulthoodErrorMessage;
 
-    @Min(valueMin = 0, minErrorMessage = "The number is  less than the limit specified in the parameter ")
-    @Max(valueMax = 100, maxErrorMessage = "The number exceed the limit specified in the parameter ")
+    @Min(minValue = 0, minErrorMessage = "The number is  less than the limit specified in the parameter ")
+    @Max(maxValue = 100, maxErrorMessage = "The number exceed the limit specified in the parameter ")
     private Integer discountRate;
     private String minErrorMessage;
     private String maxErrorMessage;
 
 
-    public CastomerDto(String name, String email, LocalDate birthDay, int discountRate) {
-        this.name = name;
-        this.email = email;
-        this.birthDay = birthDay;
+    public CustomerDTO(String name, String email, LocalDate birthDay, int discountRate) {
+        this.nameCustomer = name;
+        this.emailCustomer = email;
+        this.birthDayCustomer = birthDay;
         this.discountRate = discountRate;
     }
 
     public String getName() {
-        return name;
+        return nameCustomer;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.nameCustomer = name;
     }
 
     public String getEmail() {
-        return email;
+        return emailCustomer;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.emailCustomer = email;
     }
 
     public LocalDate getBirthDay() {
-        return birthDay;
+        return birthDayCustomer;
     }
 
     public void setBirthDay(LocalDate birthDay) {
-        this.birthDay = birthDay;
+        this.birthDayCustomer = birthDay;
     }
 
     public int getDiscountRate() {

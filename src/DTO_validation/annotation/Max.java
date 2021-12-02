@@ -1,10 +1,10 @@
-package DTO_validation.Annotation;
+package DTO_validation.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Max {
-    int valueMax();
+    int maxValue();
     String maxErrorMessage();
 }

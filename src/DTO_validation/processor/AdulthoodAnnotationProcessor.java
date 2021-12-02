@@ -1,35 +1,34 @@
-package DTO_validation.Processor;
+package DTO_validation.processor;
 
-import DTO_validation.Annotation.Adulthood;
+import DTO_validation.annotation.Adulthood;
 import DTO_validation.exceptions.AnnotationIncorrectUsageException;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class AdulthoodAnnotationProcessor  <T>{
+public class AdulthoodAnnotationProcessor<T> extends AnnotationProcessor<T> {
 
-    public String[] adulthoodAnnotationMeth(T dto) throws NoSuchFieldException, IllegalAccessException {
-        String[] errors = new String[0];
+    @Override
+    public void validate(T dto) throws IllegalAccessException {
 
-        Field[] fields = dto.getClass().getDeclaredFields();
-        for (Field field : fields) {
+        Field[] declaredFields = dto.getClass().getDeclaredFields();
+        for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Adulthood.class)) {
                 Adulthood annotation = field.getAnnotation(Adulthood.class);
                 field.setAccessible(true);
                 if (field.get(dto) instanceof LocalDate) {
-                    LocalDate obj = (LocalDate) field.get(dto);
-                    Period period = Period.between(obj, LocalDate.now());
+                    LocalDate fieldLocalDateObj = (LocalDate) field.get(dto);
+                    Period period = Period.between(fieldLocalDateObj, LocalDate.now());
                     int years = period.getYears();
                     if (years < 18) {
-                        errors = new String[1];
-                        errors[0] = annotation.adulthoodErrorMessage();
+                        System.out.println("The client has not reached the age of majority, ");
                     }
+                    getNextProcessor().validate(dto);
                 } else {
                     throw new AnnotationIncorrectUsageException("Adulthood annotation can not be used on " + field.getType() + " field.");
                 }
             }
         }
-        return errors;
     }
 }
