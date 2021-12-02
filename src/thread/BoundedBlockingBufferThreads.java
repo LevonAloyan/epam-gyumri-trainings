@@ -12,9 +12,7 @@ class Importer<T> implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
             boundedBlockingBuffer.put(transmittedValue);
-        }
     }
 }
 
@@ -28,10 +26,8 @@ class Exporter<T> implements Runnable {
 
     @Override
     public void run() {
+        boundedBlockingBuffer.take();
 
-        while (true) {
-            System.out.println("Take " + boundedBlockingBuffer.take());
-        }
     }
 }
 

@@ -9,8 +9,8 @@ public class BoundedBlockingBuffer<T> {
         while (!valueSet) {
             if (data != null) {
                 System.out.println("Take " + data);
-                valueSet=false;
-                data = null;
+                valueSet=true;
+               data = null;
                 notify();
             } else {
                 try {
@@ -24,12 +24,12 @@ public class BoundedBlockingBuffer<T> {
     }
 
     synchronized void put(T d) {
-        while (valueSet) {
+        while (!valueSet) {
             if (data == null) {
                 data = d;
-                valueSet=true;
                 System.out.println("Put " + data);
                 notify();
+                valueSet=false;
             } else {
                 try {
                     wait();
