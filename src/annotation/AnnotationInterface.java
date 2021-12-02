@@ -1,6 +1,6 @@
 package annotation;
 
-public interface AnnotationInterface {
+public interface AnnotationInterface<T> {
 
-     void process(Object object) throws IllegalAccessException;
+     void process(T t) throws IllegalAccessException;
 }

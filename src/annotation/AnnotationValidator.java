@@ -13,20 +13,20 @@ public class AnnotationValidator {
 
 
 
-        AnnotationInterface processor = new AdulthoodAnnotationProcessor();
+        AnnotationInterface processor = new AdulthoodAnnotationProcessor <LocalDate>();
         processor.process(customer);
 
-        processor = new LengthAnnotationProcessor();
+        processor = new LengthAnnotationProcessor <String>();
         processor.process(customer);
 
 
-        processor = new MinAnnotation();
+        processor = new MinAnnotationProcessor<Integer>();
         processor.process(customer);
 
-        processor  = new MaxAnnotation();
+        processor  = new MaxAnnotationProcessor<Integer>();
         processor.process(customer);
 
-        processor  = new EmailAnnotationProcessor();
+        processor  = new EmailAnnotationProcessor <String>();
         processor.process(customer);
 
     }

@@ -3,19 +3,19 @@ package annotation;
 import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
-public class EmailAnnotationProcessor implements AnnotationInterface {
+public class EmailAnnotationProcessor <T>implements AnnotationInterface <T>{
     private final String regex = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0" +
             "9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
 
     @Override
-    public void process(Object object) throws IllegalAccessException {
-        Class<?> aClass = object.getClass();
+    public void process(T t) throws IllegalAccessException {
+        Class<?> aClass = t.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
 
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Email.class)) {
                 field.setAccessible(true);
-                Object obj = field.get(object);
+                Object obj = field.get(t);
                 if (obj instanceof String) {
 
                     String email = (String) obj;
