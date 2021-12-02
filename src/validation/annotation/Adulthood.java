@@ -1,4 +1,4 @@
-package vlidation.annotation;
+package validation.annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 

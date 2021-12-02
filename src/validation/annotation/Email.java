@@ -1,7 +1,6 @@
-package vlidation.annotation;
+package validation.annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.util.regex.Pattern;
 
 @Retention(RetentionPolicy.RUNTIME)
 
