@@ -1,6 +1,9 @@
 package io;
 
-public class User {
+import java.io.Serializable;
+import java.util.Base64;
+
+public class User implements Serializable {
 
     private long id;
     private String username;
@@ -9,6 +12,14 @@ public class User {
     private String phoneNumber;
     private Address address;
 
+    public String toString() {
+        return "\n Information about user [ " +
+                "ID -   " + id + "\n" +
+                "Username -   " + username +
+                "Password - " + password +
+                "Bank Card Number - " + getBankCardNumber() +"\n"+
+                "Address - " + address + " ]";
+    }
 
     public long getId() {
         return id;
@@ -35,7 +46,10 @@ public class User {
     }
 
     public String getBankCardNumber() {
-        return bankCardNumber;
+        byte [] cardNumber = bankCardNumber.getBytes();
+        Base64.getEncoder().encode(cardNumber);
+        String s = cardNumber.toString();
+        return s;
     }
 
     public void setBankCardNumber(String bankCardNumber) {
@@ -57,4 +71,5 @@ public class User {
     public void setAddress(Address address) {
         this.address = address;
     }
+
 }

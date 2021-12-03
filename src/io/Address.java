@@ -8,6 +8,10 @@ public class Address {
     private String street;
     private String line1;
 
+    public String toString(){
+        return country+ ",  " + city + ",   " + zipCode + ",  " + street  + ", " + line1                ;
+    }
+
     public String getCountry() {
         return country;
     }
@@ -47,4 +51,6 @@ public class Address {
     public void setLine1(String line1) {
         this.line1 = line1;
     }
+
+
 }
