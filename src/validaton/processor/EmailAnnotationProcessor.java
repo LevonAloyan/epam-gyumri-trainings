@@ -1,11 +1,31 @@
 package validaton.processor;
 
+import validaton.AbstractValidation;
 import validaton.annotation.Email;
 import validaton.dto.CostumerDto;
 
 import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.Set;
 
-public class EmailAnnotationProcessor<T> {
+public class EmailAnnotationProcessor<T> extends AbstractValidation<T> {
+
+    @Override
+    public Set<String> validate(T dto) throws IllegalAccessException {
+        Set<String> errors = new HashSet<>();
+        String error = validateEmail(dto);
+        if(error != null){
+            errors.add(error);
+        }
+        if (next != null){
+            errors.addAll(next.validate(dto));
+
+        }
+
+
+        return errors;
+    }
+
     public String validateEmail(T dto) throws IllegalAccessException {
         Field[] declaredField = dto.getClass().getDeclaredFields();
         String error = null;
@@ -27,4 +47,6 @@ public class EmailAnnotationProcessor<T> {
         }
         return error;
     }
+
+
 }

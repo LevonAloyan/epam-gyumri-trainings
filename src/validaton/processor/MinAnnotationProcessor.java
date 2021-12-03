@@ -1,11 +1,28 @@
 package validaton.processor;
 
+import validaton.AbstractValidation;
 import validaton.annotation.Length;
 import validaton.annotation.Min;
 
 import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.Set;
 
-public class MinAnnotationProcessor<T> {
+public class MinAnnotationProcessor<T> extends AbstractValidation<T> {
+    @Override
+    public Set<String> validate(T dto) throws IllegalAccessException {
+        Set<String> errors = new HashSet<>();
+        String error = validateMin(dto);
+        if(error != null){
+            errors.add(error);
+        }
+        if (next != null){
+            errors.addAll(next.validate(dto));
+
+        }
+        return errors;
+    }
+
     public String validateMin(T dto) throws IllegalAccessException {
         Field[] declaredFields = dto.getClass().getDeclaredFields();
         String error = null;
@@ -24,4 +41,6 @@ public class MinAnnotationProcessor<T> {
         }
         return error;
     }
+
+
 }

@@ -1,12 +1,30 @@
 package validaton.processor;
 
+import validaton.AbstractValidation;
 import validaton.annotation.Adulthood;
-import validaton.dto.CostumerDto;
 
 import java.lang.reflect.Field;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
-public class AdulthoodAnnotationProcessor<T> {
+public class AdulthoodAnnotationProcessor<T>  extends AbstractValidation<T> {
+
+
+
+    @Override
+    public Set<String> validate(T dto) throws IllegalAccessException {
+        Set<String> errors = new HashSet<>();
+        String error = validateAdulthood(dto);
+        if(error != null){
+            errors.add(error);
+        }
+        if (next !=null){
+            errors.addAll(next.validate(dto));
+        }
+        return errors;
+    }
+
     public String validateAdulthood(T dto) throws IllegalAccessException {
         Field[] declaredField = dto.getClass().getDeclaredFields();
         String error = null;
@@ -32,4 +50,5 @@ public class AdulthoodAnnotationProcessor<T> {
         }
         return  error;
     }
+
 }
