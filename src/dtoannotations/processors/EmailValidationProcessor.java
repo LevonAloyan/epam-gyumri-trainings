@@ -8,11 +8,11 @@ import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EmailValidationProcessor implements ValidationProcessor {
+public class
+EmailValidationProcessor<V> extends ValidationProcessor<V> {
     @SuppressWarnings("unchecked cast")
     @Override
-    public <T> String process(T object) {
-        String message = "";
+    public <T> void process(T object) {
         Field[] declaredFields = object.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
             declaredField.setAccessible(true);
@@ -36,10 +36,12 @@ public class EmailValidationProcessor implements ValidationProcessor {
                     e.printStackTrace();
                 } catch (IncorrectEmailException e) {
                     e.printStackTrace();
-                    message = e.getMessage();
+                    System.out.println(e.getMessage());
                 }
             }
         }
-        return message;
+        if (getNextProcessor() != null) {
+            getNextProcessor().process(object);
+        }
     }
 }

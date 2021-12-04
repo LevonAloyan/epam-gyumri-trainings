@@ -7,11 +7,10 @@ import dtoannotations.validationexceptions.IncorrectAgeException;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 
-public class AdulthoodValidationProcessor implements ValidationProcessor {
+public class AdulthoodValidationProcessor<V> extends ValidationProcessor<V> {
     @SuppressWarnings("unchecked cast")
     @Override
-    public <T> String process(T object) {
-        String message = "";
+    public <T> void process(T object) {
         Field[] declaredFields = object.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
             declaredField.setAccessible(true);
@@ -34,10 +33,12 @@ public class AdulthoodValidationProcessor implements ValidationProcessor {
                     e.printStackTrace();
                 } catch (IncorrectAgeException e) {
                     e.printStackTrace();
-                    message = e.getMessage();
+                    System.out.println(e.getMessage());
                 }
             }
         }
-        return message;
+        if (getNextProcessor() != null) {
+        getNextProcessor().process(object);
+        }
     }
 }

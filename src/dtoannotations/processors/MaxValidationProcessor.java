@@ -6,11 +6,10 @@ import dtoannotations.validationexceptions.IncorrectValueException;
 
 import java.lang.reflect.Field;
 
-public class MaxValidationProcessor implements ValidationProcessor {
+public class MaxValidationProcessor<V> extends ValidationProcessor<V> {
     @SuppressWarnings("unchecked cast")
     @Override
-    public <T> String process(T object) {
-        String message = "";
+    public <T> void process(T object) {
         Field[] declaredFields = object.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
             declaredField.setAccessible(true);
@@ -32,10 +31,12 @@ public class MaxValidationProcessor implements ValidationProcessor {
                     e.printStackTrace();
                 } catch (IncorrectValueException e) {
                     e.printStackTrace();
-                    message = e.getMessage();
+                    System.out.println(e.getMessage());
                 }
             }
         }
-        return message;
+        if (getNextProcessor() != null) {
+            getNextProcessor().process(object);
+        }
     }
 }

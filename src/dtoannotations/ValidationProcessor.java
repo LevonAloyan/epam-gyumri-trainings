@@ -1,6 +1,16 @@
 package dtoannotations;
 
-public interface ValidationProcessor {
+public abstract class ValidationProcessor<V> {
 
-    <V> String process(V object);
+    private ValidationProcessor<V> nextProcessor;
+
+   public abstract  <T> void process(T object);
+
+    public ValidationProcessor<V> getNextProcessor() {
+        return nextProcessor;
+    }
+
+    public void setNextProcessor(ValidationProcessor<V> nextProcessor) {
+        this.nextProcessor = nextProcessor;
+    }
 }

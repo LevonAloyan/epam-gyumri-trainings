@@ -6,12 +6,11 @@ import dtoannotations.validationexceptions.IncorrectLengthException;
 
 import java.lang.reflect.Field;
 
-public class LengthValidationProcessor implements ValidationProcessor {
+public class LengthValidationProcessor<V> extends ValidationProcessor<V> {
 
     @SuppressWarnings("unchecked cast")
     @Override
-    public <T> String process(T object) {
-        String message = "";
+    public <T> void process(T object) {
         Field[] declaredFields = object.getClass().getDeclaredFields();
         for (Field declaredField : declaredFields) {
             declaredField.setAccessible(true);
@@ -34,10 +33,12 @@ public class LengthValidationProcessor implements ValidationProcessor {
                     e.printStackTrace();
                 } catch (IncorrectLengthException e) {
                     e.printStackTrace();
-                    message = e.getMessage();
+                    System.out.println(e.getMessage());
                 }
             }
         }
-        return message;
+        if (getNextProcessor() != null) {
+            getNextProcessor().process(object);
+        }
     }
 }
