@@ -11,8 +11,8 @@ public class FileReadWriteDemo {
 
 
     public static void main(String[] args) {
-        String fileName = "src/io/newDir/test.txt";
-        writeIntoFile(fileName,"Bye World");
+        String fileName = "io/newDir/test.txt";
+        writeIntoFile(fileName,"file");
         readFromFile(fileName);
     }
 
