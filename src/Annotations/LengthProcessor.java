@@ -5,10 +5,10 @@ package Annotations;
 
 import java.lang.reflect.Field;
 
-public class LengthProcessor implements AnnotationProcessor {
+public class LengthProcessor<T> extends AnnotationProcessor<T> {
 
     @Override
-    public void process(Object object) throws IllegalAccessException, ValidatorException {
+    public void process(T object) throws IllegalAccessException, ValidatorException {
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
@@ -21,7 +21,10 @@ public class LengthProcessor implements AnnotationProcessor {
                     Length annotation = field.getAnnotation(Length.class);
                     if (name.length() < annotation.min() || name.length() > annotation.max())
                         System.out.println("Does not match");
-                }else throw new ValidatorException("Type must be String");
+                }else{
+                    throw new ValidatorException("Type must be String");
+                }
+                getNextProcessor().process(object);
             }
         }
     }

@@ -8,10 +8,10 @@ import java.time.LocalDate;
 import java.time.Period;
 
 
-public class AdulthoodProcessor implements AnnotationProcessor {
+public class AdulthoodProcessor<T> extends AnnotationProcessor<T> {
 
     @Override
-    public void process(Object object) throws IllegalAccessException, ValidatorException {
+    public void process(T object) throws IllegalAccessException, ValidatorException {
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
@@ -27,6 +27,7 @@ public class AdulthoodProcessor implements AnnotationProcessor {
                         System.out.println("Normale");
                     }
                 }else throw new ValidatorException("Type must be LocalDate");
+                getNextProcessor().process(object);
             }
         }
     }

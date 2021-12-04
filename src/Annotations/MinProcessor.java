@@ -5,10 +5,10 @@ package Annotations;
 
 import java.lang.reflect.Field;
 
-public class MinProcessor implements AnnotationProcessor {
+public class MinProcessor <T>extends AnnotationProcessor<T> {
 
     @Override
-    public void process(Object object) throws IllegalAccessException, ValidatorException {
+    public void process(T object) throws IllegalAccessException, ValidatorException {
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
@@ -26,7 +26,9 @@ public class MinProcessor implements AnnotationProcessor {
                 } else {
                     // todo new custom exception with message
                     throw new ValidatorException("Type must be Number");
+
                 }
+                getNextProcessor().process(object);
             }
         }
     }
