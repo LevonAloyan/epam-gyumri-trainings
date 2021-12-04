@@ -3,7 +3,7 @@ package annotations;
 import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
-public class EmailAnnotationProcess<T> implements AnnotationInterface<T> {
+public class EmailAnnotationProcess<T> extends AnnotationProcess<T> {
 
     private static final Pattern PATTERN = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])" +
             "?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
@@ -21,8 +21,8 @@ public class EmailAnnotationProcess<T> implements AnnotationInterface<T> {
                     System.out.println(str.matches(PATTERN.pattern()));
                 } else {
                     throw new ValidatorExceptions("Type must be String");
-
                 }
+                getNextProcessor().process(object);
             }
         }
     }

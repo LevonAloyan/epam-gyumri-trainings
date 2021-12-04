@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class AdulthoodAnnotationProcess<T> implements AnnotationInterface<T> {
+public class AdulthoodAnnotationProcess<T> extends AnnotationProcess<T> {
 
     @Override
     public void process(T object) throws IllegalAccessException {
@@ -26,6 +26,7 @@ public class AdulthoodAnnotationProcess<T> implements AnnotationInterface<T> {
                 } else {
                     throw new ValidatorExceptions("Type must be LocalDate");
                 }
+                getNextProcessor().process(object);
             }
         }
     }

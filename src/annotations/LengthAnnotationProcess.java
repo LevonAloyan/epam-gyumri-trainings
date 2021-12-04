@@ -2,7 +2,7 @@ package annotations;
 
 import java.lang.reflect.Field;
 
-public class LengthAnnotationProcess<T> implements AnnotationInterface<T> {
+public class LengthAnnotationProcess<T> extends AnnotationProcess<T> {
 
     @Override
     public void process(T object) throws IllegalAccessException {
@@ -24,6 +24,7 @@ public class LengthAnnotationProcess<T> implements AnnotationInterface<T> {
                 }else{
                         throw new ValidatorExceptions("Type must be String");
                 }
+                getNextProcessor().process(object);
             }
         }
     }

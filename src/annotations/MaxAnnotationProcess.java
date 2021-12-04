@@ -2,7 +2,7 @@ package annotations;
 
 import java.lang.reflect.Field;
 
-public class MaxAnnotationProcess<T> implements AnnotationInterface<T> {
+public class MaxAnnotationProcess<T> extends AnnotationProcess<T> {
 
     @Override
     public void process(T object) throws IllegalAccessException{
@@ -23,6 +23,7 @@ public class MaxAnnotationProcess<T> implements AnnotationInterface<T> {
             }else {
                     throw new ValidatorExceptions("Type must be Number");
                 }
+               // getNextProcessor().process(object);
         }
         }
     }

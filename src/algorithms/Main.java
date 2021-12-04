@@ -16,26 +16,26 @@ public class Main {
       //  int [] array = {123,34,34,34,345,67,78,67456,45,0};
       //  processor.profiling(sortingAlgorithms,array);
 
-        CustomerDto customerDto = new CustomerDto();
-        customerDto.setBirthday(LocalDate.of(2007,11,25));
-        customerDto.setEmail("gtepanosyan@gmail.com");
-        customerDto.setName("G");
-       customerDto.setDiscountRate(-5);
-
-
-        AdulthoodAnnotationProcess process = new AdulthoodAnnotationProcess();
-        process.checkMajority(customerDto);
-
-        LengthAnnotationProcess lengthProcess = new LengthAnnotationProcess();
-        lengthProcess.checkName(customerDto);
-
-        EmailAnnotationProcess emailAnnotationProcess = new EmailAnnotationProcess();
-        emailAnnotationProcess.checkEmail(customerDto);
-
-        MaxAnnotationProcess maxAnnotationProcess = new MaxAnnotationProcess();
-        maxAnnotationProcess.checkMax(customerDto);
-
-        MinAnnotationProcess minAnnotationProcess = new MinAnnotationProcess();
-        minAnnotationProcess.checkMin(customerDto);
+//        CustomerDto customerDto = new CustomerDto();
+//        customerDto.setBirthday(LocalDate.of(2007,11,25));
+//        customerDto.setEmail("gtepanosyan@gmail.com");
+//        customerDto.setName("G");
+//       customerDto.setDiscountRate(-5);
+//
+//
+//        AdulthoodAnnotationProcess process = new AdulthoodAnnotationProcess();
+//        process.checkMajority(customerDto);
+//
+//        LengthAnnotationProcess lengthProcess = new LengthAnnotationProcess();
+//        lengthProcess.checkName(customerDto);
+//
+//        EmailAnnotationProcess emailAnnotationProcess = new EmailAnnotationProcess();
+//        emailAnnotationProcess.checkEmail(customerDto);
+//
+//        MaxAnnotationProcess maxAnnotationProcess = new MaxAnnotationProcess();
+//        maxAnnotationProcess.checkMax(customerDto);
+//
+//        MinAnnotationProcess minAnnotationProcess = new MinAnnotationProcess();
+//        minAnnotationProcess.checkMin(customerDto);
     }
 }
