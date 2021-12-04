@@ -6,28 +6,41 @@ import validation.annotations.Email;
 import validation.dto.CustomerDto;
 
 import java.lang.reflect.Field;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class EmailAnnotationProcessor  {
-    public String[] validateEmail(Object object) {
-        String[] errorMessages = new String[5];
+public class EmailAnnotationProcessor<T> extends AnnotationProcessor<T>  {
+    private static final String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 
-        Class<?> aClass = object.getClass();
-        Field[] declaredFields = aClass.getDeclaredFields();
+
+    public String[] validate(T name) throws IllegalAccessException {
+
+        Pattern pattern = Pattern.compile(regex);
+
+        Field[] declaredFields = name.getClass().getDeclaredFields();
+        String[] errors = null;
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Email.class)) {
                 field.setAccessible(true);
-                CustomerDto customer = (CustomerDto) object;
-                Pattern pattern = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-" +
-                        "9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
-                boolean matches = customer.getEmail().matches(pattern.pattern());
-                if (!matches) {
-                    System.out.println("Email is not valid");
-                }
-            }
-        }
+                Object o = field.get(name);
+                if (o instanceof String) {
+                    String fieldValue = (String) o;
+                    Email myAnn = field.getAnnotation(Email.class);
+                    Matcher matcher = pattern.matcher(fieldValue);
+                    if (matcher.find()) {
+                        errors = new String[1];
+                        errors[0] = fieldValue;
+                    } else {
+                        errors = new String[1];
+                        errors[0] = myAnn.message();
+                    }
+                    getNextProcessor().validate(name);
 
-        return errorMessages;
+                }
+
+            }
+
+        }return errors;
     }
 }

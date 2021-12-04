@@ -5,25 +5,34 @@ import validation.dto.CustomerDto;
 
 import java.lang.reflect.Field;
 
-public class MinAnnotationProcessor {
-    public  String [] validateMin(Object object) {
-        String [] errorMessages = new String[10];
+public class MinAnnotationProcessor<T>extends AnnotationProcessor<T> {
 
-        Class<?> aClass = object.getClass();
-        Field[] declaredFields = aClass.getDeclaredFields();
-        for(Field field: declaredFields){
-            if(field.isAnnotationPresent(Min.class)){
+    public String [] validate(T name) throws IllegalAccessException {
+
+        Field[] declaredFields = name.getClass().getDeclaredFields();
+        String[] errors = null;
+        for (Field field : declaredFields) {
+            if (field.isAnnotationPresent(Min.class)) {
                 field.setAccessible(true);
-                Min annotation = field.getAnnotation(Min.class);
-                CustomerDto customer = (CustomerDto) object;
-                int fieldValue = customer.getDiscountRate();
-                int valueMin = annotation.value();
-                if (fieldValue < valueMin){
-                    System.out.println("Length is min");
-                }
-            }
-        }
+                Object o = field.get(name);
 
-        return errorMessages;
+                Min myAnn = field.getAnnotation(Min.class);
+                field.setAccessible(true);
+                int fieldValue = (int) field.get(name);
+
+                if (fieldValue >= myAnn.min()) {
+                    errors = new String[1];
+                    errors[0] = String.valueOf(fieldValue);
+                } else {
+                    errors = new String[1];
+                    errors[0] = myAnn.message();
+                }
+                getNextProcessor().validate(name);
+
+
+            }
+
+        }return errors;
     }
+
 }

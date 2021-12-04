@@ -15,8 +15,8 @@ public class CustomerDto {
     private String email;
     private LocalDate birthDay;
     private int adulthood;
-    @Max
-    @Min
+   @Max(max = 3)
+   @Min(min = 1)
     private int discountRate;
 
     public CustomerDto(String name, String email, LocalDate bd, int discountRate) {

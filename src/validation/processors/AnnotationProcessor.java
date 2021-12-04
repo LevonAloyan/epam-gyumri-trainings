@@ -1,7 +1,15 @@
 package validation.processors;
 
-public interface AnnotationProcessor {
+public abstract class AnnotationProcessor <T>{
+    private AnnotationProcessor<T> annotationProcessor;
 
-    // todo implement a common method for all processors
+    public AnnotationProcessor<T> getNextProcessor() {
+        return annotationProcessor;
+    }
 
+    public void setAnnotationProcessor(AnnotationProcessor<T> annotationProcessor) {
+        this.annotationProcessor = annotationProcessor;
+    }
+
+   public abstract String[] validate(T name) throws IllegalAccessException ;
 }
