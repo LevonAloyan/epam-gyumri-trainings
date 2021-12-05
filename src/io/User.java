@@ -1,13 +1,16 @@
 package io;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private long id;
     private String username;
     private String password;
-    private String bankCardNumber;
-    private String phoneNumber;
+    private transient String bankCardNumber;
+    private transient String phoneNumber;
     private Address address;
+
 
 
     public long getId() {
