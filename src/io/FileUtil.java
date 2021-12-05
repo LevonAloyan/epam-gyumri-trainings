@@ -1,6 +1,7 @@
 package io;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtil {
@@ -22,8 +23,20 @@ public class FileUtil {
      * @return list of files
      */
     public static List<File> search(File dirToSearchIn, String fileNameMask) {
+        List<File> result = new ArrayList<>();
 
-        return null;
+        File[] listContent = dirToSearchIn.listFiles();
+        if (listContent != null) {
+            for (final File file : listContent) {
+                if (file.isDirectory()) {
+                    search(file, fileNameMask);
+                }
+                else if (file.getName().equals(fileNameMask)) {
+                    result.add(file);
+                }
+            }
+        }
+        return result;
     }
 
 
@@ -32,10 +45,10 @@ public class FileUtil {
      * for example, my phone code is 098. In the output file must be phone numbers starting from 098000000 to 098999999
      */
     public static void printPhoneNumbers() {
-        String fileName = "phoneNumbers.txt";
+        String fileOfphone = "phoneList.txt";
         String message;
         try {
-            OutputStream outputStream = new FileOutputStream(fileName);
+            OutputStream outputStream = new FileOutputStream(fileOfphone);
             for (int i = 93000000; i <= 93999999; i++) {
                 message = "0" + i + "\n";
                 byte[] bytes = message.getBytes();
@@ -45,7 +58,7 @@ public class FileUtil {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.printf("File %s not found", fileName);
+            System.out.printf("File %s not found", fileOfphone);
         } catch (IOException e) {
             System.out.println("Error during write");
         }
@@ -59,8 +72,10 @@ public class FileUtil {
      * @param user
      * @param filePath
      */
-    public static void serialize(User user, String filePath) {
-
+    public static void serialize(User user, String filePath) throws IOException {
+          ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath));
+          objectOutputStream.writeObject(user);
+          objectOutputStream.close();
     }
 
     /**
@@ -69,9 +84,11 @@ public class FileUtil {
      * @param filePath
      * @return
      */
-    public static User deserialize(String filePath) {
-
-        return null;
+    public static User deserialize(String filePath) throws IOException, ClassNotFoundException {
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath));
+        Object object = objectInputStream.readObject();
+        User user = (User) object;
+        return user;
     }
 
 }
