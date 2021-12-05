@@ -1,15 +1,10 @@
 package io;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtil {
-
-    public static void main(String[] args) {
-
-        printPhoneNumbers();
-
-    }
 
 
     /**
@@ -22,8 +17,18 @@ public class FileUtil {
      * @return list of files
      */
     public static List<File> search(File dirToSearchIn, String fileNameMask) {
+        List<File> fileList = new ArrayList<>();
+        File[] files = dirToSearchIn.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].isFile() && dirToSearchIn.getName().equals(fileNameMask)) {
+                fileList.add(files[i]);
 
-        return null;
+            } else if (files[i].isDirectory()) {
+
+                search(files[i], fileNameMask);
+            }
+        }
+        return fileList;
     }
 
 
@@ -32,25 +37,19 @@ public class FileUtil {
      * for example, my phone code is 098. In the output file must be phone numbers starting from 098000000 to 098999999
      */
     public static void printPhoneNumbers() {
-        String fileName = "phoneNumbers.txt";
-        String message;
         try {
-            OutputStream outputStream = new FileOutputStream(fileName);
-            for (int i = 93000000; i <= 93999999; i++) {
-                message = "0" + i + "\n";
-                byte[] bytes = message.getBytes();
-                outputStream.write(bytes);
-                if (i > 93999999) {
-                    outputStream.close();
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.printf("File %s not found", fileName);
-        } catch (IOException e) {
-            System.out.println("Error during write");
-        }
-    }
+            PrintWriter fileout = new PrintWriter(new FileWriter("src/io/phoneNumber.txt"));
 
+            for (int i = 98000000; i <= 98999999; i++) {
+                fileout.println(i);
+            }
+            fileout.close();
+            System.out.println("success...");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
 
     /**
      * Serialize the object to a file, excluding the phone field and encrypt the bank card number
@@ -61,6 +60,22 @@ public class FileUtil {
      */
     public static void serialize(User user, String filePath) {
 
+
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filePath);
+            DataOutputStream out = new DataOutputStream(fileOut);
+            out.writeChars(String.valueOf(user));
+            out.close();
+            fileOut.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.printf("Serialized data is saved in %s", filePath);
+
     }
 
     /**
@@ -70,8 +85,29 @@ public class FileUtil {
      * @return
      */
     public static User deserialize(String filePath) {
+        User user = null;
+        try {
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            user = (User) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException i) {
+            i.printStackTrace();
 
-        return null;
+        } catch (ClassNotFoundException c) {
+            System.out.println("User class not found");
+            c.printStackTrace();
+
+        }
+
+        System.out.println("Deserialized User...");
+        System.out.println("UserName: " + user.getUsername());
+        System.out.println("Address: " + user.getAddress());
+        System.out.println("Id: " + user.getId());
+        System.out.println("password: " + user.getPassword());
+        return user;
     }
-
 }
+
+
