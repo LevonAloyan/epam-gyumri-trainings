@@ -1,14 +1,24 @@
 package io;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class FileUtil {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-        printPhoneNumbers();
-
+        System.out.println(FileUtil.search(new File("src/io/newDir"), "test.txt"));
+        printPhoneNumbers("077", "src/io/phoneNumbers.txt");
+        Address address = new Address("Armenia", "Gyumri", "111", "Shirakaci", "11");
+        User user = new User(1, "AAA", "123232", "18453124", "077000000", address);
+        serialize(user, "src/io/newDir/test.txt");
+        User user1 = deserialize("src/io/newDir/test.txt");
+        System.out.println(user1.getAddress().getCity());
+        System.out.println(user1.getBankCardNumber());
+        System.out.println(user1.getPhoneNumber());
+        System.out.println(user1.getId());
     }
 
 
@@ -22,8 +32,22 @@ public class FileUtil {
      * @return list of files
      */
     public static List<File> search(File dirToSearchIn, String fileNameMask) {
-
-        return null;
+        if (!dirToSearchIn.isDirectory()) {
+            throw new IllegalArgumentException(dirToSearchIn + " is not directory");
+        }
+        List<File> searchedFiles = new ArrayList<>();
+        File[] list = dirToSearchIn.listFiles();
+        if (list != null) {
+            for (File file : list) {
+                if (file.getName().equals(fileNameMask)) {
+                    searchedFiles.add(file);
+                }
+                if (file.isDirectory()) {
+                    searchedFiles.addAll(search(file, fileNameMask));
+                }
+            }
+        }
+        return searchedFiles;
     }
 
 
@@ -31,23 +55,20 @@ public class FileUtil {
      * Write into .txt file all possible combinations of phone numbers that start with your phone code
      * for example, my phone code is 098. In the output file must be phone numbers starting from 098000000 to 098999999
      */
-    public static void printPhoneNumbers() {
-        String fileName = "phoneNumbers.txt";
-        String message;
-        try {
-            OutputStream outputStream = new FileOutputStream(fileName);
-            for (int i = 93000000; i <= 93999999; i++) {
-                message = "0" + i + "\n";
-                byte[] bytes = message.getBytes();
-                outputStream.write(bytes);
-                if (i > 93999999) {
-                    outputStream.close();
-                }
+    public static void printPhoneNumbers(String phoneCode, String filePath) throws IOException {
+        StringBuilder phoneNumbers = new StringBuilder();
+        int count = 1;
+        for (int i = 0; i <= 999999; i++, count++) {
+            String phoneNumber = phoneCode + "0".repeat(Math.max(0, 6 - Integer.valueOf(i).toString().length())) + i;
+            phoneNumbers.append(phoneNumber).append(", ");
+            if (count == 10) {
+                phoneNumbers.append("\n");
+                count = 0;
             }
-        } catch (FileNotFoundException e) {
-            System.out.printf("File %s not found", fileName);
-        } catch (IOException e) {
-            System.out.println("Error during write");
+        }
+        String content = phoneNumbers.toString();
+        try (FileWriter writer = new FileWriter(filePath)) {
+            writer.write(content);
         }
     }
 
@@ -59,8 +80,11 @@ public class FileUtil {
      * @param user
      * @param filePath
      */
-    public static void serialize(User user, String filePath) {
-
+    public static void serialize(User user, String filePath) throws IOException {
+        try (FileOutputStream outputStream = new FileOutputStream(filePath);
+             ObjectOutputStream out = new ObjectOutputStream(outputStream)) {
+             out.writeObject(user);
+        }
     }
 
     /**
@@ -69,9 +93,13 @@ public class FileUtil {
      * @param filePath
      * @return
      */
-    public static User deserialize(String filePath) {
-
-        return null;
+    public static User deserialize(String filePath) throws IOException, ClassNotFoundException {
+        User user;
+        try (FileInputStream inputStream = new FileInputStream(filePath);
+             ObjectInputStream in = new ObjectInputStream(inputStream)) {
+            user = (User) in.readObject();
+        }
+        return user;
     }
 
 }
