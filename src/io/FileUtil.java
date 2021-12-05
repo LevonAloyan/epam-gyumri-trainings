@@ -59,7 +59,7 @@ public class FileUtil {
         StringBuilder phoneNumbers = new StringBuilder();
         int count = 1;
         for (int i = 0; i <= 999999; i++, count++) {
-            String phoneNumber = phoneCode + "0".repeat(Math.max(0, 6 - Integer.valueOf(i).toString().length())) + i;
+            String phoneNumber = phoneCode + "0".repeat(6 - Integer.valueOf(i).toString().length()) + i;
             phoneNumbers.append(phoneNumber).append(", ");
             if (count == 10) {
                 phoneNumbers.append("\n");
@@ -83,7 +83,7 @@ public class FileUtil {
     public static void serialize(User user, String filePath) throws IOException {
         try (FileOutputStream outputStream = new FileOutputStream(filePath);
              ObjectOutputStream out = new ObjectOutputStream(outputStream)) {
-             out.writeObject(user);
+            out.writeObject(user);
         }
     }
 
@@ -103,3 +103,4 @@ public class FileUtil {
     }
 
 }
+
