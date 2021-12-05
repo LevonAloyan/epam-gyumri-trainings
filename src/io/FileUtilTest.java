@@ -5,8 +5,8 @@ import java.io.File;
 public class FileUtilTest {
 
     public static void main(String[] args) {
-         File DTO_validation = new File("C:\\Users\\Admin\\trainings\\epam-gyumri-trainings\\src\\io");
-        FileUtil.search( DTO_validation, "File.txt");
+        File IO = new File("C:\\Users\\Admin\\trainings\\epam-gyumri-trainings\\src\\io");
+        FileUtil.search(IO, "InfoAboutUser.txt");
 
         FileUtil.printPhoneNumbers();
 
@@ -15,7 +15,7 @@ public class FileUtilTest {
 
         user.setUsername("Lanna \n");
         user.setPassword("ln1548n \n");
-        user.setBankCardNumber("2548 7963 2114 \n");
+        user.setBankCardNumber("3548 7963 2114 \n");
         user.setId(125456);
 
         address.setCountry("Armenia");
@@ -25,8 +25,10 @@ public class FileUtilTest {
         address.setLine1("12/3");
         user.setAddress(address);
 
-        FileUtil.serialize(user, "C:\\Users\\Admin\\trainings\\epam-gyumri-trainings\\src\\io\\dir\\InfoAboutUser.txt");
+        final String pathname = "C:\\Users\\Admin\\trainings\\epam-gyumri-trainings\\src\\io\\dir\\InfoAboutUser.txt";
 
-        System.out.println(FileUtil.deserialize("C:\\Users\\Admin\\trainings\\epam-gyumri-trainings\\src\\io\\dir\\InfoAboutUser.txt"));
+        FileUtil.serialize(user, pathname);
+
+        System.out.println(FileUtil.deserialize(pathname));
     }
 }

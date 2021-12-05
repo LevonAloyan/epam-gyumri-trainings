@@ -14,8 +14,7 @@ public class FileUtil {
      * @return list of files
      */
     public static File search(File dirToSearchIn, String fileNameMask) {
-
-        File returntype = null;
+        File returnFile = null;
         if (dirToSearchIn.exists() && dirToSearchIn.isDirectory()) {
             File[] directories = dirToSearchIn.listFiles();
             if (directories != null) {
@@ -23,13 +22,13 @@ public class FileUtil {
                     if (file.isDirectory()) {
                         search(file, fileNameMask);
                     } else if (file.toString().contains(fileNameMask)) {
-                        returntype = file;
-                        System.out.println(returntype);
+                        returnFile = file;
+                        System.out.println(returnFile);
                     }
                 }
             }
         }
-        return returntype;
+        return returnFile;
     }
 
     /**
@@ -37,18 +36,14 @@ public class FileUtil {
      * for example, my phone code is 098. In the output file must be phone numbers starting from 098000000 to 098999999
      */
     public static void printPhoneNumbers() {
-        File filePhoneNumbers = new File("C:\\Users\\Admin\\trainings\\epam-gyumri-trainings\\src\\io\\dir\\PhoneNumber.txt");
-        try {
-            OutputStream outputStream = new FileOutputStream(filePhoneNumbers);
+        File phoneNumbersFile = new File("C:\\Users\\Admin\\trainings\\epam-gyumri-trainings\\src\\io\\dir\\PhoneNumber.txt");
+        try (OutputStream outputStream = new FileOutputStream(phoneNumbersFile)) {
             for (int i = 98000000; i <= 98999999; i++) {
                 byte[] bytes = ("0" + i + ",  ").getBytes();
                 outputStream.write(bytes);
-                if (i + 1 > 98999999) {
-                    outputStream.close();
-                }
             }
         } catch (FileNotFoundException e) {
-            System.out.printf("File %s not found", filePhoneNumbers);
+            System.out.printf("File %s not found", phoneNumbersFile);
         } catch (IOException e) {
             System.out.println("Error during write");
         }
@@ -62,13 +57,10 @@ public class FileUtil {
      * @param filePath
      */
     public static void serialize(User user, String filePath) {
-
-        try {
-            ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(filePath));
+        try (ObjectOutputStream objectOut = new ObjectOutputStream(new FileOutputStream(filePath))) {
             objectOut.writeObject(user.toString());
-            objectOut.close();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("Exception during serialization: " + ex);
         }
     }
 
@@ -79,17 +71,13 @@ public class FileUtil {
      * @return
      */
     public static Object deserialize(String filePath) {
-         Object o = null;
-        try {
-            FileInputStream fileInputStream = new FileInputStream(filePath);
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            o = objectInputStream.readObject();
-            objectInputStream.close();
-
+        Object object = null;
+        try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath))) {
+            object = objectInputStream.readObject();
 
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Exception during deserialization: " + e);
         }
-        return o ;
+        return object;
     }
 }

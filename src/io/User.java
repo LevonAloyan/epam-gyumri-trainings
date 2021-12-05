@@ -45,11 +45,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getBankCardNumber() {
+    public String  getBankCardNumber() {
         byte [] cardNumber = bankCardNumber.getBytes();
         Base64.getEncoder().encode(cardNumber);
-        String s = cardNumber.toString();
-        return s;
+        String  bankCardNumberStr = cardNumber.toString();
+        return bankCardNumberStr;
     }
 
     public void setBankCardNumber(String bankCardNumber) {
