@@ -5,8 +5,8 @@ import java.io.File;
 public class FileUtilTest {
 
     public static void main(String[] args) {
-        File algorithms = new File("src/algorithms");
-        FileUtil.search( algorithms, "File.txt");
+        File IO = new File("src/algorithms");
+        FileUtil.search(IO, "InfoAboutUser.txt");
 
         FileUtil.printPhoneNumbers();
 
@@ -26,9 +26,10 @@ public class FileUtilTest {
         address.setLine1("12/3");
         user.setAddress(address);
 
+        final String pathname = "src/io/dir/InfoAboutUser.txt";
 
-        FileUtil.serialize(user, "src/io/InfoAboutUser.txt");
+        FileUtil.serialize(user, pathname);
 
-        System.out.println(FileUtil.deserialize("src/io/InfoAboutUser.txt"));
+        System.out.println(FileUtil.deserialize(pathname));
     }
 }
