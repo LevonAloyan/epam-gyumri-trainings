@@ -1,6 +1,7 @@
 package io;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtil {
@@ -8,6 +9,7 @@ public class FileUtil {
     public static void main(String[] args) {
 
         printPhoneNumbers();
+        System.out.println(search("src/io/)", "phoneNumber.txt"));
 
     }
 
@@ -21,9 +23,19 @@ public class FileUtil {
      * @param fileNameMask  file name mask to match files name
      * @return list of files
      */
-    public static List<File> search(File dirToSearchIn, String fileNameMask) {
-
-        return null;
+    public static List<File> search(String dirToSearchIn, String fileNameMask) {
+        List<File> list = new ArrayList<>();
+        File[] f = new File(dirToSearchIn).listFiles();
+        if (f != null) {
+            for (File child : f) {
+                if (fileNameMask.equalsIgnoreCase(child.getName())) {
+                    list.add(child);
+                } else if (child.isDirectory()) {
+                    search(String.valueOf(child), fileNameMask);
+                }
+            }
+        }
+        return list;
     }
 
 
@@ -61,6 +73,20 @@ public class FileUtil {
      */
     public static void serialize(User user, String filePath) {
 
+        User us = new User();
+        try {
+            FileOutputStream fStream = new FileOutputStream(filePath);
+            ObjectOutputStream oStream = new ObjectOutputStream(fStream);
+
+            oStream.writeObject(us);
+            oStream.close();
+            fStream.close();
+
+            System.out.println("Object has been serialized");
+
+        } catch (IOException e) {
+            System.out.println("IOException is caught");
+        }
     }
 
     /**
@@ -71,7 +97,26 @@ public class FileUtil {
      */
     public static User deserialize(String filePath) {
 
-        return null;
-    }
+        User user = null;
 
+        try {
+            FileInputStream fStream = new FileInputStream(filePath);
+            ObjectInputStream oStream = new ObjectInputStream(fStream);
+
+           user = (User) oStream.readObject();
+            oStream.close();
+            fStream.close();
+
+            System.out.println("Object has been deserialized ");
+
+        } catch (IOException e) {
+            System.out.println("IOException is caught");
+        } catch (ClassNotFoundException e) {
+            System.out.println("ClassNotFoundException is caught");
+        }
+        return user;
+
+    }
 }
+
+
