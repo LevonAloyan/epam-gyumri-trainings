@@ -8,9 +8,10 @@ import validation.annotations.Adulthood;
 import  validation.exception.ValidatorExceptions;
 
 
-public class AdulthoodAnnotationProcessor<T> {
 
-    public  String  validateAdulthood(T dto) throws IllegalAccessException  {
+public class AdulthoodAnnotationProcessor <T> extends AnnotationProcessor <T>  {
+
+    public  String   validate(T dto) throws IllegalAccessException  {
 
         Field[] declaredFields = dto.getClass().getDeclaredFields();
         String errors = null;
@@ -26,14 +27,18 @@ public class AdulthoodAnnotationProcessor<T> {
 
                     if (today.getYear() - dateBD.getYear() < 18 ) {
                         errors = "You no adulthood";
+                        System.err.println(errors);
                     }
                 
                 } else {
                     throw new ValidatorExceptions ("Adulthood annotation is not applicable on none LocalDate fields.");
                 }
+                getNextProcessor().validate(dto);
             }
         }
 
         return errors;
     }
+
+   
 }

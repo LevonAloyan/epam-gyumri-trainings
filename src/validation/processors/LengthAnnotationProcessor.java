@@ -6,12 +6,12 @@ import validation.annotations.Length;
 
 import  validation.exception.ValidatorExceptions;
 
-public class LengthAnnotationProcessor <T> {
+public class LengthAnnotationProcessor <T> extends AnnotationProcessor <T>{
 
 
-    public String[] validateLength(T dto) throws IllegalAccessException {
+    public String validate(T dto) throws IllegalAccessException {
         Field[] declaredFields = dto.getClass().getDeclaredFields();
-        String[] errors = null;
+        String errors = null;
         for (Field field : declaredFields) {
             if (field.isAnnotationPresent(Length.class)) {
                 field.setAccessible(true);
@@ -24,13 +24,14 @@ public class LengthAnnotationProcessor <T> {
                     int maxLength = annotation.max();
 
                     if (length < minLength || length > maxLength) {
-                        errors = new String[1];
-                        errors[0] = field.getName() + " length must be greater then " + minLength + " and less then " + maxLength;
+                        errors= field.getName() + " length must be greater then " + minLength + " and less then " + maxLength;
+                        System.err.println(errors);
                     }
                 } else {
                    
                     throw new ValidatorExceptions ("Length annotation is not applicable on none String fields.");
                 }
+                getNextProcessor().validate(dto);
             }
         }
         return errors;

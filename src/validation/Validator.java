@@ -1,32 +1,25 @@
 package validation;
 
-import validation.processors.*;
+// import validation.processors.*;
 
-import java.util.Arrays;
+// public class Validator <T> {
+//         AnnotationProcessor<T> lengthAnnotationProcessor = new LengthAnnotationProcessor<>();
+//         AnnotationProcessor<T> emailAnnotationProcessor = new EmailAnnotationProcessor<>();
+//         AnnotationProcessor<T> adulthoodAnnotationProcessor = new AdulthoodAnnotationProcessor<>();
+//         AnnotationProcessor<T> minAnnotationProcessor = new MinAnnotationProcessor<>();
+//         AnnotationProcessor<T> maxAnnotationProcessor = new MaxAnnotationProcessor<>();
 
-
-public class Validator <T> {
-    LengthAnnotationProcessor<T> lengthAnnotationProcessor = new LengthAnnotationProcessor<>();
-    EmailAnnotationProcessor<T> emailAnnotationProcessor = new EmailAnnotationProcessor<>();
-    AdulthoodAnnotationProcessor<T> adulthoodAnnotationProcessor = new AdulthoodAnnotationProcessor<>();
-    MinAnnotationProcessor<T> minAnnotationProcessor = new MinAnnotationProcessor<>();
-    MaxAnnotationProcessor<T> maxAnnotationProcessor = new MaxAnnotationProcessor<>();
-
-
-    public String[] validate(T dto) throws IllegalAccessException {
-        String[] error = new String[5];
+//     public String[] validates(T dto) throws IllegalAccessException {
+//         String[] error = new String[5];
 
 
-        error[0] = Arrays.toString(lengthAnnotationProcessor.validateLength(dto));
-        error[1] = emailAnnotationProcessor.validateEmail(dto);
-        error[2] = adulthoodAnnotationProcessor.validateAdulthood(dto);
-        error[3] = minAnnotationProcessor.validateMin(dto);
-        error[4] = maxAnnotationProcessor.validateMax(dto);
+//         error[0] = lengthAnnotationProcessor.validates(dto);
+//         error[1] = emailAnnotationProcessor.validate(dto);
+//         error[2] = adulthoodAnnotationProcessor.validate(dto);
+//         error[3] = minAnnotationProcessor.validate(dto);
+//         error[4] = maxAnnotationProcessor.validate(dto);
    
+//         return error;
+//     }
 
-
-        return error;
-    }
-
-
-}
+// }

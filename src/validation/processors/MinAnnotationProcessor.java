@@ -6,8 +6,8 @@ import java.lang.reflect.Field;
 
 import validation.exception.ValidatorExceptions;
 
-public class MinAnnotationProcessor <T> {
-    public String validateMin(T dto) throws IllegalAccessException {
+public class MinAnnotationProcessor <T> extends AnnotationProcessor <T> {
+    public String validate(T dto) throws IllegalAccessException {
         Field[] declaredFields = dto.getClass().getDeclaredFields();
         String errors = null;
 
@@ -21,12 +21,14 @@ public class MinAnnotationProcessor <T> {
 
                     if (fieldValue < annotation.value()) {
                         errors = "length less than  " + annotation.value();
+                        System.err.println(errors);
                     }
                 } else {
 
                     throw new ValidatorExceptions("Min annotation is not applicable on none Integer fields.");
 
                 }
+                getNextProcessor().validate(dto);
             }
         }
 
