@@ -8,13 +8,14 @@ import java.util.List;
 public class FileUtil {
 
     public static void main(String[] args) {
-        File file = new File("C:\\Users\\VG\\epam-gyumri-trainings\\src");
-        System.out.println(search(file, "user.bin"));
-        Address address = new Address("RA", "Gyumri", "3125", "105ave", "123");
-        User user = new User(1, "AAA", "1", "0123456789123456", "099", address);
-        serialize(user, "src\\io\\user.bin");
-        deserialize("src\\io\\user.bin");
-       // printPhoneNumbers("091", "src\\io\\phoneNumbers1.txt");
+//        File file = new File("C:\\Users\\VG\\epam-gyumri-trainings\\src");
+//        System.out.println(search(file, "user.bin"));
+//        Address address = new Address("RA", "Gyumri", "3125", "105ave", "123");
+//        User user = new User(1, "AAA", "1", "0123456789123456", "099", address);
+//        serialize(user, "src\\io\\user.bin");
+//        deserialize("src\\io\\user.bin");
+        File file = new File("src\\io\\phoneNumbers.txt");
+        printPhoneNumbers("092", file);
     }
 
 
@@ -47,11 +48,11 @@ public class FileUtil {
      * Write into .txt file all possible combinations of phone numbers that start with your phone code
      * for example, my phone code is 098. In the output file must be phone numbers starting from 098000000 to 098999999
      */
-    public static void printPhoneNumbers(String phoneCode, String filePath) {
+    public static void printPhoneNumbers(String phoneCode, File file) {
 
         String message;
         try {
-            OutputStream outputStream = new FileOutputStream(filePath);
+            OutputStream outputStream = new FileOutputStream(file);
             for (int i = 1000000; i <= 1999999; i++) {
                 message = phoneCode + Integer.valueOf(i).toString().substring(1,7) + "\n";
                 byte[] bytes = message.getBytes();
@@ -61,7 +62,7 @@ public class FileUtil {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.printf("File %s not found", filePath);
+            System.out.printf("File %s not found", file);
         } catch (IOException e) {
             System.out.println("Error during write");
         }
