@@ -6,7 +6,6 @@ import java.util.Base64;
 import java.util.List;
 
 public class FileUtil {
-
     /**
      * Implement a method that will find files matching the specified filename mask.
      * Note that in the specified directory, in addition to the files themselves, there may also be other directories,

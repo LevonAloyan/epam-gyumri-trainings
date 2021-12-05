@@ -3,7 +3,6 @@ package io;
 import java.io.Serializable;
 
 public class User implements Serializable {
-
     private long id;
     private String username;
     private String password;

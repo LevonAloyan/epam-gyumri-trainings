@@ -21,3 +21,4 @@ public class TestFileUtil {
         System.out.println(FileUtil.deserialize("src/io/UserInfo.txt"));
     }
 }
+
