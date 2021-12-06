@@ -1,6 +1,8 @@
 package io;
 
 import java.io.*;
+import java.util.Base64;
+import java.util.LinkedList;
 import java.util.List;
 
 public class FileUtil {
@@ -9,6 +11,11 @@ public class FileUtil {
 
         printPhoneNumbers();
 
+
+        Address address = new Address("Armenia", "Gyumri", "Sovxoz", "237/508", "29007");
+        User user = new User(123, "gugo.atanesyan", "gugo", "123456789", "077189189", address);
+        serialize(user, "user_data.txt");
+        deserialize("user_data.txt");
     }
 
 
@@ -43,6 +50,7 @@ public class FileUtil {
                 if (i > 93999999) {
                     outputStream.close();
                 }
+
             }
         } catch (FileNotFoundException e) {
             System.out.printf("File %s not found", fileName);
@@ -61,7 +69,20 @@ public class FileUtil {
      */
     public static void serialize(User user, String filePath) {
 
+        String encodedString = Base64.getEncoder().encodeToString(user.getBankCardNumber().getBytes());
+        System.out.println(encodedString);
+        user.setBankCardNumber(encodedString);
+        try (FileOutputStream outputStream = new FileOutputStream(filePath);
+             ObjectOutputStream out = new ObjectOutputStream(outputStream)) {
+            out.writeObject(user);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
+
 
     /**
      * Deserialize the object from the file by decrypting the card number.
@@ -71,7 +92,21 @@ public class FileUtil {
      */
     public static User deserialize(String filePath) {
 
+
+        try (FileInputStream inputStream = new FileInputStream(filePath);
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
+            User user = (User) objectInputStream.readObject();
+            byte[] decodedBytes = Base64.getDecoder().decode(user.getBankCardNumber());
+            String decodedString = new String(decodedBytes);
+            user.setBankCardNumber(decodedString);
+
+            System.out.println(user);
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         return null;
     }
+
 
 }
