@@ -1,6 +1,7 @@
 package io;
 
-import java.io.File;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtil {
@@ -16,9 +17,21 @@ public class FileUtil {
      * @return list of files
      */
     public static List<File> search(File dirToSearchIn, String fileNameMask) {
+        List<File> fileList = new ArrayList<>();
+        File[] files = dirToSearchIn.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].isFile()) {
+                fileList.add(files[i]);
+            return null;
+            }else if(files[i].isDirectory()) {
 
-        return null;
+            search(files[i], fileNameMask);
+            }
+        }
+        return fileList;
     }
+
+
 
 
     /**
@@ -26,6 +39,19 @@ public class FileUtil {
      * for example, my phone code is 098. In the output file must be phone numbers starting from 098000000 to 098999999
      */
     public static void printPhoneNumbers(){
+        try {
+            PrintWriter fileout = new PrintWriter(new FileWriter("src/io/phoneNumber.txt"));
+            for (int i =93000000; i <=93999999; i++) {
+                fileout.println(i);
+            }
+            fileout.close();
+            System.out.println("successful");
+        } catch (Exception e)
+        {
+            System.out.println(e);
+        }
+
+
 
     }
 
@@ -36,6 +62,16 @@ public class FileUtil {
      * @param filePath
      */
     public static void serialize(User user, String filePath){
+        try { FileOutputStream fileOut = new FileOutputStream(filePath);
+            DataOutputStream out = new DataOutputStream(fileOut);
+            out.writeChars(String.valueOf(user));
+            out.close();
+            fileOut.close();
+        } catch (FileNotFoundException e) {
+           e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -45,7 +81,6 @@ public class FileUtil {
      * @return
      */
     public static User deserialize(String filePath){
-
         return null;
     }
 
