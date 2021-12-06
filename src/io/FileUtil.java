@@ -1,77 +1,85 @@
 package io;
 
 import java.io.*;
+import java.util.Base64;
+import java.util.LinkedList;
 import java.util.List;
 
 public class FileUtil {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-    public static void main(String[] args) {
+        String path = "C:\\epamGyumri\\epam-gyumri-trainings\\src\\io\\newDir";
+        File fileDirectory = new File(path);
+        List<File> fileList = FileUtil.search(fileDirectory, "test.txt");
+        System.out.println(fileList);
+        FileUtil.printPhoneNumbers();
 
-        printPhoneNumbers();
+        Address address = new Address("Armenia", "Gyumri", "03125555", "Shirakatsi", "1");
+        User user = new User(1, "Adam", "Smith", "0000", "077777777", address);
+
+        FileUtil.serialize(user, "C:\\epamGyumri\\epam-gyumri-trainings\\src\\io\\newDir\\serialize.txt");
+        User userDeserialize = FileUtil.deserialize("C:\\epamGyumri\\epam-gyumri-trainings\\src\\io\\newDir\\serialize.txt");
+        System.out.println(userDeserialize);
 
     }
 
+    private static final List<File> FILE_LIST = new LinkedList<>();
 
-    /**
-     * Implement a method that will find files matching the specified filename mask.
-     * Note that in the specified directory, in addition to the files themselves, there may also be other directories,
-     * you need to search for files in subdirectories as well. (sounds like a recursion).
-     *
-     * @param dirToSearchIn directory to search files
-     * @param fileNameMask  file name mask to match files name
-     * @return list of files
-     */
     public static List<File> search(File dirToSearchIn, String fileNameMask) {
 
-        return null;
+        File[] list = dirToSearchIn.listFiles();
+        if (list != null)
+            for (File fil : list) {
+                if (fil.isDirectory()) {
+                    search(fil, fileNameMask);
+                } else if (fileNameMask.equalsIgnoreCase(fil.getName())) {
+                    FILE_LIST.add(fil);
+                }
+            }
+
+        return FILE_LIST;
     }
 
 
-    /**
-     * Write into .txt file all possible combinations of phone numbers that start with your phone code
-     * for example, my phone code is 098. In the output file must be phone numbers starting from 098000000 to 098999999
-     */
-    public static void printPhoneNumbers() {
-        String fileName = "phoneNumbers.txt";
-        String message;
-        try {
-            OutputStream outputStream = new FileOutputStream(fileName);
-            for (int i = 93000000; i <= 93999999; i++) {
-                message = "0" + i + "\n";
-                byte[] bytes = message.getBytes();
-                outputStream.write(bytes);
-                if (i > 93999999) {
-                    outputStream.close();
-                }
+    public static void printPhoneNumbers() throws FileNotFoundException {
+        int x = 93000000;
+
+        FileOutputStream fOStream = new FileOutputStream("C:\\epamGyumri\\epam-gyumri-trainings\\src\\io\\phoneNumbers.txt");
+        try (DataOutputStream dOS = new DataOutputStream(fOStream)) {
+            while (x <= 93000050) {
+                dOS.writeBytes("0" + x);
+                dOS.write(10);
+                x++;
             }
-        } catch (FileNotFoundException e) {
-            System.out.printf("File %s not found", fileName);
         } catch (IOException e) {
-            System.out.println("Error during write");
+            System.out.println(e.getMessage());
         }
     }
 
-
-    /**
-     * Serialize the object to a file, excluding the phone field and encrypt the bank card number
-     * (you can use Base64 https://www.baeldung.com/java-base64-encode-and-decode)
-     *
-     * @param user
-     * @param filePath
-     */
     public static void serialize(User user, String filePath) {
+        String encodedBankCardNumber = Base64.getEncoder().encodeToString(user.getBankCardNumber().getBytes());
+
+        user.setBankCardNumber(encodedBankCardNumber);
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+            outputStream.writeObject(user);
+            outputStream.close();
+            System.out.println("User was successfully saved");
+        } catch (IOException e) {
+            System.out.println(e);
+        }
 
     }
 
-    /**
-     * Deserialize the object from the file by decrypting the card number.
-     *
-     * @param filePath
-     * @return
-     */
     public static User deserialize(String filePath) {
-
-        return null;
+        User user = null;
+        try (FileInputStream fIStream = new FileInputStream(filePath);
+             ObjectInputStream oIStream = new ObjectInputStream(fIStream)) {
+            user = (User) oIStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return user;
     }
-
 }

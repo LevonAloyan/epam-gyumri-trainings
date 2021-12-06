@@ -11,8 +11,8 @@ public class FileReadWriteDemo {
 
 
     public static void main(String[] args) {
-        String fileName = "src/io/newDir/test.txt";
-        writeIntoFile(fileName,"Bye World");
+        String fileName = "C:\\epamGyumri\\epam-gyumri-trainings\\src\\io\\newDir\\test.txt";
+        writeIntoFile(fileName);
         readFromFile(fileName);
     }
 
@@ -32,10 +32,10 @@ public class FileReadWriteDemo {
         }
     }
 
-    private static void writeIntoFile(String fileName, String message) {
+    private static void writeIntoFile(String fileName) {
         try {
             OutputStream outputStream = new FileOutputStream(fileName);
-            byte[] bytes = message.getBytes();
+            byte[] bytes = "Bye World".getBytes();
             outputStream.write(bytes);
 
         } catch (FileNotFoundException e) {
