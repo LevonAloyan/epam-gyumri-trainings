@@ -1,14 +1,37 @@
 package io;
 
-public class User {
+import java.io.Serializable;
+import java.util.Base64;
+
+public class User implements Serializable {
 
     private long id;
     private String username;
     private String password;
     private String bankCardNumber;
-    private String phoneNumber;
+    private transient String phoneNumber;
     private Address address;
 
+    public User(long id, String username, String password, String bankCardNumber, String phoneNumber, Address address) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.bankCardNumber = Base64.getEncoder().encodeToString(bankCardNumber.getBytes());
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id - " + id +
+                ", username - " + username +
+                ", password - " + password +
+                ", bankCardNumber - " + bankCardNumber +
+                ", phoneNumber - " + phoneNumber +
+                "}\n" + address;
+
+    }
 
     public long getId() {
         return id;

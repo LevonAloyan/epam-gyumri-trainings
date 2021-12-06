@@ -1,15 +1,10 @@
 package io;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtil {
-
-    public static void main(String[] args) {
-
-        printPhoneNumbers();
-    }
-
 
     /**
      * Implement a method that will find files matching the specified filename mask.
@@ -21,8 +16,18 @@ public class FileUtil {
      * @return list of files
      */
     public static List<File> search(File dirToSearchIn, String fileNameMask) {
-
-        return null;
+        File[] files = dirToSearchIn.listFiles();
+        List<File> list = new ArrayList<>();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory() && !file.getName().equalsIgnoreCase("out")) {
+                    list.addAll(search(file, fileNameMask));
+                } else if (file.getName().endsWith(fileNameMask) && !list.contains(file)) {
+                    list.add(file);
+                }
+            }
+        }
+        return list;
     }
 
 
@@ -31,22 +36,20 @@ public class FileUtil {
      * for example, my phone code is 098. In the output file must be phone numbers starting from 098000000 to 098999999
      */
     public static void printPhoneNumbers() {
-        String fileName = "phoneNumbers.txt";
+        String fileName = "src/io/newDir/phoneNumbers.txt";
         String message;
         try {
             OutputStream outputStream = new FileOutputStream(fileName);
-            for (int i = 93000000; i <= 93999999; i++) {
+            for (int i = 93000000; i <= 93000010; i++) {//93999999
                 message = "0" + i + "\n";
                 byte[] bytes = message.getBytes();
                 outputStream.write(bytes);
-                if (i > 93999999) {
-                    outputStream.close();
-                }
             }
+            outputStream.close();
         } catch (FileNotFoundException e) {
-            System.out.printf("File %s not found", fileName);
+            System.err.printf("File %s not found", fileName);
         } catch (IOException e) {
-            System.out.println("Error during write");
+            System.err.println("Error during write");
         }
     }
 
@@ -60,6 +63,16 @@ public class FileUtil {
      */
     public static void serialize(User user, String filePath) {
 
+        try {
+            FileOutputStream outputStream = new FileOutputStream(filePath);
+            ObjectOutputStream ous = new ObjectOutputStream(outputStream);
+            ous.writeObject(user);
+            ous.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -69,8 +82,20 @@ public class FileUtil {
      * @return
      */
     public static User deserialize(String filePath) {
-
-        return null;
+        User user = null;
+        try {
+            FileInputStream fis = new FileInputStream(filePath);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            user = (User) ois.readObject();
+            ois.close();
+        } catch (FileNotFoundException e) {
+            System.out.printf("File %s not found");
+        } catch (IOException e) {
+            System.out.printf("Error during read");
+        } catch (ClassNotFoundException e) {
+            System.out.printf("Class not found");
+        }
+        return user;
     }
-
 }
+
