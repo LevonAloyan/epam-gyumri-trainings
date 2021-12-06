@@ -7,8 +7,8 @@ public class FileUtilTest {
         String pathSerialized="src/io/User.txt";
         String fileNameMask="src/io/";
         File dirToSearchIn=new File(fileNameMask);
-        FileUtil.printPhoneNumbers();
-        FileUtil.search(dirToSearchIn,fileNameMask);
+//        FileUtil.printPhoneNumbers();
+//        FileUtil.search(dirToSearchIn,fileNameMask);
         User user=new User();
         user.setId(5);
         user.setUsername("abc");
@@ -16,7 +16,11 @@ public class FileUtilTest {
         user.setPassword("adf");
         user.setBankCardNumber("92");
         user.setPhoneNumber("093");
-        FileUtil.serialize(user,pathSerialized);
+//        FileUtil.serialize(user,pathSerialized);
+        try {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
