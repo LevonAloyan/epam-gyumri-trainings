@@ -5,9 +5,7 @@ import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EmailProcessor<T> implements AnnotationProcessor<T> {
-
-    AnnotationProcessor<T> nextProcessor;
+public class EmailProcessor<T> extends AnnotationProcessor<T> {
 
     public EmailProcessor() {
     }

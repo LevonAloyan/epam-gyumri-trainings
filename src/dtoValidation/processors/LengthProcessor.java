@@ -4,9 +4,7 @@ import dtoValidation.annotations.Length;
 
 import java.lang.reflect.Field;
 
-public class LengthProcessor<T> implements AnnotationProcessor<T> {
-
-    AnnotationProcessor<T> nextProcessor;
+public class LengthProcessor<T> extends AnnotationProcessor<T> {
 
     public LengthProcessor() {
     }

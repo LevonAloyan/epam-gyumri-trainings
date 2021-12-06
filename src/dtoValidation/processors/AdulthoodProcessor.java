@@ -4,9 +4,7 @@ import dtoValidation.annotations.Adulthood;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 
-public class AdulthoodProcessor<T> implements AnnotationProcessor<T> {
-
-    AnnotationProcessor<T> nextProcessor;
+public class AdulthoodProcessor<T> extends AnnotationProcessor<T> {
 
     public AdulthoodProcessor() {
     }

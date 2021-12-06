@@ -3,9 +3,7 @@ package dtoValidation.processors;
 import dtoValidation.annotations.Max;
 import java.lang.reflect.Field;
 
-public class MaxLimitProcessor<T> implements AnnotationProcessor<T> {
-
-    AnnotationProcessor<T> nextProcessor;
+public class MaxLimitProcessor<T> extends AnnotationProcessor<T> {
 
     public MaxLimitProcessor() {
     }

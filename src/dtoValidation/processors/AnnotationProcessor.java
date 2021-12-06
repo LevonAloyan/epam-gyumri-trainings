@@ -1,7 +1,9 @@
 package dtoValidation.processors;
 
-public interface AnnotationProcessor <T>{
+public abstract class AnnotationProcessor <T>{
 
-    String validate(T t) throws IllegalAccessException;
+    protected AnnotationProcessor<T> nextProcessor;
+
+    public abstract String validate(T t) throws IllegalAccessException;
 
 }

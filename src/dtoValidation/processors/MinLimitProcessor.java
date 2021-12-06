@@ -3,9 +3,7 @@ package dtoValidation.processors;
 import dtoValidation.annotations.Min;
 import java.lang.reflect.Field;
 
-public class MinLimitProcessor<T> implements AnnotationProcessor<T> {
-
-    AnnotationProcessor<T> nextProcessor;
+public class MinLimitProcessor<T> extends AnnotationProcessor<T> {
 
     public MinLimitProcessor() {
     }
