@@ -1,6 +1,8 @@
 package io;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
 
     private String country;
     private String city;
@@ -46,5 +48,16 @@ public class Address {
 
     public void setLine1(String line1) {
         this.line1 = line1;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", street='" + street + '\'' +
+                ", line1='" + line1 + '\'' +
+                '}';
     }
 }

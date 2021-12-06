@@ -1,6 +1,8 @@
 package io;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 
 public class FileUtil {
@@ -8,6 +10,24 @@ public class FileUtil {
     public static void main(String[] args) {
 
         printPhoneNumbers();
+
+        Address address = new Address();
+        address.setCountry("Armenia");
+        address.setCity("Gyumri");
+        address.setStreet("Planner");
+        address.setLine1("2/8a");
+        address.setZipCode("90401");
+
+        User user = new User();
+        user.setAddress(address);
+        user.setUsername("Hovhannes Abrahamyan");
+        user.setId(113345);
+        user.setBankCardNumber("1125468932150005");
+        user.setPhoneNumber("093331991");
+        user.setPassword("112233");
+
+        serialize(user,"user_data.txt");
+        deserialize("user_data.txt");
 
     }
 
@@ -60,6 +80,16 @@ public class FileUtil {
      * @param filePath
      */
     public static void serialize(User user, String filePath) {
+        String encodedString = Base64.getEncoder().encodeToString(user.getBankCardNumber().getBytes());
+        user.setBankCardNumber(encodedString);
+
+        try (FileOutputStream outputStream = new FileOutputStream(filePath);
+             ObjectOutputStream outputStream1 = new ObjectOutputStream(outputStream)) {
+            outputStream1.writeObject(user);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -70,6 +100,16 @@ public class FileUtil {
      * @return
      */
     public static User deserialize(String filePath) {
+        try(FileInputStream inputStream = new FileInputStream(filePath);
+        ObjectInputStream objectInputStream = new ObjectInputStream(inputStream)) {
+            User user = (User) objectInputStream.readObject();
+            byte[] decodedBytes = Base64.getDecoder().decode(user.getBankCardNumber());
+            String decodedString = new String(decodedBytes);
+            user.setBankCardNumber(decodedString);
+            System.out.println(user);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         return null;
     }

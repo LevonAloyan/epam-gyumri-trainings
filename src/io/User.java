@@ -1,6 +1,9 @@
 package io;
 
-public class User {
+import java.awt.*;
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private long id;
     private String username;
@@ -56,5 +59,17 @@ public class User {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", bankCardNumber='" + bankCardNumber + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address=" + address +
+                '}';
     }
 }
