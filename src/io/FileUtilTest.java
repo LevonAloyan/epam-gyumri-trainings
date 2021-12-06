@@ -1,35 +1,23 @@
 package io;
 
 import java.io.File;
+import java.util.List;
 
 public class FileUtilTest {
-
     public static void main(String[] args) {
-        File IO = new File("src/algorithms");
-        FileUtil.search(IO, "InfoAboutUser.txt");
 
-        FileUtil.printPhoneNumbers();
+        List<File> filesToSearch = FileUtil.search(new File("src/io"), "new_crab_1.jpeg");
+        for (File file : filesToSearch) {
+            System.out.println(file);
+        }
 
-        User user = new User();
-        Address address = new Address();
+        FileUtil.printPhoneNumbers("src/io/phoneNumbers.txt");
 
-        user.setUsername("AliԱլինաna \n");
-        user.setPassword("ali21 \n");
-        user.setBankCardNumber("2548 7963 6666 \n");
-        user.setId(16263646);
-        user.setPhoneNumber("093370401");
+        Address address = new Address("Armenia", "Gyumri", "3101", "Matnishyan", "46");
+        User user = new User(12233L, "Alina", "pass",
+                "1234567", "098888888", address);
 
-        address.setCountry("Armenia");
-        address.setCity("Gyumri");
-        address.setStreet("27/10");
-        address.setZipCode("3601");
-        address.setLine1("12/3");
-        user.setAddress(address);
-
-        final String pathname = "src/io/dir/InfoAboutUser.txt";
-
-        FileUtil.serialize(user, pathname);
-
-        System.out.println(FileUtil.deserialize(pathname));
+        FileUtil.serialize(user, "src/io/UserInfo.txt");
+        System.out.println(FileUtil.deserialize("src/io/UserInfo.txt"));
     }
 }

@@ -1,24 +1,22 @@
 package io;
 
 import java.io.Serializable;
-import java.util.Base64;
 
 public class User implements Serializable {
-
     private long id;
     private String username;
     private String password;
     private String bankCardNumber;
-    private String phoneNumber;
+    private transient String phoneNumber;
     private Address address;
 
-    public String toString() {
-        return "\n Information about user [ " +
-                "ID -   " + id + "\n" +
-                "Username -   " + username +
-                "Password - " + password +
-                "Bank Card Number - " + getBankCardNumber() +"\n"+
-                "Address - " + address + "\n" + "Phone Number -" + phoneNumber;
+    public User(long id, String username, String password, String bankCardNumber, String phoneNumber, Address address) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.bankCardNumber = bankCardNumber;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     public long getId() {
@@ -45,11 +43,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String  getBankCardNumber() {
-        byte [] cardNumber = bankCardNumber.getBytes();
-        Base64.getEncoder().encode(cardNumber);
-        String  bankCardNumberStr = cardNumber.toString();
-        return bankCardNumberStr;
+    public String getBankCardNumber() {
+        return bankCardNumber;
     }
 
     public void setBankCardNumber(String bankCardNumber) {
@@ -72,4 +67,15 @@ public class User implements Serializable {
         this.address = address;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", bankCardNumber='" + bankCardNumber + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address=" + address +
+                '}';
+    }
 }
