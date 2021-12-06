@@ -1,13 +1,26 @@
 package io;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class FileUtil {
+    private final static String USERDATA = "/Users/narekmuradyan/IdeaProjects/epam-gyumri-trainings/src/io/userData.txt";
 
     public static void main(String[] args) {
 
-        printPhoneNumbers();
+//        printPhoneNumbers();
+
+
+        User user = new User(20L, "poxos", "poxosyan", "1111", "093234814",
+                new Address("Armenia", "Gyumri", "2323", "Tumanyan", "23"));
+
+
+
+        serialize(user, USERDATA);
+        System.out.println(deserialize(USERDATA));
+
 
     }
 
@@ -22,8 +35,28 @@ public class FileUtil {
      * @return list of files
      */
     public static List<File> search(File dirToSearchIn, String fileNameMask) {
+        List<File> fileArrayList = new ArrayList<>();
+        File[] files = dirToSearchIn.listFiles();
+        try {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    search(file, fileNameMask);
+                } else if (file.getName().equalsIgnoreCase(fileNameMask)) {
+                    System.out.println(file.getName());
+                    fileArrayList.add(file);
 
-        return null;
+
+                }
+
+            }
+        } catch (NullPointerException e) {
+            System.out.println("There are no files in this directory");
+        }
+
+
+        return fileArrayList;
+
+
     }
 
 
@@ -60,6 +93,18 @@ public class FileUtil {
      * @param filePath
      */
     public static void serialize(User user, String filePath) {
+        String encodedBankCardNumber = Base64.getEncoder().encodeToString(user.getBankCardNumber().getBytes());
+
+        user.setBankCardNumber(encodedBankCardNumber);
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+            outputStream.writeObject(user);
+            outputStream.close();
+            System.out.println("User was successfully saved");
+        } catch (IOException e) {
+            System.out.println(e);
+        }
 
     }
 
@@ -70,8 +115,19 @@ public class FileUtil {
      * @return
      */
     public static User deserialize(String filePath) {
+        try {
+            FileInputStream fileInputStream = new FileInputStream(filePath);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            User user = (User) objectInputStream.readObject();
+            byte[] decodedBytes = Base64.getDecoder().decode(user.getBankCardNumber());
+            user.setBankCardNumber(new String(decodedBytes));
+            return user;
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println(e);
+        }
 
         return null;
+
     }
 
 }
