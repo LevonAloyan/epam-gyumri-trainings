@@ -1,7 +1,13 @@
 package io;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 import java.io.*;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class FileUtil {
@@ -63,6 +69,11 @@ public class FileUtil {
      */
     public static void serialize(User user, String filePath) {
 
+        String encodeBankCardNumber = Base64.getEncoder().encodeToString(user.getBankCardNumber().getBytes());
+        String encodePhoneNumber = Base64.getEncoder().encodeToString(user.getPhoneNumber().getBytes());
+        user.setBankCardNumber(encodeBankCardNumber);
+        user.setPhoneNumber(encodePhoneNumber);
+
         try {
             FileOutputStream outputStream = new FileOutputStream(filePath);
             ObjectOutputStream ous = new ObjectOutputStream(outputStream);
@@ -81,12 +92,18 @@ public class FileUtil {
      * @param filePath
      * @return
      */
-    public static User deserialize(String filePath) {
-        User user = null;
+    public static User deserialize(User user, String filePath) {
+
         try {
             FileInputStream fis = new FileInputStream(filePath);
             ObjectInputStream ois = new ObjectInputStream(fis);
             user = (User) ois.readObject();
+            byte[] decodeBankCardNumber = (Base64.getDecoder().decode(user.getBankCardNumber().getBytes()));
+            String decodedStringBankCardNumber = new String(decodeBankCardNumber);
+            user.setBankCardNumber(decodedStringBankCardNumber);
+            byte[] decodePhoneNumber = Base64.getDecoder().decode(user.getPhoneNumber().getBytes());
+            String decodedStringPhoneNumber = new String(decodePhoneNumber);
+            user.setPhoneNumber(decodedStringPhoneNumber);
             ois.close();
         } catch (FileNotFoundException e) {
             System.out.printf("File %s not found");

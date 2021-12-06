@@ -9,14 +9,14 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String bankCardNumber;
-    private transient String phoneNumber;
+    private String phoneNumber;
     private Address address;
 
     public User(long id, String username, String password, String bankCardNumber, String phoneNumber, Address address) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.bankCardNumber = Base64.getEncoder().encodeToString(bankCardNumber.getBytes());
+        this.bankCardNumber = bankCardNumber;
         this.phoneNumber = phoneNumber;
         this.address = address;
     }

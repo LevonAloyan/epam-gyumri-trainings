@@ -1,10 +1,12 @@
 package io;
 
 import java.io.File;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 public class FileUtilTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
 
         File dirToSearchIn = new File("/Users/davit/IdeaProjects/epam-gyumri-trainings");
         for (File dir : FileUtil.search(dirToSearchIn, ".txt")) {
@@ -20,6 +22,6 @@ public class FileUtilTest {
                 "093907107", address);
 
         FileUtil.serialize(user, filePath);
-        System.out.println(FileUtil.deserialize(filePath));
+        System.out.println(FileUtil.deserialize(user,filePath));
     }
 }
