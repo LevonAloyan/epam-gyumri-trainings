@@ -2,23 +2,34 @@ package io;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Base64;
 import java.util.List;
 
 public class FileUtil {
-    User user = new User();
     public static void main(String[] args) {
         //todo Method 1 Write into txt file
         printPhoneNumbers();
-        //todo Method 2 Write into txt file
+        //todo Method 2 Write into txt fi]le
         //writeIntoFile();
 
         //todo get files directory
-        File directory = new File("C:\\Users\\REDstore\\IdeaProjects\\epam-gyumri-trainings\\src\\io");
-            //todo find .txt execute files in directory
-        for (File dir :search(directory,".txt")) {
-           System.out.println(dir.getName());
+        File directory = new File("C:\\Users\\REDstore\\IdeaProjects\\epam-gyumri-trainings");
+        //todo find .txt execute files in directory
+        //todo Prints twice because of the OUT folder
+        for (File dir : search(directory, ".txt")) {
+            if (directory.isDirectory()){
+            search(directory,".txt");
+                System.out.println(dir.getName());
+            }
         }
+        //todo serializable
+        Address address = new Address("Armenia", "Gyumri", "3026", "P. Sevak", "13");
+        User user = new User(23000000000L, "garikLogIn", "drowssap1092387456", "0129834765", "098232577", address);
+        user.setPhoneNumber("*******");
+        String userFile = "C:\\Users\\REDstore\\IdeaProjects\\epam-gyumri-trainings\\src\\io\\newDir\\tst.txt";
+        serialize(user,userFile);
+        User desUs = deserialize(userFile);
+        System.out.println(desUs);
     }
     /**
      * Implement a method that will find files matching the specified filename mask.
@@ -30,41 +41,18 @@ public class FileUtil {
      * @return list of files
      */
     //todo Find .txt execute files
-    public static  List<File> search(File dirToSearchIn,String fileNameMask) {
+    public static List<File> search(File dirToSearchIn, String fileNameMask) {
         File[] filesArray = dirToSearchIn.listFiles();
         List<File> fileList = new ArrayList<>();
-        if (filesArray != null) {
             for (File fileLoop : filesArray) {
-                if (fileLoop.isDirectory()) {
-                    return search(fileLoop, fileNameMask);
+                if (fileLoop.isDirectory() && !fileLoop.getName().equalsIgnoreCase("out")) {
+                    fileList.addAll(search(fileLoop, fileNameMask));
                 } else if (fileLoop.getName().endsWith(fileNameMask)) {
                     fileList.add(fileLoop);
-                } else if (fileNameMask.equalsIgnoreCase(fileLoop.getName())) {
-                    System.out.println(fileLoop.getParentFile());
                 }
             }
-        }
-            return fileList;
-        }
-
-//    public static List<File> Run(File dirToSearchIn, String fileNameMask) {
-//        File[] lists = dirToSearchIn.listFiles();
-//        List<File> files = new ArrayList<>();
-//        if (lists != null)
-//            for (File file : lists) {
-//
-//                if (file.getName().endsWith(fileNameMask)) {
-//                    files.add(file);
-//                } else if (fileNameMask.equals(file.getName())) {
-//                    System.out.println("This file is used");
-//                }
-//            }
-//        return files;
-//    }
-
-
-
-
+        return fileList;
+    }
     /**
      * Write into .txt file all possible combinations of phone numbers that start with your phone code
      * for example, my phone code is 098. In the output file must be phone numbers starting from 098000000 to 098999999
@@ -125,6 +113,7 @@ public class FileUtil {
         return outputStream;
     }
 */
+
     /**
      * Serialize the object to a file, excluding the phone field and encrypt the bank card number
      * (you can use Base64 https://www.baeldung.com/java-base64-encode-and-decode)
@@ -133,7 +122,18 @@ public class FileUtil {
      * @param filePath
      */
     public static void serialize(User user, String filePath) {
-
+        String codedBankNumber = Base64.getEncoder().encodeToString(user.getBankCardNumber().getBytes());
+        user.setBankCardNumber(codedBankNumber);
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(user);
+            objectOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -143,8 +143,20 @@ public class FileUtil {
      * @return
      */
     public static User deserialize(String filePath) {
-
-        return null;
+        User user = null;
+        try {
+            FileInputStream fileInputStream = new FileInputStream(filePath);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+             user  =  (User) objectInputStream.readObject();
+            objectInputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
 }

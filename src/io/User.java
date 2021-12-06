@@ -1,6 +1,8 @@
 package io;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private long id;
     private String username;
@@ -9,6 +11,25 @@ public class User {
     private String phoneNumber;
     private Address address;
 
+    public User(long id, String username, String password, String bankCardNumber, String phoneNumber, Address address) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.bankCardNumber = bankCardNumber;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "User " + "\n"+
+                "Id: " + id + ", "+
+                "Username: " + username + ", "+
+                "Password: " + password + ", "+
+                "BankCardNumber: " + bankCardNumber + ", "+
+                "PhoneNumber: " + phoneNumber + ", "+ "\n"+
+                "Address: " + address;
+    }
 
     public long getId() {
         return id;
@@ -57,4 +78,6 @@ public class User {
     public void setAddress(Address address) {
         this.address = address;
     }
+
+
 }
