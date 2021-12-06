@@ -1,14 +1,24 @@
 package io;
 
 import java.io.*;
-import java.util.List;
+import java.util.*;
 
 public class FileUtil {
 
+    private static ArrayList<File> list = new ArrayList<File>();
+
     public static void main(String[] args) {
 
-        printPhoneNumbers();
+//        printPhoneNumbers();
 
+//        File dir = new File("src/io");
+//        System.out.println(search(dir, ".txt"));
+
+        Address address = new Address("Armenia", "Gyumri", "3112", "Jdanov", "10");
+        User user = new User(85967, "Ani", "vfdc5544", "89457231", "98541234",address);
+
+        serialize(user, "src/io/newDir/serial.txt");
+        System.out.println(deserialize("src/io/newDir/serial.txt"));
     }
 
 
@@ -22,8 +32,17 @@ public class FileUtil {
      * @return list of files
      */
     public static List<File> search(File dirToSearchIn, String fileNameMask) {
-
-        return null;
+        File[]  files = dirToSearchIn.listFiles();
+        for(File file : files){
+            if(file.isDirectory()){
+                search(file, fileNameMask);
+            }else{
+                if(file.getName().endsWith(fileNameMask)){
+                    list.add(file);
+                }
+            }
+        }
+        return list;
     }
 
 
@@ -32,15 +51,15 @@ public class FileUtil {
      * for example, my phone code is 098. In the output file must be phone numbers starting from 098000000 to 098999999
      */
     public static void printPhoneNumbers() {
-        String fileName = "phoneNumbers.txt";
+        String fileName = "src/io/phoneNumbers.txt";
         String message;
         try {
             OutputStream outputStream = new FileOutputStream(fileName);
-            for (int i = 93000000; i <= 93999999; i++) {
+            for (int i = 98000000; i <= 98999999; i++) {
                 message = "0" + i + "\n";
                 byte[] bytes = message.getBytes();
                 outputStream.write(bytes);
-                if (i > 93999999) {
+                if (i > 98999999) {
                     outputStream.close();
                 }
             }
@@ -60,6 +79,14 @@ public class FileUtil {
      * @param filePath
      */
     public static void serialize(User user, String filePath) {
+        try {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(filePath));
+            objectOutputStream.writeObject(user);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -70,8 +97,18 @@ public class FileUtil {
      * @return
      */
     public static User deserialize(String filePath) {
-
-        return null;
+        User user = null;
+        try{
+            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(filePath));
+            user = (User) objectInputStream.readObject();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
 }
