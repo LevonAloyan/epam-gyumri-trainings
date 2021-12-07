@@ -1,6 +1,9 @@
 package io;
 
+import jdk.nashorn.internal.objects.Global;
+
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtil {
@@ -22,9 +25,21 @@ public class FileUtil {
      * @return list of files
      */
     public static List<File> search(File dirToSearchIn, String fileNameMask) {
+        List<File> fileList = new ArrayList<>();
+        File[] files = dirToSearchIn.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].isFile()) {
+                fileList.add(files[i]);
+                return null;
+            }else if(files[i].isDirectory()) {
 
-        return null;
+                search(files[i], fileNameMask);
+            }
+        }
+        return fileList;
     }
+
+
 
 
     /**
@@ -32,24 +47,19 @@ public class FileUtil {
      * for example, my phone code is 098. In the output file must be phone numbers starting from 098000000 to 098999999
      */
     public static void printPhoneNumbers() {
-        String fileName = "phoneNumbers.txt";
-        String message;
         try {
-            OutputStream outputStream = new FileOutputStream(fileName);
-            for (int i = 93000000; i <= 93999999; i++) {
-                message = "0" + i + "\n";
-                byte[] bytes = message.getBytes();
-                outputStream.write(bytes);
-                if (i > 93999999) {
-                    outputStream.close();
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.printf("File %s not found", fileName);
-        } catch (IOException e) {
-            System.out.println("Error during write");
+            PrintWriter fileout = new PrintWriter(new FileWriter("src/io/phoneNumber.txt"));
+            for (int i =93000000; i <=93999999; i++) {
+                fileout.println(i);
+            }        fileout.close();
+            System.out.println("ok");
+        } catch (Exception e) {
+            System.out.println(e);
         }
-    }
+        
+        }
+        
+        
 
 
     /**
@@ -60,8 +70,19 @@ public class FileUtil {
      * @param filePath
      */
     public static void serialize(User user, String filePath) {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filePath);
+            DataOutputStream out = new DataOutputStream(fileOut);
+            out.writeChars(String.valueOf(user));
+            out.close();
+            fileOut.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-    }
+        }
 
     /**
      * Deserialize the object from the file by decrypting the card number.
