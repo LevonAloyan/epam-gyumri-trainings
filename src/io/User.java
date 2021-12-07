@@ -1,13 +1,26 @@
 package io;
 
-public class User {
+
+import java.io.Serializable;
+import java.util.Base64;
+
+public class User implements Serializable {
 
     private long id;
     private String username;
     private String password;
     private String bankCardNumber;
-    private String phoneNumber;
+    private transient String phoneNumber;
     private Address address;
+
+    public User(long id, String name, String pswd, String bankCardNumber, String phoneNumber, Address address) {
+        this.id = id;
+        this.username = name;
+        this.password = pswd;
+        this.bankCardNumber = Base64.getEncoder().encodeToString(bankCardNumber.getBytes());
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
 
 
     public long getId() {
@@ -39,7 +52,7 @@ public class User {
     }
 
     public void setBankCardNumber(String bankCardNumber) {
-        this.bankCardNumber = bankCardNumber;
+        this.bankCardNumber = new String(Base64.getDecoder().decode(bankCardNumber));
     }
 
     public String getPhoneNumber() {
@@ -57,4 +70,5 @@ public class User {
     public void setAddress(Address address) {
         this.address = address;
     }
+
 }

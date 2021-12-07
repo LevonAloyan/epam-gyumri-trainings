@@ -1,12 +1,23 @@
 package io;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
 
     private String country;
     private String city;
     private String zipCode;
     private String street;
     private String line1;
+
+    public Address(String country, String city, String zipCode, String street, String number) {
+        this.country = country;
+        this.city = city;
+        this.zipCode = zipCode;
+        this.street = street;
+        this.line1 = number;
+    }
+
 
     public String getCountry() {
         return country;
@@ -46,5 +57,15 @@ public class Address {
 
     public void setLine1(String line1) {
         this.line1 = line1;
+    }
+
+    public String toString(){
+        return "Address{" +"\n" +
+                "country " + country +"\n" +
+                "city " + city +"\n" +
+                "zipCode " + zipCode +"\n" +
+                "street " + street +"\n" +
+                "line1 " + line1 +"\n" +
+                "}";
     }
 }
