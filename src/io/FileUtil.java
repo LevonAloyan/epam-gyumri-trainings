@@ -2,30 +2,29 @@ package io;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 
 public class FileUtil {
     public static void main(String[] args) {
         //todo Method 1 Write into txt file
-        printPhoneNumbers();
+      //  printPhoneNumbers();
         //todo Method 2 Write into txt fi]le
         //writeIntoFile();
 
         //todo get files directory
-        File directory = new File("C:\\Users\\REDstore\\IdeaProjects\\epam-gyumri-trainings");
+        File directory = new File("C:\\Users\\REDstore\\IdeaProjects\\epam-gyumri-trainings\\src");
         //todo find .txt execute files in directory
         //todo Prints twice because of the OUT folder
-        for (File dir : search(directory, ".txt")) {
-            if (directory.isDirectory()){
-            search(directory,".txt");
-                System.out.println(dir.getName());
-            }
+        for (File dir : search(directory, "*txt*")) {
+            String[] str = dir.getName().split("\\.");
+            String name = str[0];
+            System.out.println(name);
         }
         //todo serializable
         Address address = new Address("Armenia", "Gyumri", "3026", "P. Sevak", "13");
-        User user = new User(23000000000L, "garikLogIn", "drowssap1092387456", "0129834765", "098232577", address);
-        user.setPhoneNumber("*******");
+        User user = new User(23000000000L, "garikLogIn", "drowssap1092387456", "0129834765", "098232577", 2555,address);
         String userFile = "C:\\Users\\REDstore\\IdeaProjects\\epam-gyumri-trainings\\src\\io\\newDir\\tst.txt";
         serialize(user,userFile);
         User desUs = deserialize(userFile);
@@ -44,14 +43,30 @@ public class FileUtil {
     public static List<File> search(File dirToSearchIn, String fileNameMask) {
         File[] filesArray = dirToSearchIn.listFiles();
         List<File> fileList = new ArrayList<>();
+        if (filesArray !=null){
             for (File fileLoop : filesArray) {
                 if (fileLoop.isDirectory() && !fileLoop.getName().equalsIgnoreCase("out")) {
                     fileList.addAll(search(fileLoop, fileNameMask));
-                } else if (fileLoop.getName().endsWith(fileNameMask)) {
-                    fileList.add(fileLoop);
+                } else if (fileNameMask.endsWith("*") && fileNameMask.startsWith("*")) {
+                    String fileNameToSearch = fileNameMask.substring(1, fileNameMask.length() - 1);
+                    if (fileLoop.getName().matches(".*\\w" + fileNameToSearch + "\\w.*")) {
+                        fileList.add(fileLoop);
+                    }
+                } else if (fileNameMask.endsWith("*") && !fileNameMask.startsWith("*")) {
+                    String prefix = fileNameMask.substring(0, fileNameMask.indexOf("*"));
+                    if (fileLoop.getName().startsWith(prefix)) {
+                        fileList.add(fileLoop);
+                    }
+                } else if (fileNameMask.startsWith("*") && !fileNameMask.endsWith("*")) {
+                    String suffix = fileNameMask.substring(fileNameMask.indexOf("*") + 1);
+                    if (fileLoop.getName().endsWith(suffix)) {
+                        fileList.add(fileLoop);
+                    }
                 }
             }
-        return fileList;
+            }
+            return fileList;
+
     }
     /**
      * Write into .txt file all possible combinations of phone numbers that start with your phone code
@@ -67,9 +82,6 @@ public class FileUtil {
                 message = ("0" + i + "\n");
                 byte[] bytes = message.getBytes();
                 outputStream.write(bytes);
-                if (i + 1 > 98999999) {
-                    outputStream.close();
-                }
             }
         } catch (FileNotFoundException e) {
             System.out.printf("File %s not found", fileName);
@@ -148,6 +160,9 @@ public class FileUtil {
             FileInputStream fileInputStream = new FileInputStream(filePath);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
              user  =  (User) objectInputStream.readObject();
+            byte[] decode = Base64.getDecoder().decode(user.getBankCardNumber());
+            String str = new String(decode);
+            user.setBankCardNumber(str);
             objectInputStream.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -158,5 +173,4 @@ public class FileUtil {
         }
         return user;
     }
-
 }

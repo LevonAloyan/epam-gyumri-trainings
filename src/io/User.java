@@ -8,16 +8,18 @@ public class User implements Serializable {
     private String username;
     private String password;
     private String bankCardNumber;
-    private String phoneNumber;
+    transient String phoneNumber;
     private Address address;
+    private final transient int integer;
 
-    public User(long id, String username, String password, String bankCardNumber, String phoneNumber, Address address) {
+    public User(long id, String username, String password, String bankCardNumber, String phoneNumber, int integer,Address address) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.bankCardNumber = bankCardNumber;
         this.phoneNumber = phoneNumber;
         this.address = address;
+        this.integer = integer;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class User implements Serializable {
                 "Username: " + username + ", "+
                 "Password: " + password + ", "+
                 "BankCardNumber: " + bankCardNumber + ", "+
-                "PhoneNumber: " + phoneNumber + ", "+ "\n"+
+                "PhoneNumber: " + phoneNumber + ", "+ "\n"+ "Integer: "+ integer + ", "+
                 "Address: " + address;
     }
 

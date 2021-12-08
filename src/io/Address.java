@@ -2,7 +2,10 @@ package io;
 
 import java.io.Serializable;
 
+
+
 public class Address implements Serializable {
+
 
     private String country;
     private String city;
