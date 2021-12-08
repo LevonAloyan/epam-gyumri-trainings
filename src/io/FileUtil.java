@@ -26,10 +26,25 @@ public class FileUtil {
         List<File> list = new ArrayList<>();
         if (files != null) {
             for (File file : files) {
+                String[]strings = file.getName().split("\\.",file.getName().length());
+                String fileName = strings[0];
                 if (file.isDirectory() && !file.getName().equalsIgnoreCase("out")) {
                     list.addAll(search(file, fileNameMask));
-                } else if (file.getName().endsWith(fileNameMask) && !list.contains(file)) {
-                    list.add(file);
+                } else if (fileNameMask.endsWith("*") && fileNameMask.startsWith("*")) {
+                    String fileNameToSearch = fileNameMask.substring(1, fileNameMask.length() - 1);
+                    if (fileName.matches(".*\\w" + fileNameToSearch + "\\w.*")) {
+                        list.add(file);
+                    }
+                } else if (fileNameMask.endsWith("*")) {
+                    String prefix = fileNameMask.substring(0, fileNameMask.indexOf("*"));
+                    if (fileName.startsWith(prefix)) {
+                        list.add(file);
+                    }
+                } else if (fileNameMask.startsWith("*")) {
+                    String suffix = fileNameMask.substring(fileNameMask.indexOf("*") + 1);
+                    if (fileName.endsWith(suffix)) {
+                        list.add(file);
+                    }
                 }
             }
         }
