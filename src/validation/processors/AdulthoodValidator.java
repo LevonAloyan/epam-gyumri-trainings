@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class AdulthoodValidator <T> implements AnnotationValidator <T>{
+public class AdulthoodValidator<T> extends AnnotationProcessor<T> {
 
     public String[] validate(T object) throws IllegalAccessException, NewCustomException {
         String[] errorMessages = new String[1];
@@ -21,12 +21,16 @@ public class AdulthoodValidator <T> implements AnnotationValidator <T>{
                     LocalDate birthDay = (LocalDate) fieldValue;
                     int years = Period.between(birthDay, LocalDate.now()).getYears();
                     if (years < 18) {
-                        errorMessages[0] = "You are not allowed to sing in";
+                        System.out.println("You are not allowed to sing in");
                     }
-                } else throw new NewCustomException("Is not valid to work");
+                } else {
+                    throw new NewCustomException("Is not valid to work");
+                }
 
             }
-
+            if (getNextProcessor() != null) {
+                getNextProcessor().validate(object);
+            }
 
         }
         return errorMessages;

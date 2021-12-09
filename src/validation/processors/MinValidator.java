@@ -5,9 +5,9 @@ import validation.annotation.Min;
 
 import java.lang.reflect.Field;
 
-public class MinValidator <T> implements AnnotationValidator <T>{
+public class MinValidator<T> extends AnnotationProcessor<T> {
     public String[] validate(T object) throws IllegalAccessException, NewCustomException {
-        String[] errorMessages = new String[5];
+        String[] errorMessages = new String[1];
 
         Class<?> aClass = object.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
@@ -23,14 +23,17 @@ public class MinValidator <T> implements AnnotationValidator <T>{
                     int fieldValue = customer.getDiscountRate();
                     int valueMin = annotation.value();
                     if (fieldValue < valueMin) {
-                        errorMessages[i++] = field.getName() + " less than needed";
+                        System.out.println(" less than needed");
                     }
 
 
-                } else throw new NewCustomException("Is not valid to work");
+                } else {
+                    throw new NewCustomException("Is not valid to work");
+                }
             }
-
-
+        }
+        if (getNextProcessor() != null) {
+            getNextProcessor().validate(object);
         }
         return errorMessages;
     }
