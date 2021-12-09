@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
+
 public class FileUtil {
 
     /**
@@ -26,8 +27,9 @@ public class FileUtil {
         List<File> list = new ArrayList<>();
         if (files != null) {
             for (File file : files) {
-                String[]strings = file.getName().split("\\.",file.getName().length());
-                String fileName = strings[0];
+                String name = file.getName();
+                String fileName = name.replaceFirst("[.^][^.]+$", "");
+
                 if (file.isDirectory() && !file.getName().equalsIgnoreCase("out")) {
                     list.addAll(search(file, fileNameMask));
                 } else if (fileNameMask.endsWith("*") && fileNameMask.startsWith("*")) {
