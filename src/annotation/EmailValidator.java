@@ -3,12 +3,13 @@ package annotation;
 import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
-public class EmailAnnotationProcessor <T>implements AnnotationInterface <T>{
+public  class EmailValidator<T>extends AnnotationProcessor<T> {
     private final String regex = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0" +
             "9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
 
     @Override
-    public void process(T t) throws IllegalAccessException {
+    public String[] validate (T t) throws IllegalAccessException {
+        String[] errorMessages=new String[5];
         Class<?> aClass = t.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
 
@@ -21,9 +22,12 @@ public class EmailAnnotationProcessor <T>implements AnnotationInterface <T>{
                     String email = (String) obj;
                     Pattern pattern = Pattern.compile(regex);
                     System.out.println(email.matches(pattern.pattern()));
-                } else throw new ValidatorException();
-
+                } else {
+                    throw new ValidatorException();
+                } if(getNextProcessor()!=null){
+             getNextProcessor().validate(t);}
             }
         }
+        return errorMessages;
     }
 }

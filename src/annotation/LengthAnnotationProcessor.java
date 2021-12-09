@@ -2,10 +2,11 @@ package annotation;
 
 import java.lang.reflect.Field;
 
-public class LengthAnnotationProcessor<T> implements AnnotationInterface <T>{
+public class LengthAnnotationProcessor<T> extends AnnotationProcessor<T> {
 
 
-    public void process(T t) throws IllegalAccessException {
+    public String[] validate (T t) throws IllegalAccessException {
+        String[]errorMessages=new String[1];
         Class<?> aClass = t.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
 
@@ -17,12 +18,17 @@ public class LengthAnnotationProcessor<T> implements AnnotationInterface <T>{
                     String name = (String) lengthSize;
                     Length annotation = field.getAnnotation(Length.class);
 
-                    if (name.length() < annotation.min() || name.length() > annotation.max()) {
+                    if (name.length() > annotation.min() || name.length() < annotation.max()) {
                         System.out.println("You cannot allowed");
                     }
-                }else throw new ValidatorException();
+                }else{
+                    throw new ValidatorException();
+                }
             }
-
+            if (getNextProcessor()!=null){
+                getNextProcessor().validate(t);
+            }
         }
+        return errorMessages;
     }
 }

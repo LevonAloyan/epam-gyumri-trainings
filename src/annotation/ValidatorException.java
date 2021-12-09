@@ -1,6 +1,6 @@
 package annotation;
 
-public class ValidatorException extends RuntimeException{
+public class ValidatorException  extends RuntimeException{
 
 
     @Override

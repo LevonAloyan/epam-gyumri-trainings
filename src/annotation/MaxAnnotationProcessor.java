@@ -2,10 +2,11 @@ package annotation;
 
 import java.lang.reflect.Field;
 
-public class MaxAnnotationProcessor<T> implements AnnotationInterface <T> {
+public class MaxAnnotationProcessor <T>  extends AnnotationProcessor<T> {
 
 
-    public void process(T t) throws IllegalAccessException {
+    public String[] validate (T t) throws IllegalAccessException {
+        String[]errorMessages=new String[5];
         Class<?> aClass = t.getClass();
         Field[] declaredFields = aClass.getDeclaredFields();
 
@@ -15,15 +16,18 @@ public class MaxAnnotationProcessor<T> implements AnnotationInterface <T> {
                 Object maxDiscount = field.get(t);
                 if (maxDiscount instanceof Number) {
                     Number number = (Number) maxDiscount;
-                    Max annotation = field.getAnnotation(Max.class);
+                    Min annotation = field.getAnnotation(Min.class);
                     int valueMin = annotation.value();
-
                     if (number.intValue() > valueMin) {
                         System.out.println("It has to be less 100");
-                    } else throw new ValidatorException();
+                    } else {
+                        throw new ValidatorException();
+                    }
 
-                }
+                } if(getNextProcessor()!=null){
+                getNextProcessor().validate(t);}
             }
         }
+        return errorMessages;
     }
 }
