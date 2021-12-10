@@ -1,14 +1,15 @@
 package ThreadWin;
 
-public class PutThreadMethod implements Runnable{
+public class PutThreadMethod implements Runnable {
     BufferBounded bufferBounded;
-    PutThreadMethod(BufferBounded bufferBounded){
-        this.bufferBounded=bufferBounded;
-        new Thread(this).start();
+
+    PutThreadMethod(BufferBounded bufferBounded) {
+        this.bufferBounded = bufferBounded;
     }
+
     @Override
     public void run() {
-        while(true) {
+        while (true) {
             bufferBounded.put(0);
         }
     }

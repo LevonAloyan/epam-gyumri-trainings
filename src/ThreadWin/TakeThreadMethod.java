@@ -1,15 +1,17 @@
 package ThreadWin;
 
-public class TakeThreadMethod implements Runnable{
+public class TakeThreadMethod implements Runnable {
     BufferBounded bufferBounded;
-    TakeThreadMethod(BufferBounded bufferBounded){
-        this.bufferBounded =bufferBounded;
-        new Thread(this).start();
 
+    TakeThreadMethod(BufferBounded bufferBounded) {
+        this.bufferBounded = bufferBounded;
     }
+
+
     @Override
     public void run() {
-        while (true){
+        while (true) {
             bufferBounded.take();
-    }}
+        }
+    }
 }

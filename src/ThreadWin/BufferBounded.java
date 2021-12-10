@@ -1,10 +1,10 @@
 package ThreadWin;
 
-public class BufferBounded {
+public class BufferBounded<T> {
     private boolean variable = false;
-    volatile int  data;
+    volatile T data;
 
-    public synchronized void put(int data) {
+    public synchronized void put(T data) {
         while (variable) {
             try {
                 wait();
@@ -12,14 +12,14 @@ public class BufferBounded {
                 e.printStackTrace();
             }
         }
-
         variable = true;
-        ++data;
+        data = (T) "1";
         this.data = data;
         System.out.println("Put " + data);
         notify();
-}
-    public synchronized int take() {
+    }
+
+    public synchronized T take() {
         while (!variable) {
             try {
                 wait();
@@ -28,10 +28,10 @@ public class BufferBounded {
                 e.printStackTrace();
             }
         }
-        variable= false;
+        variable = false;
         System.out.println("Take " + data);
 
-        data = 0;
+        data = null;
         notify();
         return data;
     }
