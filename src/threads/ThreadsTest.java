@@ -1,6 +1,6 @@
 package threads;
 
-public class ThreadsRunner {
+public class ThreadsTest {
     public static void main(String[] args) {
         PutAndTakeMethods<String> methods = new PutAndTakeMethods<>();
 
@@ -18,6 +18,5 @@ public class ThreadsRunner {
 
         putThread.start();
         takeThread.start();
-
     }
 }
