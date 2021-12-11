@@ -1,17 +1,14 @@
 package io;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import java.io.*;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
 
 public class FileUtil {
+
+
 
     /**
      * Implement a method that will find files matching the specified filename mask.
@@ -27,9 +24,7 @@ public class FileUtil {
         List<File> list = new ArrayList<>();
         if (files != null) {
             for (File file : files) {
-                String name = file.getName();
-                String fileName = name.replaceFirst("[.^][^.]+$", "");
-
+                String fileName = file.getName().replaceFirst("[.^][^.]+$", "");
                 if (file.isDirectory() && !file.getName().equalsIgnoreCase("out")) {
                     list.addAll(search(file, fileNameMask));
                 } else if (fileNameMask.endsWith("*") && fileNameMask.startsWith("*")) {
@@ -37,6 +32,7 @@ public class FileUtil {
                     if (fileName.matches(".*\\w" + fileNameToSearch + "\\w.*")) {
                         list.add(file);
                     }
+
                 } else if (fileNameMask.endsWith("*")) {
                     String prefix = fileNameMask.substring(0, fileNameMask.indexOf("*"));
                     if (fileName.startsWith(prefix)) {
@@ -123,7 +119,7 @@ public class FileUtil {
             user.setPhoneNumber(decodedStringPhoneNumber);
             ois.close();
         } catch (FileNotFoundException e) {
-            System.out.printf("File %s not found");
+            System.out.printf("File %s not found", filePath);
         } catch (IOException e) {
             System.out.printf("Error during read");
         } catch (ClassNotFoundException e) {

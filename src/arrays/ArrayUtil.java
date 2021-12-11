@@ -11,13 +11,28 @@ public class ArrayUtil {
      * Create an array with the given size, fill it with the different values and print it.
      */
     public static void createArray(int size) {
+        int[]array = new int[size];
 
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i;
+            System.out.println(array[i]);
+
+        }
     }
 
     /**
      * Create two dimensional array with the given sizes, fill it with different values and print it.
      */
     public static void create2dArray(int x, int y) {
+
+        int[][]array = new int[x][y];
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                array[i][j] = i +j;
+                System.out.println(array[i][j] + "\t");
+            }
+        }
     }
 
     /**

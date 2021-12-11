@@ -5,29 +5,34 @@ public class PutAndTakeMethods<T> {
     private T data;
     private boolean var = false;
 
-    public synchronized void put(T data) {
+    synchronized void put(T data) {
         while (var)
             try {
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        var = true;
-        this.data = data;
-        System.out.println("Put " + data);
-        notifyAll();
+        if (this.data == null) {
+            var = true;
+            this.data = data;
+            System.out.println("Put " + data);
+            notifyAll();
+        }
     }
 
-    public synchronized T take() {
+    synchronized T take() {
         while (!var)
             try {
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        var = false;
-        System.out.println("Take " + data);
-        notifyAll();
-        return null;
+        if (this.data != null) {
+            var = false;
+            System.out.println("Take " + data);
+            this.data = null;
+            notifyAll();
+        }
+        return data;
     }
 }
