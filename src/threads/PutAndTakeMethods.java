@@ -13,7 +13,6 @@ public class PutAndTakeMethods<T> {
                 e.printStackTrace();
             }
         var = true;
-
         this.data = data;
         System.out.println("Put " + data);
         notifyAll();
@@ -28,8 +27,7 @@ public class PutAndTakeMethods<T> {
             }
         var = false;
         System.out.println("Take " + data);
-        data = null;
         notifyAll();
-        return data;
+        return null;
     }
 }
