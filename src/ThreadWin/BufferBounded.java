@@ -2,9 +2,9 @@ package ThreadWin;
 
 public class BufferBounded<T> {
     private boolean variable = false;
-    volatile T data;
+    private volatile T data;
 
-    public synchronized void put(T data) {
+    protected synchronized void put(T data) {
         while (variable) {
             try {
                 wait();
@@ -12,14 +12,16 @@ public class BufferBounded<T> {
                 e.printStackTrace();
             }
         }
-        variable = true;
-        data = (T) "1";
-        this.data = data;
-        System.out.println("Put " + data);
-        notify();
+        if (this.data == null) {
+            variable = true;
+
+            this.data = data;
+            System.out.println("Put " + data);
+            notify();
+        }
     }
 
-    public synchronized T take() {
+    protected synchronized T take() {
         while (!variable) {
             try {
                 wait();
@@ -28,11 +30,12 @@ public class BufferBounded<T> {
                 e.printStackTrace();
             }
         }
-        variable = false;
-        System.out.println("Take " + data);
-
-        data = null;
-        notify();
+        if (this.data != null) {
+            variable = false;
+            System.out.println("Take " + data);
+            this.data = null;
+            notify();
+        }
         return data;
     }
 }
