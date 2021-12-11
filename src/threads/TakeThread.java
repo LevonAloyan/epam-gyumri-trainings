@@ -7,7 +7,6 @@ public class TakeThread implements Runnable {
     TakeThread(PutAndTakeMethods method2) {
 
         this.method2 = method2;
-        new Thread(this).start();
     }
 
     @Override
@@ -16,4 +15,5 @@ public class TakeThread implements Runnable {
             method2.take();
         }
     }
+
 }

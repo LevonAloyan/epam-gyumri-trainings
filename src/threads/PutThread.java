@@ -6,13 +6,12 @@ public class PutThread implements Runnable {
 
     PutThread(PutAndTakeMethods method1) {
         this.method1 = method1;
-        new Thread(this).start();
     }
 
     @Override
     public void run() {
         while (true) {
-            method1.put(0);
+            method1.put(1);
         }
     }
 }

@@ -13,7 +13,6 @@ public class PutAndTakeMethods<T> {
                 e.printStackTrace();
             }
         var = true;
-        data = (T) "1";
 
         this.data = data;
         System.out.println("Put " + data);
@@ -28,7 +27,7 @@ public class PutAndTakeMethods<T> {
                 e.printStackTrace();
             }
         var = false;
-        System.out.println("Take" + data);
+        System.out.println("Take " + data);
         data = null;
         notifyAll();
         return data;
