@@ -7,7 +7,7 @@ public class BoundedBlockingBuffer<T> {
 
     public synchronized void put(T data)  {
         while (!condition) {
-                System.out.println("Waiting for " + Thread.currentThread().getName() + " to put.");
+                System.out.println(Thread.currentThread().getName() + " is waiting to put." );
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -16,7 +16,7 @@ public class BoundedBlockingBuffer<T> {
         }
             condition = false;
             this.data = data;
-            System.out.println("Putting " + Thread.currentThread().getName());
+            System.out.println( Thread.currentThread().getName()+" has put.");
             notifyAll();
         }
 
@@ -24,7 +24,7 @@ public class BoundedBlockingBuffer<T> {
 
     public synchronized T take()  {
         while (condition) {
-                System.out.println("Waiting for " + Thread.currentThread().getName() + " to take.");
+                System.out.println(Thread.currentThread().getName() +" is waiting to take.");
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -33,7 +33,7 @@ public class BoundedBlockingBuffer<T> {
         }
         condition = true;
         notifyAll();
-        System.out.println("Taking " + Thread.currentThread().getName());
+        System.out.println(Thread.currentThread().getName()+" has taken.");
         return data;
     }
 }
