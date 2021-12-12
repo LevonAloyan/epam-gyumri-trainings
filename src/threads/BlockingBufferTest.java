@@ -23,6 +23,11 @@ public class BlockingBufferTest {
         new DataTransfer<>(buffer1,strings);
         new DataReceive<>(buffer1);
 
+        BoundedBlockingBuffer<Double> buffer2 = new BoundedBlockingBuffer<>(3);
+        new DataTransfer<>(buffer2, 1.4);
+        new DataReceive<>(buffer2);
+
+
     }
 
 }
