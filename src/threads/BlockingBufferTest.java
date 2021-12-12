@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BlockingBufferTest {
     public static void main(String[] args) {
-        BoundedBlockingBuffer<List<Integer>> buffer = new BoundedBlockingBuffer<>();
+        BoundedBlockingBuffer<List<Integer>> buffer = new BoundedBlockingBuffer<>(2);
         List<Integer> nums = new ArrayList<>();
         nums.add(2);
         nums.add(3);
@@ -14,7 +14,7 @@ public class BlockingBufferTest {
         new DataTransfer<>(buffer,nums);
         new DataReceive<>(buffer);
 
-        BoundedBlockingBuffer<List<String>> buffer1 = new BoundedBlockingBuffer<>();
+        BoundedBlockingBuffer<List<String>> buffer1 = new BoundedBlockingBuffer<>(2);
         List<String> strings = new ArrayList<>();
         strings.add("Heghine");
         strings.add("tried");
