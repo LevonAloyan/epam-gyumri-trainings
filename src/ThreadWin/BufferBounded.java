@@ -29,14 +29,13 @@ public class BufferBounded<T> {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        }T data1 = this.data;
         if (this.data != null) {
             variable = false;
-            System.out.println("Take " + data);
             this.data = null;
             notify();
         }
-        return data;
+        return data1 ;
     }
 }
 

@@ -2,16 +2,16 @@ package ThreadWin;
 
 public class BufferTest {
     public static void main(String[] args) {
-        BufferBounded<String> bufferBounded = new BufferBounded<>();
+        BufferBounded<Integer> bufferBounded = new BufferBounded<>();
 
         Thread thread = new Thread(() -> {
             while (true) {
-                bufferBounded.put("1");
+                bufferBounded.put(1);
             }
         });
         Thread thread1 = new Thread(() -> {
             while (true) {
-                bufferBounded.take();
+                System.out.println("Take: " + bufferBounded.take());
             }
         });
         thread.start();
