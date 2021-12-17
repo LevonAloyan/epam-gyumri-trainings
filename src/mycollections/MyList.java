@@ -1,7 +1,7 @@
-package dynamicarray;
+package mycollections;
 
 
-public interface DynamicArray<T> {
+public interface MyList<T> {
 
     /**
      * Returns the number of elements in this list.

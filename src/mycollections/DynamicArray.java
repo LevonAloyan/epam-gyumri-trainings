@@ -1,6 +1,6 @@
-package dynamicarray;
+package mycollections;
 
-public class DynamicArrayImpl<E>  implements DynamicArray<E>{
+public class DynamicArray<E>  implements MyList<E> {
 
 	@Override
 	public int size() {

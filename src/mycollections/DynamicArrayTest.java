@@ -1,4 +1,4 @@
-package dynamicarray;
+package mycollections;
 
 
 public class DynamicArrayTest {
