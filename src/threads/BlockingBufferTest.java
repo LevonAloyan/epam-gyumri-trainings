@@ -1,12 +1,14 @@
 package threads;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 public class BlockingBufferTest {
     public static void main(String[] args) {
-        BoundedBlockingBuffer<List<Integer>> buffer = new BoundedBlockingBuffer<>(2);
-        List<Integer> nums = new ArrayList<>();
+        BoundedBlockingBuffer<Deque<Integer>> buffer = new BoundedBlockingBuffer<>(2);
+        Deque<Integer> nums = new ArrayDeque<>();
         nums.add(2);
         nums.add(3);
         nums.add(4);
@@ -14,8 +16,8 @@ public class BlockingBufferTest {
         new DataTransfer<>(buffer,nums);
         new DataReceive<>(buffer);
 
-        BoundedBlockingBuffer<List<String>> buffer1 = new BoundedBlockingBuffer<>(2);
-        List<String> strings = new ArrayList<>();
+        BoundedBlockingBuffer<Deque<String>> buffer1 = new BoundedBlockingBuffer<>(2);
+        Deque<String> strings = new ArrayDeque<>();
         strings.add("Heghine");
         strings.add("tried");
         strings.add("to make");
