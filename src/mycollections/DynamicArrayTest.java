@@ -1,13 +1,28 @@
 package mycollections;
 
 
+import java.util.ArrayList;
+
 public class DynamicArrayTest {
 
     public static void main(String[] args) {
 
+        DynamicArray<String> array = new DynamicArray<>();
+
+        array.add("10");
+        array.add(null);
+        array.add("8");
+        array.add("12");
+
+        System.out.println(array.get(1));
+
+        System.out.println(array.size());
+
+        System.out.println(array.isEmpty());
     }
 
     public void sizeTest() {
+
         //TODO change body of implemented methods
     }
 
@@ -48,7 +63,7 @@ public class DynamicArrayTest {
     }
 
     public void remove() {
-         //TODO: change body of implemented methods
+        //TODO: change body of implemented methods
     }
 
 }
