@@ -1,54 +1,92 @@
 package mycollections;
 
-
 public class DynamicArrayTest {
+    private static DynamicArray<Integer> dynamicArray = new DynamicArray<>();
 
     public static void main(String[] args) {
 
+        addTest();
+        sizeTest();
+        containsTest();
+        removeByIndexTest();
+        getTest();
+        lastIndexOfTest();
+        indexOfTest();
+        addByIndexTest();
+        set(0, 9);
+        remove();
+        isEmptyTest();
+
     }
 
-    public void sizeTest() {
-        //TODO change body of implemented methods
+    public static void sizeTest() {
+        System.out.println("Dynamic array size is - " + dynamicArray.size());
+        System.out.println();
     }
 
-    public void isEmptyTest() {
-        //TODO: change body of implemented methods
+    public static void isEmptyTest() {
+        System.out.println("Array is empty - " + dynamicArray.isEmpty());
+        System.out.println();
     }
 
-    public void containsTest() {
-        //TODO: change body of implemented methods
+    public static void containsTest() {
+        System.out.println("Array contains of 7 - " + dynamicArray.contains(7));
+        System.out.println();
     }
 
-    public void indexOfTest() {
-        //TODO: change body of implemented methods
+    public static void indexOfTest() {
+        System.out.println("Index of that element - " + dynamicArray.indexOf(4));
+        System.out.println();
     }
 
-    public void lastIndexOfTest() {
-        //TODO: change body of implemented methods
+    public static void lastIndexOfTest() {
+        System.out.println("Last index of that element - " + dynamicArray.lastIndexOf(4));
+        System.out.println();
     }
 
-    public void getTest() {
-        //TODO: change body of implemented methods
+    public static void getTest() {
+        System.out.println("The element at the specified position in this list - " + dynamicArray.get(5));
+        dynamicArray.print();
+        System.out.println();
     }
 
-    public void set(int index, Integer element) {
-        //TODO: change body of implemented methods
+    public static void set(int index, Integer element) {
+        System.out.println("The element previously at the specified position - " + dynamicArray.set(index, element));
+        dynamicArray.print();
+        System.out.println();
     }
 
-    public void addTest() {
-        //TODO: change body of implemented methods
+    public static void addTest() {
+        System.out.println(dynamicArray.add(9));
+        System.out.println(dynamicArray.add(8));
+        System.out.println(dynamicArray.add(68));
+        System.out.println(dynamicArray.add(4));
+        System.out.println(dynamicArray.add(1));
+        System.out.println(dynamicArray.add(4));
+        System.out.println(dynamicArray.add(18));
+        System.out.println(dynamicArray.add(4));
+        System.out.println(dynamicArray.add(7));
+        System.out.println(dynamicArray.add(21));
+        dynamicArray.print();
+        System.out.println();
     }
 
-    public void addByIndexTest() {
-        //TODO: change body of implemented methods
+    public static void addByIndexTest() {
+        System.out.println("Add an element to the mass by index");
+        dynamicArray.add(11, 15);
+        dynamicArray.print();
+        System.out.println();
     }
 
-    public void removeByIndexTest() {
-        //TODO: change body of implemented methods
+    public static void removeByIndexTest() {
+        System.out.println("Remove by index - " + dynamicArray.removeByIndex(2));
+        dynamicArray.print();
+        System.out.println();
     }
 
-    public void remove() {
-         //TODO: change body of implemented methods
+    public static void remove() {
+        System.out.println("Remove element 4 - " + dynamicArray.remove(4));
+        dynamicArray.print();
+        System.out.println();
     }
-
 }

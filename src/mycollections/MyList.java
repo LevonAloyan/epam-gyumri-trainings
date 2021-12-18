@@ -46,10 +46,7 @@ public interface MyList<T> {
      */
     int lastIndexOf(T o);
 
-
-
     // Positional Access Operations
-
     /**
      * Returns the element at the specified position in this list.
      *
@@ -98,7 +95,7 @@ public interface MyList<T> {
      * @return the element that was removed from the list
      * @throws IndexOutOfBoundsException
      */
-    T remove(int index);
+    T removeByIndex(int index);
 
     /**
      * Removes the first occurrence of the specified element from this list,
