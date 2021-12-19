@@ -104,6 +104,12 @@ public class DynamicArray<E>  implements MyList<E> {
 		size--;
 		return oldValue;
 	}
+
+	@Override
+	public boolean remove(E o) {
+		return false;
+	}
+
 	@Override
 	public void clear() {
 		data = new Object [DEFAULT_SIZE];
@@ -128,8 +134,5 @@ public class DynamicArray<E>  implements MyList<E> {
 			throw new DynamicArrayIndexOutOfBoundException(index) ;
 		}
 	}
-	@Override
-	public boolean remove(E element) {
-		return false;
-	}
+
 }
