@@ -14,22 +14,22 @@ public class DoubleLinkedArrayTest {
         test.linkLast(5.6);
         test.addTest(4.7);
         test.addTest(4.7);
-        test.addByIndexTest(1,45.6);
-        test.set(3,33.3);
-        test.indexOfTest(3.33);
+        test.addByIndexTest(1, 45.6);
+        test.set(3, 33.3);
+        test.indexOfTest(5.77);
         test.lastIndexOfTest(4.7);
         test.sizeTest();
+        test.getTest(1);
         test.remove(45.6);
         test.removeByIndexTest(1);
-        test.getTest(0);
-        test.print();
-
+        // test.print();
+        test.unlinkFirst();
+        test.unlinkLast();
     }
 
 
     public void sizeTest() {
         System.out.println("Size of linked array is -> " + doubleLinkedList.size());
-
     }
 
     public void isEmptyTest() {
@@ -58,7 +58,7 @@ public class DoubleLinkedArrayTest {
 
     public <T> void set(int index, T element) {
         System.out.println("Set an element by index in linked array -> "
-                + doubleLinkedList.set(index,(Double) element));
+                + doubleLinkedList.set(index, (Double) element));
     }
 
     public <T> void addTest(T element) {
@@ -81,19 +81,29 @@ public class DoubleLinkedArrayTest {
                 + doubleLinkedList.remove((Double) element));
     }
 
-    public <T> void linkFirst (T element) {
+    public <T> void linkFirst(T element) {
         System.out.println("Linking element to the first position -> " + element);
         doubleLinkedList.linkFirst((Double) element);
     }
 
-    public <T> void linkLast (T element) {
+    public <T> void linkLast(T element) {
         System.out.println("Linking element to the last position -> " + element);
         doubleLinkedList.linkLast((Double) element);
     }
 
-    public void print () {
-        doubleLinkedList.printLinkedArray();
+    public void print() {
+        doubleLinkedList.printElements();
         System.out.println();
+    }
+
+    public void unlinkFirst() {
+        System.out.println("Unlink first element ");
+        doubleLinkedList.unlinkFirst();
+    }
+
+    public void unlinkLast() {
+        System.out.println("Unlink last element ");
+        doubleLinkedList.unlinkLast();
     }
 
 }
