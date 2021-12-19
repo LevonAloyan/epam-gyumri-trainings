@@ -1,69 +1,67 @@
 package mycollections;
 
-
-import java.util.ArrayList;
-
 public class DynamicArrayTest {
+
+    static DynamicArray<String> dynamicArray = new DynamicArray<>();
 
     public static void main(String[] args) {
 
-        DynamicArray<String> array = new DynamicArray<>();
+        addTest();
+        System.out.println(dynamicArray);
+        sizeTest();
+        isEmptyTest();
+        System.out.println(dynamicArray);
+        sizeTest();
 
-        array.add("10");
-        array.add(null);
-        array.add("8");
-        array.add("12");
-
-        System.out.println(array.get(1));
-
-        System.out.println(array.size());
-
-        System.out.println(array.isEmpty());
     }
 
-    public void sizeTest() {
 
-        //TODO change body of implemented methods
+    public static void sizeTest() {
+        System.out.println(dynamicArray.size());
     }
 
-    public void isEmptyTest() {
-        //TODO: change body of implemented methods
+    public static void isEmptyTest() {
+        System.out.println(dynamicArray.isEmpty());
     }
 
-    public void containsTest() {
-        //TODO: change body of implemented methods
+    public static void containsTest() {
+        System.out.println(dynamicArray.contains("12"));
     }
 
-    public void indexOfTest() {
-        //TODO: change body of implemented methods
+    public static void indexOfTest() {
+        System.out.println(dynamicArray.indexOf("20"));
     }
 
-    public void lastIndexOfTest() {
-        //TODO: change body of implemented methods
+    public static void lastIndexOfTest() {
+        System.out.println(dynamicArray.lastIndexOf("20"));
     }
 
-    public void getTest() {
-        //TODO: change body of implemented methods
+    public static void getTest() {
+        System.out.println(dynamicArray.get(2));
     }
 
-    public void set(int index, Integer element) {
-        //TODO: change body of implemented methods
+    public static void set(int index, String element) {
+        System.out.println(dynamicArray.set(index, element));
     }
 
-    public void addTest() {
-        //TODO: change body of implemented methods
+    public static void addTest() {
+        dynamicArray.add("12");
+        dynamicArray.add("20");
+        dynamicArray.add("7");
+        dynamicArray.add("20");
+        dynamicArray.add("16");
+        dynamicArray.add("20");
     }
 
-    public void addByIndexTest() {
-        //TODO: change body of implemented methods
+    public static void addByIndexTest() {
+        dynamicArray.add(3, "12");
     }
 
-    public void removeByIndexTest() {
-        //TODO: change body of implemented methods
+    public static void removeByIndexTest() {
+        System.out.println(dynamicArray.remove(4));
     }
 
-    public void remove() {
-        //TODO: change body of implemented methods
+    public static void remove() {
+        System.out.println(dynamicArray.remove("20"));
     }
-
 }

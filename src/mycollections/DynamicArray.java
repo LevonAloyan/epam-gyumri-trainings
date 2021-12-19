@@ -1,12 +1,11 @@
 package mycollections;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class DynamicArray<E> implements MyList<E> {
     private final int DEFAULT_SIZE = 10;
     static int size = 0;
-    static int INDEX = -1;
+
     E[] arrayList = (E[]) new Object[DEFAULT_SIZE];
 
     @Override
@@ -31,9 +30,9 @@ public class DynamicArray<E> implements MyList<E> {
 
     @Override
     public int indexOf(E element) {
-        for (E e : arrayList) {
-            if (e == element) {
-                return INDEX;
+        for (int i = 0; i < size; i++) {
+            if (arrayList[i] == element) {
+                return i;
             }
         }
         return 0;
@@ -41,24 +40,28 @@ public class DynamicArray<E> implements MyList<E> {
 
     @Override
     public int lastIndexOf(E element) {
+        for (int i = size; i >= 0; i--) {
+            if (arrayList[i] == element) {
+                return i;
+            }
+        }
         return 0;
     }
 
     @Override
     public E get(int index) {
-        for (E e : arrayList) {
-            if (INDEX == index) {
-                return e;
-            }
+        if (index >= 0 && index < size) {
+            return arrayList[index];
+        } else {
+            throw new IndexOutOfBoundsException();
         }
-        return null;
     }
-//    public void cursor(){
-//       INDEX++;
-//    }
 
     @Override
     public E set(int index, E element) {
+        if (index >= 0 && index < size()) {
+            return arrayList[index] = element;
+        }
         return null;
     }
 
@@ -69,7 +72,6 @@ public class DynamicArray<E> implements MyList<E> {
             if (size == arrayList.length) {
                 ensureCapacity();
             }
-            INDEX++;
             return true;
         }
         return false;
@@ -77,29 +79,40 @@ public class DynamicArray<E> implements MyList<E> {
 
     @Override
     public void add(int index, E element) {
+        if (size == arrayList.length) {
+            ensureCapacity();
+        }
+        if (index < size) {
+            System.arraycopy(arrayList, index, arrayList, index + 1, size - index);
+            arrayList[index] = element;
+            size++;
+        }
     }
 
     @Override
     public E remove(int index) {
-        return null;
+        if (index < size) {
+            E value = arrayList[index];
+            System.arraycopy(arrayList, index + 1, arrayList, index, size - index);
+            size--;
+            return value;
+        } else throw new IndexOutOfBoundsException();
     }
 
     @Override
     public boolean remove(E element) {
-        for (int i = 0; i < arrayList.length; i++) {
-            if (arrayList[i] == element) {
-                arrayList[i] = null;
-                size--;
-                return true;
-            }
+        if (indexOf(element) < size) {
+            remove(indexOf(element));
+            return true;
         }
         return false;
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(arrayList);
-
+        Object[] objects = new Object[size];
+        System.arraycopy(arrayList, 0, objects, 0, size);
+        return Arrays.toString(objects);
     }
 
     private void ensureCapacity() {
