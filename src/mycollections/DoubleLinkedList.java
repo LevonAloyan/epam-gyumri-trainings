@@ -57,3 +57,4 @@ public class DoubleLinkedList<T> implements MyList<T>{
         return false;
     }
 }
+
