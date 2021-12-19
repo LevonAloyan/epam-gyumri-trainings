@@ -1,6 +1,5 @@
 package mycollections;
 
-
 public interface MyList<T> {
 
     /**
