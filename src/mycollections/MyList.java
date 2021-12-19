@@ -114,4 +114,5 @@ public interface MyList<T> {
      * @return <tt>true</tt> if this list contained the specified element
      */
     public boolean remove(T o);
+    void clear();
 }
