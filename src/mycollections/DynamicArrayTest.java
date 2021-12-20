@@ -3,52 +3,98 @@ package mycollections;
 
 public class DynamicArrayTest {
 
+    static DynamicArray<String> DArray = new DynamicArray<>();
+    static DynamicArray<String> DArrayInitCapacity = new DynamicArray<>(20);
+
+
     public static void main(String[] args) {
 
+        isEmptyTest();
+        sizeTest();
+
+        addTest();
+        addByIndexTest();
+        System.out.println(DArray);
+
+        isEmptyTest();
+        sizeTest();
+        System.out.println("isEmpty (() and size() after adding");
+
+        containsTest();
+        indexOfTest();
+        lastIndexOfTest();
+        getTest();
+        setTest(3,5);
+        System.out.println("after set()");
+
+        removeByIndexTest();
+        System.out.println("after remove(INDEX)");
+        remove();
+
     }
 
-    public void sizeTest() {
+    public static void sizeTest() {
         //TODO change body of implemented methods
+        System.out.println(DArray.size());
     }
 
-    public void isEmptyTest() {
+    public static void isEmptyTest() {
         //TODO: change body of implemented methods
+        System.out.println(DArray.isEmpty());
     }
 
-    public void containsTest() {
+    public static void containsTest() {
         //TODO: change body of implemented methods
+        System.out.println(DArray.contains("contains"));
     }
 
-    public void indexOfTest() {
+    public static void indexOfTest() {
         //TODO: change body of implemented methods
+        System.out.println(DArray.indexOf("indexOf"));
+
     }
 
-    public void lastIndexOfTest() {
+    public static void lastIndexOfTest() {
         //TODO: change body of implemented methods
+        System.out.println(DArray.lastIndexOf("lastIndex"));
     }
 
-    public void getTest() {
+    public static void getTest() {
         //TODO: change body of implemented methods
+        System.out.println(DArray.get(1));
     }
 
-    public void set(int index, Integer element) {
+    public static void setTest(int index, Integer element) {
         //TODO: change body of implemented methods
+        System.out.println(DArray.set(index, "set"+element));
     }
 
-    public void addTest() {
+    public static void addTest() {
         //TODO: change body of implemented methods
+        System.out.println(DArray.add("a"));
+        for (int i = 0; i < 5; i++) {
+            DArray.add("" + i);
+        }
+        DArray.add("lastIndex");
+        DArray.add("indexOf");
+        DArray.add("contains");
+        DArray.add("lastIndex");
+        DArray.add("indexOf");
+
     }
 
-    public void addByIndexTest() {
+    public static void addByIndexTest() {
         //TODO: change body of implemented methods
+        DArray.add(0, "new a");
     }
 
-    public void removeByIndexTest() {
+    public static void removeByIndexTest() {
         //TODO: change body of implemented methods
+        System.out.println(DArray.remove(0));
     }
 
-    public void remove() {
-         //TODO: change body of implemented methods
+    public static void remove() {
+        //TODO: change body of implemented methods
+        System.out.println(DArray.remove("4"));
     }
-
 }
