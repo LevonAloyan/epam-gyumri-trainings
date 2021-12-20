@@ -57,7 +57,7 @@ public interface MyList<T> {
      * @return the element at the specified position in this list
      * @throws IndexOutOfBoundsException
      */
-    T get(int index);
+    T get(int index) throws Exception;
 
     /**
      * Replaces the element at the specified position in this list with
