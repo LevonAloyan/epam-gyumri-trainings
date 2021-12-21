@@ -57,7 +57,7 @@ public interface MyList<T> {
      * @return the element at the specified position in this list
      * @throws IndexOutOfBoundsException
      */
-    T get(int index);
+    T get(int index) throws Exception;
 
     /**
      * Replaces the element at the specified position in this list with
@@ -68,7 +68,7 @@ public interface MyList<T> {
      * @return the element previously at the specified position
      * @throws IndexOutOfBoundsException
      */
-    T set(int index, T element);
+    T set(int index, T element) throws Exception;
 
     /**
      * Appends the specified element to the end of this list.
@@ -87,7 +87,7 @@ public interface MyList<T> {
      * @param element element to be inserted
      * @throws IndexOutOfBoundsException
      */
-    void add(int index, T element);
+    void add(int index, T element) throws Exception;
 
     /**
      * Removes the element at the specified position in this list.
@@ -98,7 +98,7 @@ public interface MyList<T> {
      * @return the element that was removed from the list
      * @throws IndexOutOfBoundsException
      */
-    T remove(int index);
+    T remove(int index) throws Exception;
 
     /**
      * Removes the first occurrence of the specified element from this list,
@@ -113,5 +113,5 @@ public interface MyList<T> {
      * @param o element to be removed from this list, if present
      * @return <tt>true</tt> if this list contained the specified element
      */
-    public boolean remove(T o);
+    public boolean remove(T o) throws Exception;
 }
