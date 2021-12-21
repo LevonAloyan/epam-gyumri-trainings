@@ -1,4 +1,6 @@
+
 package mycollections;
+
 
 public class DoubleLinkedList<T> implements MyList<T> {
     private Node<T> head;
@@ -14,28 +16,46 @@ public class DoubleLinkedList<T> implements MyList<T> {
 
     @Override
     public int size() {
-        return size;
+
+        return this.size;
     }
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+
+        return this.size == 0;
     }
 
     @Override
     public boolean contains(T o) {
-        return false;
+
+        return indexOf(o) != -1;
     }
 
     @Override
     public int indexOf(T o) {
-        // todo iterate on Linked list check if the data is equals to given value, return the index
-        return 0;
+        int index = 0;
+        for(Node<T> current = this.head; current !=null; current = current.next){
+            if (current.data.equals(o)) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(T o) {
-        return 0;
+        int index = this.size-1;
+        for(Node<T> current = this.last; current !=null; current = current.previous){
+            if (current.data.equals(o)) {
+                return index;
+            }
+            current = current.previous;
+            index--;
+        }
+        return -1;
     }
 
     @Override
@@ -54,7 +74,15 @@ public class DoubleLinkedList<T> implements MyList<T> {
 
     @Override
     public T set(int index, T element) {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new ListIndexOutOfBoundException("Index " + index + " is out of bound. The LinkedList size is " + size);
+        }
+
+        Node<T> node = this.getByIndex(index);
+        T oldData = node.getData();
+        node.data = element;
+        return oldData;
+
     }
 
     @Override
@@ -75,20 +103,111 @@ public class DoubleLinkedList<T> implements MyList<T> {
     @Override
     public void add(int index, T element) {
 
+        if (index < 0 || index >= size) {
+            throw new ListIndexOutOfBoundException("Index " + index + " is out of bound. The LinkedList size is " + size);
+        }
+
+        if (head == null && index == 0) {
+            head = new Node(element);
+
+        } else if (head == null && index != 0) {
+            return;
+        } else if (index > size) {
+            return;
+        }
+
+        Node<T> current = head;
+        int pos = -1;
+        Node previous = null;
+        Node next = null;
+        Node newNode = new Node(element);
+        while (current != null) {
+            if (pos == index - 1) {
+                previous = current;
+            } else if (pos == index + 1) {
+                next = current;
+            }
+            pos++;
+            current = current.next;
+        }
+        previous.next = newNode;
+        newNode.next = next;
     }
 
     @Override
     public T remove(int index) {
-        return null;
+        if (index == 0) {
+            last.previous = null;
+            return (T) last;
+        }
+
+        Node<T> nodeToRemove = this.getByIndex(index);
+
+        for (int i = 0; i < index; i++) {
+            nodeToRemove = nodeToRemove.next;
+        }
+
+        nodeToRemove.previous.next = nodeToRemove.next;
+
+        if (nodeToRemove.previous.next != null) {
+            nodeToRemove.previous.next.previous = nodeToRemove.previous;
+        }
+
+
+        return nodeToRemove.data;
     }
 
     @Override
     public boolean remove(T o) {
-        return false;
+        boolean result = false;
+        if (isEmpty()) {
+            throw new IllegalStateException("Cannot remove() from empty list.");
+        }
+
+        if (head != null) {
+            Node<T> currentNode = head;
+            Node<T> previousNode = head;
+
+            while (currentNode != null) {
+                if (currentNode.getData() == o) {
+                    previousNode.setNext(currentNode.getNext());
+
+                    if (currentNode.getNext() != null) {
+                        currentNode.getNext().setPrevious(previousNode);
+                    }
+                    result = true;
+                    break;
+                } else {
+                    previousNode = currentNode;
+                    currentNode = currentNode.getNext();
+                }
+            }
+        }
+        return result;
     }
 
+    private Node<T> getByIndex(int index) {
+        if (index < 0 || index >= size) {
+            throw new ListIndexOutOfBoundException("Index " + index + " is out of bound. The LinkedList size is " + size);
+        }
+        Node<T> node;
+        if (index <= this.size /2) {
+            node = this.head;
+            for (int i = 0; i < index; i++) {
+                node = node.getNext();
+            }
+        } else {
+            node = this.last;
+            for (int i = this.size - 1; i > index; i--) {
+                node = node.getPrevious();
+            }
+        }
+        return node;
+    }
+
+
     private static class Node<T> {
-        private final T data;
+        private T data;
         private Node<T> next;
         private Node<T> previous;
 
@@ -126,8 +245,15 @@ public class DoubleLinkedList<T> implements MyList<T> {
         myLinkedList.add(4);
         myLinkedList.add(5);
         myLinkedList.add(5);
+        System.out.println(myLinkedList.contains(10));
+        System.out.println(myLinkedList.indexOf(5));
+        System.out.println(myLinkedList.lastIndexOf(5));
+        System.out.println(myLinkedList.get(2));
+        System.out.println(myLinkedList.set(2, 15));
+        myLinkedList.add(2, 67);
+        System.out.println(myLinkedList.remove(2));
 
-        System.out.println(myLinkedList.get(16));
+        //System.out.println(myLinkedList.get(16));
 
 
     }
