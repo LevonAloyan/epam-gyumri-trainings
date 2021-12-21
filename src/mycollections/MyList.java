@@ -98,7 +98,8 @@ public interface MyList<T> {
      * @return the element that was removed from the list
      * @throws IndexOutOfBoundsException
      */
-    T remove(int index);
+    T removeByIndex(int index);
+
 
     /**
      * Removes the first occurrence of the specified element from this list,

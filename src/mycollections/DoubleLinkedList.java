@@ -24,18 +24,33 @@ public class DoubleLinkedList<T> implements MyList<T> {
 
     @Override
     public boolean contains(T o) {
-        return false;
+        return indexOf(o) != -1;
     }
 
     @Override
     public int indexOf(T o) {
-        // todo iterate on Linked list check if the data is equals to given value, return the index
-        return 0;
+        int index = 0;
+        for(Node<T> current = head;
+            current != null;
+            current = current.getNext()) {
+            if (current.data.equals(o)){
+                return index;
+            }
+            index++;
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(T o) {
-        return 0;
+        int index = size - 1;
+        for (Node<T> current = last; current != null; current = current.getPrevious()){
+            if (current.data.equals(o)){
+                return index;
+            }
+            index --;
+        }
+        return -1;
     }
 
     @Override
@@ -50,11 +65,14 @@ public class DoubleLinkedList<T> implements MyList<T> {
             currentIndex++;
         }
         return nodeToReturn.getData();
+
     }
 
     @Override
     public T set(int index, T element) {
-        return null;
+     T current = get(index);
+      add(index,element);
+        return current;
     }
 
     @Override
@@ -74,21 +92,60 @@ public class DoubleLinkedList<T> implements MyList<T> {
 
     @Override
     public void add(int index, T element) {
-
+     if (index >= 0 && index <= size){
+//         if (index == size) {
+//             lastIndexOf(element);
+//         }else {
+//             Node<T> node = new Node<>(element);
+//             node.setData(element);
+//             node.setNext(node);
+//             node.setPrevious(node.getPrevious());
+//             node.getPrevious().setNext(node);
+//             size ++;
+       int i = 0;
+        for (Node<T> current = last; current != null; current = current.getNext()){
+            if (i == index){
+               // Node<T> curr = new Node<>(null, null , element);
+                current.setData(element);
+                current.setNext(current.getNext());
+                current.setPrevious(current.getPrevious());
+            }
+            i++;
+        }
+        }
     }
 
     @Override
-    public T remove(int index) {
-        return null;
-    }
+        public T removeByIndex(int index){
+            T current = get(index);
+            if (remove(get(index))) {
+                return current;
+            }
+            return null;
+        }
 
     @Override
     public boolean remove(T o) {
+        if (o == null){
+            for (Node<T> current = head; current != null; current = current.getNext()){
+                if (current.getData().equals(o)){
+                    unLink(current);
+                    return true;
+                }
+            }
+        }else {
+        for (Node<T> current = head; current != null; current = current.getNext()){
+            if (current.getData().equals(o)){
+                unLink(current);
+                return true;
+            }
+        }
+        }
         return false;
     }
 
     private static class Node<T> {
-        private final T data;
+        private  T data;
         private Node<T> next;
         private Node<T> previous;
 
@@ -115,22 +172,39 @@ public class DoubleLinkedList<T> implements MyList<T> {
         public void setPrevious(Node<T> previous) {
             this.previous = previous;
         }
+
+        public void setData(T data) {
+            this.data = data;
+        }
     }
 
-    public static void main(String[] args) {
-        DoubleLinkedList<Integer> myLinkedList = new DoubleLinkedList<>();
 
-        myLinkedList.add(1);
-        myLinkedList.add(2);
-        myLinkedList.add(3);
-        myLinkedList.add(4);
-        myLinkedList.add(5);
-        myLinkedList.add(5);
+    public void unLink(Node<T> current) {
+        if (current.getPrevious() == null) {
+            head = current.getNext();
+        } else {
+            current.getPrevious().setNext(current.getNext());
+            current.setPrevious(null);
+        }
 
-        System.out.println(myLinkedList.get(16));
-
-
+        if (current.getNext() == null) {
+            last = current.getPrevious();
+        } else {
+            current.getNext().setPrevious(current.getPrevious());
+            current.setNext(null);
+        }
+        current.setData(null);
+        size--;
     }
+
+ public void  print (){
+        for( Node<T> current = head;
+        current != null;
+        current = current.getNext()){
+            System.out.print(current.getData() +" ,");
+        }
+ }
+
 }
 
 

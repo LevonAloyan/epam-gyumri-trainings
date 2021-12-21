@@ -48,7 +48,7 @@ public class DynamicArray<E>  implements MyList<E> {
 	}
 
 	@Override
-	public E remove(int index) {
+	public E removeByIndex (int index) {
 		return null;
 	}
 
