@@ -113,24 +113,29 @@ public class DoubleLinkedList<T> implements MyList<T> {
     @Override
     public T get(int index) {
 
+        Node<T> tNode = get0(index);
+        return tNode.getValue();
+    }
+
+    private Node<T> get0(int index) {
         int i = 0;
-        if(index<size && index>=0) {
+        if (index < size && index >= 0) {
             for (Node<T> x = pointerToFirst; x != null; x = x.getNext()) {
                 if (i == index) {
-                    return x.getValue();
+                    return x;
                 }
                 i++;
             }
-        } else {
-             throw new ListIndexOutOfBoundException("Index is not available");
         }
-        return null;
+        throw new ListIndexOutOfBoundException("Index is not available");
     }
 
     @Override
     public T set(int index, T element) {
-        T temp = removeByIndex(index);
-        add(index, element);
+
+        T temp = get(index);
+        Node<T> nodeByIndex = get0(index);
+        nodeByIndex.setValue(element);
         return temp;
     }
 
@@ -147,16 +152,17 @@ public class DoubleLinkedList<T> implements MyList<T> {
             if (index == size) {
                 lastLink(element);
             } else {
-                int i=0;
-                for (Node<T> x = pointerToFirst; x != null; x = x.getNext()) {
-                    if (i == index) {
-                       x.setValue(element);
-                    }
-                    i++;
-                }
+                Node<T> t = get0(index);
+                Node<T> temp = new Node<>();
+                temp.setValue(element);
+                temp.setNext(t);
+                temp.setPrevious(t.getPrevious());
+                t.getPrevious().setNext(temp);
+                size++;
             }
         }
     }
+
 
     @Override
     public T removeByIndex(int index) {
@@ -200,7 +206,6 @@ public class DoubleLinkedList<T> implements MyList<T> {
             x.getPrevious().setNext(x.getNext());
             x.setPrevious(null);
         }
-
         if (x.getNext() == null) {
             pointerToLast = x.getPrevious();
         } else {

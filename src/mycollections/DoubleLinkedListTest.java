@@ -79,9 +79,8 @@ public class DoubleLinkedListTest {
     }
 
     public static void addByIndexTest() {
+        System.out.println("Add by index");
         doubleLinkedList.add(2, 22);
-        doubleLinkedList.add(4, 44);
-        doubleLinkedList.add(6, 66);
     }
 
     public static void removeByIndexTest() {
