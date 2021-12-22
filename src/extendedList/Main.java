@@ -19,5 +19,7 @@ public class Main {
         ArrayList[] array = list.partition(i -> i % 2 == 0);
         System.out.println(array[0]);
         System.out.println(array[1]);
+        int sum = list.reduce(Integer::sum, 0);
+        System.out.println(sum);
     }
 }

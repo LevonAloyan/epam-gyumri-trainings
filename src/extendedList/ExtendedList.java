@@ -1,6 +1,7 @@
 package extendedList;
 
 import java.util.ArrayList;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -15,8 +16,8 @@ public class ExtendedList<T> extends ArrayList<T> {
         return list;
     }
 
-    public void fill(Supplier<T> supplier, int i) {
-        for (int j = 0; j < i; j++) {
+    public void fill(Supplier<T> supplier, int count) {
+        for (int i = 0; i < count; i++) {
             this.add(supplier.get());
         }
     }
@@ -45,6 +46,14 @@ public class ExtendedList<T> extends ArrayList<T> {
         array[0] = list1;
         array[1] = list2;
         return array;
+    }
+
+    public T reduce(BinaryOperator<T> binaryOperator, T identity) {
+        T result = identity;
+        for (T t : this) {
+            result = binaryOperator.apply(t, result);
+        }
+        return result;
     }
 
 }
