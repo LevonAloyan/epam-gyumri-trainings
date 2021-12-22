@@ -1,10 +1,14 @@
 package mycollections;
 
+import java.util.LinkedList;
+
 public class DoubleLinkedList<T> implements MyList<T>{
 
     @Override
     public int size() {
-        return 0;
+
+
+        return list.size();
     }
 
     @Override

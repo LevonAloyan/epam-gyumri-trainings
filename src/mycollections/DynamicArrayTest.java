@@ -1,10 +1,32 @@
 package mycollections;
 
 
+import java.util.ArrayList;
+
 public class DynamicArrayTest {
 
     public static void main(String[] args) {
+        DynamicArray<String> dynamicArray = new DynamicArray<>();
+        dynamicArray.add("Gugo");
+        dynamicArray.add("Hayk");
+        dynamicArray.add("Hovo");
 
+        System.out.println(dynamicArray.contains("Gugo"));
+        System.out.println(dynamicArray.contains("Gugo"));
+
+        dynamicArray.print();
+        System.out.println(dynamicArray.indexOf("Gugo"));
+        System.out.println(dynamicArray.lastIndexOf("Gugo"));
+        System.out.println(dynamicArray.get(2));
+        dynamicArray.set(2,"Garik");
+        dynamicArray.print();
+        dynamicArray.add(2,"Karen");
+        dynamicArray.print();
+        dynamicArray.remove(3);
+        dynamicArray.remove(2);
+        dynamicArray.print();
+        dynamicArray.remove(0);
+        dynamicArray.print();
     }
 
     public void sizeTest() {
@@ -48,7 +70,7 @@ public class DynamicArrayTest {
     }
 
     public void remove() {
-         //TODO: change body of implemented methods
+        //TODO: change body of implemented methods
     }
 
 }
