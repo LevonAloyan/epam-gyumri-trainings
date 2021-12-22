@@ -18,32 +18,47 @@ public class DoubleLinkedList<T> implements MyList<T> {
 
     @Override
     public boolean contains(T o) {
-        elementValueCheck(o);
         return indexOf(o) != -1;
     }
 
     @Override
     public int indexOf(T o) {
-        elementValueCheck(o);
         int index = 0;
-        for (Node<T> first = head; first != null; first = first.next) {
-            if (first.item.equals(o)) {
-                return index;
+        if (o == null) {
+            for (Node<T> first = head; first != null; first = first.next) {
+                if (first.item == null) {
+                    return index;
+                }
+                index++;
             }
-            index++;
+        } else {
+            for (Node<T> first = head; first != null; first = first.next) {
+                if (first.item.equals(o)) {
+                    return index;
+                }
+                index++;
+            }
         }
         return -1;
     }
 
     @Override
     public int lastIndexOf(T o) {
-        elementValueCheck(o);
-        int index = 0;
-        for (Node<T> last = tail; last != null; last = last.prev) {
-            if (last.item.equals(o)) {
-                return index;
+        int index = size - 1;
+        if (o == null) {
+            for (Node<T> last = tail; last != null; last = last.prev) {
+                if (last.item == null) {
+                    return index;
+                }
+                index--;
             }
-            index++;
+        } else {
+            for (Node<T> last = tail; last != null; last = last.prev) {
+                if (last.item.equals(o)) {
+                    return index;
+                }
+                index--;
+            }
         }
         return -1;
     }
@@ -51,31 +66,12 @@ public class DoubleLinkedList<T> implements MyList<T> {
     @Override
     public T get(int index) {
         rangeCheck(index);
-        if (size != 0) {
-            int halfLength = (size >> 1);
-            if (index <= halfLength && head != null) {
-                for (int i = 0; i <= halfLength; i++) {
-                    if (i == index) {
-                        return head.item;
-                    }
-                    head = head.next;
-                }
-            } else if (index > halfLength && tail != null) {
-                for (int i = size; i > halfLength; i--) {
-                    if (i == index) {
-                        return tail.item;
-                    }
-                    tail = tail.prev;
-                }
-            }
-        }
-        return null;
+        return getByIndex(index).item;
     }
 
     @Override
     public T set(int index, T element) {
         rangeCheck(index);
-        elementValueCheck(element);
         Node<T> elementToSet = new Node<>(null, element, null);
         Node<T> initialElement = getByIndex(index);
         if (index == 0) {
@@ -87,6 +83,8 @@ public class DoubleLinkedList<T> implements MyList<T> {
         } else {
             elementToSet.next = initialElement.next;
             elementToSet.prev = initialElement.prev;
+            initialElement.prev.next = elementToSet;
+            initialElement.next.prev = elementToSet;
         }
         initialElement.next = initialElement.prev = null;
         return initialElement.item;
@@ -94,7 +92,6 @@ public class DoubleLinkedList<T> implements MyList<T> {
 
     @Override
     public boolean add(T e) {
-        elementValueCheck(e);
         linkLast(e);
         return true;
     }
@@ -102,40 +99,82 @@ public class DoubleLinkedList<T> implements MyList<T> {
     @Override
     public void add(int index, T element) {
         rangeCheck(index);
-        elementValueCheck(element);
         Node<T> elementToAdd = new Node<>(null, element, null);
         Node<T> initialElement = getByIndex(index);
-        elementToAdd.next = initialElement;
-        elementToAdd.prev = initialElement.prev;
-        initialElement.prev = elementToAdd;
+        if (size == 0) {
+            if (index == 0) {
+                head = elementToAdd;
+            }
+        } else {
+            if (index == 0) {
+                linkFirst(element);
+            } else if (index == size) {
+                linkLast(element);
+            } else {
+                elementToAdd.next = initialElement;
+                elementToAdd.prev = initialElement.prev;
+                Node<T> prev = initialElement.prev;
+                prev.next = elementToAdd;
+                initialElement.prev = elementToAdd;
+            }
+        }
+        size++;
     }
 
     @Override
     public T remove(int index) {
         rangeCheck(index);
         Node<T> removeByIndex = getByIndex(index);
-        unlinkElement(removeByIndex);
+        remove(removeByIndex.item);
         return removeByIndex.item;
     }
 
     @Override
     public boolean remove(T o) {
-        elementValueCheck(o);
-        Node<T> element = head;
-        while (element != null) {
-            if (element.item.equals(o)) {
-                unlinkElement(element);
-            } else {
-                element = element.next;
+        if (o == null) {
+            for (Node<T> removingElement = head; removingElement != null; removingElement = removingElement.next) {
+                if (removingElement.item == null) {
+                    if (removingElement == head) {
+                        head = removingElement.next;
+                        removingElement.next.prev = null;
+                    } else if (removingElement == tail) {
+                        removingElement.prev.next = null;
+                        tail = removingElement.prev;
+                    } else {
+                        removingElement.prev.next = removingElement.next;
+                        removingElement.next.prev = removingElement.prev;
+                    }
+                    return true;
+                }
+            }
+        } else {
+            for (Node<T> node = this.head; node != null; node = node.next) {
+                if (o.equals(node.item)) {
+                    if (node == this.head) {
+                        this.head = node.next;
+                        node.next.prev = null;
+                    } else if (node == this.tail) {
+                        node.prev.next = null;
+                        this.tail = node.prev;
+                    } else {
+                        node.prev.next = node.next;
+                        node.next.prev = node.prev;
+                    }
+                    return true;
+                }
             }
         }
-        return true;
+        return false;
     }
 
     public void unlinkElement(Node<T> element) {
-        elementValueCheck(element.item);
         Node<T> prevElement = element.prev;
         Node<T> nextElement = element.next;
+        if (element.item == null) {
+            prevElement.next = nextElement;
+            nextElement.prev = prevElement;
+        }
+
         if (element.equals(tail)) {
             prevElement.next = tail.prev = tail = null;
             return;
@@ -206,7 +245,7 @@ public class DoubleLinkedList<T> implements MyList<T> {
                 }
             }
         } else {
-            for (int i = size; i > length; i--) {
+            for (int i = size - 1; i > length; i--) {
                 if (i == index) {
                     neededElement = tail;
                     return neededElement;
@@ -220,13 +259,7 @@ public class DoubleLinkedList<T> implements MyList<T> {
 
     private void rangeCheck(int index) {
         if (index < 0 || (index > size)) {
-            throw new IndexRangeChecker(index);
-        }
-    }
-
-    private void elementValueCheck(T element) {
-        if (element == null) {
-            throw new ElementValueChecker(null);
+            throw new IndexOutOfBoundsException();
         }
     }
 

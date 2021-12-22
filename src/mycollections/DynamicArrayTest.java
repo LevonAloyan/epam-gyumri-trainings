@@ -5,13 +5,17 @@ public class DynamicArrayTest {
 
     public static void main(String[] args) {
         DynamicArrayTest test = new DynamicArrayTest();
-        test.indexOfTest(4.4);
-        test.addByIndexTest(0, 5.5);
-        test.containsTest(5.3);
-        test.lastIndexOfTest(3.5);
+        test.indexOfTest(4);
+        test.addTest(36);
+        test.addTest(35);
+        test.addTest(34);
+        test.addTest(33);
+        test.addByIndexTest(0, null);
+        test.containsTest(5);
+        test.lastIndexOfTest(3);
         test.getTest(2);
-        test.remove(3.5);
-        test.indexOfTest(3.2);
+        test.remove(null);
+        test.indexOfTest(2);
         test.removeByIndexTest(2);
         System.out.println("________________________________");
     }

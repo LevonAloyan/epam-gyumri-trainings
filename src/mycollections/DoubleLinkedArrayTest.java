@@ -14,14 +14,14 @@ public class DoubleLinkedArrayTest {
         test.linkLast(5.6);
         test.addTest(4.7);
         test.addTest(4.7);
-        test.addByIndexTest(1, 45.6);
+       // test.addByIndexTest(1, 45.6);
         test.set(3, 33.3);
         test.indexOfTest(5.77);
         test.lastIndexOfTest(4.7);
         test.sizeTest();
         test.getTest(1);
         test.remove(45.6);
-        test.removeByIndexTest(1);
+        test.removeByIndexTest(2);
         // test.print();
         test.unlinkFirst();
         test.unlinkLast();

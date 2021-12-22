@@ -29,19 +29,22 @@ public class DynamicArray<E> implements MyList<E> {
 
     @Override
     public boolean contains(E element) {
-        for (E arrayElement : array) {
-            if (arrayElement == element) {
-                return true;
-            }
-        }
-        return false;
+        return indexOf(element) != -1;
     }
 
     @Override
     public int indexOf(E element) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == element) {
-                return i;
+        if (element == null) {
+            for (int i = 0; i < size; i++) {
+                if (array[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (array[i] == element) {
+                    return i;
+                }
             }
         }
         return -1;
@@ -49,9 +52,17 @@ public class DynamicArray<E> implements MyList<E> {
 
     @Override
     public int lastIndexOf(E element) {
-        for (int i = array.length - 1; i > 0; i--) {
-            if (array[i] == element) {
-                return i;
+        if (element == null) {
+            for (int i = size - 1; i >= 0; i--) {
+                if (array[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = size - 1; i >= 0; i--) {
+                if (array[i] == element) {
+                    return i;
+                }
             }
         }
         return -1;
@@ -101,12 +112,12 @@ public class DynamicArray<E> implements MyList<E> {
 
     @Override
     public boolean remove(E element) {
-        if (contains(element)) {
-            int indexOfElement = indexOf(element);
-            remove(indexOfElement);
-            return true;
+        if (element == null) {
+            remove(indexOf(null));
+        } else {
+            remove(indexOf(element));
         }
-        return false;
+        return true;
     }
 
     @SuppressWarnings("unchecked")
@@ -118,8 +129,8 @@ public class DynamicArray<E> implements MyList<E> {
     }
 
     private void rangeCheck(int index) {
-        if (index < 0 || (index > array.length - 1)) {
-            throw new IndexRangeChecker(index);
+        if (index < 0 || (index > this.size)) {
+            throw new IndexOutOfBoundsException();
         }
     }
 }
