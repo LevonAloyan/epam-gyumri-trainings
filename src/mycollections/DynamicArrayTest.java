@@ -4,11 +4,11 @@ package mycollections;
 public class DynamicArrayTest {
 
     public static void main(String[] args) {
-        DynamicArray<String> dynamicArray = new DynamicArray<>(3);
-        dynamicArray.add("Gugo");
-        dynamicArray.add("Hayk");
-        dynamicArray.add("Hovo");
-        dynamicArray.add("Hovo");
+//        DynamicArray<String> dynamicArray = new DynamicArray<>(3);
+//        dynamicArray.add("Gugo");
+//        dynamicArray.add("Hayk");
+//        dynamicArray.add("Hovo");
+//        dynamicArray.add("Hovo");
 //        System.out.println(dynamicArray.contains("Hovo"));
 //        dynamicArray.print();
 //        System.out.println(dynamicArray.indexOf("Hovo"));
@@ -21,10 +21,23 @@ public class DynamicArrayTest {
 //        dynamicArray.remove(3);
 //        dynamicArray.remove(2);
 //        dynamicArray.print();
-        dynamicArray.remove(0);
-        dynamicArray.print();
+//        dynamicArray.remove(0);
+//        dynamicArray.print();
 
+        DoubleLinkedList<String > doubleLinkedList = new DoubleLinkedList<>();
+        doubleLinkedList.add("5");
+        doubleLinkedList.add("10");
+        doubleLinkedList.add("15");
+        doubleLinkedList.add("20");
+        doubleLinkedList.add("20");
+        System.out.println(doubleLinkedList.size());
+        System.out.println(doubleLinkedList.isEmpty());
+        System.out.println(doubleLinkedList.contains("10"));
+        System.out.println(doubleLinkedList.indexOf("15"));
+        System.out.println(doubleLinkedList.lastIndexOf("20"));
     }
+
+
 
     public void sizeTest() {
         //TODO change body of implemented methods
