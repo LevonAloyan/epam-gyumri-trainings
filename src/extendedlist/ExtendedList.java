@@ -1,6 +1,5 @@
 package extendedlist;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BinaryOperator;
@@ -9,7 +8,6 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class ExtendedList<T> extends ArrayList<T> {
-
     public <K> ArrayList<K> map(Function<T, K> function) {
         ArrayList<K> list = new ArrayList<>();
         for (T t : this) {                           //foreach
@@ -17,6 +15,7 @@ public class ExtendedList<T> extends ArrayList<T> {
         }
         return list;
     }
+
 
     public ArrayList<T> fill(Supplier<T> supplier, int count) {
         ArrayList<T> list = new ArrayList<>();
@@ -46,6 +45,8 @@ public class ExtendedList<T> extends ArrayList<T> {
 
             } else {
                 listfalse.add(element);
+                System.out.println(element + " element doesn't satisfy the predicate. False");
+
 
             }
         }
