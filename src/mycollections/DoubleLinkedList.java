@@ -102,17 +102,47 @@ public class DoubleLinkedList<T> implements MyList<T> {
 //             node.setPrevious(node.getPrevious());
 //             node.getPrevious().setNext(node);
 //             size ++;
-       int i = 0;
-        for (Node<T> current = last; current != null; current = current.getNext()){
-            if (i == index){
-               // Node<T> curr = new Node<>(null, null , element);
-                current.setData(element);
-                current.setNext(current.getNext());
-                current.setPrevious(current.getPrevious());
-            }
-            i++;
-        }
-        }
+//       int i = 0;
+//        for (Node<T> current = last; current != null; current = current.getNext()){
+//            if (i == index){
+//               // Node<T> curr = new Node<>(null, null , element);
+//                current.setData(element);
+//                current.setNext(current.getNext());
+//                current.setPrevious(current.getPrevious());
+//            }
+//            i++;
+//        }
+//        }
+         Node<T> nodeToReturn = head;
+         int currentIndex = 0;
+
+         if (index >= 0 && index < size) {
+             method:
+             for (int i = 0; i < size; i++) {
+                 if (nodeToReturn != null) {
+                     if (index == i) {
+                         Node<T> current = new Node<>(element);
+                         if (nodeToReturn.getPrevious() != null) {
+                             current.setNext(nodeToReturn);
+                             current.setPrevious(nodeToReturn.getPrevious());
+                             nodeToReturn.getPrevious().setNext(current);
+                             nodeToReturn.setPrevious(current);
+                         } else {
+                             head = current;
+                             current.setNext(nodeToReturn);
+                             nodeToReturn.setPrevious(current);
+                         }
+                         size++;
+                     } else nodeToReturn = nodeToReturn.getNext();
+                     continue method;
+                 }
+             }
+         } else {
+             throw new ListIndexOutOfBoundException("Index " + index + " is out of bound. The LinkedList size is " + size);
+         }
+
+
+     }
     }
 
     @Override
