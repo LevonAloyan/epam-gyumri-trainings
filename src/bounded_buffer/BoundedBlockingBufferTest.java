@@ -3,27 +3,13 @@ package bounded_buffer;
 public class BoundedBlockingBufferTest {
 
     public static void main(String[] args) {
-        BoundedBlockingBuffer<String> boundedBlockingBuffer = new BoundedBlockingBuffer<>();
+        BoundedBlockingBuffer<String> boundedBlockingBuffer = new BoundedBlockingBuffer<String>(2);
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
-                    boundedBlockingBuffer.put("1");
-                }
-            }
-        });
-        Thread thread1 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
-                    System.out.println(boundedBlockingBuffer.take());
-                }
-            }
-        });
+        boundedBlockingBuffer.put("first");
+        boundedBlockingBuffer.put("second");
 
-        thread.start();
+        System.out.println("Element <" + boundedBlockingBuffer.take() + "> is taken from buffer");
+        System.out.println("Another element <" + boundedBlockingBuffer.take() + "> is taken from buffer");
 
-        thread1.start();
     }
 }
