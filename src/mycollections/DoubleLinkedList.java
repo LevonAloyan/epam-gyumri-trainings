@@ -51,7 +51,6 @@ public class DoubleLinkedList<T> implements MyList<T> {
                 }
             }
         }
-        // todo iterate on Linked list check if the data is equals to given value, return the index
         return 0;
     }
 
