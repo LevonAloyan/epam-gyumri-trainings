@@ -1,7 +1,6 @@
 package io;
 
-import java.io.File;
-import java.io.FileFilter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,14 +8,21 @@ import java.util.List;
 
 public class FileUtil {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         List<File> search = search(
-            new File("/Users/Levon_Aloyan/IdeaProjects/epam-gyumri-trainings/src/io/newDir"),
+            new File("/Users/User/epam-gyumri-trainings1/src/io/newDir"),
             "*");
 
         for (File file : search) {
             System.out.println(file.getName());
         }
+        String path = "src/io/user";
+        File dir = new File(path);
+        FileUtil.printPhoneNumbers();
+        Address address = new Address("Armenia", "Gyumri", "2020", "street", "13");
+        User user = new User(454663433L, "fhtrt", "693679832", "094546776", address);
+        FileUtil.serialize(user, "User.ser");
+        FileUtil.deserialize("User.ser");
     }
 
     /**
@@ -116,8 +122,20 @@ public class FileUtil {
      * code for example, my phone code is 098. In the output file must be phone numbers starting
      * from 098000000 to 098999999
      */
-    public static void printPhoneNumbers() {
+    public static void printPhoneNumbers() throws FileNotFoundException{
+        int phoneNum = 94000000;
 
+        FileOutputStream fileOutputStream = new FileOutputStream("C:/Users/User/epam-gyumri-trainings1/src/io/phoneNumbers.txt");
+        try {
+            DataOutputStream dataOutputStream = new DataOutputStream(fileOutputStream);
+            while (phoneNum <= 94999999) {
+                dataOutputStream.writeBytes("0" + phoneNum + "\n");
+                phoneNum++;
+            }
+            dataOutputStream.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -128,7 +146,16 @@ public class FileUtil {
      * @param filePath
      */
     public static void serialize(User user, String filePath) {
-
+        try (FileOutputStream fs = new FileOutputStream(filePath)){
+            ObjectOutputStream os = new ObjectOutputStream(fs);
+            os.writeObject(user);
+            os.close();
+            fs.close();
+            System.out.println("Object has been serialized.");
+            System.out.println(user.getBankCardNumber());
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -138,8 +165,19 @@ public class FileUtil {
      * @return
      */
     public static User deserialize(String filePath) {
+        User user = null;
 
-        return null;
+        try (FileInputStream fs = new FileInputStream(filePath)){
+            ObjectInputStream os = new ObjectInputStream(fs);
+            user = (User) os.readObject();
+            os.close();
+            fs.close();
+            System.out.println("Object has been deserialized.");
+            System.out.println(user.getBankCardNumber());
+        }catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
 }
