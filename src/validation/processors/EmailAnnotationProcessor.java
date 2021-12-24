@@ -1,33 +1,45 @@
 package validation.processors;
 
-
-
 import validation.annotations.Email;
-import validation.dto.CustomerDto;
 
 import java.lang.reflect.Field;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+public class EmailAnnotationProcessor {
 
-public class EmailAnnotationProcessor  {
-    public String[] validateEmail(Object object) {
-        String[] errorMessages = new String[5];
+    public String[] validateEmail(Object dto) throws IllegalAccessException {
 
-        Class<?> aClass = object.getClass();
-        Field[] declaredFields = aClass.getDeclaredFields();
-        for (Field field : declaredFields) {
+        String[] errors = null;
+        Field[] fields = dto.getClass().getDeclaredFields();
+        for (Field field : fields) {
             if (field.isAnnotationPresent(Email.class)) {
                 field.setAccessible(true);
-                CustomerDto customer = (CustomerDto) object;
-                Pattern pattern = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-" +
-                        "9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$");
-                boolean matches = customer.getEmail().matches(pattern.pattern());
-                if (!matches) {
-                    System.out.println("Email is not valid");
+                Object o = field.get(dto);
+                if (o instanceof String) {
+                    String fieldValue = (String) o;
+
+                    String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(fieldValue);
+                    if (matcher.matches()) {
+                        errors = new String[1];
+                        errors[0] = "No errors found";
+                    } else {
+                        errors = new String[1];
+                        errors[0] = "Email form is invalid";
+                    }
+
+
                 }
+
+
             }
         }
 
-        return errorMessages;
+
+        return errors;
     }
+
+
 }
