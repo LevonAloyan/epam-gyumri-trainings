@@ -1,15 +1,21 @@
 package mycollections;
 
+import java.util.NoSuchElementException;
+
 public class DoubleLinkedList<T> implements MyList<T> {
-    private Node<T> head;
+    private Node<T> first;
     private Node<T> last;
     private int size;
 
 
     public DoubleLinkedList() {
-        this.head = null;
+        this.first = null;
         this.last = null;
         this.size = 0;
+    }
+
+    public Node<T> getFirst() {
+        return first;
     }
 
     @Override
@@ -19,23 +25,40 @@ public class DoubleLinkedList<T> implements MyList<T> {
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return first == null;
     }
 
     @Override
     public boolean contains(T o) {
-        return false;
+        return indexOf(o) != -1;
     }
 
     @Override
     public int indexOf(T o) {
-        // todo iterate on Linked list check if the data is equals to given value, return the index
-        return 0;
+        int index = 0;
+        Node<T> current = first;
+        while (current != null) {
+            if (current.data == o) {
+                return index;
+            } else {
+                current = current.next;
+                index++;
+            }
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(T o) {
-        return 0;
+        Node<T> current;
+        int currentIndex = size - 1;
+        for (current = last; current != null; current = current.previous) {
+            if (current.data.equals(o)) {
+                return currentIndex;
+            }
+            currentIndex--;
+        }
+        return -1;
     }
 
     @Override
@@ -43,10 +66,10 @@ public class DoubleLinkedList<T> implements MyList<T> {
         if (index > size || index < 0) {
             throw new ListIndexOutOfBoundException("Index " + index + " is out of bound. The LinkedList size is " + size);
         }
-        Node<T> nodeToReturn = head;
+        Node<T> nodeToReturn = first;
         int currentIndex = 0;
         while (currentIndex < index) {
-            nodeToReturn = nodeToReturn.getNext();
+            nodeToReturn = nodeToReturn.next;
             currentIndex++;
         }
         return nodeToReturn.getData();
@@ -54,18 +77,37 @@ public class DoubleLinkedList<T> implements MyList<T> {
 
     @Override
     public T set(int index, T element) {
-        return null;
+        Node<T> newNode = new Node<>(element);
+        int currentIndex = 0;
+        if (isEmpty()) {
+            return null;
+        } else if (index == 0) {
+            first.data=newNode.data;
+        } else if (index == size - 1) {
+            last.data= newNode.data;
+        } else if (index > 0 && index < size - 1) {
+            Node<T> current;
+            for (current = first; current != null; current = current.next) {
+                if (currentIndex == index) {
+                    newNode.next = current.next;
+                    newNode.previous=current.previous;
+                    current.data = newNode.data;
+                }
+                currentIndex++;
+            }
+        }
+        return (T) newNode;
     }
 
     @Override
     public boolean add(T e) {
-        if (head == null) {
-            head = new Node<>(e);
-            last = head;
+        if (first == null) {
+            first = new Node<>(e);
+            last = first;
         } else {
             Node<T> current = new Node<>(e);
-            current.setPrevious(last);
-            last.setNext(current);
+            current.previous = last;
+            last.next = current;
             last = current;
         }
         size++;
@@ -74,21 +116,81 @@ public class DoubleLinkedList<T> implements MyList<T> {
 
     @Override
     public void add(int index, T element) {
-
+        Node<T> newNode = new Node<>(element);
+        if (isEmpty()) {
+            first = newNode;
+            last = newNode;
+        } else if (index == 0) {
+            newNode.next = first;
+            first.previous = newNode;
+            first = newNode;
+        } else if (index == size - 1) {
+            newNode.previous = last;
+            last.next = newNode;
+            last = newNode;
+        } else if (index > 0 && index < size - 1) {
+            Node<T> current;
+            int currentIndex = 1;
+            for (current = first; current != null; current = current.next) {
+                if (currentIndex == index) {
+                    newNode.next = current.next;
+                    current.next = newNode;
+                }
+                currentIndex++;
+            }
+            size++;
+        }
     }
 
     @Override
     public T remove(int index) {
+        Node<T> current;
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        } else if (index == 0) {
+            current = first.next;
+            first = current;
+            first.previous = null;
+        } else if (index == size - 1) {
+            current = last.previous;
+            last = current;
+            last.next = null;
+        } else {
+            int currentIndex = 0;
+            for (current = first; current != null; current = current.next) {
+                if (currentIndex == index) {
+                    current.previous.next = current.next;
+                    current.next.previous = current.previous;
+                }
+                currentIndex++;
+            }
+            size--;
+        }
         return null;
     }
 
     @Override
     public boolean remove(T o) {
-        return false;
+        if (!contains(o)) {
+            return false;
+        } else {
+            remove(indexOf(o));
+        }
+        return true;
     }
 
+    public void print(DoubleLinkedList<T> list) {
+        System.out.print("[");
+        while (!isEmpty()) {
+            System.out.print(list.getFirst().getData() + " ");
+            first = first.next;
+        }
+        System.out.println("]");
+    }
+
+
     private static class Node<T> {
-        private final T data;
+        private T data;
         private Node<T> next;
         private Node<T> previous;
 
@@ -100,37 +202,5 @@ public class DoubleLinkedList<T> implements MyList<T> {
             return data;
         }
 
-        public Node<T> getNext() {
-            return next;
-        }
-
-        public Node<T> getPrevious() {
-            return previous;
-        }
-
-        public void setNext(Node<T> next) {
-            this.next = next;
-        }
-
-        public void setPrevious(Node<T> previous) {
-            this.previous = previous;
-        }
-    }
-
-    public static void main(String[] args) {
-        DoubleLinkedList<Integer> myLinkedList = new DoubleLinkedList<>();
-
-        myLinkedList.add(1);
-        myLinkedList.add(2);
-        myLinkedList.add(3);
-        myLinkedList.add(4);
-        myLinkedList.add(5);
-        myLinkedList.add(5);
-
-        System.out.println(myLinkedList.get(16));
-
-
     }
 }
-
-
