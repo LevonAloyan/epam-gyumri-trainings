@@ -1,30 +1,30 @@
 package mycollections;
 
+import java.util.LinkedList;
+
 public class DoubleLinkedArrayTest {
     private final DoubleLinkedList<Double> doubleLinkedList = new DoubleLinkedList<>();
+    // LinkedList
 
     public static void main(String[] args) {
         DoubleLinkedArrayTest test = new DoubleLinkedArrayTest();
-        test.isEmptyTest();
-        test.linkLast(5.77);
-        test.containsTest(5.77);
-        test.linkFirst(2.5);
+      //  test.isEmptyTest();
+     //   test.containsTest(5.77);
         test.addTest(4.7);
         test.addTest(2.7);
-        test.linkLast(5.6);
-        test.addTest(4.7);
-        test.addTest(4.7);
-       // test.addByIndexTest(1, 45.6);
-        test.set(3, 33.3);
-        test.indexOfTest(5.77);
-        test.lastIndexOfTest(4.7);
-        test.sizeTest();
-        test.getTest(1);
-        test.remove(45.6);
-        test.removeByIndexTest(2);
-        // test.print();
-        test.unlinkFirst();
-        test.unlinkLast();
+        test.addTest(6.67);
+        test.addTest(2.788);
+//        test.addTest(4.7);
+//        test.addByIndexTest(1, 5.66);
+//        test.getTest(1);
+//        test.sizeTest();
+ //       test.set(2, 33.3);
+//        test.getTest(2);
+//        test.indexOfTest(4.7);
+ //       test.lastIndexOfTest(4.7);
+ //       test.remove(4.7);
+//        test.removeByIndexTest(2);
+        test.print();
     }
 
 
@@ -49,7 +49,7 @@ public class DoubleLinkedArrayTest {
 
     public <T> void lastIndexOfTest(T element) {
         System.out.println("Last index of element in linked array is -> "
-                + doubleLinkedList.indexOf((Double) element));
+                + doubleLinkedList.lastIndexOf((Double) element));
     }
 
     public void getTest(int index) {
@@ -81,29 +81,10 @@ public class DoubleLinkedArrayTest {
                 + doubleLinkedList.remove((Double) element));
     }
 
-    public <T> void linkFirst(T element) {
-        System.out.println("Linking element to the first position -> " + element);
-        doubleLinkedList.linkFirst((Double) element);
-    }
-
-    public <T> void linkLast(T element) {
-        System.out.println("Linking element to the last position -> " + element);
-        doubleLinkedList.linkLast((Double) element);
-    }
-
     public void print() {
         doubleLinkedList.printElements();
         System.out.println();
     }
 
-    public void unlinkFirst() {
-        System.out.println("Unlink first element ");
-        doubleLinkedList.unlinkFirst();
-    }
-
-    public void unlinkLast() {
-        System.out.println("Unlink last element ");
-        doubleLinkedList.unlinkLast();
-    }
 
 }
