@@ -26,13 +26,12 @@ public class ExtendedList<T> extends ArrayList<T> {
     }
 
     public boolean forAll(Predicate<T> predicate) {
-        List<Boolean> predicateChecker = new ArrayList<>();
         for (T t : this) {
             if (!predicate.test(t)) {
-                predicateChecker.add(true);
+                return  false;
             }
         }
-        return predicateChecker.size() == this.size();
+return true;
     }
 
     public List<ArrayList<T>> partition(Predicate<T> predicate) {
