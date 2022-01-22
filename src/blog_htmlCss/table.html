@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #000000;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #979797;
+        }
+    </style>
+    <title>Table</title>
+    <link rel="stylesheet" href="css/table.css">
+</head>
+<body>
+<table>
+    <tr>
+        <th class="interviewType">Interview Type</th>
+        <th class="interviewer">Interviewer</th>
+        <th colspan="4" class="points">Points</th>
+    </tr>
+    <tr>
+        <td rowspan="5">Java Client Interview</td>
+        <td>Sevak Martirosyan</td>
+        <td>Core:8</td>
+        <td>Spring:7</td>
+        <td>SQL:7</td>
+        <td>CI/CD:6</td>
+
+    </tr>
+    <tr>
+        <td>Levon Aloyan</td>
+        <td>Core:9</td>
+        <td>Spring:6</td>
+        <td>SQL:9</td>
+        <td>Testing:7</td>
+    </tr>
+    <tr>
+        <td>Mkrtic Stepanyan</td>
+        <td>Core:6</td>
+        <td>Spring:5</td>
+        <td>SQL:6</td>
+        <td>Testing:4</td>
+    </tr>
+    <tr>
+        <td>Ara Howhannisyan</td>
+        <td>Core:7</td>
+        <td>Spring:6</td>
+        <td>SQL:7</td>
+        <td>CI/CD:7</td>
+    </tr>
+</table>
+
+</body>
+</html>
