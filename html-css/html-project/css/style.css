@@ -1,0 +1,73 @@
+
+
+body{
+    font-family: Tahoma;
+    color #000333
+
+}
+
+.header{
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.name{
+ font-family: Tahoma;
+    color: #333;
+    margin: 10px 20px;
+    font-size: 14px;
+}
+
+.avatar{
+    width: 100px;
+    border-radius: 5%;
+    box-shadow: 20px 18px 8px 0px rgba(34, 60, 80, 0.2);
+
+}
+
+.biography, .skills{
+
+    width: 80%;
+    margin: 10px auto;
+
+}
+
+.biography>div {
+    margin: 10px 0;
+}
+
+.skills table{
+    width: 100%;
+}
+
+.skills table td {
+    border:1px solid black;
+    text-align: center;
+    padding: 5px;
+}
+.skills table th {
+font-size: 17px;
+    border:1px solid black;
+    text-align: center;
+    padding: 5px;
+}
+
+.skills table tr:nth-child(2n){
+    background-color: #ccc;
+}
+
+
+.contact{
+    width: 80%;
+    display: flex;
+    margin: 20px auto;
+}
+
+.address-title{
+    width: 30%;
+}
+
+.address-value{
+    width: 70%;
+}
