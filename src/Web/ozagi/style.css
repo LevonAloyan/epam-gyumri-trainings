@@ -41,7 +41,11 @@ body {
     display:flex;
     justify-content: flex-end;
 }
-
+.search-container{
+    bottom:20px;
+     margin-left: 1110px;
+      position: relative;
+}
 p {
   color: var(--paragraph-color);
   font-family: var(--body-font);
@@ -383,6 +387,7 @@ blog-list .grid.last {
   width: 24%;
   left: 7%;
   top: -73px;
+  box-shadow: 3px 5px 6px #ef9a9a;
 }
 
 
@@ -394,6 +399,13 @@ blog-list .grid.last {
   margin-bottom: -40px;
 }
 
-
+.socialNetworkLogos {
+   width: 190px;
+    height: 63px;
+     bottom:52px;
+      margin-left: 1260px;
+       border-radius: 15px;
+        position: relative;
+    }
 
 
