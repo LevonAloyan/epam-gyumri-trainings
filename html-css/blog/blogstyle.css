@@ -1,0 +1,138 @@
+
+.Title{
+   padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+.sections{
+ text-align: center;
+  font-size: 20px;
+   word-spacing: 15px;
+    margin-top: -40px;
+}
+
+.Ozagi{
+  margin-left: 40px;
+}
+
+.search-container{
+    bottom:20px;
+     margin-left: 1110px;
+      position: relative;
+}
+
+.natureTitle{
+font-family: Noto Sans JP;
+ font-size: 65px;
+  padding: 30px;
+   line-height: 50px;
+    text-align: center;
+     background: #FEEBE4;
+}
+
+.subtitleHome{
+   font-family: Noto Sans JP;
+    font-size: 20px;
+}
+
+.subtitleNature{
+   font-family: Noto Sans JP;
+    font-size: 20px;
+    text-decoration-line-color: #000000
+}
+
+.subtitleNature{
+   color: #F70C0C;
+    font-size: 20px;
+}
+
+.articles1 img{
+margin-top: 50px;
+ margin-left: 50px;
+  margin-right: 50px;
+    width: 340px;
+     height: 380px;
+      border-radius: 15px;
+       position: relative;
+}
+
+.articles img{
+margin-left: 50px;
+ margin-right: 50px;
+   width: 340px;
+    height: 380px;
+     border-radius: 15px;
+      position: relative;
+}
+
+.content{
+ font-size: 22px;
+  font-family: Noto Sans JP;
+
+
+   display: inline-block;
+     width: 280px;
+      padding: 15px;
+       left: 60px;
+        position: relative;
+         text-align: center;
+          top: -60px;
+            background-color: #FFFFFF;
+             box-shadow: 3px 5px 6px #DDBBD7;
+}
+
+ .content2{
+  font-size: 22px;
+   font-family: Noto Sans JP;
+
+    display: inline-block;
+     width: 280px;
+       padding: 15px;
+        left: 195px;
+         position: relative;
+          text-align: center;
+           top: -60px;
+            background-color: #FFFFFF;
+             box-shadow: 3px 5px 6px #DDBBD7;
+}
+
+  .content3{
+    font-size: 22px;
+     font-family: Noto Sans JP;
+
+      display: inline-block;
+       width: 280px;
+        padding: 15px;
+         left: 325px;
+          top: -70px;
+           position: relative;
+            text-align: center;
+             background-color: #FFFFFF;
+               box-shadow: 3px 5px 6px #DDBBD7;
+  }
+
+ .NC{
+   word-spacing: 18px;
+    font-size: 16px;
+ }
+
+#line{
+  margin:-40px;
+}
+
+.socialNetworkLogos {
+   width: 140px;
+    height: 60px;
+     bottom:50px;
+      margin-left: 1110px;
+       border-radius: 15px;
+        position: relative;
+    }
+
+#conf{
+ font-family: Noto Sans JP;
+  text-align: center;
+   color: #A0A0A0;
+    margin: 60px;
+}
+
