@@ -1,0 +1,45 @@
+body{
+background-color: beige;
+}
+
+.name {
+color: red;
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 10px 10px;
+border: 2px solid red;
+}
+
+
+.avatar {
+width: 200px;
+display: block;
+margin-left: auto;
+margin-right: auto;
+padding: 5px;
+border: 2px solid red;
+}
+
+div div div {
+font-family: "Times New Roman";
+}
+
+table, tr, td {
+border: 2px solid black;
+border-collapse: collapse;
+padding: 10px;
+margin: 10px 10px;
+
+
+}
+
+tr:nth-child(even) {
+background: lightgray;
+}
+
+table {
+margin-right: auto;
+margin-left: auto;
+text-align: center;
+}
