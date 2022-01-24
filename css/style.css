@@ -1,0 +1,49 @@
+body{
+    font-family: Tahoma;
+}
+.name{
+    color: midnightblue;
+    margin: 10px 20px ;
+    font-size: 16px;
+
+}
+
+.avatar{
+    width: 150px;
+    border-radius: 5%;
+    box-shadow: 20px 18px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.header{
+   flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.biography{
+    width: 80%;
+    margin: 10px auto;
+}
+
+.biography div{
+    margin: 10px 0;
+}
+
+.skills table td{
+    text-align: center;
+    border: 1px solid black;
+
+}
+.skills table tr:nth-child(2n){
+    background-color: grey;
+
+
+ }
+.contact{argin: 20px auto;
+    width: 80%;
+    display: flex;
+    margin: 20px auto;
+
+}
+.address-title{
+    width: 40%;
+}
