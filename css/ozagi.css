@@ -1,0 +1,165 @@
+.blog{
+    font-style: oblique;
+    display: flex;
+    font-size: 30px;
+
+}
+.name{
+  font-size: 20px;
+    color: midnightblue;
+    display: flex;
+    justify-content: center;
+    background-color: antiquewhite;
+
+}
+.hn{
+    display: flex;
+    background-color: antiquewhite;
+    justify-content: center;
+    padding: auto;
+
+}
+
+.row1{
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
+}
+
+
+.row1> .img1>img{
+   margin: 20px;
+    height: 250px;
+    width: 200px;
+    object-fit: contain;
+}
+
+
+
+.row1 > .img2 >img{
+    margin: 20px;
+    height: 250px;
+    width: 200px;
+    object-fit: contain;
+}
+
+
+
+.row1 > .img3 >img{
+    margin: 20px;
+    height: 250px;
+    width: 200px;
+    object-fit: contain;
+}
+
+
+
+.row2{
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
+}
+
+
+.row2> .img4>img{
+    margin: 20px;
+    height: 250px;
+    width: 200px;
+    object-fit: contain;
+}
+
+
+
+.row2 > .img5 >img{
+    margin: 20px;
+    height: 250px;
+    width: 200px;
+    object-fit: contain;
+}
+
+
+
+.row2 > .img6 >img{
+    margin: 20px;
+    height: 250px;
+    width: 200px;
+    object-fit: contain;
+}
+
+
+
+.row3{
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
+}
+
+
+.row3> .img7>img{
+    margin: 20px;
+    height: 250px;
+    width: 200px;
+    object-fit: contain;
+}
+
+
+
+.row3 > .img8 >img{
+    margin: 20px;
+    height: 250px;
+    width: 200px;
+    object-fit: contain;
+}
+
+
+
+.row3 > .img9 >img{
+    margin: 20px;
+    height: 250px;
+    width: 200px;
+    object-fit: contain;
+}
+
+.ozagi{
+
+    font-style: oblique;
+    display: flex;
+    font-size: 20px;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.LM{
+
+    size: 200px 200px;
+    display: flex;
+    justify-content: center;
+}
+.ozagi>img{
+    margin: 20px;
+    height: 80px;
+    width: 80px
+}
+
+.policy{
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    color: dimgray;
+
+
+}
+.--{
+    color: gray;
+}
+
