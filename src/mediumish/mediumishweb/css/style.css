@@ -1,0 +1,211 @@
+* {
+margin: 0;
+padding: 0;
+}
+
+body {
+color: #99;
+}
+
+a {
+color: #777;
+}
+
+.wrapper {
+max-width: 1024px;
+margin: 0 auto;
+padding: 20px;
+}
+
+nav {
+display: flex;
+justify-content: space-between;
+border-bottom: 2px solid gray;
+}
+
+.navigation {
+display: flex;
+align-items: center;
+}
+
+.navigation ul {
+display: flex;
+list-style: none;
+}
+
+.navigation ul li {
+margin-right: 10px;
+}
+
+.navigation ul li a {
+text-decoration: none;
+}
+
+.active {
+font-weight: bold;
+color: #333;
+}
+
+.top-search {
+border: 1px solid;
+padding: 5px 15px;
+border-radius: 12px;
+outline: none;
+}
+
+.one {
+width: 40px;
+}
+
+container {
+width: 100%;
+border-bottom: 2px solid gray;
+margin: 0 auto:
+}
+
+header {
+margin-top: 30px;
+margin-bottom: 40px;
+line-height: 2em;
+}
+
+header h1 {
+font-family: "Righteous";
+color: #333333;
+}
+
+header h4 {
+font-family: "Righteous";
+font-weight: 500;
+color: #222;
+}
+
+.thick {
+display: inline-block;
+border-bottom: 2px solid #ccc;
+}
+
+.thin {
+border-bottom: 1px solid #ddd;
+}
+
+.featured-article {
+display: flex;
+flex-wrap: wrap;
+}
+
+.top-article {
+width: 47.8%;
+margin: 20px 1%;
+display: flex;
+border: 1px solid #cccccc;
+}
+
+.featured-article img {
+max-width: 100%;
+height: 100%;
+}
+
+figure {
+height: 100%;
+}
+
+.thumbnail {
+width: 100%;
+}
+
+.content {
+width: 55%;
+padding: 10px;
+color: #333;
+flex-direction: row;
+justify-content: space-between;
+}
+
+.content p {
+color: #999999;
+}
+
+.content img {
+border-radius: 50%;
+border: 1px solid #9999;
+width: 30px;
+height: auto;
+}
+
+#featured, #all {
+margin-top: 20px;
+}
+
+.article-info p {
+font-size: 12px;
+}
+
+.author info, .author {
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.avatar {
+margin-right: 4px;
+}
+
+.name {
+color: #333333!important;
+font-weight: 800;
+}
+
+.all-stories {
+margin: 20px 1%;
+width: 31%;
+border: 1px solid gray;
+display: flex;
+flex-wrap: wrap;
+}
+
+.all-stories img {
+max-width: 100%;
+height: 100%;
+}
+
+.container-all {
+display: flex;
+flex-wrap: wrap;
+}
+
+.featured-content-all {
+padding: 5px;
+display: block;
+width: 170%;
+}
+
+.article-info{
+padding: 10px;
+display: inline;
+justify-content: space-between;
+width: 70%;
+
+}
+
+.flag img {
+margin-left: 80%;
+position: relative;
+}
+
+.flag-all img {
+margin-left: 150%;
+position: relative;
+}
+
+footer {
+border-top: 2px solid gray;
+display: flex;
+justify-content: space-between;
+padding: 10px;
+margin: 20px;
+}
+
+h5 {
+color: gray;
+}
