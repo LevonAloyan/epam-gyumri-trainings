@@ -1,28 +1,32 @@
 package validation.processors;
 
 import validation.annotations.Max;
-import validation.dto.CustomerDto;
 
 import java.lang.reflect.Field;
 
 public class MaxAnnotationProcessor {
-    public String[] validateMax(Object object) throws IllegalAccessException {
-        String[] errorMessages = new String[10];
+    public  String  validateMax (Object dto) throws IllegalAccessException  {
+        Field[] declaredFields = dto.getClass().getDeclaredFields();
+        String  errors = null;
 
-        Class<?> aClass = object.getClass();
-        Field[] declaredFields = aClass.getDeclaredFields();
-        for (Field field : declaredFields) {
-            if (field.isAnnotationPresent(Max.class)) {
+        for(Field field : declaredFields){
+            if(field.isAnnotationPresent(Max.class)){
                 field.setAccessible(true);
-                Max annotation = field.getAnnotation(Max.class);
-                CustomerDto customer = (CustomerDto) object;
-                int fieldValue = customer.getDiscountRate();
-                int valueMax = annotation.value();
-                if (fieldValue > valueMax){
-                    System.out.println("Length is max");
+                Object o = field.get(dto);
+                if (o instanceof Integer) {
+                    int fieldValue = (int) o;
+                    Max annotation = field.getAnnotation(Max.class);
+
+                    if (fieldValue > annotation.value()){
+                        errors = "length less than  " +  annotation.value();
+                    }
+                } else {
+                    errors = "Max annotation is not applicable on none Integer fields.";
+
                 }
             }
         }
-        return errorMessages;
+
+        return errors;
     }
 }
