@@ -48,3 +48,4 @@ git checkout -b - create new branch
 37.Arevik Arakelyan - ArevikArakelyan
 38. Harutyun Pojolyan - HarutyunPojolyan
 39. Alvajyan Stepan - StepanAlvajyan
+40.Vanik Manukyan - ManukyanVanik
